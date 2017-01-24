@@ -1,0 +1,1202 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,单列模式,设计模式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="你真的会写单例吗？
+摘录来源  
+
+单例的正确姿势Java单例模式可能是最简单也是最常用的设计模式，一个完美的单例需要做到哪些事呢？  
+
+单例（这不是废话吗）  
+延迟加载
+线程安全
+没有性能问题
+防止序列化产生新对象
+防止反射攻击  
+
+可以看到，真正要实现一个完美的单例是很复杂的，那么，让我这个司机带大家看一看正确姿势的单例。  
+最佳实践单例之枚举没错，直接就上最佳实践，就是这么任性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你真的会写单例吗？">
+<meta property="og:url" content="http://ocnyang.com/2016/10/10/Java_Mode_Singleton/index.html">
+<meta property="og:site_name" content="杨欧神/OCN.Yang">
+<meta property="og:description" content="你真的会写单例吗？
+摘录来源  
+
+单例的正确姿势Java单例模式可能是最简单也是最常用的设计模式，一个完美的单例需要做到哪些事呢？  
+
+单例（这不是废话吗）  
+延迟加载
+线程安全
+没有性能问题
+防止序列化产生新对象
+防止反射攻击  
+
+可以看到，真正要实现一个完美的单例是很复杂的，那么，让我这个司机带大家看一看正确姿势的单例。  
+最佳实践单例之枚举没错，直接就上最佳实践，就是这么任性">
+<meta property="og:updated_time" content="2016-10-10T06:44:15.214Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你真的会写单例吗？">
+<meta name="twitter:description" content="你真的会写单例吗？
+摘录来源  
+
+单例的正确姿势Java单例模式可能是最简单也是最常用的设计模式，一个完美的单例需要做到哪些事呢？  
+
+单例（这不是废话吗）  
+延迟加载
+线程安全
+没有性能问题
+防止序列化产生新对象
+防止反射攻击  
+
+可以看到，真正要实现一个完美的单例是很复杂的，那么，让我这个司机带大家看一看正确姿势的单例。  
+最佳实践单例之枚举没错，直接就上最佳实践，就是这么任性">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 6310065206374434000,
+      author: 'OCN.Yang'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ocnyang.com/2016/10/10/Java_Mode_Singleton/"/>
+
+  <title> 你真的会写单例吗？ | 杨欧神/OCN.Yang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <!-- add Fork me on Github-->
+  <a href="https://github.com/ocnyang">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  <!-- add Fork me on Github-->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨欧神/OCN.Yang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-efall">
+          <a href="/categories/还相信爱情/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            E.Fall
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                你真的会写单例吗？
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-10T14:03:15+08:00" content="2016-10-10">
+              2016-10-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/10/Java_Mode_Singleton/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/Java_Mode_Singleton/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/10/Java_Mode_Singleton/" class="leancloud_visitors" data-flag-title="你真的会写单例吗？">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="你真的会写单例吗？"><a href="#你真的会写单例吗？" class="headerlink" title="你真的会写单例吗？"></a>你真的会写单例吗？</h1><blockquote>
+<p><a href="http://blog.csdn.net/wzgiceman/article/details/51809985" target="_blank" rel="external">摘录来源</a>  </p>
+</blockquote>
+<h2 id="单例的正确姿势"><a href="#单例的正确姿势" class="headerlink" title="单例的正确姿势"></a>单例的正确姿势</h2><p><a href="http://ocnyang.com/">Java</a>单例模式可能是最简单也是最常用的设计模式，一个完美的单例需要做到哪些事呢？  </p>
+<ol>
+<li>单例（这不是废话吗）  </li>
+<li>延迟加载</li>
+<li>线程安全</li>
+<li>没有性能问题</li>
+<li>防止序列化产生新对象</li>
+<li>防止反射攻击  </li>
+</ol>
+<p>可以看到，真正要实现一个完美的单例是很复杂的，那么，让我这个司机带大家看一看正确姿势的单例。  </p>
+<h2 id="最佳实践单例之枚举"><a href="#最佳实践单例之枚举" class="headerlink" title="最佳实践单例之枚举"></a>最佳实践单例之枚举</h2><p>没错，直接就上最佳实践，就是这么任性  </p>
+<p>这货长这样：  </p>
+<pre><code>public enum Singleton{  
+    INSTANCE;  
+}    
+</code></pre><p>如果你不熟悉枚举，可能会说：这货是啥？！  </p>
+<p>这种方式的好处是：  </p>
+<ol>
+<li>利用的枚举的特性实现单例</li>
+<li>由JVM保证线程安全</li>
+<li>序列化和反射攻击已经被枚举解决  </li>
+</ol>
+<p>调用方式为Singleton.INSTANCE, 出自《Effective Java》第二版第三条: 用私有构造器或枚举类型强化Singleton属性。<br>关于单例最佳实践的讨论可以看Stackoverflow：<a href="http://stackoverflow.com/questions/70689/what-is-an-efficient-way-to-implement-a-singleton-pattern-in-java" target="_blank" rel="external">what-is-an-efficient-way-to-implement-a-singleton-pattern-in-java</a>  </p>
+<p>下面将会介绍更为常见的单例模式，但是均未处理反射攻击，如果想了解更多可以看这篇文章：<a href="http://blog.csdn.net/u013256816/article/details/50525335" target="_blank" rel="external">如何防止单例模式被JAVA反射攻击</a>  </p>
+<h2 id="最简单的单例之饿汉式"><a href="#最简单的单例之饿汉式" class="headerlink" title="最简单的单例之饿汉式"></a>最简单的单例之饿汉式</h2><pre><code>public class Singleton {  
+    private static final Singleton INSTANCE = new Singleton();  
+    // 私有化构造函数  
+    private Singleton(){}  
+
+    public static Singleton getInstance(){  
+        return INSTANCE;  
+    }  
+}   
+</code></pre><p>这种单例的写法最简单，但是缺点是一旦类被加载，单例就会初始化，没有实现懒加载。而且当实现了Serializable接口后，反序列化时单例会被破坏。<br>实现Serializable接口需要重写readResolve，才能保证其反序列化依旧是单例：  </p>
+<pre><code>public class Singleton implements Serializable {  
+    private static final Singleton INSTANCE = new Singleton();  
+    // 私有化构造函数  
+    private Singleton(){}  
+
+    public static Singleton getInstance(){  
+        return INSTANCE;  
+    }  
+
+    /** 
+     * 如果实现了Serializable, 必须重写这个方法 
+     */  
+    private Object readResolve() throws ObjectStreamException {  
+        return INSTANCE;  
+    }  
+}    
+</code></pre><p>OK，反序列化要注意的就是这一点，下面的内容中就不再复述了。  </p>
+<h2 id="最体现技术的单例之懒汉式"><a href="#最体现技术的单例之懒汉式" class="headerlink" title="最体现技术的单例之懒汉式"></a>最体现技术的单例之懒汉式</h2><p>懒汉式即实现延迟加载的单例，为上述饿汉式的优化形式。而因其仍需要进一步优化，往往成为面试考点，让我们一起来看看坑爹的“懒汉式”<br>懒汉式的最初形式是这样的：  </p>
+<pre><code>public class Singleton {  
+    private static Singleton INSTANCE;  
+    private Singleton (){}  
+
+    public static Singleton getInstance() {  
+     if (INSTANCE == null) {  
+         INSTANCE = new Singleton();  
+     }  
+     return INSTANCE;  
+    }  
+}   
+</code></pre><p>这种写法就轻松实现了单例的懒加载，只有调用了getInstance方法才会初始化。但是这样的写法出现了新的问题–线程不安全。当多个线程调用getInstance方法时，可能会创建多个实例，因此需要对其进行同步。  </p>
+<p>如何使其线程安全呢？简单，加个synchronized关键字就行了</p>
+<pre><code>public static synchronized Singleton getInstance() {  
+    if (INSTANCE == null) {  
+        INSTANCE = new Singleton();  
+    }  
+    return INSTANCE;  
+}    
+</code></pre><p>可是…这样又出现了性能问题，简单粗暴的同步整个方法，导致同一时间内只有一个线程能够调用getInstance方法。 </p>
+<p>因为仅仅需要对初始化部分的代码进行同步，所以再次进行优化：  </p>
+<pre><code>public static Singleton getSingleton() {  
+    if (INSTANCE == null) {               // 第一次检查  
+        synchronized (Singleton.class) {  
+            if (INSTANCE == null) {      // 第二次检查  
+                INSTANCE = new Singleton();  
+            }  
+        }  
+    }  
+    return INSTANCE ;  
+}   
+</code></pre><p>执行两次检测很有必要：当多线程调用时，如果多个线程同时执行完了第一次检查，其中一个进入同步代码块创建了实例，后面的线程因第二次检测不会创建新实例。<br>这段代码看起来很完美，但仍旧存在问题，以下内容引用自黑桃夹克大神的<a href="http://wuchong.me/blog/2014/08/28/how-to-correctly-write-singleton-pattern/" target="_blank" rel="external">如何正确地写出单例模式</a>    </p>
+<p>这段代码看起来很完美，很可惜，它是有问题。主要在于instance = new Singleton()这句，这并非是一个原子操作，事实上在 JVM 中这句话大概做了下面 3 件事情。 </p>
+<ol>
+<li>给 instance 分配内存</li>
+<li>调用 Singleton 的构造函数来初始化成员变量</li>
+<li>将instance对象指向分配的内存空间（执行完这步 instance 就为非 null 了）  </li>
+</ol>
+<p>但是在 JVM 的即时编译器中存在指令重排序的优化。也就是说上面的第二步和第三步的顺序是不能保证的，最终的执行顺序可能是 1-2-3 也可能是 1-3-2。如果是后者，则在 3 执行完毕、2 未执行之前，被线程二抢占了，这时 instance 已经是非 null 了（但却没有初始化），所以线程二会直接返回 instance，然后使用，然后顺理成章地报错。<br>我们只需要将 instance 变量声明成 volatile 就可以了。  </p>
+<pre><code>public class Singleton {  
+    private volatile static Singleton INSTANCE; //声明成 volatile  
+    private Singleton (){}  
+
+    public static Singleton getSingleton() {  
+        if (INSTANCE == null) {                           
+            synchronized (Singleton.class) {  
+                if (INSTANCE == null) {         
+                    INSTANCE = new Singleton();  
+                }  
+            }  
+        }  
+        return INSTANCE;  
+    }  
+
+}   
+</code></pre><p>使用 volatile 的主要原因是其另一个特性：禁止指令重排序优化。也就是说，在 volatile 变量的赋值操作后面会有一个内存屏障（生成的汇编代码上），读操作不会被重排序到内存屏障之前。比如上面的例子，取操作必须在执行完 1-2-3 之后或者 1-3-2 之后，不存在执行到 1-3 然后取到值的情况。从「先行发生原则」的角度理解的话，就是对于一个 volatile 变量的写操作都先行发生于后面对这个变量的读操作（这里的“后面”是时间上的先后顺序）。  </p>
+<p>但是特别注意在 Java 5 以前的版本使用了 volatile 的双检锁还是有问题的。其原因是 Java 5 以前的 JMM （Java 内存模型）是存在缺陷的，即时将变量声明成 volatile 也不能完全避免重排序，主要是 volatile 变量前后的代码仍然存在重排序问题。这个 volatile 屏蔽重排序的问题在 Java 5 中才得以修复，所以在这之后才可以放心使用 volatile。  </p>
+<p>至此，这样的懒汉式才是没有问题的懒汉式。 </p>
+<h2 id="内部类实现单例"><a href="#内部类实现单例" class="headerlink" title="内部类实现单例"></a>内部类实现单例</h2><pre><code>public class Singleton {   
+    /**  
+     * 类级的内部类，也就是静态的成员式内部类，该内部类的实例与外部类的实例没有绑定关系，  
+     * 而且只有被调用到才会装载，从而实现了延迟加载  
+     */   
+    private static class SingletonHolder{   
+        /**  
+         * 静态初始化器，由JVM来保证线程安全  
+         */   
+        private static final Singleton instance = new Singleton();   
+    }   
+    /**  
+     * 私有化构造方法  
+     */   
+    private Singleton(){   
+    }   
+
+    public static  Singleton getInstance(){   
+        return SingletonHolder.instance;   
+    }   
+}  
+</code></pre><p>使用内部类来维护单例的实例，当Singleton被加载时，其内部类并不会被初始化，故可以确保当 Singleton类被载入JVM时，不会初始化单例类。只有 getInstance() 方法调用时，才会初始化 instance。同时，由于实例的建立是时在类加载时完成，故天生对多线程友好，getInstance() 方法也无需使用同步关键字。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持好文章的分享，您的支持将是对我最大的鼓励！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="OCN.Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.jpg" alt="OCN.Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/单列模式/" rel="tag">#单列模式</a>
+          
+            <a href="/tags/设计模式/" rel="tag">#设计模式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/10/RxJavaAbout4_RxAndroid/" rel="next" title="深入浅出RxJava（四：在Android中使用响应式编程）">
+                <i class="fa fa-chevron-left"></i> 深入浅出RxJava（四：在Android中使用响应式编程）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/10/Retrofit2/" rel="prev" title="Retrofit2完全教程">
+                Retrofit2完全教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/10/Java_Mode_Singleton/"
+           data-title="你真的会写单例吗？" data-url="http://ocnyang.com/2016/10/10/Java_Mode_Singleton/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ocnyang.png"
+               alt="OCN.Yang" />
+          <p class="site-author-name" itemprop="name">OCN.Yang</p>
+          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e61d05cbf47e/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ocnyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/shedoor" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://love.shedoor.net/" target="_blank" title="Meet you">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Meet you
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.shedoor.net/" title="个人" target="_blank">个人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#你真的会写单例吗？"><span class="nav-number">1.</span> <span class="nav-text">你真的会写单例吗？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单例的正确姿势"><span class="nav-number">1.1.</span> <span class="nav-text">单例的正确姿势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最佳实践单例之枚举"><span class="nav-number">1.2.</span> <span class="nav-text">最佳实践单例之枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最简单的单例之饿汉式"><span class="nav-number">1.3.</span> <span class="nav-text">最简单的单例之饿汉式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最体现技术的单例之懒汉式"><span class="nav-number">1.4.</span> <span class="nav-text">最体现技术的单例之懒汉式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内部类实现单例"><span class="nav-number">1.5.</span> <span class="nav-text">内部类实现单例</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ocnyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gh3omnCzhrHskUI74veM8V99-gzGzoHsz", "S5X90d5uKqp25VMacYGLwL60");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1117 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android教程系列,Android6.0权限," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在Android 6.0 设备上动态获取权限众所周知，Android 6.0 相比之前的Android版本有一个很大的不同点，就是动态获取权限。今天自己在做拨号功能时，正巧遇到这个问题， 顺手记录下在Android 6.0 上如何动态获取权限。
+下面从自己一开始的问题入手
+实现拨号功能说到拨号，一个 Intent 就搞定，代码如下，
+private void callDirectly(String">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Android 6.0 设备上动态获取权限">
+<meta property="og:url" content="http://ocnyang.com/2016/08/16/Android6Permission/index.html">
+<meta property="og:site_name" content="杨欧神/OCN.Yang">
+<meta property="og:description" content="在Android 6.0 设备上动态获取权限众所周知，Android 6.0 相比之前的Android版本有一个很大的不同点，就是动态获取权限。今天自己在做拨号功能时，正巧遇到这个问题， 顺手记录下在Android 6.0 上如何动态获取权限。
+下面从自己一开始的问题入手
+实现拨号功能说到拨号，一个 Intent 就搞定，代码如下，
+private void callDirectly(String">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/android_m_install.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/android_m_sms.jpeg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/android_m_permission.jpeg">
+<meta property="og:updated_time" content="2016-08-31T00:39:26.332Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Android 6.0 设备上动态获取权限">
+<meta name="twitter:description" content="在Android 6.0 设备上动态获取权限众所周知，Android 6.0 相比之前的Android版本有一个很大的不同点，就是动态获取权限。今天自己在做拨号功能时，正巧遇到这个问题， 顺手记录下在Android 6.0 上如何动态获取权限。
+下面从自己一开始的问题入手
+实现拨号功能说到拨号，一个 Intent 就搞定，代码如下，
+private void callDirectly(String">
+<meta name="twitter:image" content="http://obbu6r1mi.bkt.clouddn.com/android_m_install.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 6310065206374434000,
+      author: 'OCN.Yang'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ocnyang.com/2016/08/16/Android6Permission/"/>
+
+  <title> 在Android 6.0 设备上动态获取权限 | 杨欧神/OCN.Yang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <!-- add Fork me on Github-->
+  <a href="https://github.com/ocnyang">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  <!-- add Fork me on Github-->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨欧神/OCN.Yang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-efall">
+          <a href="/categories/还相信爱情/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            E.Fall
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                在Android 6.0 设备上动态获取权限
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T08:03:15+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android教程系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Android教程系列</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/16/Android6Permission/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/Android6Permission/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/16/Android6Permission/" class="leancloud_visitors" data-flag-title="在Android 6.0 设备上动态获取权限">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="在Android-6-0-设备上动态获取权限"><a href="#在Android-6-0-设备上动态获取权限" class="headerlink" title="在Android 6.0 设备上动态获取权限"></a>在Android 6.0 设备上动态获取权限</h1><p>众所周知，Android 6.0 相比之前的Android版本有一个很大的不同点，就是动态获取权限。今天自己在做拨号功能时，正巧遇到这个问题， 顺手记录下在Android 6.0 上如何动态获取权限。</p>
+<p>下面从自己一开始的问题入手</p>
+<h3 id="实现拨号功能"><a href="#实现拨号功能" class="headerlink" title="实现拨号功能"></a>实现拨号功能</h3><p>说到拨号，一个 Intent 就搞定，代码如下，</p>
+<pre><code>private void callDirectly(String mobile){
+     Intent intent = new Intent();
+     intent.setAction(&quot;android.intent.action.CALL&quot;);
+     intent.setData(Uri.parse(&quot;tel:&quot; + mobile));
+     mContext.startActivity(intent);
+ }
+</code></pre><p>当然 你可别忘了在 Manifest 文件中去声明拨号的权限</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.CALL_PHONE&quot; /&gt;
+</code></pre><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>如果在 Android 6.0 以前的设备上，上面的代码都是没有问题的，但是如果是在 Android 6.0 设备上，并且项目的 targetSdkVersion 你设置的是23，那么 当你执行上面的拨号代码时，程序将会奔溃掉。</p>
+<p>此时你肯定想到了 如果 targetSdkVersion 值设置的小于23是不是就不会奔溃了，恩，确实如此， 此时即使使用Android6.0的设备，程序也不会奔溃，原因显而易见，Android 的权限机制是 Android M 后才加入的。从 Android M 开始 应用程序申请的权限是在运行时动态赋给用户的。</p>
+<p>关于动态分配权限，一些同学可能不是很清楚。这里稍稍提一下 Android 6.0 的权限动态分配。 如果你只对最终的解决方案感兴趣，可以跳过下面这节，直接去看解决方案</p>
+<h3 id="权限动态分配"><a href="#权限动态分配" class="headerlink" title="权限动态分配"></a>权限动态分配</h3><p>在 Android6.0 之前，下载好一个应用程序，点击安装我们看到的大都是像这样的界面。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/android_m_install.jpg" alt="">  </p>
+<p>上图分别是Nexus6和小米手机在安装软件时的界面。</p>
+<p>在安装时你会发现，手机操作系统会提示，这个软件会索要了你手机的那些权限，并且给用一个列表进行展示，但是这些提示只是在安装是提示，只要你点击接受或者安装， 表示你允许这个应用在可以获取它申明的所有权限。一般很少有人在安装时，会因为看到某个应用因为申请了某一个敏感权限而放弃安装应用。因为这个权限虽然敏感， 但是对于当前的用户是不可感知的，因为他现在并没有立即去查看你的最近通话、短信记录…</p>
+<p>说到这里，我们自然而然的会想到，其实最好的方式是，当这个应用在用户使用过程中，正准备使用某个权限时，比如说读取短信列表，系统能及时的弹出一个提示框，说这个应用要读取您的短信内容， 您是否允许。然后用户结合当前应用的执行动作，依据当前条件判断，是不是应该授予应用读取短信记录的权限。这绝对的最完美的。 因为在具体的使用过程中，用户可以结合当前应用的使用场景，去思考、判断是不是应该给这个应用相应的权限。不给能怎样，给了会怎样， 这样对用户而言，完全是主动的，相比安装时那种选择，这样的做法无疑是对用户莫大的尊重，同时这也保证了用户的个人隐私。</p>
+<p>说到这里，不得不插一句，其实 MIUI 早就实现了这个系统特性，在这一点上 MIUI 确实走到了 Android团队的前面，恩，给 MIUI 点个赞。</p>
+<p>然而直到 Android 6.0 这个版本开始，上面的假设终于得到了谷歌的实践，除了在应用安装时，操作系统会提示应用会获取那些权限，在运行过程中，当应用去真的获取一些敏感 权限时，系统还会弹出一个提示框，询问用户是不是授予应用相应的权限。如下图所示。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/android_m_sms.jpeg" alt="">  </p>
+<p>这就是 Android 6.0 的运行时权限检查机制。下面是Google官方对此的解释，只截取介绍部分</p>
+<blockquote>
+<p>Beginning in Android 6.0 (API level 23), users grant permissions to apps while the app is running, not when they install the app. This approach streamlines the app install process, since the user does not need to grant permissions when they install or update the app. It also gives the user more control over the app’s functionality; for example, a user could choose to give a camera app access to the camera but not to the device location. The user can revoke the permissions at any time, by going to the app’s Settings screen.</p>
+</blockquote>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>其实上面已经说了一种取巧的方案，将 targetSdkVersion 设为小于23的值，程序将不会奔溃， 但是在Android 6.0 上你的应用程序依旧拨不了电话，这是真的。所以要想兼容6.0版本，必须通过下面的方式进行代码层面的兼容。</p>
+<p>对Android版本做判断，然后对Android 6.0 做特殊处理，代码如下</p>
+<pre><code>final public static int REQUEST_CODE_ASK_CALL_PHONE = 123;
+
+public void onCall(String mobile){
+       this.mMobile = mobile;
+       if (Build.VERSION.SDK_INT &gt;= 23) {
+           int checkCallPhonePermission = ContextCompat.checkSelfPermission(mContext,Manifest.permission.CALL_PHONE);
+           if(checkCallPhonePermission != PackageManager.PERMISSION_GRANTED){
+               ActivityCompat.requestPermissions(mContext,new String[]{Manifest.permission.CALL_PHONE},REQUEST_CODE_ASK_CALL_PHONE);
+               return;
+           }else{
+               //上面已经写好的拨号方法
+               callDirectly(mobile);
+           }
+       } else {
+           //上面已经写好的拨号方法
+           callDirectly(mobile);
+       }
+   }
+</code></pre><p>此时，如果一个Android6.0的用户触发拨号动作，执行上面的代码，那么他将会看到一个很好看的MaterialDialog，如下图所示。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/android_m_permission.jpeg" alt=""></p>
+<p>那么用户点击拒绝或者允许，我们怎么才能拿到回调呢，如果能拿到回调，我们就可以根据用户的选择来执行不同的操作了。</p>
+<p>这里应该会看到在 ActivityCompat 的 requestPermissions 方法中，最后一个参数是一个requestCode，看到它自然而然想到了经常用到的onActivityResult， 这里当执行 ActivityCompat 的 requestPermissions 方法后有一个回调机制，需要我们在当前 Activity 中实现 onRequestPermissionsResult 这个方法，具体如下</p>
+<pre><code>@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    switch (requestCode) {
+        case REQUEST_CODE_ASK_CALL_PHONE:
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission Granted
+                callDirectly(mobile);
+            } else {
+                // Permission Denied
+                Toast.makeText(MainActivity.this, &quot;CALL_PHONE Denied&quot;, Toast.LENGTH_SHORT)
+                        .show();
+            }
+            break;
+        default:
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+}
+</code></pre><p>这里会对提供了一个对用户点击做判断的入口，开发者可以根据 grantResults[0] 的类型，来判断用户点击的是允许还是拒绝，接着就可以执行相应的逻辑了。</p>
+<h3 id="有用的链接"><a href="#有用的链接" class="headerlink" title="有用的链接"></a>有用的链接</h3><p>关于AndroidM上权限的动态获取，这里只给出了一个最简单的示例，如果你还没有尽兴，那么下面这篇国外的博文，一定会让你满足。</p>
+<p><a href="https://inthecheesefactory.com/blog/things-you-need-to-know-about-android-m-permission-developer-edition/en" target="_blank" rel="external">Everything every Android Developer must know about new Android’s Runtime Permission</a></p>
+<p>这篇英文博文内容很长、内容也比较多，十足的干货。您慢用~</p>
+<p>后记：偶然发现已经有哥们把上面的这篇文章做了翻译，真是极好的，这里给大家也摘录过来了，附上<strong><a href="http://ocnyang.com/2016/08/16/AndroidMPermission/">翻译链接</a></strong>，给翻译者同学点赞，辛苦！</p>
+<p>另外，最近看到一个Github上的开源项目 <a href="https://github.com/k0shk0sh/PermissionHelper" target="_blank" rel="external">PermissionHelper</a> ，专门用于处理 Android 6.0 的权限兼容问题。  </p>
+<blockquote>
+<p><a href="http://gudong.name/%E6%8A%80%E6%9C%AF/2015/11/10/android_m_permission.html" target="_blank" rel="external">摘录来源</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持好文章的分享，您的支持将是对我最大的鼓励！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="OCN.Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.jpg" alt="OCN.Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Android教程系列/" rel="tag">#Android教程系列</a>
+          
+            <a href="/tags/Android6-0权限/" rel="tag">#Android6.0权限</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/15/GetPhotoThreeMethods/" rel="next" title="获取图片的三种方法（超完整）">
+                <i class="fa fa-chevron-left"></i> 获取图片的三种方法（超完整）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/16/AndroidMPermission/" rel="prev" title="Android M 新的运行时权限开发者需要知道的一切">
+                Android M 新的运行时权限开发者需要知道的一切 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/16/Android6Permission/"
+           data-title="在Android 6.0 设备上动态获取权限" data-url="http://ocnyang.com/2016/08/16/Android6Permission/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ocnyang.png"
+               alt="OCN.Yang" />
+          <p class="site-author-name" itemprop="name">OCN.Yang</p>
+          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e61d05cbf47e/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ocnyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/shedoor" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://love.shedoor.net/" target="_blank" title="Meet you">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Meet you
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.shedoor.net/" title="个人" target="_blank">个人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在Android-6-0-设备上动态获取权限"><span class="nav-number">1.</span> <span class="nav-text">在Android 6.0 设备上动态获取权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现拨号功能"><span class="nav-number">1.0.1.</span> <span class="nav-text">实现拨号功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.0.2.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限动态分配"><span class="nav-number">1.0.3.</span> <span class="nav-text">权限动态分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">1.0.4.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有用的链接"><span class="nav-number">1.0.5.</span> <span class="nav-text">有用的链接</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ocnyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gh3omnCzhrHskUI74veM8V99-gzGzoHsz", "S5X90d5uKqp25VMacYGLwL60");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

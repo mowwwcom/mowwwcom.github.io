@@ -1,0 +1,1215 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android教程系列," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在 Android 使用 Support Annotations 注解优化代码前言：本片文章讲解怎么使用Support Annotations注解优化代码，比如使用 android特有的魔术变量注解替代Enum 等功能。不要看见使用注解就想到反射会影响性能之类，今天我们就来学习一下Android Support Annotations注解来优化我们的代码，增加可读性的同时，也让让更多的错误消灭在萌">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Android 使用 Support Annotations 注解优化代码">
+<meta property="og:url" content="http://ocnyang.com/2016/12/28/SupportAnnotations/index.html">
+<meta property="og:site_name" content="杨欧神/OCN.Yang">
+<meta property="og:description" content="在 Android 使用 Support Annotations 注解优化代码前言：本片文章讲解怎么使用Support Annotations注解优化代码，比如使用 android特有的魔术变量注解替代Enum 等功能。不要看见使用注解就想到反射会影响性能之类，今天我们就来学习一下Android Support Annotations注解来优化我们的代码，增加可读性的同时，也让让更多的错误消灭在萌">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/nullable.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/nonnull.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/resourceType.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/colorint.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/threading.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/intRange.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/callsuper.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/checkResult.png">
+<meta property="og:updated_time" content="2016-12-28T07:24:25.335Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 Android 使用 Support Annotations 注解优化代码">
+<meta name="twitter:description" content="在 Android 使用 Support Annotations 注解优化代码前言：本片文章讲解怎么使用Support Annotations注解优化代码，比如使用 android特有的魔术变量注解替代Enum 等功能。不要看见使用注解就想到反射会影响性能之类，今天我们就来学习一下Android Support Annotations注解来优化我们的代码，增加可读性的同时，也让让更多的错误消灭在萌">
+<meta name="twitter:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/nullable.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 6310065206374434000,
+      author: 'OCN.Yang'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ocnyang.com/2016/12/28/SupportAnnotations/"/>
+
+  <title> 在 Android 使用 Support Annotations 注解优化代码 | 杨欧神/OCN.Yang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <!-- add Fork me on Github-->
+  <a href="https://github.com/ocnyang">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  <!-- add Fork me on Github-->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨欧神/OCN.Yang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-efall">
+          <a href="/categories/还相信爱情/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            E.Fall
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                在 Android 使用 Support Annotations 注解优化代码
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-28T15:03:15+08:00" content="2016-12-28">
+              2016-12-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android教程系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Android教程系列</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/28/SupportAnnotations/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/28/SupportAnnotations/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/28/SupportAnnotations/" class="leancloud_visitors" data-flag-title="在 Android 使用 Support Annotations 注解优化代码">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="在-Android-使用-Support-Annotations-注解优化代码"><a href="#在-Android-使用-Support-Annotations-注解优化代码" class="headerlink" title="在 Android 使用 Support Annotations 注解优化代码"></a>在 Android 使用 Support Annotations 注解优化代码</h1><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>本片文章讲解怎么使用Support Annotations注解优化代码，比如使用 <strong>android特有的魔术变量注解替代Enum</strong> 等功能。不要看见使用注解就想到反射会影响性能之类，今天我们就来学习一下Android Support Annotations注解来优化我们的代码，增加可读性的同时，也让让更多的错误消灭在萌芽之中。</p>
+<h3 id="Support-Annotations-简介："><a href="#Support-Annotations-简介：" class="headerlink" title="Support Annotations 简介："></a>Support Annotations 简介：</h3><p><code>Android support library</code> 不断地引入新的注解库，它包含很多有用的元注解，你能用它们修饰你的代码，帮助你发现<code>bug</code>。<code>Support library</code> 自己本身也用到了这些注解，所以作为 <code>support library</code> 的用户，<code>Android Studio</code>已经基于这些注解校验了你的代码并且标注其中潜在的问题。</p>
+<h3 id="Support-Annotations-如何引入："><a href="#Support-Annotations-如何引入：" class="headerlink" title="Support Annotations 如何引入："></a>Support Annotations 如何引入：</h3><p>注解默认是没有包含的；它被包装成一个独立的库，如果使用了appcompat库，那么 <code>Support Annotations</code> 就会自动引入进来，因为 <code>appcompat</code> 使用了 <code>Support Annotations</code>，如果没有则需要在 <code>build.gradle</code> 中添加如下配置：</p>
+<pre><code>dependencies {
+    compile &apos;com.android.support:support-annotations:23.4.0&apos;
+}
+</code></pre><blockquote>
+<p>如果你已经引入了 <code>appcompat v7</code> 则可能就没有必要再次引用 <code>support-annotations</code> ,因为 <code>appcompat</code> 默认包含了对其引用。</p>
+</blockquote>
+<h2 id="Support-Annotations分类："><a href="#Support-Annotations分类：" class="headerlink" title="Support Annotations分类："></a>Support Annotations分类：</h2><h3 id="Typedef-注解：IntDef-StringDef-Android特有的魔术变量注解替代Enum"><a href="#Typedef-注解：IntDef-StringDef-Android特有的魔术变量注解替代Enum" class="headerlink" title="Typedef 注解：IntDef / StringDef (Android特有的魔术变量注解替代Enum)"></a>Typedef 注解：IntDef / StringDef (Android特有的魔术变量注解替代Enum)</h3><p>Enum in Android 枚举Enum在java中是一个完整的类. 而枚举中的每一个值在枚举类中都是一个对象. 所以在我们使用时枚举的值将比整数常量消耗更多的内存. 当我们使用枚举在安卓应用中, 如果我们的程序本身内存消耗就比较大,或者是一个游戏的应用程序. 那么我们最好使用常量来替代枚举。可是使用了常量代替后又不能限制取值了。那有什么好的办法呢？   </p>
+<p>当然, Android 支持注解库中有一些好用的annotation helper 我们可以使用它们来解决我们之前的问题(在编译代码时期).<br>IntDef和StringDef 是两个魔术变量注解. 使用这个两个来替代之前使用的Enum. 它将帮助我们在编译代码时期像Enum那样选择变量的功能。 @IntDef和”typedef”作用非常类似，你可以创建另外一个注解，然后用@IntDef指定一个你期望的整型常量值列表，最后你就可以用这个定义好的注解修饰你的API了。接下来我们来使用IntDef来替换Enum看一下.</p>
+<pre><code>public class MainActivity extends Activity {
+    public static final int SUNDAY = 0;
+    public static final int MONDAY = 1;
+    {...省略部分}
+
+    @IntDef({SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface WeekDays {
+    }
+
+    @WeekDays
+    int currentDay = SUNDAY;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        setCurrentDay(WEDNESDAY);
+
+        @WeekDays int today = getCurrentDay();
+        switch (today) {
+            case SUNDAY:
+                break;
+            case MONDAY:
+                break;
+            {...省略部分}
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 参数只能传入在声明范围内的整型，不然编译通不过
+     * @param currentDay
+     */
+    public void setCurrentDay(@WeekDays int currentDay) {
+        this.currentDay = currentDay;
+    }
+
+    @WeekDays
+    public int getCurrentDay() {
+        return currentDay;
+    }
+}
+</code></pre><blockquote>
+<p><strong>说明：</strong>  </p>
+<ol>
+<li>声明一些必要的 <code>int</code> 常量  </li>
+<li>声明一个注解为 <code>WeekDays</code>  </li>
+<li>使用 <code>@IntDef</code> 修饰 <code>WeekDays</code>,参数设置为待枚举的集合  </li>
+<li>使用 <code>@Retention(RetentionPolicy.SOURCE)</code> 指定注解仅存在与源码中,不加入到 <code>class</code> 文件中 </li>
+</ol>
+</blockquote>
+<p>需要在调用时只能传入指定类型，如果传入类型不对，编译不通过。  </p>
+<p>我们也可以指定整型值作为标志位，也就是说这些整型值可以使用 ’｜’ 或者 ’&amp;’ 进行与或等操作。如果我们把@Flavour定义为如下标志位：</p>
+<pre><code>@IntDef(flag = true, value = {SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY})
+public @interface Flavour {
+}
+</code></pre><p>那么可以如下调用：</p>
+<pre><code>setCurrentDay(SUNDAY &amp; WEDNESDAY);
+</code></pre><blockquote>
+<p>@StringDef用法和@IntDef基本差不多，只不过是针对String类型而已。</p>
+</blockquote>
+<h3 id="Nullness注解"><a href="#Nullness注解" class="headerlink" title="Nullness注解"></a>Nullness注解</h3><p>@Nullable注解可以用来标识特定的参数或者返回值可以为null。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/nullable.png" alt="@Nullable"></p>
+<p>@NonNull注解可以用来标识参数不能为null。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/nonnull.png" alt="@NonNull"></p>
+<h3 id="Resource-Type-注解"><a href="#Resource-Type-注解" class="headerlink" title="Resource Type 注解　　"></a>Resource Type 注解　　</h3><p>资源在Android中作为整型值来传递。这意味着希望获取一个drawable作为参数的代码很容易被传递了一个string类型的资源，因为他们资源id都是整型的，编译器很难区分。Resource Type注解在这种条件下可以提供类型检查，例如：</p>
+<p>如果类型指定错误，编译不会通过。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/resourceType.png" alt="Resource Type"></p>
+<p>常见的Resource Type注解,使用方式都是指定一个integer的参数、成员变量、或者方法，检查对应的资源类型。</p>
+<ul>
+<li>AnimatorRes ：animator资源类型</li>
+<li>AnimRes：anim资源类型</li>
+<li>AnyRes：任意资源类型</li>
+<li>ArrayRes：array资源类型</li>
+<li>AttrRes：attr资源类型</li>
+<li>BoolRes：boolean资源类型</li>
+<li>ColorRes：color资源类型</li>
+<li>DimenRes：dimen资源类型。</li>
+<li>DrawableRes：drawable资源类型。</li>
+<li>FractionRes：fraction资源类型</li>
+<li>IdRes：id资源类型</li>
+<li>IntegerRes：integer资源类型</li>
+<li>InterpolatorRes：interpolator资源类型</li>
+<li>LayoutRes：layout资源类型</li>
+<li>MenuRes：menu资源类型</li>
+<li>PluralsRes：plurals资源类型</li>
+<li>RawRes：raw资源类型</li>
+<li>StringRes：string资源类型</li>
+<li>StyleableRes：styleable资源类型</li>
+<li>StyleRes：style资源类型</li>
+<li>TransitionRes：transition资源类型</li>
+<li>XmlRes：xml资源类型  </li>
+</ul>
+<p>以上基本上包括了所有的资源类型，但是有时需要通过RGB颜色整型来设置颜色值，在这种情况下，你可以使用 <code>@ColorInt</code> 注解，表示你期望的是一个代表颜色的整数值，如果使用不对同样也是编译不通过</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/colorint.png" alt="@ColorInt"></p>
+<h3 id="Threading-注解"><a href="#Threading-注解" class="headerlink" title="Threading 注解"></a>Threading 注解</h3><p>比如我们在项目中处理比较耗时的操作，需要制定在工作子线程中执行，可以使用Threading 注解，如果没有在制定的线程中执行也是编译不过的</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/threading.png" alt="Threading"></p>
+<p>几种Threading注解</p>
+<ul>
+<li>@UiThread UI线程</li>
+<li>@MainThread 主线程</li>
+<li>@WorkerThread 子线程</li>
+<li>@BinderThread  绑定线程  </li>
+</ul>
+<h3 id="Value-Constraints-注解：-Size-IntRange-FloatRange"><a href="#Value-Constraints-注解：-Size-IntRange-FloatRange" class="headerlink" title="Value Constraints 注解：@Size, @IntRange, @FloatRange"></a>Value Constraints 注解：<code>@Size</code>, <code>@IntRange</code>, <code>@FloatRange</code></h3><p>在实际开发过程中，我们有时可能需要设置一个取值范围，这时我们可以使用取值范围注解来约束。<br>比如我们设置一个百分比，取值范围为0-100，</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/intRange.png" alt="@IntRange"></p>
+<p>对于数据、集合以及字符串，你可以用@Size注解参数来限定集合的大小(当参数是字符串的时候，可以限定字符串的长度)。</p>
+<p>举几个例子</p>
+<ul>
+<li>集合不能为空: @Size(min=1)</li>
+<li>字符串最大只能有23个字符: @Size(max=23)</li>
+<li>数组只能有2个元素: @Size(2)</li>
+<li>数组的大小必须是2的倍数 (例如图形API中获取位置的x/y坐标数组: @Size(multiple=2)  </li>
+</ul>
+<h3 id="Permissions-注解-RequiresPermission"><a href="#Permissions-注解-RequiresPermission" class="headerlink" title="Permissions 注解: @RequiresPermission"></a>Permissions 注解: @RequiresPermission</h3><p>有时我们的方法调用需要调用者拥有指定的权限，这时我们可以使用@RequiresPermission注解，</p>
+<pre><code>@RequiresPermission(Manifest.permission.SET_WALLPAPER)
+public abstract void setWallpaper(Bitmap bitmap) throws IOException;
+</code></pre><p>除了上面的单一使用方式，官方同时也给出了如下几种使用场景</p>
+<p><strong>（1）如果你至少需要权限集合中的一个，你可以使用anyOf属性</strong></p>
+<pre><code>@RequiresPermission(anyOf = {
+    Manifest.permission.ACCESS_COARSE_LOCATION,
+    Manifest.permission.ACCESS_FINE_LOCATION})
+public abstract Location getLastKnownLocation(String provider);
+</code></pre><p><strong>（2）如果你同时需要多个权限，你可以用allOf属性</strong></p>
+<pre><code>@RequiresPermission(allOf = {
+    Manifest.permission.READ_HISTORY_BOOKMARKS, 
+    Manifest.permission.WRITE_HISTORY_BOOKMARKS})
+public static final void updateVisitedHistory(ContentResolver cr, String url, boolean real) ;  
+</code></pre><p><strong>（3）对于intents的权限，可以直接在定义的intent常量字符串字段上标注权限需求(他们通常都已经被@SdkConstant注解标注过了)</strong></p>
+<pre><code>@RequiresPermission(android.Manifest.permission.BLUETOOTH)
+public static final String ACTION_REQUEST_DISCOVERABLE =
+            &quot;android.bluetooth.adapter.action.REQUEST_DISCOVERABLE&quot;;
+</code></pre><p><strong>（4）对于content providers的权限，你可能需要单独的标注读和写的权限访问，所以可以用@Read或者@Write标注每一个权限需求</strong></p>
+<pre><code>@RequiresPermission.Read(@RequiresPermission(READ_HISTORY_BOOKMARKS))
+@RequiresPermission.Write(@RequiresPermission(WRITE_HISTORY_BOOKMARKS))
+public static final Uri BOOKMARKS_URI = Uri.parse(&quot;content://browser/bookmarks&quot;);  
+</code></pre><h3 id="Overriding-Methods-注解-CallSuper"><a href="#Overriding-Methods-注解-CallSuper" class="headerlink" title="Overriding Methods 注解: @CallSuper"></a>Overriding Methods 注解: @CallSuper</h3><p>如果你的API允许使用者重写你的方法，但是呢，你又需要你自己的方法(父方法)在重写的时候也被调用，这时候你可以使用@CallSuper标注</p>
+<p>例如：Activity的onCreate函数</p>
+<pre><code>@CallSuper
+protected void onCreate(@Nullable Bundle savedInstanceState) 
+</code></pre><p>用了这个后，当重写的方法没有调用父方法时，工具就会给予标记提示</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/callsuper.png" alt="@CallSuper"></p>
+<h3 id="Return-Values注解-CheckResult"><a href="#Return-Values注解-CheckResult" class="headerlink" title="Return Values注解: @CheckResult"></a>Return Values注解: @CheckResult</h3><p>如果你的方法返回一个值，你期望调用者用这个值做些事情，那么你可以使用 <code>@CheckResult</code> 注解标注这个方法。</p>
+<p>这个在具体使用中用的比较少，除非特殊情况，比如在项目中对一个数据进行处理，这个处理比较耗时，我们希望调用该函数的调用者在不需要处理结果的时候，提示没有使用，酌情删除调用。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/checkResult.png" alt="@CheckResult"></p>
+<h3 id="Keep-注解"><a href="#Keep-注解" class="headerlink" title="Keep 注解"></a>Keep 注解</h3><p>Keep：指出一个方法在被混淆的时候应该被保留。  </p>
+<p>在Android编译生成APK的环节,我们通常需要设置minifyEnabled为true实现下面的两个效果:  </p>
+<ul>
+<li>混淆代码</li>
+<li>删除没有用的代码  </li>
+</ul>
+<p>但是出于某一些目的,我们需要不混淆某部分代码或者不删除某处代码,除了配置复杂的Proguard文件之外,我们还可以使用@Keep注解.</p>
+<pre><code>@Keep
+public static int getBitmapWidth(Bitmap bitmap) {
+    return bitmap.getWidth();
+}
+</code></pre><h3 id="其他注解"><a href="#其他注解" class="headerlink" title="其他注解"></a>其他注解</h3><p>   <strong>VisibleForTesting</strong>：可注解一个类，方法，或变量，表示有更宽松的可见性，这样它能够有更宽泛的可见性，使代码可以被测试。</p>
+<h3 id="IntelliJ注解"><a href="#IntelliJ注解" class="headerlink" title="IntelliJ注解"></a>IntelliJ注解</h3><p><code>IntelliJ</code> ，Android Studio 就是基于它开发的， IntelliJ 有一套它自己的注解； IntDef 分析其实重用的是 MagicConstant 分析的代码，IntelliJ null 分析其实用的是一组配置好的 null 注解。如果你执行 Analyze &gt; Infer Nullity…，它会试图找出所有的 null 约束并添加他们。这个检查有时会插入 IntelliJ 注解。你可以通过搜索,替换为 Android 注解库的注解，或者你也可以直接用 IntelliJ 注解。在 build.gradle 里或者通过 Project Structure 对话框的 Dependencies 面板都可以添加如下依赖：</p>
+<pre><code>dependencies {
+    compile &apos;com.intellij:annotations:12.0&apos;
+}
+</code></pre><h2 id="结尾："><a href="#结尾：" class="headerlink" title="结尾："></a>结尾：</h2><p>经过查阅资料和博客，系统了学习和总结了关于Support Annotations注解的内容，在编码中通过使用Support Annotations可以提高代码可读性，同时可以在类加载时就可以检查一些错误，同时不会对性能有任何影响，因为Support Annotations中的注解的生命周期全部是RetentionPolicy.class。在以后的编码中大家可以尝试用用。  </p>
+<blockquote>
+<p><strong>参考文章（本编文章大多来自对下面几篇文章的总结）</strong>：  </p>
+<p><a href="http://droidyue.com/blog/2016/08/14/android-annnotation/index.html" target="_blank" rel="external">http://droidyue.com/blog/2016/08/14/android-annnotation/index.html</a><br><a href="http://www.cnblogs.com/whoislcj/p/5677917.html" target="_blank" rel="external">http://www.cnblogs.com/whoislcj/p/5677917.html</a><br><a href="https://asce1885.gitbooks.io/android-rd-senior-advanced/content/shen_ru_qian_chu_android_support_annotations.html" target="_blank" rel="external">https://asce1885.gitbooks.io/android-rd-senior-advanced/content/shen_ru_qian_chu_android_support_annotations.html</a><br><a href="https://noobcoderblog.wordpress.com/2015/04/12/java-enum-and-android-intdefstringdef-annotation/" target="_blank" rel="external">https://noobcoderblog.wordpress.com/2015/04/12/java-enum-and-android-intdefstringdef-annotation/</a><br><a href="http://szysky.com/2016/05/20/Android-%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8annotion%E6%9B%BF%E4%BB%A3Enum/" target="_blank" rel="external">http://szysky.com/2016/05/20/Android-%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8annotion%E6%9B%BF%E4%BB%A3Enum/</a><br><a href="http://anupcowkur.com/posts/a-look-at-android-support-annotations/" target="_blank" rel="external">http://anupcowkur.com/posts/a-look-at-android-support-annotations/</a>  </p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持好文章的分享，您的支持将是对我最大的鼓励！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="OCN.Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.jpg" alt="OCN.Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Android教程系列/" rel="tag">#Android教程系列</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/28/AndroidStudioSkills/" rel="next" title="Android Studio 常用高效快捷键">
+                <i class="fa fa-chevron-left"></i> Android Studio 常用高效快捷键
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/05/WindowSoftware/" rel="prev" title="常用电脑软件你选对了吗？">
+                常用电脑软件你选对了吗？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/28/SupportAnnotations/"
+           data-title="在 Android 使用 Support Annotations 注解优化代码" data-url="http://ocnyang.com/2016/12/28/SupportAnnotations/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ocnyang.png"
+               alt="OCN.Yang" />
+          <p class="site-author-name" itemprop="name">OCN.Yang</p>
+          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e61d05cbf47e/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ocnyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/shedoor" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://love.shedoor.net/" target="_blank" title="Meet you">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Meet you
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.shedoor.net/" title="个人" target="_blank">个人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在-Android-使用-Support-Annotations-注解优化代码"><span class="nav-number">1.</span> <span class="nav-text">在 Android 使用 Support Annotations 注解优化代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言："><span class="nav-number">1.1.</span> <span class="nav-text">前言：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Support-Annotations-简介："><span class="nav-number">1.1.1.</span> <span class="nav-text">Support Annotations 简介：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Support-Annotations-如何引入："><span class="nav-number">1.1.2.</span> <span class="nav-text">Support Annotations 如何引入：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Support-Annotations分类："><span class="nav-number">1.2.</span> <span class="nav-text">Support Annotations分类：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Typedef-注解：IntDef-StringDef-Android特有的魔术变量注解替代Enum"><span class="nav-number">1.2.1.</span> <span class="nav-text">Typedef 注解：IntDef / StringDef (Android特有的魔术变量注解替代Enum)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nullness注解"><span class="nav-number">1.2.2.</span> <span class="nav-text">Nullness注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resource-Type-注解"><span class="nav-number">1.2.3.</span> <span class="nav-text">Resource Type 注解　　</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Threading-注解"><span class="nav-number">1.2.4.</span> <span class="nav-text">Threading 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Value-Constraints-注解：-Size-IntRange-FloatRange"><span class="nav-number">1.2.5.</span> <span class="nav-text">Value Constraints 注解：@Size, @IntRange, @FloatRange</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Permissions-注解-RequiresPermission"><span class="nav-number">1.2.6.</span> <span class="nav-text">Permissions 注解: @RequiresPermission</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overriding-Methods-注解-CallSuper"><span class="nav-number">1.2.7.</span> <span class="nav-text">Overriding Methods 注解: @CallSuper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Return-Values注解-CheckResult"><span class="nav-number">1.2.8.</span> <span class="nav-text">Return Values注解: @CheckResult</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Keep-注解"><span class="nav-number">1.2.9.</span> <span class="nav-text">Keep 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他注解"><span class="nav-number">1.2.10.</span> <span class="nav-text">其他注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IntelliJ注解"><span class="nav-number">1.2.11.</span> <span class="nav-text">IntelliJ注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结尾："><span class="nav-number">1.3.</span> <span class="nav-text">结尾：</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ocnyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gh3omnCzhrHskUI74veM8V99-gzGzoHsz", "S5X90d5uKqp25VMacYGLwL60");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

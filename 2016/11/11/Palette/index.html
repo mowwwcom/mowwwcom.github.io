@@ -1,0 +1,1138 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Palette," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="使用Palette抽取Bitmap主色调一些Support库随着Android Lollipop的发布而诞生了，其中就有Palette。这个库可以让你很轻松地从一幅图中抽取特征颜色，这在你希望界面的颜色风格适应指定图片时非常有用，它还会提供与指定颜色相搭配的字体颜色。  
+关于PalettePalette顾名思义调色板， Palette的作用是可以从图像中提取图片的颜色。我们可以把提取的颜色融入到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Palette抽取Bitmap主色调">
+<meta property="og:url" content="http://ocnyang.com/2016/11/11/Palette/index.html">
+<meta property="og:site_name" content="杨欧神/OCN.Yang">
+<meta property="og:description" content="使用Palette抽取Bitmap主色调一些Support库随着Android Lollipop的发布而诞生了，其中就有Palette。这个库可以让你很轻松地从一幅图中抽取特征颜色，这在你希望界面的颜色风格适应指定图片时非常有用，它还会提供与指定颜色相搭配的字体颜色。  
+关于PalettePalette顾名思义调色板， Palette的作用是可以从图像中提取图片的颜色。我们可以把提取的颜色融入到">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/Palette/20150827183303088.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/Palette/20150827183359416.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/Palette/tmpdir__16_6_28_18_41_09.gif">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/Palette/cd389848270623564.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/Palette/cd389848270623565.png">
+<meta property="og:updated_time" content="2016-11-16T02:13:05.168Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Palette抽取Bitmap主色调">
+<meta name="twitter:description" content="使用Palette抽取Bitmap主色调一些Support库随着Android Lollipop的发布而诞生了，其中就有Palette。这个库可以让你很轻松地从一幅图中抽取特征颜色，这在你希望界面的颜色风格适应指定图片时非常有用，它还会提供与指定颜色相搭配的字体颜色。  
+关于PalettePalette顾名思义调色板， Palette的作用是可以从图像中提取图片的颜色。我们可以把提取的颜色融入到">
+<meta name="twitter:image" content="http://obbu6r1mi.bkt.clouddn.com/Palette/20150827183303088.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 6310065206374434000,
+      author: 'OCN.Yang'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ocnyang.com/2016/11/11/Palette/"/>
+
+  <title> 使用Palette抽取Bitmap主色调 | 杨欧神/OCN.Yang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <!-- add Fork me on Github-->
+  <a href="https://github.com/ocnyang">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  <!-- add Fork me on Github-->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨欧神/OCN.Yang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-efall">
+          <a href="/categories/还相信爱情/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            E.Fall
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用Palette抽取Bitmap主色调
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-11T17:03:15+08:00" content="2016-11-11">
+              2016-11-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android教程系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Android教程系列</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/11/Palette/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/11/Palette/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/11/Palette/" class="leancloud_visitors" data-flag-title="使用Palette抽取Bitmap主色调">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="使用Palette抽取Bitmap主色调"><a href="#使用Palette抽取Bitmap主色调" class="headerlink" title="使用Palette抽取Bitmap主色调"></a>使用Palette抽取Bitmap主色调</h1><p>一些Support库随着<a href="http://ocnyang.com/">Android Lollipop</a>的发布而诞生了，其中就有Palette。这个库可以让你很轻松地从一幅图中抽取特征颜色，这在你希望界面的颜色风格适应指定图片时非常有用，它还会提供与指定颜色相搭配的字体颜色。  </p>
+<h2 id="关于Palette"><a href="#关于Palette" class="headerlink" title="关于Palette"></a>关于Palette</h2><p>Palette顾名思义调色板， Palette的作用是可以从图像中提取图片的颜色。我们可以把提取的颜色融入到App UI中，可以使UI风格更加美观融洽。有些时候Palette显得非常好用，比如我们可以提取到的突出的色值设置为Toolbar，标题，状态栏的颜色等，可以使我们的整个界面色调统一，效果非常好看。  </p>
+<h2 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h2><h3 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h3><p>你需要在工程下的build.gradle里添加依赖才可以使用Palette，像如下代码所示：  </p>
+<pre><code>dependencies {
+  compile &apos;com.android.support:palette-v7:21.0.0&apos;
+}
+</code></pre><h3 id="生成Palette"><a href="#生成Palette" class="headerlink" title="生成Palette"></a>生成Palette</h3><p>生成一幅图像的Palette有一下几种方法：  </p>
+<pre><code>// Synchronous methods.同步方法--------------------------------
+// 这些应该在访问底层图像加载线程时使用。
+// 方法1：使用默认16种颜色种类的调色板大小。
+Palette p = Palette.generate(bitmap);
+// 方法2：允许指定调色板的颜色种类的值，这里为24.
+Palette p = Palette.generate(bitmap, 24);
+
+
+// Asynchronous methods.异步方法--------------------------------
+// 这是快速的集成路径，在内部使用AsyncTask等，不一定是最好的方式。
+// 方法3：
+Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+    @Override
+    public void onGenerated(Palette palette) {
+       // Here&apos;s your generated palette 这是你生成的调色板
+    }
+});
+// 方法4：
+Palette.generateAsync(bitmap, 24, new Palette.PaletteAsyncListener() {
+    @Override
+    public void onGenerated(Palette palette) {
+       // Here&apos;s your generated palette
+    }
+});  
+</code></pre><blockquote>
+<p><strong>同步方法</strong>。由于他们很可能会比较耗时（在分析大图片或者所需颜色较多时），所以它们不应该在主线程中执行。你应该先在别的线程中使用这两个函数进行解析，解析成功之后再使用。<br><strong>异步方法</strong>。有时候你不会在加载图片的线程（非主线程）中使用解析出的颜色，所以Palette提供了异步方法，他们与之前的函数的区别就是需要传入PaletteAsyncListener，提供在图片解析完成后的回调函数。  </p>
+</blockquote>
+<p><strong>PaletteAsyncListener的实现</strong>是非常简单的（参考下面这几行代码），它只要重写onGenerated就好了。如此一来你就可以在任何需要的时候使用这两个函数创建Palette。</p>
+<pre><code>Palette.PaletteAsyncListener listener = new Palette.PaletteAsyncListener() {
+  public void onGenerated(Palette palette) {
+    // 使用Palette对象，获取解析出的颜色
+  }
+}
+</code></pre><h3 id="提取出的颜色"><a href="#提取出的颜色" class="headerlink" title="提取出的颜色"></a>提取出的颜色</h3><p>Palette默认会解析出图像的16种特征颜色种类，但是这六种颜色是你最经常用到的：  </p>
+<ul>
+<li>vibrant(鲜艳色)</li>
+<li>dark vibrant(鲜艳色中的暗色)</li>
+<li>light vibrant(鲜艳色中的亮色)</li>
+<li>muted(柔和色)</li>
+<li>dark muted(柔和色中的暗色)</li>
+<li>light muted(柔和色中的亮色)</li>
+</ul>
+<p>借一张别人的图，给大家一种更直观的感受。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/Palette/20150827183303088.png" alt="Palette解析六个主颜色">  </p>
+<h3 id="获取提取的颜色"><a href="#获取提取的颜色" class="headerlink" title="获取提取的颜色"></a>获取提取的颜色</h3><p>你获取Palette对象之后，可以通过以下这些内置getter函数直接获取这六个颜色。你需要传入默认颜色防止Palette无法解析到指定颜色种类，返回的类型是24位RGB颜色数值。</p>
+<pre><code>Palette palette = Palette.generate(myBitmap);
+int vibrant = palette.getVibrantColor(0x000000);
+int vibrantLight = palette.getLightVibrantColor(0x000000);
+int vibrantDark = palette.getDarkVibrantColor(0x000000);
+int muted = palette.getMutedColor(0x000000);
+int mutedLight = palette.getLightMutedColor(0x000000);
+int mutedDark = palette.getDarkMutedColor(0x000000);
+
+//独特的一种
+getDominantColor(int defaultColor)
+//返回从调色板中占主导地位的样本的颜色，为RGB包装INT。
+</code></pre><h3 id="获取Swatch"><a href="#获取Swatch" class="headerlink" title="获取Swatch"></a>获取Swatch</h3><p>你也可以选择先获取Swatch对象，然后再通过Swatch提供的方法获取颜色的相关信息：  </p>
+<pre><code>Palette.Swatch s = p.getVibrantSwatch();       //获取到充满活力的这种色调
+Palette.Swatch s = p.getDarkVibrantSwatch();    //获取充满活力的黑
+Palette.Swatch s = p.getLightVibrantSwatch();   //获取充满活力的亮
+Palette.Swatch s = p.getMutedSwatch();           //获取柔和的色调
+Palette.Swatch s = p.getDarkMutedSwatch();      //获取柔和的黑
+Palette.Swatch s = p.getLightMutedSwatch();    //获取柔和的亮
+
+//独特的一种
+getDominantSwatch()
+//返回从调色板中占主导地位的样本。
+</code></pre><blockquote>
+<p>注意：<a href="http://ocnyang.com/">getVibrantSwatch()</a>可能会返回一个null值，所以在使用前检查一下是必须的。<code>if (swatch != null) {}</code>  </p>
+</blockquote>
+<p>Palette解析出的颜色都来自于对应的Swatch，在Swatch里面含有很多关于对应颜色的有用信息。你可以从Swatch中获取RGB颜色值、HSL颜色向量、对应颜色在图像中所占的比例、与对应颜色搭配的标题字体颜色和正文字体颜色（这两个颜色和对应颜色的对比值是处理好的，你不必再去操心）。 </p>
+<p><strong>swatch对象对应的颜色方法：</strong>  </p>
+<pre><code>getPopulation(): 像素的数量
+getRgb(): RGB颜色
+getHsl(): HSL颜色
+getBodyTextColor(): 用于内容正文文本的颜色
+getTitleTextColor(): 标题文本的颜色
+</code></pre><p>Palette只为六种主颜色种类Swatch提供了getter，如果你要使用其他颜色种类的Swatch（一共有16种颜色种类），你需要手动获取它。调用getSwatchs()会返回一个列表，里面有所有获取到的Swatch。</p>
+<pre><code>List&lt;Palette.Swatch&gt; swatches = palette.getSwatches();
+</code></pre><p>这里是一个Palette获取所有Swatch的例子，里面展示了它们分别在图像中所占的比例：</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/Palette/20150827183359416.png" alt="">  </p>
+<h3 id="关于颜色种类的值size"><a href="#关于颜色种类的值size" class="headerlink" title="关于颜色种类的值size"></a>关于颜色种类的值size</h3><p>在上面生成Palette的时候，你可能注意到了可以设置Palette的size。size越大，花费的时间越长，而越小，可以选择的色彩也越小。最佳的选择是根据image的用途：  </p>
+<ul>
+<li>头像之类的，size最好在24-32之间；  </li>
+<li>风景大图之类的，size差不多在8-16；  </li>
+<li>默认是16.  </li>
+</ul>
+<h2 id="Palette实例"><a href="#Palette实例" class="headerlink" title="Palette实例"></a>Palette实例</h2><p>Palette经常用于和ViewPager，Fragment搭配使用，当我们的Pager切换时伴随着Fragment的变化，而Fragment里的内容一般是不同的，所以每个Fragment里的一般视觉效果也是不同的，所以我们可以用Palette来去提取Fragment中的主色调，把这个主色调用于整体的UI风格。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/Palette/tmpdir__16_6_28_18_41_09.gif" alt="效果图">  </p>
+<p>这个例子可以参考这篇博客：<a href="http://www.jianshu.com/p/9fcf316031ba" target="_blank" rel="external">http://www.jianshu.com/p/9fcf316031ba</a><br>Demo的地址：<a href="https://github.com/loonggg/MaterialDesignDemo" target="_blank" rel="external">https://github.com/loonggg/MaterialDesignDemo</a>  </p>
+<p>另外一个例子：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/Palette/cd389848270623564.png" alt=""> <img src="http://obbu6r1mi.bkt.clouddn.com/Palette/cd389848270623565.png" alt="">  </p>
+<p>详情参考这篇博客：<a href="http://www.itdadao.com/articles/c15a485862p0.html" target="_blank" rel="external">http://www.itdadao.com/articles/c15a485862p0.html</a><br>Demo下载地址：<a href="http://download.csdn.net/detail/breeze_wf/9273313" target="_blank" rel="external">http://download.csdn.net/detail/breeze_wf/9273313</a>  </p>
+<blockquote>
+<p>关于更多Palette的详细用法，可以查看<a href="https://developer.android.com/reference/android/support/v7/graphics/Palette.html" target="_blank" rel="external">官方API文档</a>。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持好文章的分享，您的支持将是对我最大的鼓励！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="OCN.Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.jpg" alt="OCN.Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Palette/" rel="tag">#Palette</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/03/EffectiveJava/" rel="next" title="《Effective Java》笔记">
+                <i class="fa fa-chevron-left"></i> 《Effective Java》笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/23/Android7Shortcuts/" rel="prev" title="Android 7.1 新特性：快捷方式 Shortcuts">
+                Android 7.1 新特性：快捷方式 Shortcuts <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/11/Palette/"
+           data-title="使用Palette抽取Bitmap主色调" data-url="http://ocnyang.com/2016/11/11/Palette/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ocnyang.png"
+               alt="OCN.Yang" />
+          <p class="site-author-name" itemprop="name">OCN.Yang</p>
+          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e61d05cbf47e/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ocnyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/shedoor" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://love.shedoor.net/" target="_blank" title="Meet you">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Meet you
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.shedoor.net/" title="个人" target="_blank">个人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Palette抽取Bitmap主色调"><span class="nav-number">1.</span> <span class="nav-text">使用Palette抽取Bitmap主色调</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于Palette"><span class="nav-number">1.1.</span> <span class="nav-text">关于Palette</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始使用"><span class="nav-number">1.2.</span> <span class="nav-text">开始使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导包"><span class="nav-number">1.2.1.</span> <span class="nav-text">导包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成Palette"><span class="nav-number">1.2.2.</span> <span class="nav-text">生成Palette</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提取出的颜色"><span class="nav-number">1.2.3.</span> <span class="nav-text">提取出的颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取提取的颜色"><span class="nav-number">1.2.4.</span> <span class="nav-text">获取提取的颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取Swatch"><span class="nav-number">1.2.5.</span> <span class="nav-text">获取Swatch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于颜色种类的值size"><span class="nav-number">1.2.6.</span> <span class="nav-text">关于颜色种类的值size</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Palette实例"><span class="nav-number">1.3.</span> <span class="nav-text">Palette实例</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ocnyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gh3omnCzhrHskUI74veM8V99-gzGzoHsz", "S5X90d5uKqp25VMacYGLwL60");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

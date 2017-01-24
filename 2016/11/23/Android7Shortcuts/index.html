@@ -1,0 +1,1172 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android教程系列,Android7新特性," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Android 7.1 新特性：快捷方式 Shortcuts一、Shortcuts 介绍Android 7.1 允许 App 自定义 Shortcuts，类似 iOS 的 3D touch。通过在桌面长按 App 弹出 Shortcut 列表，点击某个 Shortcut 快速进入某项操作，同时 Shortcut 可以拖动到桌面进行固定，如下图：  
+  
+1. Shortcuts 作用及分类Sho">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 7.1 新特性：快捷方式 Shortcuts">
+<meta property="og:url" content="http://ocnyang.com/2016/11/23/Android7Shortcuts/index.html">
+<meta property="og:site_name" content="杨欧神/OCN.Yang">
+<meta property="og:description" content="Android 7.1 新特性：快捷方式 Shortcuts一、Shortcuts 介绍Android 7.1 允许 App 自定义 Shortcuts，类似 iOS 的 3D touch。通过在桌面长按 App 弹出 Shortcut 列表，点击某个 Shortcut 快速进入某项操作，同时 Shortcut 可以拖动到桌面进行固定，如下图：  
+  
+1. Shortcuts 作用及分类Sho">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android-7.1-app-shortcuts.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android-7.1-app-shortcuts-3.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android-7.1-app-shortcuts-4.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android-7.1-app-shortcuts-5.png">
+<meta property="og:updated_time" content="2016-11-23T08:10:04.001Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 7.1 新特性：快捷方式 Shortcuts">
+<meta name="twitter:description" content="Android 7.1 新特性：快捷方式 Shortcuts一、Shortcuts 介绍Android 7.1 允许 App 自定义 Shortcuts，类似 iOS 的 3D touch。通过在桌面长按 App 弹出 Shortcut 列表，点击某个 Shortcut 快速进入某项操作，同时 Shortcut 可以拖动到桌面进行固定，如下图：  
+  
+1. Shortcuts 作用及分类Sho">
+<meta name="twitter:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android-7.1-app-shortcuts.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 6310065206374434000,
+      author: 'OCN.Yang'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ocnyang.com/2016/11/23/Android7Shortcuts/"/>
+
+  <title> Android 7.1 新特性：快捷方式 Shortcuts | 杨欧神/OCN.Yang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <!-- add Fork me on Github-->
+  <a href="https://github.com/ocnyang">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  <!-- add Fork me on Github-->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨欧神/OCN.Yang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-efall">
+          <a href="/categories/还相信爱情/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            E.Fall
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 7.1 新特性：快捷方式 Shortcuts
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-23T16:03:15+08:00" content="2016-11-23">
+              2016-11-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android教程系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Android教程系列</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/23/Android7Shortcuts/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/23/Android7Shortcuts/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/23/Android7Shortcuts/" class="leancloud_visitors" data-flag-title="Android 7.1 新特性：快捷方式 Shortcuts">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Android-7-1-新特性：快捷方式-Shortcuts"><a href="#Android-7-1-新特性：快捷方式-Shortcuts" class="headerlink" title="Android 7.1 新特性：快捷方式 Shortcuts"></a>Android 7.1 新特性：快捷方式 Shortcuts</h1><h2 id="一、Shortcuts-介绍"><a href="#一、Shortcuts-介绍" class="headerlink" title="一、Shortcuts 介绍"></a>一、Shortcuts 介绍</h2><p>Android 7.1 允许 App 自定义 Shortcuts，类似 iOS 的 3D touch。通过在桌面长按 App 弹出 Shortcut 列表，点击某个 Shortcut 快速进入某项操作，同时 Shortcut 可以拖动到桌面进行固定，如下图：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android-7.1-app-shortcuts.jpg" alt="android-7.1-app-shortcuts">  </p>
+<h3 id="1-Shortcuts-作用及分类"><a href="#1-Shortcuts-作用及分类" class="headerlink" title="1. Shortcuts 作用及分类"></a>1. Shortcuts 作用及分类</h3><p>Shortcuts 为 App 常用操作提供了快速访问的方式，如上面日历的新建提醒。  </p>
+<p>这个功能目前只能在 <a href="http://ocnyang.com/">Android 7.1</a> 系统桌面进行使用，这个依然保留着“应用抽屉”古老设计的产品国内应该没多少用户。三方桌面可以通过 API 接入这个功能。<br>目前支持 Shortcut 的应用主要还是 Google 的 App，看到有即刻的朋友说他们在 7.1 系统发布时快速支持了这个功能并上线，速度很赞。  </p>
+<p>类似 BroadcastReceiver 可通过静态和动态方式注册，Shortcuts 也可以通过静态和动态方式添加。  </p>
+<h3 id="2-静态-Shortcuts-Static-Shortcuts"><a href="#2-静态-Shortcuts-Static-Shortcuts" class="headerlink" title="2. 静态 Shortcuts(Static Shortcuts)"></a>2. 静态 Shortcuts(Static Shortcuts)</h3><p>静态 ShortcutsStatic Shortcuts通过在 Manifest 中声明添加。缺点是不可以修改，只能通过应用升级来添加新的静态 Shortcuts。添加主要分为两步：  </p>
+<p><strong>2.1</strong>  AndroidManifest.xml 的 Main Launcher 对应的 Activity 内添加 <code>meta-data
+meta-data name</code> 为<code>android.app.shortcuts</code>，如下：</p>
+<pre><code>&lt;application
+    ……&gt;
+    &lt;activity android:name=&quot;.main.MainActivity&quot;&gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name=&quot;android.intent.action.MAIN&quot;/&gt;
+
+            &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot;/&gt;
+        &lt;/intent-filter&gt;
+
+        &lt;meta-data
+            android:name=&quot;android.app.shortcuts&quot;
+            android:resource=&quot;@xml/shortcuts&quot;/&gt;
+    &lt;/activity&gt;
+&lt;/application&gt;
+</code></pre><p>必须在 Main Launcher 对应的 Activity 内设置，其中android:resource指向定义了 shortcuts 的资源文件。</p>
+<p><strong>2.2</strong> 资源文件中定义具体的 shortcuts<br>res 目录下新建 xml 文件夹，并新建 shortcuts.xml 文件，内容如下：  </p>
+<pre><code>&lt;shortcuts xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;shortcut
+        android:enabled=&quot;true&quot;
+        android:icon=&quot;@drawable/search&quot;
+        android:shortcutId=&quot;search&quot;
+        android:shortcutDisabledMessage=&quot;@string/disabled&quot;
+        android:shortcutLongLabel=&quot;@string/menu_label&quot;
+        android:shortcutShortLabel=&quot;@string/launcher_label&quot;&gt;
+        &lt;intent
+            android:action=&quot;android.intent.action.VIEW&quot;
+            android:targetClass=&quot;cn.trinea.android.demo.SearchActivity&quot;
+            android:targetPackage=&quot;cn.trinea.android.demo&quot;/&gt;
+        &lt;intent
+            ……/&gt;
+    &lt;/shortcut&gt;
+    ……
+&lt;/shortcuts&gt;
+</code></pre><p>以shortcuts元素为根，可以包含多个shortcut元素，每个shortcut元素表示一个 shortcut。其中属性分别表示：  </p>
+<ol>
+<li>shortcutId表示 shortcut 唯一标识符，相同的 shortcutId 会被覆盖。必须字段。  </li>
+<li>shortcutShortLabel为将 shortcut 拖动到桌面时显示的名字，官方建议不超过 10 个字符，必须字段。  </li>
+<li>shortcutLongLabel为 shortcut 列表中每个 shortcut 的名字，不宜过长，如果过长或未设置默认会显示 ShortLabel，官方建议不超过 25 个字符。可选字段。  </li>
+<li>icon为 shortcut 的 icon，在列表展示和拖动到桌面时显示需要，可选字段。  </li>
+<li>enabled表示 shortcut 是否可用，false 表示禁用。xml 中这个属性几乎没有被设置为 false 的实际场景，具体原因可见<strong>6.7 如何更好的删除(废弃)老的 Shortcut</strong>中介绍。  </li>
+<li>shortcutDisabledMessage为已固定在桌面的 shortcut 被 Disabled 后点击时的 Toast 提示内容。可选字段。  </li>
+<li>intent为点击 shortcut 时响应的 Intent，必须字段。  </li>
+</ol>
+<p>这里可以添加多个 Intent，但点击时不会启动所有 Intent，而是启动最后一个 Intent，在这个 Intent 回退时会启动它前面一个 Intent，相当于自动将所有 Intent 添加到了堆栈。<br>对于先跳转到某个页面，Back 键希望退回主页而不是结束 App 这类场景，多个 Intents 挺实用的。  </p>
+<blockquote>
+<p><strong>intent可设置属性包括：</strong><br>android:action、android:data、android:mimeType、android:targetClass、android:targetPackage<br>其中android:action为必须属性。  </p>
+</blockquote>
+<h3 id="3-动态-Shortcuts-Dynamic-Shortcuts"><a href="#3-动态-Shortcuts-Dynamic-Shortcuts" class="headerlink" title="3. 动态 Shortcuts(Dynamic Shortcuts)"></a>3. 动态 Shortcuts(Dynamic Shortcuts)</h3><p>动态 ShortcutsDynamic Shortcuts 通过 ShortcutManager API 进行操作。可以动态添加、修改、删除。  </p>
+<pre><code>if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.N_MR1) {
+    return;
+}
+
+ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+ShortcutInfo shortcut = new ShortcutInfo.Builder(this, &quot;id1&quot;)
+    .setShortLabel(&quot;trinea.cn&quot;)
+    .setLongLabel(&quot;Open trinea.cn&quot;)
+    .setDisabledMessage(&quot;Disabled&quot;)
+    .setIcon(Icon.createWithResource(context, R.drawable.trinea_cn))
+    .setIntent(new Intent(Intent.ACTION_VIEW, Uri.parse(&quot;http://www.trinea.cn/&quot;)))
+    .build();
+shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
+</code></pre><p>通过ShortcutInfo.Builder新建 ShortcutInfo，再通过shortcutManager添加即可。其他：</p>
+<ol>
+<li>setDynamicShortcuts(List)可以替换并添加所有 shortcut 列表；  </li>
+<li>addDynamicShortcuts(List)可以添加新的 shortcut 到列表，超过最大个数会报异常；  </li>
+<li>updateShortcuts(List)可以更新一组 shortcuts；  </li>
+<li>removeDynamicShortcuts(List)和removeAllDynamicShortcuts() 可以删除部分或所有 shortcuts。  </li>
+</ol>
+<p>ShortcutInfo的属性与 xml 中定义字段含义一致，shortcutId shortcutShortLabel intent 是必须设置的字段，并且intent必须设置Action。  </p>
+<h3 id="4-固定的-Shortcuts-Pinned-Shortcuts"><a href="#4-固定的-Shortcuts-Pinned-Shortcuts" class="headerlink" title="4. 固定的 Shortcuts(Pinned Shortcuts)"></a>4. 固定的 Shortcuts(Pinned Shortcuts)</h3><p>指通过拖动固定到桌面的 Shortcuts，App 不可以添加、修改、删除这些 Shortcuts，只能禁用他们。即便 App 内删除了某个 Shorcut，对应的已固定到桌面的 Shortcuts 也不会被删除。  </p>
+<p>可以通过：  </p>
+<ol>
+<li>getPinnedShortcuts()得到所有固定的 Shortcuts 的信息。  </li>
+<li>disableShortcuts(List)或disableShortcuts(List, CharSequence)禁用动态的 Shortcuts。  </li>
+</ol>
+<p>对于静态的 Shortcuts 需要在资源文件中设置<code>android:enabled=&quot;false&quot;</code>进行禁用，不过没有必要，静态 Shortcuts 可直接通过删除达到禁用的效果，具体原因可见<strong>6.7 如何更好的删除(废弃)老的 Shortcut</strong>中介绍。</p>
+<p>静态 Shortcuts 和动态 Shortcuts 是有最大个数限制的，默认为 5，超过最大个数后添加会报异常。而固定的 Shortcuts 并没有个数限制，并且固定的 Shortcut 对应的 Shortcut 即便被动态删除了，依然可以通过 id 进行 Update 操作。  </p>
+<h3 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h3><h4 id="5-1-动态-Shortcuts-与静态-Shortcuts-区别"><a href="#5-1-动态-Shortcuts-与静态-Shortcuts-区别" class="headerlink" title="5.1 动态 Shortcuts 与静态 Shortcuts 区别"></a>5.1 动态 Shortcuts 与静态 Shortcuts 区别</h4><ol>
+<li>静态 Shortcuts 只能通过升级应用修改，动态 Shortcuts 随时可以修改；</li>
+<li>静态 Shortcuts 的 Intent 无法设置 Flag，默认为<code>FLAG_ACTIVITY_NEW_TASK</code>和<code>FLAG_ACTIVITY_CLEAR_TASK Flag</code>，即若应用运行中会清除所有已存在的 Activity。动态 Shortcuts 的 Intent 可以设置 Flag；</li>
+<li>静态 Shortcuts 的rank系统默认根据声明顺序设置，动态 Shortcuts 的rank可以通过setRank(int rank)接口主动设置，rank 不能小于 0，值越大表示在 shortcut 列表展示时离 App Icon 越远。静态 Shortcuts 默认比动态 Shortcuts 离 App Icon 更近。</li>
+<li>静态 Shortcuts 删除可以直接删除，动态 Shortcuts 建议通过禁用删除；</li>
+</ol>
+<h4 id="5-2-动态-Shortcuts-操作的频率问题"><a href="#5-2-动态-Shortcuts-操作的频率问题" class="headerlink" title="5.2 动态 Shortcuts 操作的频率问题"></a>5.2 动态 Shortcuts 操作的频率问题</h4><p>当应该完全退到后台<a href="http://ocnyang.com/">(无 Activity 或 Service 在前台时)</a>，其操作 Shortcut(包括添加、删除、修改) 的频率是受限的。可通过isRateLimitingActive()查询是否已受限，true表示已受限。  </p>
+<h4 id="5-3-跟踪-Shorcut-使用情况"><a href="#5-3-跟踪-Shorcut-使用情况" class="headerlink" title="5.3 跟踪 Shorcut 使用情况"></a>5.3 跟踪 Shorcut 使用情况</h4><p>在 Shortcut 被选择或者其关联的操作被操作时需调用reportShortcutUsed(String shortcutId)接口上报数据，为了方便启动器收集应用 Shortcuts 使用情况，以便未来进行预测或者向开发者展示哪些操作适合作为 Shortcuts 以及其优先级。  </p>
+<blockquote>
+<p>PS：这个接口其实挺尴尬的，一方面需要 App 主动上报，侵入性太强。另一方面这个预测功能未来也不好加到 Shortcuts 推荐里，更多是个开发工具相关功能。<br>最好是由启动器自己纯粹收集 Shortcut 被选择的使用情况数据，而不需要统计 Shortcut 被关联操作通过其他方式调用的使用情况数据。至于哪些操作适合作为 Shortcuts，开发者大可通过其他监控 SDK 去判断。</p>
+</blockquote>
+<h4 id="5-4-应用备份"><a href="#5-4-应用备份" class="headerlink" title="5.4 应用备份"></a>5.4 应用备份</h4><p>如果应用通过备份恢复到另外一台机器上，固定的 Shortcuts 是可以直接恢复的，不过启动器不保存这些 Shortcut 的 icon，所以应用内需要存在这些 icon 对应的资源以便启动器能找到。  </p>
+<p>静态 Shortcuts 需要应用重新安装、升级才能生效。<br>动态 Shortcuts 需要相应代码被执行过才能生效。</p>
+<h2 id="二、Shortcuts-一些实践-amp-问题"><a href="#二、Shortcuts-一些实践-amp-问题" class="headerlink" title="二、Shortcuts 一些实践&amp;问题"></a>二、Shortcuts 一些实践&amp;问题</h2><p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android-7.1-app-shortcuts-3.jpg" alt=""><br><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android-7.1-app-shortcuts-4.jpg" alt=""></p>
+<h3 id="6-最佳实践"><a href="#6-最佳实践" class="headerlink" title="6. 最佳实践"></a>6. 最佳实践</h3><p>这块官网已经给出了一部分建议，包括：  </p>
+<ol>
+<li>设计上和系统 App 的 Shortcuts 保持一致。</li>
+<li>最多添加 4 个 Shortcuts 以保持在启动器中显示的样式最佳<br>目前虽然说是 5 个，但实际最多只能添加 4 个，可见<strong>7.2 Shortcut 添加或修改无效</strong>中介绍。</li>
+<li>限制 Label 长度<br>其中shortcutShortLabel建议不超过 10 个字符，shortcutLongLabel 建议不超过 25 个字符。这块可能有些问题，可见<strong>7.1 LongLabel 和 ShortLabel</strong>中介绍。</li>
+<li>记录 Shortcut 及其对应操作使用记录。<br>这个在<strong>5.3 跟踪 Shorcut 使用情况</strong>中已经介绍了。</li>
+<li>只在 Shortcut 意义不变的情况下更新，否则新增。</li>
+<li>动态 Shortcuts 在 BackUp 恢复后不可以直接恢复，考虑适时新增或更新已有的 Shortcuts<br><strong>除了以上这些外，个人觉得还有几点需要遵守：</strong></li>
+<li>如何更好的删除(废弃)老的 Shortcut<br>这里主要考虑到删除老的 Shortcut，可能会影响已经固定的 Shortcut。<br>对于静态 Shortcuts，直接删除配置文件中对应的 Shortcut 即可，系统桌面会将已固定的该 Shortcut 置灰，点击会提示 shortcutDisabledMessage。<br>对于动态 Shortcuts 建议通过禁用的方式而不是直接删除的方式，因为已经删除的动态 Shortcut 如果被固定了依然是可用的，所以希望该入口不可用最好的方式是禁用。</li>
+<li>始终设置shortcutDisabledMessage<br>根据上面的介绍废弃老的 Shortcut 较好的方式是禁用，通过自定义shortcutDisabledMessage去更友好的提示用户。</li>
+<li>动态添加 Shortcut 前需要判断 API 版本不小于 25<br>否则在低版本会报 ClassNotFoundException 异常。</li>
+</ol>
+<h3 id="7-一些问题"><a href="#7-一些问题" class="headerlink" title="7. 一些问题"></a>7. 一些问题</h3><h4 id="7-1-LongLabel-和-ShortLabel"><a href="#7-1-LongLabel-和-ShortLabel" class="headerlink" title="7.1 LongLabel 和 ShortLabel"></a>7.1 LongLabel 和 ShortLabel</h4><p>LongLabel和ShortLabel的含义，官方 API 文档解释的并不是很清楚。<br>在 Nexus 6 上测试，当 LongLabel 长度大于 17 个小写字符时，会显示 ShortLabel，而不是 LongLabel。这里的界限长度跟大小写、空格都有关，应该是受限于桌面 Shortcuts 列表 Item 的宽度！</p>
+<h4 id="7-2-Shortcut-添加、修改、点击无效"><a href="#7-2-Shortcut-添加、修改、点击无效" class="headerlink" title="7.2 Shortcut 添加、修改、点击无效"></a>7.2 Shortcut 添加、修改、点击无效</h4><p>可能原因：  </p>
+<ol>
+<li>shortcutId 被覆盖<br>shortcutId 是唯一标识，相同 shortcutId 会被覆盖。  </li>
+<li>intent 不对<br>intent 必须设置 android:action 属性，同时目标 Activity 必须有效即已在 Manifest 中声明。  </li>
+<li>后台 App 有频率限制<br>当应该完全退到后台(无 Activity 或 Service 在前台时)，其操作 Shortcut(包括添加、删除、修改) 的频率是受限的。可通过isRateLimitingActive()查询是否已受限，true表示已受限。<br>若已受限，可通过开发者选项中“重置 ShortcutManager 调用频率限制”或命令行<code>adb shell cmd shortcut reset-throttling [ --user USER-ID ]</code>解决。  </li>
+<li>Shortcut 个数限制<br>虽然官方文档介绍静态和动态 Shortcut 总和不能超过 5 个，通过getMaxShortcutCountPerActivity()得到的也是 5，但实际测试下来是不超过4个！即静态和动态shortcuts加起来总数最多是五个.<br>当我们尝试添加第六个shortcut时, 应用会抛出异常:<br> <code>java.lang.IllegalArgumentException: Max number of dynamic shortcuts exceeded.</code><br>虽然总数限制是5个, 但是当我正好有5个(2个静态 + 3个动态)的时候, 长按只显示了4个shortcuts.</li>
+</ol>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android-7.1-app-shortcuts-5.png" alt="android-7.1-app-shortcuts数量的限制">  </p>
+<h4 id="7-3-getIntents-有-Bug"><a href="#7-3-getIntents-有-Bug" class="headerlink" title="7.3 getIntents() 有 Bug"></a>7.3 getIntents() 有 Bug</h4><p>从 <a href="https://android.googlesource.com/platform/frameworks/base/+/android-7.1.0_r7/core/java/android/content/pm/ShortcutInfo.java#1170" target="_blank" rel="external">getIntents()</a> 实现 中可以看出未做mIntents是否为 null 及 empty 的判断，在 null 时会出现：  </p>
+<pre><code>java.lang.NullPointerException: Attempt to get length of null array
+</code></pre><p>的异常。</p>
+<h3 id="8-三方桌面支持-Shortcuts——LauncherApps"><a href="#8-三方桌面支持-Shortcuts——LauncherApps" class="headerlink" title="8. 三方桌面支持 Shortcuts——LauncherApps"></a>8. 三方桌面支持 Shortcuts——LauncherApps</h3><p>如果三方桌面希望支持这个特性，请参考 <a href="https://developer.android.com/reference/android/content/pm/LauncherApps.html" target="_blank" rel="external">LauncherApps API</a> 介绍，不过只有系统默认桌面才有权限得到其他 <a href="http://ocnyang.com/">App Shortcuts</a> 信息。  </p>
+<p>可通过hasShortcutHostPermission()查看是否拥有权限，如果没有权限，会报如下异常：  </p>
+<pre><code>java.lang.RuntimeException: Unable to start activity ComponentInfo{com.xx/com.xx.XXActivity}: 
+java.lang.SecurityException: Caller can&apos;t access shortcut information
+   at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2665)
+   at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2726)
+</code></pre><p>通过getShortcuts API 获取到所有 Shortcuts 信息。</p>
+<blockquote>
+<p>参考:<br>App Shortcuts的官方文档: <a href="https://developer.android.com/preview/shortcuts.html" target="_blank" rel="external">App Shortcuts</a><br><a href="https://catinean.com/2016/10/20/exploring-android-nougat-7-1-app-shortcuts/" target="_blank" rel="external">Exploring Android Nougat 7.1 App Shortcuts</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持好文章的分享，您的支持将是对我最大的鼓励！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="OCN.Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.jpg" alt="OCN.Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Android教程系列/" rel="tag">#Android教程系列</a>
+          
+            <a href="/tags/Android7新特性/" rel="tag">#Android7新特性</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/11/Palette/" rel="next" title="使用Palette抽取Bitmap主色调">
+                <i class="fa fa-chevron-left"></i> 使用Palette抽取Bitmap主色调
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/24/INWaitRainStopWithoutU/" rel="prev" title="我不等伞，也不等雨停">
+                我不等伞，也不等雨停 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/23/Android7Shortcuts/"
+           data-title="Android 7.1 新特性：快捷方式 Shortcuts" data-url="http://ocnyang.com/2016/11/23/Android7Shortcuts/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ocnyang.png"
+               alt="OCN.Yang" />
+          <p class="site-author-name" itemprop="name">OCN.Yang</p>
+          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e61d05cbf47e/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ocnyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/shedoor" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://love.shedoor.net/" target="_blank" title="Meet you">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Meet you
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.shedoor.net/" title="个人" target="_blank">个人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-7-1-新特性：快捷方式-Shortcuts"><span class="nav-number">1.</span> <span class="nav-text">Android 7.1 新特性：快捷方式 Shortcuts</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Shortcuts-介绍"><span class="nav-number">1.1.</span> <span class="nav-text">一、Shortcuts 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Shortcuts-作用及分类"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. Shortcuts 作用及分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-静态-Shortcuts-Static-Shortcuts"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 静态 Shortcuts(Static Shortcuts)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-动态-Shortcuts-Dynamic-Shortcuts"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 动态 Shortcuts(Dynamic Shortcuts)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-固定的-Shortcuts-Pinned-Shortcuts"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 固定的 Shortcuts(Pinned Shortcuts)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-其他"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-动态-Shortcuts-与静态-Shortcuts-区别"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">5.1 动态 Shortcuts 与静态 Shortcuts 区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-动态-Shortcuts-操作的频率问题"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">5.2 动态 Shortcuts 操作的频率问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-跟踪-Shorcut-使用情况"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">5.3 跟踪 Shorcut 使用情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-应用备份"><span class="nav-number">1.1.5.4.</span> <span class="nav-text">5.4 应用备份</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Shortcuts-一些实践-amp-问题"><span class="nav-number">1.2.</span> <span class="nav-text">二、Shortcuts 一些实践&问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-最佳实践"><span class="nav-number">1.2.1.</span> <span class="nav-text">6. 最佳实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-一些问题"><span class="nav-number">1.2.2.</span> <span class="nav-text">7. 一些问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-LongLabel-和-ShortLabel"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">7.1 LongLabel 和 ShortLabel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-Shortcut-添加、修改、点击无效"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">7.2 Shortcut 添加、修改、点击无效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-getIntents-有-Bug"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">7.3 getIntents() 有 Bug</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-三方桌面支持-Shortcuts——LauncherApps"><span class="nav-number">1.2.3.</span> <span class="nav-text">8. 三方桌面支持 Shortcuts——LauncherApps</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ocnyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gh3omnCzhrHskUI74veM8V99-gzGzoHsz", "S5X90d5uKqp25VMacYGLwL60");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

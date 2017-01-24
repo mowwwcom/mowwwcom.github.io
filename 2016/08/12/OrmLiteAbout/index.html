@@ -1,0 +1,1580 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,第三方框架,ORMLite," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="ORMLite框架实践详解
+装载来自：张鸿洋的博客Android ORMLite 框架的入门用法Android ORMLite 框架最佳实践  
+
+大家在Android项目中或多或少的都会使用数据库，为了提高我们的开发效率，当然少不了数据库ORM框架了，尤其是某些数据库操作特别频繁的app；本篇博客将通过一个实例来详细介绍ORMLite  
+1、下载 ORMLite Jar首先去ORMLite官网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ORMLite框架实践详解">
+<meta property="og:url" content="http://ocnyang.com/2016/08/12/OrmLiteAbout/index.html">
+<meta property="og:site_name" content="杨欧神/OCN.Yang">
+<meta property="og:description" content="ORMLite框架实践详解
+装载来自：张鸿洋的博客Android ORMLite 框架的入门用法Android ORMLite 框架最佳实践  
+
+大家在Android项目中或多或少的都会使用数据库，为了提高我们的开发效率，当然少不了数据库ORM框架了，尤其是某些数据库操作特别频繁的app；本篇博客将通过一个实例来详细介绍ORMLite  
+1、下载 ORMLite Jar首先去ORMLite官网">
+<meta property="og:updated_time" content="2016-08-31T00:41:25.132Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ORMLite框架实践详解">
+<meta name="twitter:description" content="ORMLite框架实践详解
+装载来自：张鸿洋的博客Android ORMLite 框架的入门用法Android ORMLite 框架最佳实践  
+
+大家在Android项目中或多或少的都会使用数据库，为了提高我们的开发效率，当然少不了数据库ORM框架了，尤其是某些数据库操作特别频繁的app；本篇博客将通过一个实例来详细介绍ORMLite  
+1、下载 ORMLite Jar首先去ORMLite官网">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 6310065206374434000,
+      author: 'OCN.Yang'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ocnyang.com/2016/08/12/OrmLiteAbout/"/>
+
+  <title> ORMLite框架实践详解 | 杨欧神/OCN.Yang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <!-- add Fork me on Github-->
+  <a href="https://github.com/ocnyang">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  <!-- add Fork me on Github-->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨欧神/OCN.Yang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-efall">
+          <a href="/categories/还相信爱情/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            E.Fall
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ORMLite框架实践详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-12T18:03:15+08:00" content="2016-08-12">
+              2016-08-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/第三方框架/" itemprop="url" rel="index">
+                    <span itemprop="name">第三方框架</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/12/OrmLiteAbout/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/12/OrmLiteAbout/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/12/OrmLiteAbout/" class="leancloud_visitors" data-flag-title="ORMLite框架实践详解">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="ORMLite框架实践详解"><a href="#ORMLite框架实践详解" class="headerlink" title="ORMLite框架实践详解"></a>ORMLite框架实践详解</h1><blockquote>
+<p>装载来自：张鸿洋的博客<br><a href="http://blog.csdn.net/lmj623565791/article/details/39121377" target="_blank" rel="external">Android ORMLite 框架的入门用法</a><br><a href="http://blog.csdn.net/lmj623565791/article/details/39122981" target="_blank" rel="external">Android ORMLite 框架最佳实践</a>  </p>
+</blockquote>
+<p>大家在Android项目中或多或少的都会使用数据库，为了提高我们的开发效率，当然少不了数据库ORM框架了，尤其是某些数据库操作特别频繁的app；本篇博客将通过一个实例来详细介绍ORMLite  </p>
+<h2 id="1、下载-ORMLite-Jar"><a href="#1、下载-ORMLite-Jar" class="headerlink" title="1、下载 ORMLite Jar"></a>1、下载 ORMLite Jar</h2><p>首先去<a href="http://ormlite.com/releases/" target="_blank" rel="external">ORMLite官网</a>下载jar包，对于Android为：ormlite-android-5.0.jar 和 ormlite-core-5.0.jar；<br>如果你使用的开发工具是Eclipse的话，有了jar,然后把jar拷贝到libs下，然后右键点击jar包点击add Libary(即添加依赖)。<br>如果你使用的开发工具是Android Studio的话，只需要在build.gradle文件里引入包就行了：  </p>
+<pre><code>compile &apos;com.j256.ormlite:ormlite-android:5.0&apos;
+compile &apos;com.j256.ormlite:ormlite-core:5.0&apos;
+</code></pre><blockquote>
+<p>访问不了的朋友，这里会把jar、源码、doc与本篇博客例子一起打包提供给大家<a href="http://obbu6r1mi.bkt.clouddn.com/zhy_ormlite.rar" target="_blank" rel="external">下载</a>。</p>
+</blockquote>
+<h2 id="2、配置Bean类"><a href="#2、配置Bean类" class="headerlink" title="2、配置Bean类"></a>2、配置Bean类</h2><p>我们直接新建一个项目为：zhy_ormlite。<br>然后新建一个包：com.zhy.zhy_ormlite.bean专门用于存放项目中的Bean，首先新建一个User.java</p>
+<pre><code>package com.zhy.zhy_ormlite.bean;
+
+import java.util.Collection;
+
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable(tableName = &quot;tb_user&quot;)
+public class User 
+{
+    @DatabaseField(generatedId = true)
+    private int id;
+    @DatabaseField(columnName = &quot;name&quot;)
+    private String name;
+
+    @ForeignCollectionField
+    private Collection&lt;Article&gt; articles;
+
+    public Collection&lt;Article&gt; getArticles()
+    {
+        return articles;
+    }
+
+    public void setArticles(Collection&lt;Article&gt; articles)
+    {
+        this.articles = articles;
+    }
+
+    public User()
+    {
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    @Override
+    public String toString()
+    {
+        return &quot;User [id=&quot; + id + &quot;, name=&quot; + name + &quot;, articles=&quot; + articles
+                + &quot;]&quot;;
+    }
+
+}
+</code></pre><ul>
+<li>首先在User类上添加@DatabaseTable(tableName = “tb_user”)，标明这是数据库中的一张表，标明为tb_user</li>
+<li>然后分别在属性上添加@DatabaseField(columnName = “name”) ，columnName的值为该字段在数据中的列名</li>
+<li>@DatabaseField(generatedId = true) ，generatedId 表示id为主键且自动生成</li>
+</ul>
+<h2 id="3、ORMLite外键引用"><a href="#3、ORMLite外键引用" class="headerlink" title="3、ORMLite外键引用"></a>3、ORMLite外键引用</h2><p>现在我们有两张表一张User，一张Article；<br>Article中当然需要存储User的主键，作为关联~~那么在ORMLite中如何做到呢？<br>可能有人会直接在Article中声明一个int类型userId属性，当作普通属性处理搞定，这种做法并没有做，但是没有体现出面向对象的思想。<br>面向对象是这样的：Article属于某个User<br>类这么定义：</p>
+<pre><code>1. package com.zhy.zhy_ormlite.bean;  
+2.   
+3. import com.j256.ormlite.field.DatabaseField;  
+4. import com.j256.ormlite.table.DatabaseTable;  
+5.   
+6. @DatabaseTable(tableName = &quot;tb_article&quot;)  
+7. public class Article  
+8. {  
+9.     @DatabaseField(generatedId = true)  
+10.     private int id;  
+11.     @DatabaseField  
+12.     private String title;  
+13.     @DatabaseField(canBeNull = true, foreign = true, columnName = &quot;user_id&quot;)  
+14.     private User user;  
+15.   
+16.     public int getId()  
+17.     {  
+18.         return id;  
+19.     }  
+20.   
+21.     public void setId(int id)  
+22.     {  
+23.         this.id = id;  
+24.     }  
+25.   
+26.     public String getTitle()  
+27.     {  
+28.         return title;  
+29.     }  
+30.   
+31.     public void setTitle(String title)  
+32.     {  
+33.         this.title = title;  
+34.     }  
+35.   
+36.     public User getUser()  
+37.     {  
+38.         return user;  
+39.     }  
+40.   
+41.     public void setUser(User user)  
+42.     {  
+43.         this.user = user;  
+44.     }  
+45.   
+46.     @Override  
+47.     public String toString()  
+48.     {  
+49.         return &quot;Article [id=&quot; + id + &quot;, title=&quot; + title + &quot;, user=&quot; + user  
+50.                 + &quot;]&quot;;  
+51.     }  
+52.   
+53. }  
+</code></pre><p>不会去定义一个int类型的userId，而是直接定义一个User成员变量，表示本Article属于该User;<br>然后在User user属性上添加：</p>
+<pre><code>@DatabaseField(canBeNull = true, foreign = true, columnName = &quot;user_id&quot;)
+</code></pre><blockquote>
+<ul>
+<li>canBeNull表示不能为null；</li>
+<li>foreign=true表示是一个外键;</li>
+<li>columnName 列名</li>
+</ul>
+</blockquote>
+<h2 id="4、编写DAO类"><a href="#4、编写DAO类" class="headerlink" title="4、编写DAO类"></a>4、编写DAO类</h2><p>我们可能会有很多表嘛，每个表一般我们都会单独写个Dao用于操作</p>
+<pre><code>public class UserDao
+{
+    private Context context;
+    private Dao&lt;User, Integer&gt; userDaoOpe;
+    private DatabaseHelper helper;
+
+    public UserDao(Context context)
+    {
+        this.context = context;
+        try
+        {
+            helper = DatabaseHelper.getHelper(context);
+            userDaoOpe = helper.getDao(User.class);
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 增加一个用户
+     * 
+     * @param user
+     * @throws SQLException
+     */
+    public void add(User user) 
+    {
+        /*//事务操作
+        TransactionManager.callInTransaction(helper.getConnectionSource(),
+                new Callable&lt;Void&gt;()
+                {
+
+                    @Override
+                    public Void call() throws Exception
+                    {
+                        return null;
+                    }
+                });*/
+        try
+        {
+            userDaoOpe.create(user);
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    public User get(int id)
+    {
+        try
+        {
+            return userDaoOpe.queryForId(id);
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+}
+</code></pre><p>我们的所有的XXXDao遵循以上的风格~</p>
+<pre><code>public class ArticleDao {
+    private Dao&lt;Article, Integer&gt; articleDaoOpe;
+    private DatabaseHelper helper;
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public ArticleDao(Context context) {
+        try {
+            helper = DatabaseHelper.getHelper(context);
+            articleDaoOpe = helper.getDao(Article.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 添加一个Article
+     *
+     * @param article
+     */
+    public void add(Article article) {
+        try {
+            articleDaoOpe.create(article);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 通过Id得到一个Article
+     *
+     * @param id
+     * @return
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public Article getArticleWithUser(int id) {
+        Article article = null;
+        try {
+            article = articleDaoOpe.queryForId(id);
+            helper.getDao(User.class).refresh(article.getUser());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return article;
+    }
+
+    /**
+     * 通过Id得到一篇文章
+     *
+     * @param id
+     * @return
+     */
+    public Article get(int id) {
+        Article article = null;
+        try {
+            article = articleDaoOpe.queryForId(id);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return article;
+    }
+
+    /**
+     * 通过UserId获取所有的文章
+     *
+     * @param userId
+     * @return
+     */
+    public List&lt;Article&gt; listByUserId(int userId) {
+        try {
+            return articleDaoOpe.queryBuilder().where().eq(&quot;user_id&quot;, userId)
+                    .query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+</code></pre><hr>
+<h2 id="4、DatabaseHelper"><a href="#4、DatabaseHelper" class="headerlink" title="4、DatabaseHelper"></a>4、DatabaseHelper</h2><p>我们使用ORMLite，需要自己写一个DatabaseHelper去继承OrmLiteSqliteOpenHelper，下面我们首先给出一个我认为比较靠谱的Helper的写法：</p>
+<pre><code>1. package com.zhy.zhy_ormlite.db;  
+2.   
+3. import java.sql.SQLException;  
+4. import java.util.HashMap;  
+5. import java.util.Map;  
+6.   
+7. import android.content.Context;  
+8. import android.database.sqlite.SQLiteDatabase;  
+9.   
+10. import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;  
+11. import com.j256.ormlite.dao.Dao;  
+12. import com.j256.ormlite.support.ConnectionSource;  
+13. import com.j256.ormlite.table.TableUtils;  
+14. import com.zhy.zhy_ormlite.bean.Article;  
+15. import com.zhy.zhy_ormlite.bean.Student;  
+16. import com.zhy.zhy_ormlite.bean.User;  
+17.   
+18. public  class DatabaseHelper extends OrmLiteSqliteOpenHelper  
+19. {  
+20.     private static final String TABLE_NAME = &quot;sqlite-test.db&quot;;  
+21.   
+22.     private Map&lt;String, Dao&gt; daos = new HashMap&lt;String, Dao&gt;();  
+23.   
+24.     private DatabaseHelper(Context context)  
+25.     {  
+26.         super(context, TABLE_NAME, null, 4);  
+27.     }  
+28.   
+29.     @Override  
+30.     public void onCreate(SQLiteDatabase database,  
+31.             ConnectionSource connectionSource)  
+32.     {  
+33.         try  
+34.         {  
+35.             TableUtils.createTable(connectionSource, User.class);  
+36.             TableUtils.createTable(connectionSource, Article.class);  
+37.             TableUtils.createTable(connectionSource, Student.class);  
+38.         } catch (SQLException e)  
+39.         {  
+40.             e.printStackTrace();  
+41.         }  
+42.     }  
+43.   
+44.     @Override  
+45.     public void onUpgrade(SQLiteDatabase database,  
+46.             ConnectionSource connectionSource, int oldVersion, int newVersion)  
+47.     {  
+48.         try  
+49.         {  
+50.             TableUtils.dropTable(connectionSource, User.class, true);  
+51.             TableUtils.dropTable(connectionSource, Article.class, true);  
+52.             TableUtils.dropTable(connectionSource, Student.class, true);  
+53.             onCreate(database, connectionSource);  
+54.         } catch (SQLException e)  
+55.         {  
+56.             e.printStackTrace();  
+57.         }  
+58.     }  
+59.   
+60.     private static DatabaseHelper instance;  
+61.   
+62.     /** 
+63.      * 单例获取该Helper 
+64.      *  
+65.      * @param context 
+66.      * @return 
+67.      */  
+68.     public static synchronized DatabaseHelper getHelper(Context context)  
+69.     {  
+70.         context = context.getApplicationContext();  
+71.         if (instance == null)  
+72.         {  
+73.             synchronized (DatabaseHelper.class)  
+74.             {  
+75.                 if (instance == null)  
+76.                     instance = new DatabaseHelper(context);  
+77.             }  
+78.         }  
+79.   
+80.         return instance;  
+81.     }  
+82.   
+83.     public synchronized Dao getDao(Class clazz) throws SQLException  
+84.     {  
+85.         Dao dao = null;  
+86.         String className = clazz.getSimpleName();  
+87.   
+88.         if (daos.containsKey(className))  
+89.         {  
+90.             dao = daos.get(className);  
+91.         }  
+92.         if (dao == null)  
+93.         {  
+94.             dao = super.getDao(clazz);  
+95.             daos.put(className, dao);  
+96.         }  
+97.         return dao;  
+98.     }  
+99.   
+100.     /** 
+101.      * 释放资源 
+102.      */  
+103.     @Override  
+104.     public void close()  
+105.     {  
+106.         super.close();  
+107.   
+108.         for (String key : daos.keySet())  
+109.         {  
+110.             Dao dao = daos.get(key);  
+111.             dao = null;  
+112.         }  
+113.     }  
+114.   
+115. }  
+</code></pre><ol>
+<li>整个DatabaseHelper使用单例只对外公布出一个对象，保证app中只存在一个SQLite Connection。 <a href="http://www.touchlab.co/2011/10/single-sqlite-connection/" target="_blank" rel="external">参考文章</a>  </li>
+<li>我们对每个Bean创建一个XXXDao来处理当前Bean的数据库操作，当然真正去和数据库打交道的对象，通过上面代码中的getDao（T t）进行获取<br>getDao为一个泛型方法，会根据传入Class对象进行创建Dao，并且使用一个Map来保持所有的Dao对象，只有第一次调用时才会去调用底层的getDao()。</li>
+</ol>
+<h2 id="5、我们的测试类："><a href="#5、我们的测试类：" class="headerlink" title="5、我们的测试类："></a>5、我们的测试类：</h2><pre><code>1. public class OrmLiteDbTest extends AndroidTestCase  
+2. {  
+3.     public void testAddArticle()  
+4.     {  
+5.         User u = new User();  
+6.         u.setName(&quot;张鸿洋&quot;);  
+7.         new UserDao(getContext()).add(u);  
+8.         Article article = new Article();  
+9.         article.setTitle(&quot;ORMLite的使用&quot;);  
+10.         article.setUser(u);  
+11.         new ArticleDao(getContext()).add(article);  
+12.   
+13.     }  
+14.   
+15.     public void testGetArticleById()  
+16.     {  
+17.         Article article = new ArticleDao(getContext()).get(1);  
+18.         L.e(article.getUser() + &quot; , &quot; + article.getTitle());  
+19.     }  
+20.   
+21.     public void testGetArticleWithUser()  
+22.     {  
+23.   
+24.         Article article = new ArticleDao(getContext()).getArticleWithUser(1);  
+25.         L.e(article.getUser() + &quot; , &quot; + article.getTitle());  
+26.     }  
+27.       
+28.     public void testListArticlesByUserId()  
+29.     {  
+30.   
+31.         List&lt;Article&gt; articles = new ArticleDao(getContext()).listByUserId(1);  
+32.         L.e(articles.toString());  
+33.     }  
+</code></pre><p>分别测试，添加一个Article；通过Id获取一个Article；通过Id获取一个Article且携带User；通过userId获取所有的Article；<br>主要看第三个：通过Id获取一个Article且携带User，testGetArticleWithUser（id）<br>如何值传一个Article的Id，然后能够拿到Article对象，且内部的user属性直接赋值呢？<br>两种方式： </p>
+<ul>
+<li><p>1、即上述写法</p>
+<pre><code>1. article = articleDaoOpe.queryForId(id);  
+2.  helper.getDao(User.class).refresh(article.getUser());  
+</code></pre></li>
+<li><p>2、在user属性的注解上：</p>
+<pre><code>@DatabaseField(canBeNull = true, foreign = true, columnName = &quot;user_id&quot;, foreignAutoRefresh = true)
+</code></pre></li>
+</ul>
+<p>添加foreignAutoRefresh =true，这样；当调用queryForId时，拿到Article对象则直接携带了user；</p>
+<h2 id="6、关联一个集合"><a href="#6、关联一个集合" class="headerlink" title="6、关联一个集合"></a>6、关联一个集合</h2><p>每个User关联一个或多个Article，如果我在User中声明一个Collection<article> articles，我能否在查询User的时候，一并能够获取到articles的值呢？<br>答案是可以的。在User中添加如下属性，且注解如下：<br>@ForeignCollectionField<br>private Collection<article> articles;<br>我们在UserDao中书写查询User的代码：</article></article></p>
+<pre><code>1. public User get(int id)  
+2.     {  
+3.         try  
+4.         {  
+5.             return userDaoOpe.queryForId(id);  
+6.         } catch (SQLException e)  
+7.         {  
+8.             e.printStackTrace();  
+9.         }  
+10.         return null ;  
+11.     }  
+</code></pre><p>测试代码：</p>
+<pre><code>1. public void testGetUserById()  
+2.     {  
+3.         User user = new UserDao(getContext()).get(1);  
+4.         L.e(user.getName());  
+5.         if (user.getArticles() != null)  
+6.             for (Article article : user.getArticles())  
+7.             {  
+8.                 L.e(article.toString());  
+9.             }  
+10.     }  
+</code></pre><p>输出：</p>
+<pre><code>1. 09-07 22:49:06.484: E/zhy(7293): 欧神  
+2. 09-07 22:49:06.484: E/zhy(7293): Article [id=1, title=ORMLite的使用]  
+</code></pre><p>可以看到，我们通过一个queryForId，成功的获取了User，以及User关联的所有的Articles；</p>
+<h2 id="7、条件查询QueryBuilder的使用"><a href="#7、条件查询QueryBuilder的使用" class="headerlink" title="7、条件查询QueryBuilder的使用"></a>7、条件查询QueryBuilder的使用</h2><p>上述代码其实已经用到了简单的条件查询了：</p>
+<ul>
+<li>简单的where等于<br>articleDaoOpe.queryBuilder().where().eq(“user_id”, userId).query();直接返回Article的列表</li>
+<li><p>where and </p>
+<pre><code>1. QueryBuilder&lt;Article, Integer&gt; queryBuilder = articleDaoOpe  
+2.                 .queryBuilder();  
+3.         Where&lt;Article, Integer&gt; where = queryBuilder.where();  
+4.         where.eq(&quot;user_id&quot;, 1);  
+5.         where.and();  
+6.         where.eq(&quot;name&quot;, &quot;xxx&quot;);  
+7.   
+8.         //或者  
+9.         articleDaoOpe.queryBuilder().//  
+10.                 where().//  
+11.                 eq(&quot;user_id&quot;, 1).and().//  
+12.                 eq(&quot;name&quot;, &quot;xxx&quot;);  
+</code></pre></li>
+</ul>
+<p>上述两种都相当与：select * from tb_article where user_id = 1 and name = ‘xxx’ ;</p>
+<ul>
+<li><p>更复杂的查询</p>
+<pre><code>1. where.or(  
+2.                     //  
+3.                     where.and(//  
+4.                             where.eq(&quot;user_id&quot;, 1), where.eq(&quot;name&quot;, &quot;xxx&quot;)),  
+5.                     where.and(//  
+6.                             where.eq(&quot;user_id&quot;, 2), where.eq(&quot;name&quot;, &quot;yyy&quot;)));  
+</code></pre></li>
+</ul>
+<p>select * from tb_article where ( user_id = 1 and name = ‘xxx’ )  or ( user_id = 2 and name = ‘yyy’ )  ;<br>好了，再复杂的查询估计也能够凑出来了~~</p>
+<h2 id="8、updateBuilder、deleteBuilder"><a href="#8、updateBuilder、deleteBuilder" class="headerlink" title="8、updateBuilder、deleteBuilder"></a>8、updateBuilder、deleteBuilder</h2><p>使用queryBuilder是因为我们希望执行完成查询直接返回List<bean>集合；<br>对于Update我们并不关注返回值，直接使用<br>articleDaoOpe.updateRaw(statement, arguments);传入sql和参数即可~~<br>何必在那<br>articleDaoOpe.updateBuilder().updateColumnValue(“name”,”zzz”).where().eq(“user_id”, 1);这样的痛苦呢~~~<br>同理还有deleteBuilder还是建议直接拼写sql，当然很简单的除外，直接使用它的API~</bean></p>
+<h2 id="9、事务操作"><a href="#9、事务操作" class="headerlink" title="9、事务操作"></a>9、事务操作</h2><p>在我们的Dao中直接写如下代码：</p>
+<pre><code>1. //事务操作  
+2.         TransactionManager.callInTransaction(helper.getConnectionSource(),  
+3.                 new Callable&lt;Void&gt;()  
+4.                 {  
+5.   
+6.                     @Override  
+7.                     public Void call() throws Exception  
+8.                     {  
+9.                         return null;  
+10.                     }  
+11.                 });  
+</code></pre><h2 id="10、其他操作"><a href="#10、其他操作" class="headerlink" title="10、其他操作"></a>10、其他操作</h2><ul>
+<li><p>1、当Bean继承BaseDaoEnabled时，可以使用bean.create(bean)；bean.update(bean)一类操作<br>例如：  </p>
+<pre><code>Student extends BaseDaoEnabled&lt;Student, Integer&gt;
+Dao dao = DatabaseHelper.getHelper(getContext()).getDao(Student.class);
+Student student = new Student();
+student.setDao(dao);
+student.setName(&quot;张鸿洋&quot;);
+student.create();
+</code></pre></li>
+</ul>
+<p>前提dao需要手动设置，如果dao为null会报错，尼玛，我觉得一点用没有。。。</p>
+<ul>
+<li><p>2、Join</p>
+<pre><code>1. QueryBuilder&lt;Article, Integer&gt; articleBuilder = articleDaoOpe  
+2.                     .queryBuilder();  
+3.             QueryBuilder userBuilder = helper.getDao(User.class).queryBuilder();  
+4.             articleBuilder.join(userBuilder);  
+</code></pre></li>
+</ul>
+<p>Article与User做Join操作；</p>
+<p>本篇主要想介绍在项目中如何写DataBaseHelper已经如何写BeanDao，以及列出了在项目中可能会用到的ORMLite的功能，如果需要详细了解，还请看ORMLite官方文档，源码中也会提供~~</p>
+<blockquote>
+<p><a href="http://obbu6r1mi.bkt.clouddn.com/zhy_ormlite.rar" target="_blank" rel="external">源码点击下载</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持好文章的分享，您的支持将是对我最大的鼓励！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="OCN.Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.jpg" alt="OCN.Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/第三方框架/" rel="tag">#第三方框架</a>
+          
+            <a href="/tags/ORMLite/" rel="tag">#ORMLite</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/10/CustomView/" rel="next" title="自定义view详解">
+                <i class="fa fa-chevron-left"></i> 自定义view详解
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/15/GetPhotoThreeMethods/" rel="prev" title="获取图片的三种方法（超完整）">
+                获取图片的三种方法（超完整） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/12/OrmLiteAbout/"
+           data-title="ORMLite框架实践详解" data-url="http://ocnyang.com/2016/08/12/OrmLiteAbout/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ocnyang.png"
+               alt="OCN.Yang" />
+          <p class="site-author-name" itemprop="name">OCN.Yang</p>
+          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e61d05cbf47e/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ocnyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/shedoor" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://love.shedoor.net/" target="_blank" title="Meet you">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Meet you
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.shedoor.net/" title="个人" target="_blank">个人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ORMLite框架实践详解"><span class="nav-number">1.</span> <span class="nav-text">ORMLite框架实践详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、下载-ORMLite-Jar"><span class="nav-number">1.1.</span> <span class="nav-text">1、下载 ORMLite Jar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、配置Bean类"><span class="nav-number">1.2.</span> <span class="nav-text">2、配置Bean类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、ORMLite外键引用"><span class="nav-number">1.3.</span> <span class="nav-text">3、ORMLite外键引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、编写DAO类"><span class="nav-number">1.4.</span> <span class="nav-text">4、编写DAO类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、DatabaseHelper"><span class="nav-number">1.5.</span> <span class="nav-text">4、DatabaseHelper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、我们的测试类："><span class="nav-number">1.6.</span> <span class="nav-text">5、我们的测试类：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、关联一个集合"><span class="nav-number">1.7.</span> <span class="nav-text">6、关联一个集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、条件查询QueryBuilder的使用"><span class="nav-number">1.8.</span> <span class="nav-text">7、条件查询QueryBuilder的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、updateBuilder、deleteBuilder"><span class="nav-number">1.9.</span> <span class="nav-text">8、updateBuilder、deleteBuilder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、事务操作"><span class="nav-number">1.10.</span> <span class="nav-text">9、事务操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10、其他操作"><span class="nav-number">1.11.</span> <span class="nav-text">10、其他操作</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ocnyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gh3omnCzhrHskUI74veM8V99-gzGzoHsz", "S5X90d5uKqp25VMacYGLwL60");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

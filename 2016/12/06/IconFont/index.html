@@ -1,0 +1,1196 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android教程系列," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Android 图标自适应：用 TextView 来显示图片 &amp;amp; 生成自己的字体库今天我们来介绍一种用TextView代替并显示图片，以达到App优化及图标自适应的效果。当然，我们先来看一下效果：  
+  
+
+如果你看到上面这张图片，第一反映你可能认为都是用ImageView去显示的，那你就错了，这些全都是用TextView实现的（当然更不可能是给 TextView 设置了背景图）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 图标自适应：用 TextView 来显示图片 & 生成自己的字体库">
+<meta property="og:url" content="http://ocnyang.com/2016/12/06/IconFont/index.html">
+<meta property="og:site_name" content="杨欧神/OCN.Yang">
+<meta property="og:description" content="Android 图标自适应：用 TextView 来显示图片 &amp;amp; 生成自己的字体库今天我们来介绍一种用TextView代替并显示图片，以达到App优化及图标自适应的效果。当然，我们先来看一下效果：  
+  
+
+如果你看到上面这张图片，第一反映你可能认为都是用ImageView去显示的，那你就错了，这些全都是用TextView实现的（当然更不可能是给 TextView 设置了背景图）。">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_all.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_setect.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_cart.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_ttf.png">
+<meta property="og:updated_time" content="2016-12-06T08:14:35.081Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 图标自适应：用 TextView 来显示图片 & 生成自己的字体库">
+<meta name="twitter:description" content="Android 图标自适应：用 TextView 来显示图片 &amp;amp; 生成自己的字体库今天我们来介绍一种用TextView代替并显示图片，以达到App优化及图标自适应的效果。当然，我们先来看一下效果：  
+  
+
+如果你看到上面这张图片，第一反映你可能认为都是用ImageView去显示的，那你就错了，这些全都是用TextView实现的（当然更不可能是给 TextView 设置了背景图）。">
+<meta name="twitter:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 6310065206374434000,
+      author: 'OCN.Yang'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ocnyang.com/2016/12/06/IconFont/"/>
+
+  <title> Android 图标自适应：用 TextView 来显示图片 & 生成自己的字体库 | 杨欧神/OCN.Yang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <!-- add Fork me on Github-->
+  <a href="https://github.com/ocnyang">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  <!-- add Fork me on Github-->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨欧神/OCN.Yang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-efall">
+          <a href="/categories/还相信爱情/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            E.Fall
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 图标自适应：用 TextView 来显示图片 & 生成自己的字体库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-06T16:03:15+08:00" content="2016-12-06">
+              2016-12-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android教程系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Android教程系列</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/06/IconFont/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/06/IconFont/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/06/IconFont/" class="leancloud_visitors" data-flag-title="Android 图标自适应：用 TextView 来显示图片 & 生成自己的字体库">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Android-图标自适应：用-TextView-来显示图片-amp-生成自己的字体库"><a href="#Android-图标自适应：用-TextView-来显示图片-amp-生成自己的字体库" class="headerlink" title="Android 图标自适应：用 TextView 来显示图片 &amp; 生成自己的字体库"></a>Android 图标自适应：用 TextView 来显示图片 &amp; 生成自己的字体库</h1><p>今天我们来介绍一种用TextView代替并显示图片，以达到App优化及图标自适应的效果。当然，我们先来看一下效果：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_.png" alt="这些真的只是TextView文本">  </p>
+<blockquote>
+<p>如果你看到上面这张图片，第一反映你可能认为都是用ImageView去显示的，那你就错了，这些全都是用TextView实现的（当然更不可能是给 TextView 设置了背景图）。  </p>
+</blockquote>
+<p>平时我们在开发中，图片可谓是处处可见且必不可少的一部分，为了想尽办法让图片达到适配的效果我们可能需要：<br>根据不同分辨率来提供多套图，暂且不说这种方式是否麻烦，正常情况下我们切的三套或更多套图有时候总在有些机型上的效果不尽人意。<br>可能这时候你想到了用 <code>.9图片</code>，这时候且不说你们家 UI 妹子会不会单独的为我们 Android 端提供  <code>.9图片</code> （姑且相信你们家UI会制作<code>.9</code>），但是 <code>.9图片</code> 是有一定的局限性的，它只能是图片部分区域拉伸。  </p>
+<p><a href="http://ocnyang.com/">这篇文章</a>也并不是去介绍如何去做图片的适配，而是介绍一种利用字体库的方式，我们用 TextView 的形式去显示图片，而且我们还可以正常的使用 <code>android:textSize</code> 属性来随意设置图片的大小！   </p>
+<blockquote>
+<p>其实这里通过 TextView 来显示图片的方式，我更愿意更准确的说成是通过 <strong>TextView 来显示图标</strong>，因为这里的图片不是真正意义上的大图而是相当于可以随意拉伸的矢量图。当然，如果你愿意你也可以用这种方式来显示图片。  </p>
+</blockquote>
+<p>啰嗦这么多，你的大刀是不是早就饥渴难耐了？其实这种方式很容易就能实现，只是通过给 TextView 设置一种字体，不要着急，马上开始。  </p>
+<h2 id="为TextView设置字体"><a href="#为TextView设置字体" class="headerlink" title="为TextView设置字体"></a>为TextView设置字体</h2><p>大家都知道，在 android 中，我们如果要更换字体，除了要引入我们需要的字体库外，还需要给我们的 TextView 去手动设置使用的字体，如何去设置呢？其实很简单。</p>
+<pre><code>textView.setTypeface(Typeface tf);  
+</code></pre><p>尽管就这么一行代码，但是，在我们项目中肯定会存在大量的TextView，难道我们要一个个的去动手设置吗？想想这也是一件很头疼的事，下面就介绍一种方便的方法，一行代码解决字体设置的问题。  </p>
+<p><strong>方法一：工具类 &amp; 递归遍历</strong>  </p>
+<blockquote>
+<p>在看代码之前，先来看看思路，其实思路很简单，我们提供一个根布局，写一个方法去递归遍历整个根布局，如果发现是textView，则设置字体。思路很简单，相信代码也很简单，就是一个递归方法。  </p>
+</blockquote>
+<pre><code>public class FontHelper {
+    public static final String DEF_FONT = &quot;fonts/ocnyangfont.ttf&quot;;
+
+    public static final void injectFont(View rootView) {
+        injectFont(rootView, Typeface.createFromAsset(rootView.getContext().getAssets(),
+                DEF_FONT));
+    }
+
+    private static void injectFont(View rootView, Typeface typeface) {
+        if (rootView instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) rootView;
+            int childViewCount = viewGroup.getChildCount();
+            for (int i = 0; i &lt; childViewCount; i++) {
+                injectFont(viewGroup.getChildAt(i), typeface);
+            }
+        } else if (rootView instanceof TextView) {
+            ((TextView) rootView).setTypeface(typeface);
+        }
+    }
+} 
+</code></pre><p>定义了一个工具类，这个类提供两个静态方法，但是核心都是  </p>
+<pre><code>public static final void injectFont(View rootView, Typeface tf)
+</code></pre><blockquote>
+<p>这个方法中，首先我们去判断我们给的rootView是不是ViewGroup，如果是ViewGroup，则遍历他的所有子view，然后递归去调用这个方法，直到全部完成，如果发现某个view是TextView，则我们调用setTypeface方法来设置字体。<br>ok，从这个工具类中我们还可以看到，我们的字体是放在assets/fonts目录下的。</p>
+</blockquote>
+<p>最后是在activity中使用字体库，正式利用了上面的工具类，所以我们的代码将会很简单。  </p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    FontHelper.injectFont(findViewById(android.R.id.content));
+}
+</code></pre><p>仅仅一行代码，<code>FontHelper.injectFont(findViewById(android.R.id.content));</code><br>我们就完成了给所有TextView设置字体的工作。</p>
+<p><strong>方法二：LayoutInflate</strong>  </p>
+<p>现在对 LayoutInflateFactory 的用法还不太熟悉的，可以先去看一下鸿洋的这篇博文：<a href="http://blog.csdn.net/lmj623565791/article/details/51503977" target="_blank" rel="external">探究 LayoutInflate setFactory</a>。  </p>
+<p>我们编写一个自定义的LayoutInflaterFactory：  </p>
+<pre><code>public class IconFontLayoutFactory implements LayoutInflaterFactory {
+
+    private static Typeface sTypeface;
+    private AppCompatDelegate mAppCompatDelegate;
+
+    public IconFontLayoutFactory(Context context,
+                                 AppCompatDelegate appCompatDelegate) {
+        if (sTypeface == null) {
+            sTypeface = Typeface.createFromAsset(context.getAssets(),
+                    &quot;fonts/ocnyangfont.ttf&quot;);
+        }
+        mAppCompatDelegate = appCompatDelegate;
+    }
+
+    @Override
+    public View onCreateView(View parent, String name, Context context,
+                             AttributeSet attrs) {
+        View view = mAppCompatDelegate.createView(parent, name, context, attrs);
+        if (view instanceof TextView) {
+            ((TextView) view).setTypeface(sTypeface);
+        }
+        return view;
+    }
+}
+</code></pre><p>字体文件我们还是放在 <code>assets/fonts</code> 目录下。  </p>
+<p>然后你可以在你的BaseActivity的onCreate中，调用如下代码：  </p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+
+        LayoutInflaterCompat.setFactory(getLayoutInflater(),
+                new IconFontLayoutFactory(this,getDelegate()));
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+}
+</code></pre><blockquote>
+<p>注意一定要在super.onCreate前调用即可。  </p>
+</blockquote>
+<p>该方式可以在TextView及其子类对象创建完成时，就可以为其调用setTypeFace，非常的高效。<br>而对于字体库的加载，如果有需要，你甚至可以采用懒加载的方式，在SplashActivity中对其初始化。  </p>
+<blockquote>
+<p>这里提供是两种全局设置的方式。<br>有时候我们只是需要给部分 TextView 设置，这时候大家可以选择手动单独给特定的 TextView 设置，也可以通过自定义 View 的方案来实现（<strong>在构造方法中去设置 TypeFace</strong>，我个人也比较提倡这种方式，使用上相对灵活，也很简单这里就啰嗦了，详细代码可以到这里下载 <a href="https://github.com/OCNYang/FontTest" target="_blank" rel="external">本文源码</a> 内查看）。  </p>
+</blockquote>
+<p>那上面这些只是如何设置字体的方法，可能你也早就知道了，字体是字体，也不是图片呀，大兄弟莫慌，下面就给你如何介绍一种酷炫的字体库和制作自己独特的图片字体库的方法。  </p>
+<h2 id="fontawesome-字体库的使用"><a href="#fontawesome-字体库的使用" class="headerlink" title="fontawesome 字体库的使用"></a>fontawesome 字体库的使用</h2><p>在开始使用之前，我们我们需要到<br><strong><a href="https://github.com/FortAwesome/Font-Awesome/" target="_blank" rel="external">https://github.com/FortAwesome/Font-Awesome/</a></strong><br>下载这个字体库（不想麻烦，本文 <a href="https://github.com/OCNYang/FontTest" target="_blank" rel="external">源代码</a> 也包含有）。下载下来以后，你会看到有很多目录和文件，没关系，我们只需要一个文件-fontawesome-webfont.ttf，这个文件位于/fonts/目录下。将这个ttf文件copy到你项目的assets目录下，按照惯例或者说是共识，我们可能是将它放到assets/fonts这个目录下(注意，没有这个目录的话，创建它！)。  </p>
+<p>ok， 准备工作都做好了，那我们就开始使用它吧，看我的xml布局文件：  </p>
+<pre><code>&lt;LinearLayout
+    //...
+    &gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/text1&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_margin=&quot;10dp&quot;
+        android:textSize=&quot;58sp&quot;
+        android:textColor=&quot;#ff995533&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;&amp;#xe60d;&quot;/&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/text2&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_margin=&quot;10dp&quot;
+        android:textSize=&quot;118sp&quot;
+        android:textColor=&quot;#ff9ff533&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;&amp;#xe615;&quot;/&gt;
+
+    //...
+
+&lt;/LinearLayout&gt;
+</code></pre><p>看到这个布局文件，我们看到和平时没什么区别，给出了textSize或者textColor属性，不用想这些肯定去控制了我们需要显示的图片的大小和颜色！  </p>
+<p>细心的你会发现这些 TextView 文本好奇怪。其实这些文本对应的就是相对于的图片。可是，现在我们又遇到了一个问题，我们怎么知道哪写文本代表了什么图片呢？下面给出一个网址，通过这个网址，大家可以看到实体文本和他对应的图片的一个对照表。  </p>
+<p><a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_blank" rel="external">http://fortawesome.github.io/Font-Awesome/cheatsheet/</a>  </p>
+<blockquote>
+<p>本文 <a href="https://github.com/OCNYang/FontTest" target="_blank" rel="external">源码</a> 内我们提供了一个 <code>string.xml</code> 文件的图片字符对照表,可以直接在项目中使用。<br>你也可以在根据自己的需要在上面 <code>string.xml</code> 文件里 <code>Ctrl + F</code> 检索出对应的编码放到自己的字符串文件里或直接使用。   </p>
+</blockquote>
+<p>哦，对了，不知道大家有没有发现，这里我们无意中解决了一个图片大小的问题，因为我们可以任意改变一个文本的大小，所以，就不需要提供多套图去适配不同的屏幕了。  </p>
+<p>这是你可能还是有疑问，<code>Font-Awesome 库</code> 内提供的图标虽然很全很美观，但是不一定能满足我们所有的需要啊！那现在就教大家如何制作属于自己的字体库。  </p>
+<h2 id="制作属于自己的图片字体库"><a href="#制作属于自己的图片字体库" class="headerlink" title="制作属于自己的图片字体库"></a>制作属于自己的图片字体库</h2><p>在自己动手制作图片字体库之前，当然要先查找一些自己喜欢的漂亮的图标了，下面开启干货福利模式。  </p>
+<h3 id="图标干货"><a href="#图标干货" class="headerlink" title="图标干货"></a>图标干货</h3><p>对于使用，最主要就是找到一些靠谱的素材站点了</p>
+<p><a href="http://www.iconfont.cn/" target="_blank" rel="external">http://www.iconfont.cn/</a><br><a href="https://icomoon.io/app/#/select" target="_blank" rel="external">https://icomoon.io/app/#/select</a><br><a href="https://github.com/mikepenz/Android-Iconics" target="_blank" rel="external">https://github.com/mikepenz/Android-Iconics</a>  </p>
+<p>第一个站点是阿里提供的图标库，基本上可以搜索到需要的任何图标，非常方便，也支持颜色和大小的设置，足够满足我们的需求：</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont.png" alt="阿里 iconfont 图标库">  </p>
+<h3 id="自定义图标"><a href="#自定义图标" class="headerlink" title="自定义图标"></a>自定义图标</h3><p>无论上面这些网站提供的图标是多么的全，可能都无法满足贪心的你或者你们家追求完美（矫情）到极致的UI，那么如果App内的图标部分是自己制作的，再混杂着网络上已有的图标能打包到一个字体库么？<br>答案当然是肯定的，我们本来就是要制作属于自己的字体库嘛！比如你就可以依赖 <code>iconfont.com</code> 这个网站，自行上传svg图标，然后就可以自由选择了。  </p>
+<blockquote>
+<p>关于 iconfont 网站的用法可以参考官方手册(也可以跳过，直接跟着我学习怎么生成自己的字体库)：<br><a href="http://www.iconfont.cn/help/platform.html" target="_blank" rel="external">http://www.iconfont.cn/help/platform.html</a>  </p>
+</blockquote>
+<h3 id="按需生成自己的图标字体库"><a href="#按需生成自己的图标字体库" class="headerlink" title="按需生成自己的图标字体库"></a>按需生成自己的图标字体库</h3><p>我们以 iconfont 库为例，教大家<a href="http://ocnyang.com/">生成自己图片字体库的整个流程</a>（下面所有步骤，大家都无需注册账号，就可以直接使用）。  </p>
+<p>首先在 iconfont 网站上选择自己要生成到字体库的图标，可以选择网站字体库中选择，也可以在我的图标库中选择自己上传的图标。把这些图标添加到库（即添加到购物车）：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_all.png" alt="选择喜欢的图标">  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_setect.png" alt="添加到购物车">  </p>
+<p>当你想要生成的字体库的图标选择完成后，在网站右上角点击打开库（购物车），在库里可以看到自己选择的所有图标，确定后点击下载代码：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_cart.png" alt="打开库，下载代码会得到一个压缩包">  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_ttf.png" alt="解压缩后，可以看到生成的库">  </p>
+<p>在解压后的文件夹中，我们看到许多文件。其中以 <code>.ttf</code> 结尾的文件就是我们生成的自己的字体库，而 3 个 <code>.html</code> 文件对应的是不同平台使用时对应的编码。而我们在 Android 开发中要使用的编码是 <code>demo_unicode.html</code> 文件里对应的 <code>&amp;#xxxxx;</code> 形式的编码。  </p>
+<p>细心的你一定会发现，生成的字体库里虽然包含了很多图标，却只有小小的几 KB 的大小，更难能可贵的是无论设置多大的尺寸它依旧能够保存一样的清晰度，当然，你也可以把该方案看成apk瘦身的可选手段之一。</p>
+<p>本文Demo源代码下载地址：<strong><a href="https://github.com/OCNYang/FontTest" target="_blank" rel="external">https://github.com/OCNYang/FontTest</a></strong>  </p>
+<blockquote>
+<p>参考：<br><a href="http://blog.csdn.net/qibin0506/article/details/48675839" target="_blank" rel="external">亓斌 - FontAwesome-用TextView显示图片</a><br><a href="http://chuansong.me/n/797491851925" target="_blank" rel="external">鸿洋 - Android IconFont全攻略</a><br><a href="https://code.tutsplus.com/tutorials/how-to-use-fontawesome-in-an-android-app--cms-24167" target="_blank" rel="external">How to Use FontAwesome in an Android App</a>  </p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持好文章的分享，您的支持将是对我最大的鼓励！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="OCN.Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.jpg" alt="OCN.Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Android教程系列/" rel="tag">#Android教程系列</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/24/INWaitRainStopWithoutU/" rel="next" title="我不等伞，也不等雨停">
+                <i class="fa fa-chevron-left"></i> 我不等伞，也不等雨停
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/06/TheMeaningOfMarriage/" rel="prev" title="结婚的意义">
+                结婚的意义 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/06/IconFont/"
+           data-title="Android 图标自适应：用 TextView 来显示图片 & 生成自己的字体库" data-url="http://ocnyang.com/2016/12/06/IconFont/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ocnyang.png"
+               alt="OCN.Yang" />
+          <p class="site-author-name" itemprop="name">OCN.Yang</p>
+          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e61d05cbf47e/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ocnyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/shedoor" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://love.shedoor.net/" target="_blank" title="Meet you">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Meet you
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.shedoor.net/" title="个人" target="_blank">个人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-图标自适应：用-TextView-来显示图片-amp-生成自己的字体库"><span class="nav-number">1.</span> <span class="nav-text">Android 图标自适应：用 TextView 来显示图片 & 生成自己的字体库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为TextView设置字体"><span class="nav-number">1.1.</span> <span class="nav-text">为TextView设置字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fontawesome-字体库的使用"><span class="nav-number">1.2.</span> <span class="nav-text">fontawesome 字体库的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作属于自己的图片字体库"><span class="nav-number">1.3.</span> <span class="nav-text">制作属于自己的图片字体库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图标干货"><span class="nav-number">1.3.1.</span> <span class="nav-text">图标干货</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义图标"><span class="nav-number">1.3.2.</span> <span class="nav-text">自定义图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按需生成自己的图标字体库"><span class="nav-number">1.3.3.</span> <span class="nav-text">按需生成自己的图标字体库</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ocnyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gh3omnCzhrHskUI74veM8V99-gzGzoHsz", "S5X90d5uKqp25VMacYGLwL60");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

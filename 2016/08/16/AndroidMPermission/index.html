@@ -1,0 +1,1343 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android教程系列,Android6.0权限,AndroidM权限," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Android M 新的运行时权限开发者需要知道的一切android M 的名字官方刚发布不久，最终正式版即将来临！android在不断发展，最近的更新 M 非常不同，一些主要的变化例如运行时权限将有颠覆性影响。惊讶的是android社区鲜有谈论这事儿，尽管这事很重要或许在不远的将来会引发很严重的问题。这是今天我写这篇博客的原因。这里有一切关于android运行时权限你需要知道的，包括如何在代码中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android M 新的运行时权限开发者需要知道的一切">
+<meta property="og:url" content="http://ocnyang.com/2016/08/16/AndroidMPermission/index.html">
+<meta property="og:site_name" content="杨欧神/OCN.Yang">
+<meta property="og:description" content="Android M 新的运行时权限开发者需要知道的一切android M 的名字官方刚发布不久，最终正式版即将来临！android在不断发展，最近的更新 M 非常不同，一些主要的变化例如运行时权限将有颠覆性影响。惊讶的是android社区鲜有谈论这事儿，尽管这事很重要或许在不远的将来会引发很严重的问题。这是今天我写这篇博客的原因。这里有一切关于android运行时权限你需要知道的，包括如何在代码中">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionruntimepermission.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionruntimepermissioncrash.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionpermissionsrevoke.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/mpermission22_1%20%281%29.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionmpermission22denyperm_1.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/runtime_permissiontargetsdkversion2223.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionpermgroup.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionneveraskagain.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionrationaledialog.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionpermissionsrevoke%20%281%29.jpg">
+<meta property="og:updated_time" content="2016-08-31T08:29:38.631Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android M 新的运行时权限开发者需要知道的一切">
+<meta name="twitter:description" content="Android M 新的运行时权限开发者需要知道的一切android M 的名字官方刚发布不久，最终正式版即将来临！android在不断发展，最近的更新 M 非常不同，一些主要的变化例如运行时权限将有颠覆性影响。惊讶的是android社区鲜有谈论这事儿，尽管这事很重要或许在不远的将来会引发很严重的问题。这是今天我写这篇博客的原因。这里有一切关于android运行时权限你需要知道的，包括如何在代码中">
+<meta name="twitter:image" content="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionruntimepermission.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 6310065206374434000,
+      author: 'OCN.Yang'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ocnyang.com/2016/08/16/AndroidMPermission/"/>
+
+  <title> Android M 新的运行时权限开发者需要知道的一切 | 杨欧神/OCN.Yang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <!-- add Fork me on Github-->
+  <a href="https://github.com/ocnyang">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  <!-- add Fork me on Github-->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨欧神/OCN.Yang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-efall">
+          <a href="/categories/还相信爱情/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            E.Fall
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android M 新的运行时权限开发者需要知道的一切
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T09:03:15+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android教程系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Android教程系列</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/16/AndroidMPermission/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/AndroidMPermission/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/16/AndroidMPermission/" class="leancloud_visitors" data-flag-title="Android M 新的运行时权限开发者需要知道的一切">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Android-M-新的运行时权限开发者需要知道的一切"><a href="#Android-M-新的运行时权限开发者需要知道的一切" class="headerlink" title="Android M 新的运行时权限开发者需要知道的一切"></a>Android M 新的运行时权限开发者需要知道的一切</h1><p>android M 的名字官方刚发布不久，最终正式版即将来临！<br>android在不断发展，最近的更新 M 非常不同，一些主要的变化例如运行时权限将有颠覆性影响。惊讶的是android社区鲜有谈论这事儿，尽管这事很重要或许在不远的将来会引发很严重的问题。<br>这是今天我写这篇博客的原因。这里有一切关于android运行时权限你需要知道的，包括如何在代码中实现。现在亡羊补牢还不晚。  </p>
+<h2 id="新运行时权限"><a href="#新运行时权限" class="headerlink" title="新运行时权限"></a>新运行时权限</h2><p>android的权限系统一直是首要的安全概念，因为这些权限只在安装的时候被询问一次。一旦安装了，app可以在用户毫不知晓的情况下访问权限内的所有东西。<br>难怪一些坏蛋利用这个缺陷恶意收集用户数据用来做坏事了！<br>android小组也知道这事儿。7年了！权限系统终于被重新设计了。在android6.0棉花糖，app将不会在安装的时候授予权限。取而代之的是，app不得不在运行时一个一个询问用户授予权限。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionruntimepermission.jpg" alt="">  </p>
+<p>注意权限询问对话框不会自己弹出来。开发者不得不自己调用。如果开发者要调用的一些函数需要某权限而用户又拒绝授权的话，函数将抛出异常直接导致程序崩溃。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionruntimepermissioncrash.jpg" alt="">  </p>
+<p>另外，用户也可以随时在设置里取消已经授权的权限。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionpermissionsrevoke.jpg" alt="">  </p>
+<p>你或许已经感觉到背后生出一阵寒意。。。如果你是个android开发者，意味着要完全改变你的程序逻辑。你不能像以前那样直接调用方法了，你不得不为每个需要的地方检察权限，否则app就崩溃了！<br>是的。我不能哄你说这是简单的事儿。尽管这对用户来说是好事，但是对开发者来说就是噩梦。我们不得不修改编码不然不论短期还是长远来看都是潜在的问题。<br>这个新的运行时权限仅当我们设置targetSdkVersion to 23（这意味着你已经在23上测试通过了）才起作用，当然还要是M系统的手机。app在6.0之前的设备依然使用旧的权限系统。</p>
+<h2 id="已经发布了的app会发生什么"><a href="#已经发布了的app会发生什么" class="headerlink" title="已经发布了的app会发生什么"></a>已经发布了的app会发生什么</h2><blockquote>
+<p>新运行时权限可能已经让你开始恐慌了。<strong>“hey，伙计！我三年前发布的app可咋整呢。如果他被装到android 6.0上，我的app会崩溃吗？！？”</strong><br>莫慌张，放轻松。android小队又不傻，肯定考虑到了这情况。<strong>如果app的targetSdkVersion 低于 23，那将被认为app没有用23新权限测试过，那将被继续使用旧有规则：用户在安装的时候不得不接受所有权限，安装后app就有了那些权限咯！</strong>  </p>
+</blockquote>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/mpermission22_1%20%281%29.jpg" alt="">  </p>
+<p>然后app像以前一样奔跑！注意，此时用户依然可以取消已经同意的授权！用户取消授权时，android 6.0系统会警告，但这不妨碍用户取消授权。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionmpermission22denyperm_1.jpg" alt="">  </p>
+<p>问题又来了，这时候你的app崩溃吗？<br>善意的主把这事也告诉了android小组，当我们在targetSdkVersion 低于23的app调用一个需要权限的函数时，这个权限如果被用户取消授权了的话，不抛出异常。但是他将啥都不干，结果导致函数返回值是null或者0.  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/runtime_permissiontargetsdkversion2223.jpg" alt="">  </p>
+<p>别高兴的太早。尽管app不会调用这个函数时崩溃，返回值null或者0可能接下来依然导致崩溃。<br>好消息（至少目前看来）是这类取消权限的情况比较少，我相信很少用户这么搞。如果他们这么办了，后果自负咯。<br>但从长远看来，我相信还是会有大量用户会关闭一些权限。我们app不能在新设备完美运行这是不可接受的。<br>怎样让他完美运行呢，你最好修改代码支持最新的权限系统，而且我建议你立刻着手搞起！<br>代码没有成功改为支持最新运行时权限的app,不要设置targetSdkVersion 23 发布，否则你就有麻烦了。只有当你测试过了，再改为targetSdkVersion 23 。  </p>
+<blockquote>
+<p><strong>警告：现在你在android studio新建项目，targetSdkVersion 会自动设置为 23。如果你还没支持新运行时权限，我建议你首先把targetSdkVersion 降级到22</strong>  </p>
+</blockquote>
+<h2 id="PROTECTION-NORMAL类权限"><a href="#PROTECTION-NORMAL类权限" class="headerlink" title="PROTECTION_NORMAL类权限"></a>PROTECTION_NORMAL类权限</h2><p>当用户安装或更新应用时，系统将授予应用所请求的属于 PROTECTION_NORMAL 的所有权限（安装时授权的一类基本权限）。这类权限包括：  </p>
+<pre><code>android.permission.ACCESS_LOCATION_EXTRA_COMMANDS
+android.permission.ACCESS_NETWORK_STATE
+android.permission.ACCESS_NOTIFICATION_POLICY
+android.permission.ACCESS_WIFI_STATE
+android.permission.ACCESS_WIMAX_STATE
+android.permission.BLUETOOTH
+android.permission.BLUETOOTH_ADMIN
+android.permission.BROADCAST_STICKY
+android.permission.CHANGE_NETWORK_STATE
+android.permission.CHANGE_WIFI_MULTICAST_STATE
+android.permission.CHANGE_WIFI_STATE
+android.permission.CHANGE_WIMAX_STATE
+android.permission.DISABLE_KEYGUARD
+android.permission.EXPAND_STATUS_BAR
+android.permission.FLASHLIGHT
+android.permission.GET_ACCOUNTS
+android.permission.GET_PACKAGE_SIZE
+android.permission.INTERNET
+android.permission.KILL_BACKGROUND_PROCESSES
+android.permission.MODIFY_AUDIO_SETTINGS
+android.permission.NFC
+android.permission.READ_SYNC_SETTINGS
+android.permission.READ_SYNC_STATS
+android.permission.RECEIVE_BOOT_COMPLETED
+android.permission.REORDER_TASKS
+android.permission.REQUEST_INSTALL_PACKAGES
+android.permission.SET_TIME_ZONE
+android.permission.SET_WALLPAPER
+android.permission.SET_WALLPAPER_HINTS
+android.permission.SUBSCRIBED_FEEDS_READ
+android.permission.TRANSMIT_IR
+android.permission.USE_FINGERPRINT
+android.permission.VIBRATE
+android.permission.WAKE_LOCK
+android.permission.WRITE_SYNC_SETTINGS
+com.android.alarm.permission.SET_ALARM
+com.android.launcher.permission.INSTALL_SHORTCUT
+com.android.launcher.permission.UNINSTALL_SHORTCUT
+</code></pre><p>只需要在AndroidManifest.xml中简单声明这些权限就好，安装时就授权。不需要每次使用时都检查权限，而且用户不能取消以上授权。  </p>
+<h2 id="让你的app支持新运行时权限"><a href="#让你的app支持新运行时权限" class="headerlink" title="让你的app支持新运行时权限"></a>让你的app支持新运行时权限</h2><p>是时候让我们的app支持新权限模型了，从设置<strong>compileSdkVersion</strong> and <strong>targetSdkVersion</strong> 为 23开始吧.</p>
+<pre><code>android {
+    compileSdkVersion 23
+    ...
+
+    defaultConfig {
+        ...
+        targetSdkVersion 23
+        ...
+    }
+</code></pre><p>例子，我想用以下方法添加联系人。</p>
+<pre><code>privatestaticfinal String TAG = &quot;Contacts&quot;;
+privatevoid insertDummyContact() {
+// Two operations are needed to insert a new contact.
+    ArrayList operations = new ArrayList(2);
+
+// First, set up a new raw contact.
+    ContentProviderOperation.Builder op =
+            ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
+                    .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, null)
+                    .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null);
+    operations.add(op.build());
+
+// Next, set the name for the contact.
+    op = ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+            .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+            .withValue(ContactsContract.Data.MIMETYPE,
+                    ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+            .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME,
+&quot;__DUMMY CONTACT from runtime permissions sample&quot;);
+    operations.add(op.build());
+
+// Apply the operations.
+    ContentResolver resolver = getContentResolver();
+try {
+        resolver.applyBatch(ContactsContract.AUTHORITY, operations);
+    } catch (RemoteException e) {
+        Log.d(TAG, &quot;Could not add a new contact: &quot; + e.getMessage());
+    } catch (OperationApplicationException e) {
+        Log.d(TAG, &quot;Could not add a new contact: &quot; + e.getMessage());
+    }
+}
+</code></pre><p>上面代码需要WRITE_CONTACTS权限。如果不询问授权，app就崩了。<br>下一步像以前一样在AndroidManifest.xml添加声明权限。</p>
+<pre><code>&lt;uses-permission  android:name=&quot;android.permission.WRITE_CONTACTS&quot;/&gt;
+</code></pre><p>下一步，不得不再写个方法检查有没有权限。如果没有弹个对话框询问用户授权。然后你才可以下一步创建联系人。<br>权限被分组了，如下表：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionpermgroup.png" alt="">  </p>
+<p>同一组的任何一个权限被授权了，其他权限也自动被授权。例如，一旦WRITE_CONTACTS被授权了，app也有READ_CONTACTS和GET_ACCOUNTS权限了。<br>源码中被用来检查和请求权限的方法分别是Activity的checkSelfPermission和requestPermissions。这些方法在api23引入。</p>
+<pre><code>finalprivateint REQUEST_CODE_ASK_PERMISSIONS = 123;
+
+privatevoid insertDummyContactWrapper() {
+int hasWriteContactsPermission = checkSelfPermission(Manifest.permission.WRITE_CONTACTS);
+if (hasWriteContactsPermission != PackageManager.PERMISSION_GRANTED) {
+        requestPermissions(new String[] {Manifest.permission.WRITE_CONTACTS},
+                REQUEST_CODE_ASK_PERMISSIONS);
+return;
+    }
+    insertDummyContact();
+}
+</code></pre><p>如果已有权限，insertDummyContact()会执行。否则，requestPermissions被执行来弹出请求授权对话框，如下：</p>
+<p>不论用户同意还是拒绝，activity的onRequestPermissionsResult会被回调来通知结果（通过第三个参数），grantResults,如下：</p>
+<pre><code>@Override
+publicvoid onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+switch (requestCode) {
+caseREQUEST_CODE_ASK_PERMISSIONS:
+if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+// Permission Granted
+                insertDummyContact();
+            } else {
+// Permission Denied
+                Toast.makeText(MainActivity.this, &quot;WRITE_CONTACTS Denied&quot;, Toast.LENGTH_SHORT)
+                        .show();
+            }
+break;
+        default:
+super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+}
+</code></pre><p>这就是新权限模型工作过程。代码真复杂但是只能去习惯它。。。为了让app很好兼容新权限模型，你不得不用以上类似方法处理所有需要的情况。<br>如果你想捶墙，现在是时候了。。。  </p>
+<h2 id="处理-“不再提醒”"><a href="#处理-“不再提醒”" class="headerlink" title="处理 “不再提醒”"></a>处理 “不再提醒”</h2><p>如果用户拒绝某授权。下一次弹框，用户会有一个“不再提醒”的选项的来防止app以后继续请求授权。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionneveraskagain.jpg" alt="">  </p>
+<p>如果这个选项在拒绝授权前被用户勾选了。下次为这个权限请求requestPermissions时，对话框就不弹出来了，结果就是，app啥都不干。<br>这将是很差的用户体验，用户做了操作却得不到响应。这种情况需要好好处理一下。在请求requestPermissions前，我们通过activity的shouldShowRequestPermissionRationale方法来检查是否需要弹出请求权限的提示对话框，代码如下：</p>
+<pre><code>final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
+
+private void insertDummyContactWrapper() {
+int hasWriteContactsPermission = checkSelfPermission(Manifest.permission.WRITE_CONTACTS);
+if (hasWriteContactsPermission != PackageManager.PERMISSION_GRANTED) {
+if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)) {
+                showMessageOKCancel(&quot;You need to allow access to Contacts&quot;,
+new DialogInterface.OnClickListener() {
+@Override
+publicvoid onClick(DialogInterface dialog, int which) {
+                                requestPermissions(new String[] {Manifest.permission.WRITE_CONTACTS},
+                                        REQUEST_CODE_ASK_PERMISSIONS);
+                            }
+                        });
+return;
+            }
+        requestPermissions(new String[] {Manifest.permission.WRITE_CONTACTS},
+                REQUEST_CODE_ASK_PERMISSIONS);
+return;
+    }
+    insertDummyContact();
+}
+
+private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+new AlertDialog.Builder(MainActivity.this)
+            .setMessage(message)
+            .setPositiveButton(&quot;OK&quot;, okListener)
+            .setNegativeButton(&quot;Cancel&quot;, null)
+            .create()
+            .show();
+}
+</code></pre><p>当一个权限第一次被请求和用户标记过不再提醒的时候,我们写的对话框被展示。<br>最后一种情况，onRequestPermissionsResult 会收到PERMISSION_DENIED ，系统询问对话框不展示。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionrationaledialog.jpg" alt="">  </p>
+<p>搞定！  </p>
+<h2 id="一次请求多个权限"><a href="#一次请求多个权限" class="headerlink" title="一次请求多个权限"></a>一次请求多个权限</h2><p>当然了有时候需要好多权限，可以用上面方法一次请求多个权限。不要忘了为每个权限检查“不再提醒”的设置。<br>修改后的代码：</p>
+<pre><code>final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
+
+private void insertDummyContactWrapper() {
+    List&lt;String&gt; permissionsNeeded = new ArrayList&lt;String&gt;();
+
+    final List&lt;String&gt; permissionsList = new ArrayList&lt;String&gt;();
+    if (!addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION))
+        permissionsNeeded.add(&quot;GPS&quot;);
+    if (!addPermission(permissionsList, Manifest.permission.READ_CONTACTS))
+        permissionsNeeded.add(&quot;Read Contacts&quot;);
+    if (!addPermission(permissionsList, Manifest.permission.WRITE_CONTACTS))
+        permissionsNeeded.add(&quot;Write Contacts&quot;);
+
+    if (permissionsList.size() &gt; 0) {
+        if (permissionsNeeded.size() &gt; 0) {
+            // Need Rationale
+            String message = &quot;You need to grant access to &quot; + permissionsNeeded.get(0);
+            for (int i = 1; i &lt; permissionsNeeded.size(); i++)
+                message = message + &quot;, &quot; + permissionsNeeded.get(i);
+            showMessageOKCancel(message,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
+                                    REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+                        }
+                    });
+            return;
+        }
+        requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
+                REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+        return;
+    }
+
+    insertDummyContact();
+}
+
+private boolean addPermission(List&lt;String&gt; permissionsList, String permission) {
+    if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+        permissionsList.add(permission);
+        // Check for Rationale Option
+        if (!shouldShowRequestPermissionRationale(permission))
+            return false;
+    }
+    return true;
+}
+</code></pre><p>如果所有权限被授权，依然回调onRequestPermissionsResult，我用hashmap让代码整洁便于阅读。</p>
+<pre><code>@Override
+publicvoid onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+switch (requestCode) {
+caseREQUEST_CODE_ASK_MULTIPLE_PERMISSIONS:
+            {
+            Map perms = new HashMap();
+// Initial
+            perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
+            perms.put(Manifest.permission.READ_CONTACTS, PackageManager.PERMISSION_GRANTED);
+            perms.put(Manifest.permission.WRITE_CONTACTS, PackageManager.PERMISSION_GRANTED);
+// Fill with results
+for (int i = 0; i &lt; permissions.length; i++)
+                perms.put(permissions[i], grantResults[i]);
+// Check for ACCESS_FINE_LOCATION
+if (perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                    &amp;&amp; perms.get(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED
+                    &amp;&amp; perms.get(Manifest.permission.WRITE_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+// All Permissions Granted
+                insertDummyContact();
+            } else {
+// Permission Denied
+                Toast.makeText(MainActivity.this, &quot;Some Permission is Denied&quot;, Toast.LENGTH_SHORT)
+                        .show();
+            }
+            }
+break;
+        default:
+super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+}
+</code></pre><p>条件灵活的，你自己设置。有的情况，一个权限没有授权，就不可用；但是也有情况，能工作，但是表现的是有所限制的。对于这个我不做评价，你自己设计吧。  </p>
+<h2 id="用兼容库使代码兼容旧版"><a href="#用兼容库使代码兼容旧版" class="headerlink" title="用兼容库使代码兼容旧版"></a>用兼容库使代码兼容旧版</h2><p>以上代码在android 6.0以上运行没问题，但是23 api之前就不行了，因为没有那些方法。<br>粗暴的方法是检查版本</p>
+<pre><code>if (Build.VERSION.SDK_INT &gt;= 23) {
+// Marshmallow+
+} else {
+// Pre-Marshmallow
+}
+</code></pre><p>但是太复杂，我建议用v4兼容库，已对这个做过兼容，用这个方法代替：  </p>
+<ul>
+<li>ContextCompat.checkSelfPermission()<br>  被授权函数返回PERMISSION_GRANTED，否则返回PERMISSION_DENIED ，在所有版本都是如此。</li>
+<li>ActivityCompat.requestPermissions()<br>  这个方法在M之前版本调用，OnRequestPermissionsResultCallback 直接被调用，带着正确的 PERMISSION_GRANTED或者 PERMISSION_DENIED 。</li>
+<li>ActivityCompat.shouldShowRequestPermissionRationale()<br>  在M之前版本调用，永远返回false。<br>  用v4包的这三方法，完美兼容所有版本！这个方法需要额外的参数，Context or Activity。别的就没啥特别的了。下面是代码：<br>&gt;</li>
+</ul>
+<pre><code>private void insertDummyContactWrapper(){
+int hasWriteContactsPermission = ContextCompat.checkSelfPermission(MainActivity.this,
+            Manifest.permission.WRITE_CONTACTS);
+if (hasWriteContactsPermission != PackageManager.PERMISSION_GRANTED) {
+if (!ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                Manifest.permission.WRITE_CONTACTS)) {
+            showMessageOKCancel(&quot;You need to allow access to Contacts&quot;,
+new DialogInterface.OnClickListener() {
+@Override
+publicvoidonClick(DialogInterface dialog, int which){
+                            ActivityCompat.requestPermissions(MainActivity.this,
+new String[] {Manifest.permission.WRITE_CONTACTS},
+                                    REQUEST_CODE_ASK_PERMISSIONS);
+                        }
+                    });
+return;
+        }
+        ActivityCompat.requestPermissions(MainActivity.this,
+new String[] {Manifest.permission.WRITE_CONTACTS},
+                REQUEST_CODE_ASK_PERMISSIONS);
+return;
+    }
+    insertDummyContact();
+}  
+</code></pre><p>后两个方法，我们也可以在Fragment中使用，用v13兼容包：FragmentCompat.requestPermissions() and FragmentCompat.shouldShowRequestPermissionRationale()和activity效果一样。  </p>
+<h2 id="第三方库简化代码"><a href="#第三方库简化代码" class="headerlink" title="第三方库简化代码"></a>第三方库简化代码</h2><p>以上代码真尼玛复杂。为解决这事，有许多第三方库已经问世了，真66溜真有速度。我试了很多最终找到了个满意的<a href="https://github.com/hotchemi/PermissionsDispatcher" target="_blank" rel="external">hotchemi’s PermissionsDispatcher</a>。<br>他和我上面做的一样，只是简化了代码。灵活易扩展，试一下吧。如果不满足你可以找些其他的。  </p>
+<h2 id="如果我的app还开着呢，权限被撤销了，会发生生么"><a href="#如果我的app还开着呢，权限被撤销了，会发生生么" class="headerlink" title="如果我的app还开着呢，权限被撤销了，会发生生么"></a>如果我的app还开着呢，权限被撤销了，会发生生么</h2><p>权限随时可以被撤销。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/runtime_permissionpermissionsrevoke%20%281%29.jpg" alt="">  </p>
+<p>当app开着的时候被撤消了会发生什么呢？我试过了发现这时app会突然终止 terminated。app中的一切都被简单粗暴的停止了，因为terminated！对我来说这可以理解，因为系统如果允许它继续运行（没有某权限），这会召唤弗雷迪到我的噩梦里。或许更糟…  </p>
+<h2 id="结论建议"><a href="#结论建议" class="headerlink" title="结论建议"></a>结论建议</h2><p>我相信你对新权限模型已经有了清晰的认识。我相信你也意识到了问题的严峻。<br>但是你没得选择。新运行时权限已经在棉花糖中被使用了。我们没有退路。我们现在唯一能做的就是保证app适配新权限模型.<br>欣慰的是只有少数权限需要运行时权限模型。大多数常用的权限，例如，网络访问，属于Normal Permission 在安装时自动会授权，当然你要声明，以后无需检查。因此，只有少部分代码你需要修改。<br>两个建议：  </p>
+<ol>
+<li>严肃对待新权限模型</li>
+<li>如果你代码没支持新权限，不要设置targetSdkVersion 23 。尤其是当你在Studio新建工程时，不要忘了修改！  </li>
+</ol>
+<p>说一下代码修改。这是大事，如果代码结构被设计的不够好，你需要一些很蛋疼的重构。每个app都要被修正。如上所说，我们没的选择。。。<br>列出所有你需要请求的权限所有情形，如果A被授权，B被拒绝，会发生什么。blah，blah。<br>祝重构顺利。把它列为你需要做的大事，从现在就开始着手做，以保证M正式发布的时候没有问题。<br>希望本文对你有用，快乐编码！  </p>
+<blockquote>
+<p>译文来自 <em><a href="http://inthecheesefactory.com/blog/things-you-need-to-know-about-android-m-permission-developer-edition/en" target="_blank" rel="external">http://inthecheesefactory.com/blog/things-you-need-to-know-about-android-m-permission-developer-edition/en</a></em><br>翻译摘录来自 <em><a href="http://jijiaxin89.com/2015/08/30/Android-s-Runtime-Permission/" target="_blank" rel="external">http://jijiaxin89.com/2015/08/30/Android-s-Runtime-Permission/</a></em>  </p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持好文章的分享，您的支持将是对我最大的鼓励！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="OCN.Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.jpg" alt="OCN.Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android教程系列/" rel="tag">#Android教程系列</a>
+          
+            <a href="/tags/Android6-0权限/" rel="tag">#Android6.0权限</a>
+          
+            <a href="/tags/AndroidM权限/" rel="tag">#AndroidM权限</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/16/Android6Permission/" rel="next" title="在Android 6.0 设备上动态获取权限">
+                <i class="fa fa-chevron-left"></i> 在Android 6.0 设备上动态获取权限
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/17/GlideUse/" rel="prev" title="Glide图片加载库的使用">
+                Glide图片加载库的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/16/AndroidMPermission/"
+           data-title="Android M 新的运行时权限开发者需要知道的一切" data-url="http://ocnyang.com/2016/08/16/AndroidMPermission/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ocnyang.png"
+               alt="OCN.Yang" />
+          <p class="site-author-name" itemprop="name">OCN.Yang</p>
+          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e61d05cbf47e/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ocnyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/shedoor" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://love.shedoor.net/" target="_blank" title="Meet you">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Meet you
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.shedoor.net/" title="个人" target="_blank">个人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-M-新的运行时权限开发者需要知道的一切"><span class="nav-number">1.</span> <span class="nav-text">Android M 新的运行时权限开发者需要知道的一切</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新运行时权限"><span class="nav-number">1.1.</span> <span class="nav-text">新运行时权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#已经发布了的app会发生什么"><span class="nav-number">1.2.</span> <span class="nav-text">已经发布了的app会发生什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PROTECTION-NORMAL类权限"><span class="nav-number">1.3.</span> <span class="nav-text">PROTECTION_NORMAL类权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让你的app支持新运行时权限"><span class="nav-number">1.4.</span> <span class="nav-text">让你的app支持新运行时权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理-“不再提醒”"><span class="nav-number">1.5.</span> <span class="nav-text">处理 “不再提醒”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一次请求多个权限"><span class="nav-number">1.6.</span> <span class="nav-text">一次请求多个权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用兼容库使代码兼容旧版"><span class="nav-number">1.7.</span> <span class="nav-text">用兼容库使代码兼容旧版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方库简化代码"><span class="nav-number">1.8.</span> <span class="nav-text">第三方库简化代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果我的app还开着呢，权限被撤销了，会发生生么"><span class="nav-number">1.9.</span> <span class="nav-text">如果我的app还开着呢，权限被撤销了，会发生生么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论建议"><span class="nav-number">1.10.</span> <span class="nav-text">结论建议</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ocnyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gh3omnCzhrHskUI74veM8V99-gzGzoHsz", "S5X90d5uKqp25VMacYGLwL60");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

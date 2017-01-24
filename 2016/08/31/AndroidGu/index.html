@@ -1,0 +1,1261 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,原创,Android的那些坑," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Android初级躲不开的那些坑这里是作者(OCN.Yang)在Android初级阶段遇到的那些坑坑洼洼，有些还是开发中要知道的小技巧。相信大多数初学者难免也会遇到相同的坑，大家大概看看有者避之，还没遇到的就躲之。大牛和已经进阶的朋友可以绕道（相信你们很忙的）。  
+1、Ctrl + O快捷键查看代码的大纲  即类的方法列表。  
+2、layout_weight
+android:layout_we">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android初级躲不开的那些坑">
+<meta property="og:url" content="http://ocnyang.com/2016/08/31/AndroidGu/index.html">
+<meta property="og:site_name" content="杨欧神/OCN.Yang">
+<meta property="og:description" content="Android初级躲不开的那些坑这里是作者(OCN.Yang)在Android初级阶段遇到的那些坑坑洼洼，有些还是开发中要知道的小技巧。相信大多数初学者难免也会遇到相同的坑，大家大概看看有者避之，还没遇到的就躲之。大牛和已经进阶的朋友可以绕道（相信你们很忙的）。  
+1、Ctrl + O快捷键查看代码的大纲  即类的方法列表。  
+2、layout_weight
+android:layout_we">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/4.jpeg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/1.jpeg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/2.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/3.jpeg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/5.jpeg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/6.jpeg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/7.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/8.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/9.png">
+<meta property="og:updated_time" content="2016-08-31T07:34:34.847Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android初级躲不开的那些坑">
+<meta name="twitter:description" content="Android初级躲不开的那些坑这里是作者(OCN.Yang)在Android初级阶段遇到的那些坑坑洼洼，有些还是开发中要知道的小技巧。相信大多数初学者难免也会遇到相同的坑，大家大概看看有者避之，还没遇到的就躲之。大牛和已经进阶的朋友可以绕道（相信你们很忙的）。  
+1、Ctrl + O快捷键查看代码的大纲  即类的方法列表。  
+2、layout_weight
+android:layout_we">
+<meta name="twitter:image" content="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/4.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 6310065206374434000,
+      author: 'OCN.Yang'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ocnyang.com/2016/08/31/AndroidGu/"/>
+
+  <title> Android初级躲不开的那些坑 | 杨欧神/OCN.Yang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <!-- add Fork me on Github-->
+  <a href="https://github.com/ocnyang">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  <!-- add Fork me on Github-->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨欧神/OCN.Yang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-efall">
+          <a href="/categories/还相信爱情/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            E.Fall
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android初级躲不开的那些坑
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-31T15:03:15+08:00" content="2016-08-31">
+              2016-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/原创/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/31/AndroidGu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/AndroidGu/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/31/AndroidGu/" class="leancloud_visitors" data-flag-title="Android初级躲不开的那些坑">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Android初级躲不开的那些坑"><a href="#Android初级躲不开的那些坑" class="headerlink" title="Android初级躲不开的那些坑"></a>Android初级躲不开的那些坑</h1><p>这里是作者<a href="http://ocnyang.com/">(OCN.Yang)</a>在Android初级阶段遇到的那些坑坑洼洼，有些还是开发中要知道的小技巧。相信大多数初学者难免也会遇到相同的坑，大家大概看看有者避之，还没遇到的就躲之。大牛和已经进阶的朋友可以绕道（相信你们很忙的）。  </p>
+<h3 id="1、Ctrl-O快捷键"><a href="#1、Ctrl-O快捷键" class="headerlink" title="1、Ctrl + O快捷键"></a>1、Ctrl + O快捷键</h3><p>查看代码的大纲  即类的方法列表。  </p>
+<h3 id="2、layout-weight"><a href="#2、layout-weight" class="headerlink" title="2、layout_weight"></a>2、layout_weight</h3><ul>
+<li><strong>android:layout_weight</strong>的真实含义是:<br>一旦View设置了该属性(假设有效的情况下)，那么该 View的宽度等于原有宽度(android:layout_width)加上剩余空间的占比！  </li>
+<li>如果width设置了match_parent ，那么，加上的是负的长度（相当于减去一部分长度）  </li>
+<li>如果width设置了warp_content ，那么，剩余空间是“父容器总长度”减去“组件的内容占的长度”，然后再按比重值分。　　</li>
+</ul>
+<h3 id="3、Background-”-null”"><a href="#3、Background-”-null”" class="headerlink" title="3、Background=”@null”"></a>3、Background=”@null”</h3><p>可以给背景设置一个null值，在一定情况下这样做是有必要的。  </p>
+<h3 id="4、判断String是否为空"><a href="#4、判断String是否为空" class="headerlink" title="4、判断String是否为空"></a>4、判断String是否为空</h3><pre><code>TextUtils.isEmpty(String str) 
+</code></pre><h3 id="5、Int-int-还是等于整型，太容易出错了。"><a href="#5、Int-int-还是等于整型，太容易出错了。" class="headerlink" title="5、Int/int  还是等于整型，太容易出错了。"></a>5、Int/int  还是等于整型，太容易出错了。</h3><h3 id="6、LinearLayout中的orientation-amp-gravity"><a href="#6、LinearLayout中的orientation-amp-gravity" class="headerlink" title="6、LinearLayout中的orientation &amp; gravity"></a>6、LinearLayout中的orientation &amp; gravity</h3><p>当LinearLayout布局中设置<strong>orientation=”vertical”</strong>属性： </p>
+<ul>
+<li>如果子组件设置<strong>layout_gravity=”center_vertical”</strong>是无效的；  </li>
+<li>如果LinearLayout中设置<strong>gravity=”center_vertical”</strong>是可以起到作用将子组件垂直居中的。水平布局同理  </li>
+</ul>
+<h3 id="7、单例模式的Activity"><a href="#7、单例模式的Activity" class="headerlink" title="7、单例模式的Activity"></a>7、单例模式的Activity</h3><p>设置为单例模式的Activity，会单独开一个任务栈单独存放这个activity，这个任务栈只会在程序退出后消除。  </p>
+<h3 id="8、选择手机中的图片并显示在ImageView上"><a href="#8、选择手机中的图片并显示在ImageView上" class="headerlink" title="8、选择手机中的图片并显示在ImageView上"></a>8、选择手机中的图片并显示在ImageView上</h3><pre><code>Intent intent = new Intent();  
+/* 开启Pictures画面Type设定为image */  
+intent.setType(&quot;image/*&quot;);  
+/* 使用Intent.ACTION_GET_CONTENT这个Action */  
+intent.setAction(Intent.ACTION_GET_CONTENT);   
+/* 取得相片后返回本画面 */  
+startActivityForResult(intent, 1);  
+
+
+@Override  
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+    if (resultCode == RESULT_OK) {  
+        Uri uri = data.getData();  
+        ContentResolver cr = this.getContentResolver();  
+        try {  
+            Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));  
+            ImageView imageView = (ImageView) findViewById(R.id.iv01);  
+            /* 将Bitmap设定到ImageView */  
+            imageView.setImageBitmap(bitmap);  
+        } catch (FileNotFoundException e) {  
+            Log.e(&quot;Exception&quot;, e.getMessage(),e);  
+        }  
+    }  
+    super.onActivityResult(requestCode, resultCode, data);  
+} 
+</code></pre><h3 id="9、notifyDataSetChanged-刷新Adaper"><a href="#9、notifyDataSetChanged-刷新Adaper" class="headerlink" title="9、notifyDataSetChanged() 刷新Adaper."></a>9、notifyDataSetChanged() 刷新Adaper.</h3><h3 id="10、ListView-的优化"><a href="#10、ListView-的优化" class="headerlink" title="10、ListView 的优化"></a>10、ListView 的优化</h3><p>主要方法：  </p>
+<ol>
+<li>ListView设置固定高度，  </li>
+<li>convertView判空，  </li>
+<li>SetTag：convertView.setTag(viewHolder)，  </li>
+<li>内部类ViewHolder，  </li>
+<li>分页加载  </li>
+</ol>
+<h3 id="11、R文件编译报错-amp-找不到ID报错"><a href="#11、R文件编译报错-amp-找不到ID报错" class="headerlink" title="11、R文件编译报错 &amp; 找不到ID报错"></a>11、R文件编译报错 &amp; 找不到ID报错</h3><p>R文件的编译原理：当资源文件或id命名中其中一个文件的命名不满足规范时，R文件整体就不会再编译。  </p>
+<h3 id="12、列表里的CheckBox"><a href="#12、列表里的CheckBox" class="headerlink" title="12、列表里的CheckBox"></a>12、列表里的CheckBox</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/4.jpeg" alt=""><br>注意: Spinner：如果item中有能够获得焦点的控件(例如CheckBox),则在item获得点击事件之后会继续传递给能够获得焦点的控件.<br>想让item在被点击后Spinner收回去,需要在布局(例如LinearLayout)中加上属性后代是否可以获得焦点：  </p>
+<pre><code>android:descendantFocusability=&quot;blocksDescendants&quot;//阻止后代获得焦点  
+</code></pre><h3 id="13、获取xml资源文件中定义的数组"><a href="#13、获取xml资源文件中定义的数组" class="headerlink" title="13、获取xml资源文件中定义的数组"></a>13、获取xml资源文件中定义的数组</h3><pre><code>getResources().getStringArray(R.array.city)  
+</code></pre><h3 id="14、安卓默认字体大小："><a href="#14、安卓默认字体大小：" class="headerlink" title="14、安卓默认字体大小："></a>14、安卓默认字体大小：</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/1.jpeg" alt=""></p>
+<h3 id="15、java-字符串split有很多坑"><a href="#15、java-字符串split有很多坑" class="headerlink" title="15、java 字符串split有很多坑"></a>15、java 字符串split有很多坑</h3><p>Java代码</p>
+<pre><code>System.out.println(&quot;:ab:cd:ef::&quot;.split(&quot;:&quot;).length);//末尾分隔符全部忽略    
+System.out.println(&quot;:ab:cd:ef::&quot;.split(&quot;:&quot;,-1).length);//不忽略任何一个分隔符    
+System.out.println(StringUtils.split(&quot;:ab:cd:ef::&quot;,&quot;:&quot;).length);//最前面的和末尾的分隔符全部都忽略,apache commons    
+System.out.println(StringUtils.splitPreserveAllTokens(&quot;:ab:cd:ef::&quot;,&quot;:&quot;).length);//不忽略任何一个分隔符 apache commons     
+输出：    
+4    
+6    
+3    
+6    
+</code></pre><blockquote>
+<p>看了下jdk里String类的<strong>public String[] split(String regex,int limit)</strong>方法，感觉平时不太会用这方法，以为在用正则表达式来拆分时候，如果匹配到的字符是最后一个字符时，会拆分出两个空字符串，<br>例如”o”split(“o”,5) or “o”split(“o”,-2)时候 结果是”” “” 也就是下图中红框里的内容，所以平时一般都用split(String regex) 方法，其实也就等同于split(String regex，0)方法，把结尾的空字符串丢弃！   </p>
+</blockquote>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/2.jpg" alt="">  </p>
+<h3 id="16、Android-Studio-的全局变量和强转的快捷键"><a href="#16、Android-Studio-的全局变量和强转的快捷键" class="headerlink" title="16、Android Studio 的全局变量和强转的快捷键"></a>16、Android Studio 的全局变量和强转的快捷键</h3><ul>
+<li>Findviewbyid(R.id.XXX).cast(强转转换) 强转后点击回车回到行尾    </li>
+<li>.field 全局变量  </li>
+<li>.var 局部变量</li>
+</ul>
+<h3 id="17、TextView添加滚动条"><a href="#17、TextView添加滚动条" class="headerlink" title="17、TextView添加滚动条"></a>17、TextView添加滚动条</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/3.jpeg" alt=""></p>
+<h3 id="18、数组适配器"><a href="#18、数组适配器" class="headerlink" title="18、数组适配器"></a>18、数组适配器</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/5.jpeg" alt="">  </p>
+<p>////xListView上滑刷新，下滑加载更多///swapListView侧滑删除/</p>
+<h3 id="19、Viewstub"><a href="#19、Viewstub" class="headerlink" title="19、Viewstub"></a>19、Viewstub</h3><p>只能inflatay一次。不然会报错。</p>
+<h3 id="20、补间动画的旋转的圆心计算方法"><a href="#20、补间动画的旋转的圆心计算方法" class="headerlink" title="20、补间动画的旋转的圆心计算方法"></a>20、补间动画的旋转的圆心计算方法</h3><p>以图片的左上角为坐标（0,0），分别计算出pivotX和pivotY的数值：50%是图片本身大小的一半，50%p是父窗体宽高的一半长度。然后在图片的左上角的基础上加上这两个数组  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/6.jpeg" alt="">  </p>
+<p>位移也是同样的计算方式</p>
+<h3 id="21、插件"><a href="#21、插件" class="headerlink" title="21、插件"></a>21、插件</h3><p>ButterKnife   Gosn    android.selector.generat  </p>
+<h3 id="22、margin-amp-padding"><a href="#22、margin-amp-padding" class="headerlink" title="22、margin &amp; padding"></a>22、margin &amp; padding</h3><p>android 中的控件的margin 和 padding 都是不会影响控件的设置宽高。（这点和网页设计是不一样的）</p>
+<h3 id="23、R文件出错。"><a href="#23、R文件出错。" class="headerlink" title="23、R文件出错。"></a>23、R文件出错。</h3><p>当布局或id报找不到的错时，可能就是R文件出错。    </p>
+<ul>
+<li>一种可能是你导入了命名不规范的资源文件，导致R文件不能自动编译了。  </li>
+<li>一种可能是你导入了import android.R系统的R文件导致报错  </li>
+</ul>
+<h3 id="24、ListView的多类型item"><a href="#24、ListView的多类型item" class="headerlink" title="24、ListView的多类型item"></a>24、ListView的多类型item</h3><p>自定义ListView中，如果item采用多种类型的布局。那么在getItemType中的下标一定要从0开始。不然会报下标越界异常。  </p>
+<h3 id="25、java怎么在一个字符串里截取一个正则表达式字段"><a href="#25、java怎么在一个字符串里截取一个正则表达式字段" class="headerlink" title="25、java怎么在一个字符串里截取一个正则表达式字段"></a>25、java怎么在一个字符串里截取一个正则表达式字段</h3><pre><code>public static void main(String[] args) {
+    String str = &quot;&lt;div&gt;&lt;h3 ..&gt;dsijiswer*dfhjgf&lt;/h3&gt;&lt;/div&gt;&lt;table&gt;&lt;h3&gt;sdsd&lt;/h3&gt;&lt;/table&gt;&quot;;
+    Pattern p = Pattern.compile(&quot;&lt;h3.*?/h3&gt;&quot;);
+    Matcher m = p.matcher(str);
+    while (m.find()) {
+        System.out.println(m.group());
+    }
+}
+</code></pre><h3 id="26、事件机制：分发-消费-电梯机制：向上分发-，向下消费"><a href="#26、事件机制：分发-消费-电梯机制：向上分发-，向下消费" class="headerlink" title="26、事件机制：分发 消费  电梯机制：向上分发 ，向下消费"></a>26、事件机制：分发 消费  电梯机制：向上分发 ，向下消费</h3><h3 id="27、LinearLayout内部子控件之间的间隔-设置为等同的"><a href="#27、LinearLayout内部子控件之间的间隔-设置为等同的" class="headerlink" title="27、LinearLayout内部子控件之间的间隔 设置为等同的"></a>27、LinearLayout内部子控件之间的间隔 设置为等同的</h3><p>在drawer文件夹下创建一个shape的图形文件 </p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:shape=&quot;rectangle&quot; &gt;
+    &lt;size android:width=&quot;15dp&quot; /&gt;
+    &lt;solid android:color=&quot;@android:color/transparent&quot; /&gt;
+&lt;/shape&gt;  
+</code></pre><p>在linearLayout里设置属性divider为上图形，同时设置showdivider属性</p>
+<h3 id="28、TextView-上设置的图片-设置图片大小的方法："><a href="#28、TextView-上设置的图片-设置图片大小的方法：" class="headerlink" title="28、TextView 上设置的图片  设置图片大小的方法："></a>28、TextView 上设置的图片  设置图片大小的方法：</h3><pre><code>txtZQD = (TextView) findViewById(R.id.txtZQD);  
+Drawable[] drawable = txtZQD.getCompoundDrawables();  //获取它前后左右的图片
+// 数组下表0~3,依次是:左上右下  
+drawable[1].setBounds(100, 0, 200, 200);  
+txtZQD.setCompoundDrawables(drawable[0], drawable[1], drawable[2],drawable[3]);  
+</code></pre><h3 id="29、android中内部存储和外部存储的理解和路径获取"><a href="#29、android中内部存储和外部存储的理解和路径获取" class="headerlink" title="29、android中内部存储和外部存储的理解和路径获取"></a>29、android中内部存储和外部存储的理解和路径获取</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/7.png" alt="">  </p>
+<h3 id="30、自定义组合控件"><a href="#30、自定义组合控件" class="headerlink" title="30、自定义组合控件"></a>30、自定义组合控件</h3><p>在加载布局的时候要用 <strong>View.inflate(context,R.layout.img_share,this)</strong>;<br>或者 <strong>LayoutInflater.from(context).inflate(R.layout.img_share,this)</strong>;<br>不能用 <strong>LayoutInflater.from(context).inflate(R.layout.img_share,null)</strong>;这样加载不上。</p>
+<h3 id="31、foreground-前景色生效"><a href="#31、foreground-前景色生效" class="headerlink" title="31、foreground 前景色生效"></a>31、foreground 前景色生效</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/8.png" alt=""></p>
+<h3 id="32、添加第三方依赖报错"><a href="#32、添加第三方依赖报错" class="headerlink" title="32、添加第三方依赖报错"></a>32、添加第三方依赖报错</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/9.png" alt=""></p>
+<p>配置错误原因：1、导包有误。2、少导包。3、重复导包。</p>
+<h3 id="33、布局里的ListView-GridView抢占焦点"><a href="#33、布局里的ListView-GridView抢占焦点" class="headerlink" title="33、布局里的ListView|GridView抢占焦点"></a>33、布局里的ListView|GridView抢占焦点</h3><p>Scrollview里嵌套Gridview，Gridview抢焦点问题(显示布局的时候老是先从Gridview的第一个item显示)  </p>
+<blockquote>
+<p>解决方法：在获取inflate view之后，代码给GridView.setFocusable(false)就可以了  </p>
+</blockquote>
+<p>这里的listview的item里嵌套了横向滑动的scrollview的gridview，  </p>
+<blockquote>
+<p>同样的问题，同样的解决方案：在listview的adapter中在加载完item之后对gridview设置setFocusable(false)。<br>这里需要注意的是，是在抢焦点的列表的父容器建立之后就对列表设置取消焦点。  </p>
+</blockquote>
+<p>例如：<br><strong>在ListView中嵌套GridView中：</strong>  </p>
+<pre><code>convertView = LayoutInflater.from(mContext).inflate(R.layout.item_listview_home, null);
+viewHolder = new ViewHolder(convertView);
+viewHolder.mGridIilh.setFocusable(false);  
+</code></pre><p><strong>在fragment布局中存在列表抢占焦点：</strong>  </p>
+<pre><code>@Override
+public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_cheapsale, null);
+    ButterKnife.inject(this, view);
+    mGridFragmentCheapsale.setFocusable(false);  
+</code></pre><p><strong>在Activity布局中存在列表抢占焦点：</strong>  </p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_sale);
+    ButterKnife.inject(this);
+    mListviewHome.setFocusable(false);
+</code></pre><h3 id="34、列表抢占焦点问题"><a href="#34、列表抢占焦点问题" class="headerlink" title="34、列表抢占焦点问题"></a>34、列表抢占焦点问题</h3><p>在gridview和listview初始化数据时自动调用或者我们显示调用notifyDataSetChanged的时候第一个item会被选中并会抢焦点。<br>android4.4在调用notifyDataSetChanged的时候注释掉了判断touchmode的代码，导致一调用notifyDataSetChanged就模拟用户点击了gridview。<br>我们继承gridview或者listview重写里面的isInTouchMode方法：  </p>
+<pre><code>[java] view plaincopy
+/** 
+ * 屏蔽android4.4 setAdapter时View抢焦点的BUG 
+ */  
+@Override  
+public boolean isInTouchMode() {  
+    if(19 == Build.VERSION.SDK_INT){  
+        return !(hasFocus() &amp;&amp; !super.isInTouchMode());  
+    }else{  
+        return super.isInTouchMode();  
+</code></pre><h3 id="35、去除Listview滚动背景变黑，item点击默认背景"><a href="#35、去除Listview滚动背景变黑，item点击默认背景" class="headerlink" title="35、去除Listview滚动背景变黑，item点击默认背景"></a>35、去除Listview滚动背景变黑，item点击默认背景</h3><p>listview默认背景和系统窗口一样是透明的，如果给listview加上背景图片，或者背景颜色时，滚动时listview会黑掉，因为滚动时，列表里面的view重绘用的依旧是系统默认的透明色，颜色值为#FF191919<br>解决办法：  </p>
+<ul>
+<li>调用listview的setCacheColorHint(0)，颜色值设置为0</li>
+<li>设置xml文件中listView的属性<br><strong>Android:cacheColorHint=”#00000000”</strong>，滚动时，重绘View的时候就不会有背景颜色。<br><strong>android:listSelector=”#00000000”</strong><br>进行上面的设置之后，ListView点击item时就没有任何现象了</li>
+</ul>
+<h3 id="36-开启Android系统程序设置页面"><a href="#36-开启Android系统程序设置页面" class="headerlink" title="36. 开启Android系统程序设置页面"></a>36. 开启Android系统程序设置页面</h3><pre><code>Intent intent = new Intent();
+intent.setClassName(&quot;com.android.settings&quot;,&quot;com.android.settings.ManageApplications&quot;);
+intent.setAction(&quot;android.intent.action.MAIN&quot;);
+try {
+    startActivity(intent);
+} catch (Exception e) {
+    e.printStackTrace();
+}  
+</code></pre><h3 id="37、禁止EditText自动获取布局焦点"><a href="#37、禁止EditText自动获取布局焦点" class="headerlink" title="37、禁止EditText自动获取布局焦点"></a>37、禁止EditText自动获取布局焦点</h3><p>解决之道：在EditText的父级控件中找一个，设置成  </p>
+<pre><code>android:focusable=&quot;true&quot;  
+android:focusableInTouchMode=&quot;true&quot;  
+</code></pre><p>这样，就把EditText默认的行为截断了！</p>
+<h3 id="38、RadioButton设置默认选中"><a href="#38、RadioButton设置默认选中" class="headerlink" title="38、RadioButton设置默认选中"></a>38、RadioButton设置默认选中</h3><p>如果RadioGroup中设置默认选中一个RadioButton后,在选择时会选中两个的问题<br><strong>解决方法：</strong><br>不需要设置RadioButton的默认选中, 这样会使RadioButton一直处于选中状态.<br>我们应该给RadioGroup设置选中的RadioButton,<br>也就是说把<strong>radioButton.setCheck(true);</strong><br>更改为<strong>radioGroup.check(radioButton.getId());</strong></p>
+<h3 id="39、实现ImageView宽度填满屏幕，高度自适应"><a href="#39、实现ImageView宽度填满屏幕，高度自适应" class="headerlink" title="39、实现ImageView宽度填满屏幕，高度自适应"></a>39、实现ImageView宽度填满屏幕，高度自适应</h3><p><strong>1、自定义ImageView重写View的onMeasure方法</strong>  </p>
+<pre><code>public class ResizableImageView extends ImageView {  
+
+    public ResizableImageView(Context context) {  
+        super(context);  
+    }  
+
+    public ResizableImageView(Context context, AttributeSet attrs) {  
+        super(context, attrs);  
+    }  
+
+    @Override  
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){  
+        Drawable d = getDrawable();  
+
+        if(d!=null){  
+            // ceil not round - avoid thin vertical gaps along the left/right edges  
+            int width = MeasureSpec.getSize(widthMeasureSpec);  
+            //高度根据使得图片的宽度充满屏幕计算而得  
+            int height = (int) Math.ceil((float) width * (float) d.getIntrinsicHeight() / (float) d.getIntrinsicWidth());  
+            setMeasuredDimension(width, height);  
+        }else{  
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);  
+        }  
+    }  
+
+}  
+</code></pre><p><strong>2、设置ImageView的属性</strong>  </p>
+<pre><code>//宽度填满屏幕
+android:layout_width=”match_parent”
+android:scaleType=”fitXY”
+android:layout_height=”wrap_content”
+//保持比例，一定要设置
+android:adjustViewBounds=”true”
+</code></pre><h3 id="40、Glide加载网络图片填充到39中的ImageView中"><a href="#40、Glide加载网络图片填充到39中的ImageView中" class="headerlink" title="40、Glide加载网络图片填充到39中的ImageView中"></a>40、Glide加载网络图片填充到39中的ImageView中</h3><p>因为Glide加载图片的规则是根据imageview的大小调整图片。但是ImageView的大小为ImageView宽度填满屏幕，高度自适应的时候，Glide加载的图片就会显示不出来，为此我们选择了一种迂回的方式加载：先请求图片为bitmap，这个时候图片就有一定的尺寸了，再设置到ImageView中就可以自适应了：  </p>
+<pre><code>Glide.with(GraphicDetailsFragment.this)
+                    .load((new StringBuffer(Const.URL_HEAD).append(mStringList.get(position))).toString())
+                    .asBitmap()
+                    .into(new SimpleTarget&lt;Bitmap&gt;() {
+                        @Override
+                        public void onResourceReady(Bitmap resource, GlideAnimation&lt;? super Bitmap&gt; glideAnimation) {
+                            viewHolder.mImageView.setImageBitmap(resource);
+                        }
+                    });
+</code></pre><blockquote>
+<p>大大小小的坑，无处不在，防不胜防。后续会继续更新这篇博文的。<br>本博客是作者<a href="http://ocnyang.com/">(OCN.Yang)</a>原创<br>转载请标明原地址：<a href=""></a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持好文章的分享，您的支持将是对我最大的鼓励！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="OCN.Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.jpg" alt="OCN.Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/原创/" rel="tag">#原创</a>
+          
+            <a href="/tags/Android的那些坑/" rel="tag">#Android的那些坑</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/26/ToolbarUse/" rel="next" title="Toolbar开发详解">
+                <i class="fa fa-chevron-left"></i> Toolbar开发详解
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/13/AndroidStudioSet/" rel="prev" title="Android Studio详细安装流程和配置、主题">
+                Android Studio详细安装流程和配置、主题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/31/AndroidGu/"
+           data-title="Android初级躲不开的那些坑" data-url="http://ocnyang.com/2016/08/31/AndroidGu/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ocnyang.png"
+               alt="OCN.Yang" />
+          <p class="site-author-name" itemprop="name">OCN.Yang</p>
+          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e61d05cbf47e/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ocnyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/shedoor" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://love.shedoor.net/" target="_blank" title="Meet you">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Meet you
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.shedoor.net/" title="个人" target="_blank">个人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android初级躲不开的那些坑"><span class="nav-number">1.</span> <span class="nav-text">Android初级躲不开的那些坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、Ctrl-O快捷键"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、Ctrl + O快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、layout-weight"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、layout_weight</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、Background-”-null”"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、Background=”@null”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、判断String是否为空"><span class="nav-number">1.0.4.</span> <span class="nav-text">4、判断String是否为空</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、Int-int-还是等于整型，太容易出错了。"><span class="nav-number">1.0.5.</span> <span class="nav-text">5、Int/int  还是等于整型，太容易出错了。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、LinearLayout中的orientation-amp-gravity"><span class="nav-number">1.0.6.</span> <span class="nav-text">6、LinearLayout中的orientation & gravity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、单例模式的Activity"><span class="nav-number">1.0.7.</span> <span class="nav-text">7、单例模式的Activity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、选择手机中的图片并显示在ImageView上"><span class="nav-number">1.0.8.</span> <span class="nav-text">8、选择手机中的图片并显示在ImageView上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、notifyDataSetChanged-刷新Adaper"><span class="nav-number">1.0.9.</span> <span class="nav-text">9、notifyDataSetChanged() 刷新Adaper.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10、ListView-的优化"><span class="nav-number">1.0.10.</span> <span class="nav-text">10、ListView 的优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11、R文件编译报错-amp-找不到ID报错"><span class="nav-number">1.0.11.</span> <span class="nav-text">11、R文件编译报错 & 找不到ID报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12、列表里的CheckBox"><span class="nav-number">1.0.12.</span> <span class="nav-text">12、列表里的CheckBox</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13、获取xml资源文件中定义的数组"><span class="nav-number">1.0.13.</span> <span class="nav-text">13、获取xml资源文件中定义的数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14、安卓默认字体大小："><span class="nav-number">1.0.14.</span> <span class="nav-text">14、安卓默认字体大小：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15、java-字符串split有很多坑"><span class="nav-number">1.0.15.</span> <span class="nav-text">15、java 字符串split有很多坑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16、Android-Studio-的全局变量和强转的快捷键"><span class="nav-number">1.0.16.</span> <span class="nav-text">16、Android Studio 的全局变量和强转的快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17、TextView添加滚动条"><span class="nav-number">1.0.17.</span> <span class="nav-text">17、TextView添加滚动条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18、数组适配器"><span class="nav-number">1.0.18.</span> <span class="nav-text">18、数组适配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19、Viewstub"><span class="nav-number">1.0.19.</span> <span class="nav-text">19、Viewstub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20、补间动画的旋转的圆心计算方法"><span class="nav-number">1.0.20.</span> <span class="nav-text">20、补间动画的旋转的圆心计算方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21、插件"><span class="nav-number">1.0.21.</span> <span class="nav-text">21、插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22、margin-amp-padding"><span class="nav-number">1.0.22.</span> <span class="nav-text">22、margin & padding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23、R文件出错。"><span class="nav-number">1.0.23.</span> <span class="nav-text">23、R文件出错。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24、ListView的多类型item"><span class="nav-number">1.0.24.</span> <span class="nav-text">24、ListView的多类型item</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25、java怎么在一个字符串里截取一个正则表达式字段"><span class="nav-number">1.0.25.</span> <span class="nav-text">25、java怎么在一个字符串里截取一个正则表达式字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26、事件机制：分发-消费-电梯机制：向上分发-，向下消费"><span class="nav-number">1.0.26.</span> <span class="nav-text">26、事件机制：分发 消费  电梯机制：向上分发 ，向下消费</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27、LinearLayout内部子控件之间的间隔-设置为等同的"><span class="nav-number">1.0.27.</span> <span class="nav-text">27、LinearLayout内部子控件之间的间隔 设置为等同的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28、TextView-上设置的图片-设置图片大小的方法："><span class="nav-number">1.0.28.</span> <span class="nav-text">28、TextView 上设置的图片  设置图片大小的方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#29、android中内部存储和外部存储的理解和路径获取"><span class="nav-number">1.0.29.</span> <span class="nav-text">29、android中内部存储和外部存储的理解和路径获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#30、自定义组合控件"><span class="nav-number">1.0.30.</span> <span class="nav-text">30、自定义组合控件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31、foreground-前景色生效"><span class="nav-number">1.0.31.</span> <span class="nav-text">31、foreground 前景色生效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32、添加第三方依赖报错"><span class="nav-number">1.0.32.</span> <span class="nav-text">32、添加第三方依赖报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33、布局里的ListView-GridView抢占焦点"><span class="nav-number">1.0.33.</span> <span class="nav-text">33、布局里的ListView|GridView抢占焦点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34、列表抢占焦点问题"><span class="nav-number">1.0.34.</span> <span class="nav-text">34、列表抢占焦点问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#35、去除Listview滚动背景变黑，item点击默认背景"><span class="nav-number">1.0.35.</span> <span class="nav-text">35、去除Listview滚动背景变黑，item点击默认背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#36-开启Android系统程序设置页面"><span class="nav-number">1.0.36.</span> <span class="nav-text">36. 开启Android系统程序设置页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#37、禁止EditText自动获取布局焦点"><span class="nav-number">1.0.37.</span> <span class="nav-text">37、禁止EditText自动获取布局焦点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#38、RadioButton设置默认选中"><span class="nav-number">1.0.38.</span> <span class="nav-text">38、RadioButton设置默认选中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#39、实现ImageView宽度填满屏幕，高度自适应"><span class="nav-number">1.0.39.</span> <span class="nav-text">39、实现ImageView宽度填满屏幕，高度自适应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#40、Glide加载网络图片填充到39中的ImageView中"><span class="nav-number">1.0.40.</span> <span class="nav-text">40、Glide加载网络图片填充到39中的ImageView中</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ocnyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gh3omnCzhrHskUI74veM8V99-gzGzoHsz", "S5X90d5uKqp25VMacYGLwL60");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

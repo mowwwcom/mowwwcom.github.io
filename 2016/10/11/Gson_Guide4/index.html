@@ -1,0 +1,1291 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Gson,第三方框架," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Gson使用指南（四）
+原文地址：http://www.jianshu.com/p/3108f1e44155  
+
+该系列其它文章Gson使用指南（一）Gson使用指南（二）Gson使用指南（三）Gson使用指南（四）  
+
+注：此系列基于Gson 2.4。
+
+本次的主要内容：
+
+TypeAdapter
+JsonSerializer与JsonDeserializer
+TypeAdapterFact">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gson使用指南（四）">
+<meta property="og:url" content="http://ocnyang.com/2016/10/11/Gson_Guide4/index.html">
+<meta property="og:site_name" content="杨欧神/OCN.Yang">
+<meta property="og:description" content="Gson使用指南（四）
+原文地址：http://www.jianshu.com/p/3108f1e44155  
+
+该系列其它文章Gson使用指南（一）Gson使用指南（二）Gson使用指南（三）Gson使用指南（四）  
+
+注：此系列基于Gson 2.4。
+
+本次的主要内容：
+
+TypeAdapter
+JsonSerializer与JsonDeserializer
+TypeAdapterFact">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/gson/gson_guide4_1.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/gson/gson_guide4_2.png">
+<meta property="og:updated_time" content="2016-10-11T02:56:00.058Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gson使用指南（四）">
+<meta name="twitter:description" content="Gson使用指南（四）
+原文地址：http://www.jianshu.com/p/3108f1e44155  
+
+该系列其它文章Gson使用指南（一）Gson使用指南（二）Gson使用指南（三）Gson使用指南（四）  
+
+注：此系列基于Gson 2.4。
+
+本次的主要内容：
+
+TypeAdapter
+JsonSerializer与JsonDeserializer
+TypeAdapterFact">
+<meta name="twitter:image" content="http://obbu6r1mi.bkt.clouddn.com/gson/gson_guide4_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 6310065206374434000,
+      author: 'OCN.Yang'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ocnyang.com/2016/10/11/Gson_Guide4/"/>
+
+  <title> Gson使用指南（四） | 杨欧神/OCN.Yang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <!-- add Fork me on Github-->
+  <a href="https://github.com/ocnyang">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  <!-- add Fork me on Github-->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨欧神/OCN.Yang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-efall">
+          <a href="/categories/还相信爱情/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            E.Fall
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Gson使用指南（四）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-11T12:03:15+08:00" content="2016-10-11">
+              2016-10-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/第三方框架/" itemprop="url" rel="index">
+                    <span itemprop="name">第三方框架</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/11/Gson_Guide4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/11/Gson_Guide4/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/11/Gson_Guide4/" class="leancloud_visitors" data-flag-title="Gson使用指南（四）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Gson使用指南（四）"><a href="#Gson使用指南（四）" class="headerlink" title="Gson使用指南（四）"></a>Gson使用指南（四）</h1><blockquote>
+<p>原文地址：<a href="http://www.jianshu.com/p/3108f1e44155" target="_blank" rel="external">http://www.jianshu.com/p/3108f1e44155</a>  </p>
+</blockquote>
+<p><strong>该系列其它文章</strong><br><a href="http://ocnyang.com/2016/10/11/Gson_Guide1/">Gson使用指南（一）</a><br><a href="http://ocnyang.com/2016/10/11/Gson_Guide2/">Gson使用指南（二）</a><br><a href="http://ocnyang.com/2016/10/11/Gson_Guide3/">Gson使用指南（三）</a><br><a href="http://ocnyang.com/2016/10/11/Gson_Guide4/">Gson使用指南（四）</a>  </p>
+<blockquote>
+<p>注：此系列基于Gson 2.4。</p>
+</blockquote>
+<p><strong>本次的主要内容：</strong></p>
+<ul>
+<li>TypeAdapter</li>
+<li>JsonSerializer与JsonDeserializer</li>
+<li>TypeAdapterFactory</li>
+<li>@JsonAdapter注解</li>
+<li>TypeAdapter与 JsonSerializer、JsonDeserializer对比</li>
+<li>TypeAdapter实例</li>
+<li>结语  </li>
+</ul>
+<h2 id="一、TypeAdapter"><a href="#一、TypeAdapter" class="headerlink" title="一、TypeAdapter"></a>一、TypeAdapter</h2><p><code>TypeAdapter</code> 是Gson自2.0（源码注释上说的是2.1）开始版本提供的一个抽象类，用于接管某种类型的序列化和反序列化过程，包含两个注要方法 <code>write(JsonWriter,T)</code> 和 <code>read(JsonReader)</code> 其它的方法都是final方法并最终调用这两个抽象方法。</p>
+<pre><code>public abstract class TypeAdapter&lt;T&gt; {
+    public abstract void write(JsonWriter out, T value) throws IOException;
+    public abstract T read(JsonReader in) throws IOException;
+    //其它final 方法就不贴出来了，包括`toJson`、`toJsonTree`、`toJson`和`nullSafe`方法。
+}  
+</code></pre><blockquote>
+<p>注意：TypeAdapter 以及 JsonSerializer 和 JsonDeserializer 都需要与 GsonBuilder.registerTypeAdapter 示或GsonBuilder.registerTypeHierarchyAdapter配合使用，下面将不再重复说明。</p>
+</blockquote>
+<p>使用示例：</p>
+<pre><code>User user = new User(&quot;怪盗kidou&quot;, 24);
+user.emailAddress = &quot;ikidou@example.com&quot;;
+Gson gson = new GsonBuilder()
+        //为User注册TypeAdapter
+        .registerTypeAdapter(User.class, new UserTypeAdapter())
+        .create();
+System.out.println(gson.toJson(user));  
+</code></pre><p>UserTypeAdapter的定义：</p>
+<pre><code>public class UserTypeAdapter extends TypeAdapter&lt;User&gt; {
+
+    @Override
+    public void write(JsonWriter out, User value) throws IOException {
+        out.beginObject();
+        out.name(&quot;name&quot;).value(value.name);
+        out.name(&quot;age&quot;).value(value.age);
+        out.name(&quot;email&quot;).value(value.email);
+        out.endObject();
+    }
+
+    @Override
+    public User read(JsonReader in) throws IOException {
+        User user = new User();
+        in.beginObject();
+        while (in.hasNext()) {
+            switch (in.nextName()) {
+                case &quot;name&quot;:
+                    user.name = in.nextString();
+                    break;
+                case &quot;age&quot;:
+                    user.age = in.nextInt();
+                    break;
+                case &quot;email&quot;:
+                case &quot;email_address&quot;:
+                case &quot;emailAddress&quot;:
+                    user.email = in.nextString();
+                    break;
+            }
+        }
+        in.endObject();
+        return user;
+    }
+}  
+</code></pre><p>当我们为User.class 注册了 TypeAdapter之后，只要是操作User.class 那些之前介绍的@SerializedName 、FieldNamingStrategy、Since、Until、Expos通通都黯然失色，失去了效果，只会调用我们实现的UserTypeAdapter.write(JsonWriter, User) 方法，我想怎么写就怎么写。</p>
+<p>再说一个场景，在该系列的第一篇文章就说到了Gson有一定的容错机制，比如将字符串 “24” 转成int 的24,但如果有些情况下给你返了个空字符串怎么办（有人给我评论问到这个问题）?虽然这是服务器端的问题，但这里我们只是做一个示范。</p>
+<p>int型会出错是吧，根据我们上面介绍的，我注册一个TypeAdapter 把 序列化和反序列化的过程接管不就行了?</p>
+<pre><code>Gson gson = new GsonBuilder()
+        .registerTypeAdapter(Integer.class, new TypeAdapter&lt;Integer&gt;() {
+            @Override
+            public void write(JsonWriter out, Integer value) throws IOException {
+                out.value(String.valueOf(value)); 
+            }
+            @Override
+            public Integer read(JsonReader in) throws IOException {
+                try {
+                    return Integer.parseInt(in.nextString());
+                } catch (NumberFormatException e) {
+                    return -1;
+                }
+            }
+        })
+        .create();
+System.out.println(gson.toJson(100)); // 结果：&quot;100&quot;
+System.out.println(gson.fromJson(&quot;\&quot;\&quot;&quot;,Integer.class)); // 结果：-1  
+</code></pre><blockquote>
+<p>注：测试空串的时候一定是”\”\””而不是””，””代表的是没有json串，”\”\””才代表json里的””。</p>
+</blockquote>
+<p>你说这一接管就要管两样好麻烦呀，我明明只想管序列化（或反列化）的过程的，另一个过程我并不关心，难道没有其它更简单的方法么? 当然有！就是接下来要介绍的 JsonSerializer与JsonDeserializer。</p>
+<h2 id="二、JsonSerializer与JsonDeserializer"><a href="#二、JsonSerializer与JsonDeserializer" class="headerlink" title="二、JsonSerializer与JsonDeserializer"></a>二、JsonSerializer与JsonDeserializer</h2><p>JsonSerializer 和JsonDeserializer 不用像TypeAdapter一样，必须要实现序列化和反序列化的过程，你可以据需要选择，如只接管序列化的过程就用 JsonSerializer ，只接管反序列化的过程就用 JsonDeserializer ，如上面的需求可以用下面的代码。</p>
+<pre><code>Gson gson = new GsonBuilder()
+        .registerTypeAdapter(Integer.class, new JsonDeserializer&lt;Integer&gt;() {
+            @Override
+            public Integer deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                try {
+                    return json.getAsInt();
+                } catch (NumberFormatException e) {
+                    return -1;
+                }
+            }
+        })
+        .create();
+System.out.println(gson.toJson(100)); //结果：100
+System.out.println(gson.fromJson(&quot;\&quot;\&quot;&quot;, Integer.class)); //结果-1  
+</code></pre><p>下面是所有数字都转成序列化为字符串的例子</p>
+<pre><code>JsonSerializer&lt;Number&gt; numberJsonSerializer = new JsonSerializer&lt;Number&gt;() {
+    @Override
+    public JsonElement serialize(Number src, Type typeOfSrc, JsonSerializationContext context) {
+        return new JsonPrimitive(String.valueOf(src));
+    }
+};
+Gson gson = new GsonBuilder()
+        .registerTypeAdapter(Integer.class, numberJsonSerializer)
+        .registerTypeAdapter(Long.class, numberJsonSerializer)
+        .registerTypeAdapter(Float.class, numberJsonSerializer)
+        .registerTypeAdapter(Double.class, numberJsonSerializer)
+        .create();
+System.out.println(gson.toJson(100.0f));//结果：&quot;100.0&quot;  
+</code></pre><blockquote>
+<p>注：registerTypeAdapter必须使用包装类型，所以int.class,long.class,float.class和double.class是行不通的。同时不能使用父类来替上面的子类型，这也是为什么要分别注册而不直接使用Number.class的原因。</p>
+</blockquote>
+<p>上面特别说明了registerTypeAdapter不行，那就是有其它方法可行咯?当然！换成registerTypeHierarchyAdapter 就可以使用Number.class而不用一个一个的当独注册啦！</p>
+<h3 id="registerTypeAdapter与registerTypeHierarchyAdapter的区别："><a href="#registerTypeAdapter与registerTypeHierarchyAdapter的区别：" class="headerlink" title="registerTypeAdapter与registerTypeHierarchyAdapter的区别："></a>registerTypeAdapter与registerTypeHierarchyAdapter的区别：</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/gson/gson_guide4_1.png" alt=""></p>
+<p>注：如果一个被序列化的对象本身就带有泛型，且注册了相应的TypeAdapter，那么必须调用Gson.toJson(Object,Type)，明确告诉Gson对象的类型。</p>
+<pre><code>Type type = new TypeToken&lt;List&lt;User&gt;&gt;() {}.getType();
+TypeAdapter typeAdapter = new TypeAdapter&lt;List&lt;User&gt;&gt;() {
+   //略
+};
+Gson gson = new GsonBuilder()
+        .registerTypeAdapter(type, typeAdapter)
+        .create();
+List&lt;User&gt; list = new ArrayList&lt;&gt;();
+list.add(new User(&quot;a&quot;,11));
+list.add(new User(&quot;b&quot;,22));
+//注意，多了个type参数
+String result = gson.toJson(list, type);  
+</code></pre><h2 id="三、TypeAdapterFactory"><a href="#三、TypeAdapterFactory" class="headerlink" title="三、TypeAdapterFactory"></a>三、TypeAdapterFactory</h2><p>TypeAdapterFactory,见名知意，用于创建TypeAdapter的工厂类，通过对比Type，确定有没有对应的TypeAdapter，没有就返回null，与GsonBuilder.registerTypeAdapterFactory配合使用。</p>
+<pre><code>Gson gson = new GsonBuilder()
+    .registerTypeAdapterFactory(new TypeAdapterFactory() {
+        @Override
+        public &lt;T&gt; TypeAdapter&lt;T&gt; create(Gson gson, TypeToken&lt;T&gt; type) {
+            return null;
+        }
+    })
+    .create();  
+</code></pre><h2 id="四、-JsonAdapter注解"><a href="#四、-JsonAdapter注解" class="headerlink" title="四、@JsonAdapter注解"></a>四、@JsonAdapter注解</h2><p>JsonAdapter相较之前介绍的SerializedName 、FieldNamingStrategy、Since、Until、Expos这几个注解都是比较特殊的，其它的几个都是用在POJO的字段上，而这一个是用在POJO类上的，接收一个参数，且必须是TypeAdpater，JsonSerializer或JsonDeserializer这三个其中之一。</p>
+<p>上面说JsonSerializer和JsonDeserializer都要配合GsonBuilder.registerTypeAdapter使用，但每次使用都要注册也太麻烦了，JsonAdapter就是为了解决这个痛点的。</p>
+<p>使用方法（以User为例）：</p>
+<pre><code>@JsonAdapter(UserTypeAdapter.class) //加在类上
+public class User {
+    public User() {
+    }
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    public User(String name, int age, String email) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+    }
+    public String name;
+    public int age;
+    @SerializedName(value = &quot;emailAddress&quot;)
+    public String email;
+}  
+</code></pre><p>使用时不用再使用 GsonBuilder去注册UserTypeAdapter了。<br>注：@JsonAdapter 仅支持 TypeAdapter或TypeAdapterFactory</p>
+<pre><code>Gson gson = new Gson();
+User user = new User(&quot;怪盗kidou&quot;, 24, &quot;ikidou@example.com&quot;);
+System.out.println(gson.toJson(user));
+//结果：{&quot;name&quot;:&quot;怪盗kidou&quot;,&quot;age&quot;:24,&quot;email&quot;:&quot;ikidou@example.com&quot;}
+//为区别结果，特意把email字段与@SerializedName注解中设置的不一样  
+</code></pre><p>注意：JsonAdapter的优先级比GsonBuilder.registerTypeAdapter的优先级更高。</p>
+<h2 id="五、TypeAdapter与-JsonSerializer、JsonDeserializer对比"><a href="#五、TypeAdapter与-JsonSerializer、JsonDeserializer对比" class="headerlink" title="五、TypeAdapter与 JsonSerializer、JsonDeserializer对比"></a>五、TypeAdapter与 JsonSerializer、JsonDeserializer对比</h2><p><img src="http://obbu6r1mi.bkt.clouddn.com/gson/gson_guide4_2.png" alt=""></p>
+<h2 id="六、TypeAdapter实例"><a href="#六、TypeAdapter实例" class="headerlink" title="六、TypeAdapter实例"></a>六、TypeAdapter实例</h2><p>注：这里的TypeAdapter泛指TypeAdapter、JsonSerializer和JsonDeserializer。<br>这里的TypeAdapter 上面讲了一个自动将 字符串形式的数值转换成int型时可能出现 空字符串的问题，下面介绍一个其它读者的需求：</p>
+<blockquote>
+<p>服务器返回的数据中data字段类型不固定，比如请求成功data是一个List,不成功的时候是String类型，这样前端在使用泛型解析的时候，怎么去处理呢？  </p>
+</blockquote>
+<p>其实这个问题的原因主要由服务器端造成的，接口设计时没有没有保证数据的一致性，正确的数据返回姿势：<strong>同一个接口任何情况下不得改变返回类型，要么就不要返，要么就返空值，如<code>null、[],{}。</code></strong></p>
+<p>但这里还是给出解决方案：<br><strong>方案一：</strong> </p>
+<pre><code>Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(List.class, new JsonDeserializer&lt;List&lt;?&gt;&gt;() {
+    @Override
+    public List&lt;?&gt; deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        if (json.isJsonArray()){
+            //这里要自己负责解析了
+            Gson newGson = new Gson();
+            return newGson.fromJson(json,typeOfT);
+        }else {
+            //和接口类型不符，返回空List
+            return Collections.EMPTY_LIST;
+        }
+    }
+}).create();  
+</code></pre><p><strong>方案二：</strong></p>
+<pre><code> Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(List.class, new JsonDeserializer&lt;List&lt;?&gt;&gt;() {
+    @Override
+    public List&lt;?&gt; deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        if (json.isJsonArray()) {
+            JsonArray array = json.getAsJsonArray();
+            Type itemType = ((ParameterizedType) typeOfT).getActualTypeArguments()[0];
+            List list = new ArrayList&lt;&gt;();
+            for (int i = 0; i &lt; array.size(); i++) {
+                JsonElement element = array.get(i);
+                Object item = context.deserialize(element, itemType);
+                list.add(item);
+            }
+            return list;
+        } else {
+            //和接口类型不符，返回空List
+            return Collections.EMPTY_LIST;
+        }
+    }
+}).create();  
+</code></pre><p>要注意的点：</p>
+<ul>
+<li>必须使用registerTypeHierarchyAdapter方法，不然对List的子类无效，但如果POJO中都是使用List，那么可以使用registerTypeAdapter。</li>
+<li>对于是数组的情况，需要创建一个新的Gson，不可以直接使用context,不然gson又会调我们自定义的JsonDeserializer造成递归调用，方案二没有重新创建Gson，那么就需要提取出List<e>中E的类型，然后分别反序列化适合为E手动注册了TypeAdaper的情况。</e></li>
+<li>从效率上推荐方案二，免去重新实例化Gson和注册其它TypeAdapter的过程。  </li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>Gson系列总算是完成了，感觉写得越来越差了，我怕我写得太啰嗦，也不能总是大片大片的贴代码，所以可能有的地方写得并不详细，排版也不美观，但都些都不重点，重点是Gson里我们能用上的都一一介绍一遍，只要你确确实实把我这几篇文章上的内容都学会的话，以后Gson上的任何问题都不再是问题，当然可能很多内容对于实际的开发中用的并不多，但下次有什么疑难杂症就难不倒你了。</p>
+<p>本系列不提供Demo源码，最重要的是自己实验。</p>
+<p>写一篇文章还是要花不少时间和精力，要写示例、调式、组织语言、码字等等，加上关注的人在慢慢的增加的同时既给了我动力也给我不少压力，如有纰漏或者更好的例子都可以和我交流。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持好文章的分享，您的支持将是对我最大的鼓励！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="OCN.Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.jpg" alt="OCN.Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Gson/" rel="tag">#Gson</a>
+          
+            <a href="/tags/第三方框架/" rel="tag">#第三方框架</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/11/Gson_Guide3/" rel="next" title="Gson使用指南（三）">
+                <i class="fa fa-chevron-left"></i> Gson使用指南（三）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/24/day1024/" rel="prev" title="你真的懂啥是1024吗？">
+                你真的懂啥是1024吗？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/11/Gson_Guide4/"
+           data-title="Gson使用指南（四）" data-url="http://ocnyang.com/2016/10/11/Gson_Guide4/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ocnyang.png"
+               alt="OCN.Yang" />
+          <p class="site-author-name" itemprop="name">OCN.Yang</p>
+          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e61d05cbf47e/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ocnyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/shedoor" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://love.shedoor.net/" target="_blank" title="Meet you">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Meet you
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.shedoor.net/" title="个人" target="_blank">个人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Gson使用指南（四）"><span class="nav-number">1.</span> <span class="nav-text">Gson使用指南（四）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、TypeAdapter"><span class="nav-number">1.1.</span> <span class="nav-text">一、TypeAdapter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、JsonSerializer与JsonDeserializer"><span class="nav-number">1.2.</span> <span class="nav-text">二、JsonSerializer与JsonDeserializer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#registerTypeAdapter与registerTypeHierarchyAdapter的区别："><span class="nav-number">1.2.1.</span> <span class="nav-text">registerTypeAdapter与registerTypeHierarchyAdapter的区别：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、TypeAdapterFactory"><span class="nav-number">1.3.</span> <span class="nav-text">三、TypeAdapterFactory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、-JsonAdapter注解"><span class="nav-number">1.4.</span> <span class="nav-text">四、@JsonAdapter注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、TypeAdapter与-JsonSerializer、JsonDeserializer对比"><span class="nav-number">1.5.</span> <span class="nav-text">五、TypeAdapter与 JsonSerializer、JsonDeserializer对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、TypeAdapter实例"><span class="nav-number">1.6.</span> <span class="nav-text">六、TypeAdapter实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">1.7.</span> <span class="nav-text">结语</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ocnyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gh3omnCzhrHskUI74veM8V99-gzGzoHsz", "S5X90d5uKqp25VMacYGLwL60");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1511 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android教程系列,组合控件," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="组合控件详解 &amp;amp; 自定义属性
+摘录来源：极客学院WiKi
+
+组合控件是自定义控件的一种，只不过它是由其他几个原生控件组合而成，故名组合控件。  
+在实际项目中，GUI 会遇到一些可以提取出来做成自定义控件情况。  
+一个自定义控件的好处就是把一些需要模块化的 UI 和逻辑放在一起，做到了高内聚，向其他模块提供接口并很少依赖外界，这样就是低耦合。一个自定义控件就是一个封闭的王国，这里由你掌控">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组合控件详解 & 自定义属性">
+<meta property="og:url" content="http://ocnyang.com/2016/08/24/CombinedWidget/index.html">
+<meta property="og:site_name" content="杨欧神/OCN.Yang">
+<meta property="og:description" content="组合控件详解 &amp;amp; 自定义属性
+摘录来源：极客学院WiKi
+
+组合控件是自定义控件的一种，只不过它是由其他几个原生控件组合而成，故名组合控件。  
+在实际项目中，GUI 会遇到一些可以提取出来做成自定义控件情况。  
+一个自定义控件的好处就是把一些需要模块化的 UI 和逻辑放在一起，做到了高内聚，向其他模块提供接口并很少依赖外界，这样就是低耦合。一个自定义控件就是一个封闭的王国，这里由你掌控">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/zuhekongjian/zuhekongjian.png">
+<meta property="og:updated_time" content="2016-08-24T09:11:16.916Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="组合控件详解 & 自定义属性">
+<meta name="twitter:description" content="组合控件详解 &amp;amp; 自定义属性
+摘录来源：极客学院WiKi
+
+组合控件是自定义控件的一种，只不过它是由其他几个原生控件组合而成，故名组合控件。  
+在实际项目中，GUI 会遇到一些可以提取出来做成自定义控件情况。  
+一个自定义控件的好处就是把一些需要模块化的 UI 和逻辑放在一起，做到了高内聚，向其他模块提供接口并很少依赖外界，这样就是低耦合。一个自定义控件就是一个封闭的王国，这里由你掌控">
+<meta name="twitter:image" content="http://obbu6r1mi.bkt.clouddn.com/zuhekongjian/zuhekongjian.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 6310065206374434000,
+      author: 'OCN.Yang'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ocnyang.com/2016/08/24/CombinedWidget/"/>
+
+  <title> 组合控件详解 & 自定义属性 | 杨欧神/OCN.Yang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <!-- add Fork me on Github-->
+  <a href="https://github.com/ocnyang">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  <!-- add Fork me on Github-->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨欧神/OCN.Yang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-efall">
+          <a href="/categories/还相信爱情/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            E.Fall
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                组合控件详解 & 自定义属性
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-24T17:03:15+08:00" content="2016-08-24">
+              2016-08-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android教程系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Android教程系列</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/24/CombinedWidget/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/24/CombinedWidget/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/24/CombinedWidget/" class="leancloud_visitors" data-flag-title="组合控件详解 & 自定义属性">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="组合控件详解-amp-自定义属性"><a href="#组合控件详解-amp-自定义属性" class="headerlink" title="组合控件详解 &amp; 自定义属性"></a>组合控件详解 &amp; 自定义属性</h1><blockquote>
+<p>摘录来源：<a href="http://wiki.jikexueyuan.com/project/android-actual-combat-skills/combined-control.html" target="_blank" rel="external">极客学院WiKi</a></p>
+</blockquote>
+<p>组合控件是自定义控件的一种，只不过它是由其他几个原生控件组合而成，故名组合控件。  </p>
+<p>在实际项目中，GUI 会遇到一些可以提取出来做成自定义控件情况。  </p>
+<p>一个自定义控件的好处就是把一些需要模块化的 UI 和逻辑放在一起，做到了高内聚，向其他模块提供接口并很少依赖外界，这样就是低耦合。一个自定义控件就是一个封闭的王国，这里由你掌控。  </p>
+<p>上述是我自己的一个体会，想必大家也会常做自定义控件吧，就像逻辑部分的模块化一样。  </p>
+<p>下面我要做一个例子，请看完成图。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/zuhekongjian/zuhekongjian.png" alt="ocn.yang">  </p>
+<p>下面一排图片加文字就是组合控件了，我是怎么做的呢？</p>
+<p>其实这里用到了两个组合控件，一个是图片+文字，我把它叫一个 Item，而三个在一起就是另一个控件了。</p>
+<p>重点看这个 Item，它有自己的属性如图片、文字、图片大小、文字大小、不透明度等等。这些把它定义在 attr 文件中，然后在 xml 文件中配置，就像我们用原生控件一样。</p>
+<h3 id="自定义属性"><a href="#自定义属性" class="headerlink" title="自定义属性"></a>自定义属性</h3><p>先看 attr 文件。</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;  
+&lt;resources&gt;  
+        &lt;declare-styleable name=&quot;LevelMenuItem&quot;&gt;  
+        &lt;attr name=&quot;text&quot; format=&quot;string&quot; /&gt;  
+        &lt;attr name=&quot;text_color&quot; format=&quot;color&quot;/&gt;  
+        &lt;attr name=&quot;text_size&quot; format=&quot;dimension&quot; /&gt;          
+        &lt;attr name=&quot;image_src&quot; format=&quot;reference&quot;/&gt;  
+        &lt;attr name=&quot;image_bg&quot; format=&quot;reference&quot;/&gt;  
+        &lt;attr name=&quot;image_alpha&quot; format=&quot;integer&quot; /&gt;  
+        &lt;attr name=&quot;image_height&quot; format=&quot;dimension&quot;&gt;&lt;/attr&gt;  
+        &lt;attr name=&quot;image_width&quot; format=&quot;dimension&quot; /&gt;  
+    &lt;/declare-styleable&gt;  
+&lt;/resources&gt;  
+</code></pre><p>这个文件在 values 下，和 string 文件同级。把你自己要定义的属性都写在这里吧。format 是属性的“单位”，如果你要问有多少中 format 呀？答案在这里。  </p>
+<h3 id="组合控件的布局文件"><a href="#组合控件的布局文件" class="headerlink" title="组合控件的布局文件"></a>组合控件的布局文件</h3><p>有了属性了，下面看看布局文件 level_menu_item.xml。</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;  
+&lt;LinearLayout xmlns:android=&quot;http:// schemas.android.com/apk/res/android&quot;  
+    android:layout_width=&quot;fill_parent&quot;  
+    android:layout_height=&quot;fill_parent&quot;  
+    android:orientation=&quot;vertical&quot; &gt;  
+        &lt;ImageView  
+            android:id=&quot;@+id/image_item&quot;  
+            android:layout_width=&quot;fill_parent&quot;  
+            android:layout_height=&quot;fill_parent&quot;  
+            android:scaleType=&quot;fitCenter&quot;  
+            /&gt;  
+         &lt;TextView  
+            android:id=&quot;@+id/tv_item&quot;  
+            android:layout_width=&quot;fill_parent&quot;  
+            android:layout_height=&quot;wrap_content&quot;  
+            android:gravity=&quot;center_horizontal&quot;  
+            android:textColor=&quot;#23ffffff&quot;  
+            android:textSize=&quot;25sp&quot;   
+         /&gt;      
+&lt;/LinearLayout&gt;  
+</code></pre><p>这里唯一值得一说的是文本的颜色。大家看见他是8位的，前两位是表示不透明度的，后六位是表示颜色的，三色，范围都是00～ff。</p>
+<p>如果在 Java 中设置颜色，需要这样。</p>
+<pre><code>setTextColor(0x23ffffff);  
+</code></pre><p>关于不透明度，一般美工会定义。有些要求不透明如30%这样的，可以用整型换算一下。00～ff 对应十进制为0～255，那么30%就是255x0.3=76.5，用科学计算机换算为4c。</p>
+<p>更多颜色相关设置这里附上《Android 中设置文本颜色的三种办法》  </p>
+<blockquote>
+<p>1、 利于系统自带的颜色类<br>如： <strong>TextView1.setTextColor(android.graphics.Color.RED);</strong><br>布局文件中：<strong>android:textColor=”@android:color/white”</strong><br>详见Android源码:<strong>base/core/res/res/values/colors.xml</strong><br>2、 数字颜色表示法<br><strong>TextView1.setTextColor(0xffff00ff);</strong><br>3、 自定义颜色<br><strong>TextView1.setTextColor(this.getResources().getColor(R.drawable.red));</strong></p>
+</blockquote>
+<h3 id="组合控件的类文件"><a href="#组合控件的类文件" class="headerlink" title="组合控件的类文件"></a>组合控件的类文件</h3><p>然后我们就要写一个类，我这继承子线性布局。有两个构造函数，我们主要在两个参数的函数中工作。</p>
+<pre><code>public class LevelMenuItem extends LinearLayout {  
+
+    public LevelMenuItem(Context context, AttributeSet attrs) {  
+        super(context, attrs);  
+
+    }  
+</code></pre><p>这个类中我们要完成的工作是，初始化控件属性、提供外部修改属性的接口、控件点击的回调接口。</p>
+<p>此类完整代码：</p>
+<pre><code>package com.linc.game;  
+
+import android.content.Context;  
+import android.content.res.TypedArray;  
+import android.util.AttributeSet;  
+import android.view.LayoutInflater;  
+import android.view.View;  
+import android.widget.ImageView;  
+import android.widget.LinearLayout;  
+import android.widget.TextView;  
+/** 
+ * 自定义一个关卡 
+ * 共有7个属性，看attr文件 
+ * 在程序中提供修改这7个属性的接口， 
+ * 一个自定义控件的任务就算完成。 
+ * 一个自定义控件的好处就是把一些需要模块化的 
+ * UI和逻辑放在一起，做到了高内聚，向其他模块提供接口并很少 
+ * 依赖外界，这样就是低耦合。一个自定义控件就是一个封闭的王国， 
+ * 这里由你掌控。 
+ *  
+ * 编写时，如果遇到在attr里写好属性，但是在这里认不出来， 
+ * 就clean一下项目。切记。 
+ *  
+ * @author linc 
+ * 
+ */  
+public class LevelMenuItem extends LinearLayout {  
+    private TextView mTextView = null;  
+    private ImageView mImageView = null;  
+
+    public LevelMenuItem(Context context) {  
+        super(context);  
+    }  
+    public LevelMenuItem(Context context, AttributeSet attrs) {  
+        super(context, attrs);  
+
+        LayoutInflater layoutInflater = (LayoutInflater) context.  
+                        getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
+        layoutInflater.inflate(R.layout.level_menu_item, this);  
+
+        TypedArray typedArray = context.obtainStyledAttributes(attrs  
+                ,R.styleable.LevelMenuItem);  
+
+        initWidget(typedArray);  
+    }  
+    private void initWidget(TypedArray typedArray)  
+    {  
+        mTextView = (TextView)findViewById(R.id.tv_item);  
+        String textString = typedArray.getString(R.styleable.LevelMenuItem_text);  
+        int textColor = typedArray.getColor(R.styleable.LevelMenuItem_text_color,  
+                0xffffffff);  
+        float textSize = typedArray.getDimension(R.styleable.LevelMenuItem_text_size,  
+                20);  
+        mTextView.setText(textString);  
+        mTextView.setTextColor(textColor);  
+        mTextView.setTextSize(textSize);  
+
+        mImageView = (ImageView)findViewById(R.id.image_item);  
+        int imageHeight = (int) typedArray.getDimension(R.styleable.LevelMenuItem_image_height, 25);  
+        int imageWidth = (int) typedArray.getDimension(R.styleable.LevelMenuItem_image_width, 25);  
+        int imageSrc = typedArray.getResourceId(R.styleable.LevelMenuItem_image_src, 0);  
+        int imageBg = typedArray.getResourceId(R.styleable.LevelMenuItem_image_bg, 0);  
+        int imageAlpha = typedArray.getInt(R.styleable.LevelMenuItem_image_alpha, 255);  
+        mImageView.setAlpha(imageAlpha);  
+        mImageView.setImageResource(imageSrc);  
+        mImageView.setBackgroundResource(imageBg);  
+        LayoutParams layoutParams = new LayoutParams(imageWidth, imageHeight);  
+        mImageView.setLayoutParams(layoutParams);  
+
+        typedArray.recycle();  
+    }  
+    /** 
+     * 设置此控件的文本 
+     * @param text 
+     */  
+    public void setText(String text)  
+    {  
+        mTextView.setText(text);  
+    }  
+    /** 
+     * 设置文字颜色 
+     * @param textColor 
+     */  
+     public void setTextColor(int textColor)  
+    {  
+        mTextView.setTextColor(textColor);  
+    }  
+    /** 
+     * 设置字体大小 
+     * @param textSize 
+     */  
+     public void setTextSize(int textSize)  
+    {  
+        mTextView.setTextSize(textSize);  
+    }  
+    /** 
+     * 设置图片 
+     * @param resId 
+     */  
+     public void setImageResource(int resId)  
+    {  
+        mImageView.setImageResource(resId);  
+    }  
+    /** 
+     * 设置图片背景 
+     */  
+     public void setBackgroundResource(int resId)  
+    {  
+        mImageView.setBackgroundResource(resId);  
+    }     
+    /** 
+     * 设置图片的不透名度 
+     * @param alpha 
+     */  
+    public void setImageAlpha(int alpha)  
+    {  
+        mImageView.setAlpha(alpha);  
+    }  
+    /** 
+     * 设置图片的大小 
+     * 这里面需要使用LayoutParams这个布局参数来设置 
+     * @param width 
+     * @param height 
+     */  
+    public void setImageSize(int width,int height)  
+    {  
+        LayoutParams layoutParams = new LayoutParams(width, height);  
+        mImageView.setLayoutParams(layoutParams);  
+    }  
+    /** 
+     * image点击事件的回调 
+     * @param listener 
+     */  
+    public void setOnClickListener(OnItemClickListener listener)  
+    {  
+        mImageView.setOnClickListener(new View.OnClickListener() {  
+            @Override  
+            public void onClick(View v) {  
+                listener.onImageClick();  
+            }  
+        });  
+    }  
+    /** 
+     * 点击事件接口 
+     * @author linc 
+     * 
+     */  
+    public interface OnItemClickListener  
+    {  
+        public void onImageClick();  
+    }  
+}  
+</code></pre><h3 id="组合控件的使用"><a href="#组合控件的使用" class="headerlink" title="组合控件的使用"></a>组合控件的使用</h3><p>好，一个完整的组合控件就做好了，那么，我们如何使用呢？</p>
+<p>我要在 LevelMenu 中用它。xml 文件如下：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;  
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;  
+    xmlns:linc=&quot;http://schemas.android.com/apk/res/com.linc.game&quot;  
+    android:layout_width=&quot;fill_parent&quot;  
+    android:layout_height=&quot;fill_parent&quot;  
+    android:orientation=&quot;horizontal&quot;&gt;      
+    &lt;com.linc.game.LevelMenuItem  
+        android:id=&quot;@+id/item1&quot;  
+        android:layout_width=&quot;70dp&quot;  
+        android:layout_height=&quot;80dp&quot;  
+        linc:text=&quot;@string/item1&quot;  
+        linc:text_size=&quot;14sp&quot;  
+        linc:text_color=&quot;#80fa8072&quot;  
+        linc:image_src=&quot;@drawable/orange_button_selector&quot;  
+        linc:image_alpha=&quot;128&quot;  
+        linc:image_height=&quot;48dp&quot;  
+        linc:image_width=&quot;48dp&quot;  
+        /&gt;  
+    &lt;com.linc.game.LevelMenuItem  
+        android:id=&quot;@+id/item2&quot;  
+        android:layout_marginLeft=&quot;20dp&quot;  
+        android:layout_width=&quot;70dp&quot;  
+        android:layout_height=&quot;80dp&quot;  
+        linc:text=&quot;@string/item2&quot;  
+        linc:text_size=&quot;14sp&quot;  
+        linc:text_color=&quot;#ffeee8aa&quot;  
+        linc:image_src=&quot;@drawable/red_button_selector&quot;  
+        linc:image_alpha=&quot;255&quot;  
+        linc:image_height=&quot;48dp&quot;  
+        linc:image_width=&quot;48dp&quot;  
+        /&gt;     
+    &lt;com.linc.game.LevelMenuItem  
+        android:id=&quot;@+id/item3&quot;  
+        android:layout_marginLeft=&quot;20dp&quot;  
+        android:layout_width=&quot;70dp&quot;  
+        android:layout_height=&quot;80dp&quot;  
+        linc:text=&quot;@string/item3&quot;  
+        linc:text_size=&quot;14sp&quot;  
+        linc:text_color=&quot;#80cd853f&quot;               linc:image_src=&quot;@drawable/yellow_button_selector&quot;  
+        linc:image_alpha=&quot;128&quot;  
+        linc:image_height=&quot;48dp&quot;  
+        linc:image_width=&quot;48dp&quot;  
+        /&gt;         
+&lt;/LinearLayout&gt;  
+</code></pre><p>加入自己包名的索引</p>
+<pre><code>xmlns:linc=&quot;http://schemas.android.com/apk/res/com.linc.game&quot;  
+</code></pre><p>剩下的就一目了然了。</p>
+<h3 id="用到组合控件的类文件"><a href="#用到组合控件的类文件" class="headerlink" title="用到组合控件的类文件"></a>用到组合控件的类文件</h3><p>LevelMenu.java</p>
+<pre><code>package com.linc.game;  
+
+import com.linc.game.LevelMenuItem.OnItemClickListener;  
+import android.content.Context;  
+import android.util.AttributeSet;  
+import android.util.Log;  
+import android.view.LayoutInflater;  
+import android.widget.LinearLayout;  
+
+public class LevelMenu extends LinearLayout {  
+    private LevelMenuItem item1,item2,item3;  
+
+    public LevelMenu(Context context) {  
+        super(context);  
+
+    }  
+
+    public LevelMenu(Context context, AttributeSet attrs) {  
+        super(context, attrs);  
+        LayoutInflater layoutInflater = (LayoutInflater) context.  
+            getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
+        layoutInflater.inflate(R.layout.level_menu, this);  
+        initWidget();  
+    }  
+    private void initWidget()  
+    {  
+        item1 = (LevelMenuItem)findViewById(R.id.item1);  
+        item2 = (LevelMenuItem)findViewById(R.id.item2);  
+        item3 = (LevelMenuItem)findViewById(R.id.item3);  
+
+        item1.setOnClickListener(new OnItemClickListener() {  
+            @Override  
+            public void onImageClick() {  
+                Log.e(&quot;dfjdkfjd&quot;,&quot;dfdfd&quot;);  
+            }  
+        });  
+    }  
+}  
+</code></pre><p>在处理图片点击事件的时候，我用到了选择器（selector），这是我们实际开发中最常用的小技巧了。它能描述的状态很多，各位看官可以去查查。 </p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;  
+&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; &gt;  
+    &lt;item android:state_pressed=&quot;true&quot;  
+        android:drawable=&quot;@drawable/button_push&quot;/&gt;  
+    &lt;item android:drawable=&quot;@drawable/orange_button&quot;/&gt;  
+&lt;/selector&gt;  
+</code></pre><p>好，组合控件的例子先到这里，实际功能在下一个实战技巧中演练。</p>
+<p>大家在做自定义控件时需要注意的是：</p>
+<p>1、自定义控件类不能是是抽象类</p>
+<p>2、要用 <code>(Context context, AttributeSet attrs)</code> 这个构造函数。  </p>
+<p>否则报错：android.view.InflateException: Binary XML file line #15: Error inflating cla。。。  </p>
+<h3 id="最后普及一下，attrs-xml中的属性的format（类型）说明"><a href="#最后普及一下，attrs-xml中的属性的format（类型）说明" class="headerlink" title="最后普及一下，attrs.xml中的属性的format（类型）说明"></a>最后普及一下，attrs.xml中的属性的format（类型）说明</h3><h4 id="1-reference：参考某一资源ID。"><a href="#1-reference：参考某一资源ID。" class="headerlink" title="1. reference：参考某一资源ID。"></a>1. reference：参考某一资源ID。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;名称&quot;&gt;
+   &lt;attr name = &quot;background&quot; format = &quot;reference&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;ImageView
+     android:layout_width = &quot;42dip&quot;
+     android:layout_height = &quot;42dip&quot;
+     android:background = &quot;@drawable/图片ID&quot;
+     /&gt;
+</code></pre><h4 id="2-color：颜色值。"><a href="#2-color：颜色值。" class="headerlink" title="2. color：颜色值。"></a>2. color：颜色值。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;名称&quot;&gt;
+    &lt;attr name = &quot;textColor&quot; format = &quot;color&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;TextView
+     android:layout_width = &quot;42dip&quot;
+     android:layout_height = &quot;42dip&quot;
+     android:textColor = &quot;#00FF00&quot;
+     /&gt;
+</code></pre><h4 id="3-boolean：布尔值。"><a href="#3-boolean：布尔值。" class="headerlink" title="3. boolean：布尔值。"></a>3. boolean：布尔值。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;名称&quot;&gt;
+   &lt;attr name = &quot;focusable&quot; format = &quot;boolean&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;Button
+    android:layout_width = &quot;42dip&quot;
+    android:layout_height = &quot;42dip&quot;
+    android:focusable = &quot;true&quot;
+    /&gt;
+</code></pre><h4 id="4-dimension：尺寸值。"><a href="#4-dimension：尺寸值。" class="headerlink" title="4. dimension：尺寸值。"></a>4. dimension：尺寸值。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;名称&quot;&gt;
+   &lt;attr name = &quot;layout_width&quot; format = &quot;dimension&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;Button
+    android:layout_width = &quot;42dip&quot;
+    android:layout_height = &quot;42dip&quot;
+    /&gt;
+</code></pre><h4 id="5-float：浮点值。"><a href="#5-float：浮点值。" class="headerlink" title="5. float：浮点值。"></a>5. float：浮点值。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;AlphaAnimation&quot;&gt;
+   &lt;attr name = &quot;fromAlpha&quot; format = &quot;float&quot; /&gt;
+   &lt;attr name = &quot;toAlpha&quot; format = &quot;float&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;alpha
+   android:fromAlpha = &quot;1.0&quot;
+   android:toAlpha = &quot;0.7&quot;
+   /&gt;
+</code></pre><h4 id="6-integer：整型值。"><a href="#6-integer：整型值。" class="headerlink" title="6. integer：整型值。"></a>6. integer：整型值。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;AnimatedRotateDrawable&quot;&gt;
+   &lt;attr name = &quot;visible&quot; /&gt;
+   &lt;attr name = &quot;frameDuration&quot; format=&quot;integer&quot; /&gt;
+   &lt;attr name = &quot;framesCount&quot; format=&quot;integer&quot; /&gt;
+   &lt;attr name = &quot;pivotX&quot; /&gt;
+   &lt;attr name = &quot;pivotY&quot; /&gt;
+   &lt;attr name = &quot;drawable&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;animated-rotate
+       xmlns:android = &quot;http://schemas.android.com/apk/res/android&quot; 
+       android:drawable = &quot;@drawable/图片ID&quot; 
+       android:pivotX = &quot;50%&quot; 
+       android:pivotY = &quot;50%&quot; 
+       android:framesCount = &quot;12&quot; 
+       android:frameDuration = &quot;100&quot;
+       /&gt;
+</code></pre><h4 id="7-string：字符串。"><a href="#7-string：字符串。" class="headerlink" title="7. string：字符串。"></a>7. string：字符串。</h4><p>（1）属性定义：  </p>
+<pre><code>&lt;declare-styleable name = &quot;MapView&quot;&gt;
+       &lt;attr name = &quot;apiKey&quot; format = &quot;string&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：  </p>
+<pre><code>&lt;com.google.android.maps.MapView
+        android:layout_width = &quot;fill_parent&quot;
+        android:layout_height = &quot;fill_parent&quot;
+        android:apiKey = &quot;0jOkQ80oD1JL9C6HAja99uGXCRiS2CGjKO_bc_g&quot;
+        /&gt;
+</code></pre><h4 id="8-fraction：百分数。"><a href="#8-fraction：百分数。" class="headerlink" title="8. fraction：百分数。"></a>8. fraction：百分数。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name=&quot;RotateDrawable&quot;&gt;
+   &lt;attr name = &quot;visible&quot; /&gt;
+   &lt;attr name = &quot;fromDegrees&quot; format = &quot;float&quot; /&gt;
+   &lt;attr name = &quot;toDegrees&quot; format = &quot;float&quot; /&gt;
+   &lt;attr name = &quot;pivotX&quot; format = &quot;fraction&quot; /&gt;
+   &lt;attr name = &quot;pivotY&quot; format = &quot;fraction&quot; /&gt;
+   &lt;attr name = &quot;drawable&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;rotate
+    xmlns:android = &quot;http://schemas.android.com/apk/res/android&quot;
+    android:interpolator = &quot;@anim/动画ID&quot;
+    android:fromDegrees = &quot;0&quot;
+    android:toDegrees = &quot;360&quot;
+    android:pivotX = &quot;200%&quot;
+    android:pivotY = &quot;300%&quot;
+    android:duration = &quot;5000&quot;
+    android:repeatMode = &quot;restart&quot;
+    android:repeatCount = &quot;infinite&quot;
+    /&gt;
+</code></pre><h4 id="9-enum：枚举值。"><a href="#9-enum：枚举值。" class="headerlink" title="9. enum：枚举值。"></a>9. enum：枚举值。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name=&quot;名称&quot;&gt;
+   &lt;attr name=&quot;orientation&quot;&gt;
+      &lt;enum name=&quot;horizontal&quot; value=&quot;0&quot; /&gt;
+      &lt;enum name=&quot;vertical&quot; value=&quot;1&quot; /&gt;
+   &lt;/attr&gt;           
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;LinearLayout
+    xmlns:android = &quot;http://schemas.android.com/apk/res/android&quot;
+    android:orientation = &quot;vertical&quot;
+    android:layout_width = &quot;fill_parent&quot;
+    android:layout_height = &quot;fill_parent&quot;
+    &gt;
+&lt;/LinearLayout&gt;
+</code></pre><h4 id="10-flag：位或运算。"><a href="#10-flag：位或运算。" class="headerlink" title="10. flag：位或运算。"></a>10. flag：位或运算。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name=&quot;名称&quot;&gt;
+   &lt;attr name=&quot;windowSoftInputMode&quot;&gt;
+       &lt;flag name = &quot;stateUnspecified&quot; value = &quot;0&quot; /&gt;
+       &lt;flag name = &quot;stateUnchanged&quot; value = &quot;1&quot; /&gt;
+       &lt;flag name = &quot;stateHidden&quot; value = &quot;2&quot; /&gt;
+       &lt;flag name = &quot;stateAlwaysHidden&quot; value = &quot;3&quot; /&gt;
+       &lt;flag name = &quot;stateVisible&quot; value = &quot;4&quot; /&gt;
+       &lt;flag name = &quot;stateAlwaysVisible&quot; value = &quot;5&quot; /&gt;
+       &lt;flag name = &quot;adjustUnspecified&quot; value = &quot;0x00&quot; /&gt;
+       &lt;flag name = &quot;adjustResize&quot; value = &quot;0x10&quot; /&gt;
+       &lt;flag name = &quot;adjustPan&quot; value = &quot;0x20&quot; /&gt;
+       &lt;flag name = &quot;adjustNothing&quot; value = &quot;0x30&quot; /&gt;
+    &lt;/attr&gt;        
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;activity
+   android:name = &quot;.StyleAndThemeActivity&quot;
+   android:label = &quot;@string/app_name&quot;
+   android:windowSoftInputMode = &quot;stateUnspecified | stateUnchanged　|　stateHidden&quot;&gt;
+   &lt;intent-filter&gt;
+      &lt;action android:name = &quot;android.intent.action.MAIN&quot; /&gt;
+      &lt;category android:name = &quot;android.intent.category.LAUNCHER&quot; /&gt;
+   &lt;/intent-filter&gt;
+ &lt;/activity&gt;
+</code></pre><h4 id="特别要注意："><a href="#特别要注意：" class="headerlink" title="特别要注意："></a>特别要注意：</h4><p>属性定义时可以指定多种类型值。</p>
+<p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;名称&quot;&gt;
+   &lt;attr name = &quot;background&quot; format = &quot;reference|color&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;ImageView
+    android:layout_width = &quot;42dip&quot;
+    android:layout_height = &quot;42dip&quot;
+    android:background = &quot;@drawable/图片ID|#00FF00&quot;
+    /&gt;
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持好文章的分享，您的支持将是对我最大的鼓励！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="OCN.Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.jpg" alt="OCN.Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Android教程系列/" rel="tag">#Android教程系列</a>
+          
+            <a href="/tags/组合控件/" rel="tag">#组合控件</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/24/FlexboxLayoutAbout/" rel="next" title="Android弹性布局-FlexboxLayout">
+                <i class="fa fa-chevron-left"></i> Android弹性布局-FlexboxLayout
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/26/ToolbarUse/" rel="prev" title="Toolbar开发详解">
+                Toolbar开发详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/24/CombinedWidget/"
+           data-title="组合控件详解 & 自定义属性" data-url="http://ocnyang.com/2016/08/24/CombinedWidget/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ocnyang.png"
+               alt="OCN.Yang" />
+          <p class="site-author-name" itemprop="name">OCN.Yang</p>
+          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e61d05cbf47e/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ocnyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/shedoor" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://love.shedoor.net/" target="_blank" title="Meet you">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Meet you
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.shedoor.net/" title="个人" target="_blank">个人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#组合控件详解-amp-自定义属性"><span class="nav-number">1.</span> <span class="nav-text">组合控件详解 & 自定义属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义属性"><span class="nav-number">1.0.1.</span> <span class="nav-text">自定义属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合控件的布局文件"><span class="nav-number">1.0.2.</span> <span class="nav-text">组合控件的布局文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合控件的类文件"><span class="nav-number">1.0.3.</span> <span class="nav-text">组合控件的类文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合控件的使用"><span class="nav-number">1.0.4.</span> <span class="nav-text">组合控件的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用到组合控件的类文件"><span class="nav-number">1.0.5.</span> <span class="nav-text">用到组合控件的类文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后普及一下，attrs-xml中的属性的format（类型）说明"><span class="nav-number">1.0.6.</span> <span class="nav-text">最后普及一下，attrs.xml中的属性的format（类型）说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-reference：参考某一资源ID。"><span class="nav-number">1.0.6.1.</span> <span class="nav-text">1. reference：参考某一资源ID。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-color：颜色值。"><span class="nav-number">1.0.6.2.</span> <span class="nav-text">2. color：颜色值。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-boolean：布尔值。"><span class="nav-number">1.0.6.3.</span> <span class="nav-text">3. boolean：布尔值。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-dimension：尺寸值。"><span class="nav-number">1.0.6.4.</span> <span class="nav-text">4. dimension：尺寸值。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-float：浮点值。"><span class="nav-number">1.0.6.5.</span> <span class="nav-text">5. float：浮点值。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-integer：整型值。"><span class="nav-number">1.0.6.6.</span> <span class="nav-text">6. integer：整型值。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-string：字符串。"><span class="nav-number">1.0.6.7.</span> <span class="nav-text">7. string：字符串。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-fraction：百分数。"><span class="nav-number">1.0.6.8.</span> <span class="nav-text">8. fraction：百分数。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-enum：枚举值。"><span class="nav-number">1.0.6.9.</span> <span class="nav-text">9. enum：枚举值。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-flag：位或运算。"><span class="nav-number">1.0.6.10.</span> <span class="nav-text">10. flag：位或运算。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特别要注意："><span class="nav-number">1.0.6.11.</span> <span class="nav-text">特别要注意：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ocnyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gh3omnCzhrHskUI74veM8V99-gzGzoHsz", "S5X90d5uKqp25VMacYGLwL60");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

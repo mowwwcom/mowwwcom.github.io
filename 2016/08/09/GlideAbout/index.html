@@ -1,0 +1,1091 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,第三方框架,Glide,图片加载," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="英文原文 Introduction to Glide, Image Loader Library for Android, recommended by Google摘录来自：Google推荐的图片加载库Glide介绍  
+
+在泰国举行的谷歌开发者论坛上，谷歌为我们介绍了一个名叫 Glide 的图片加载库，作者是bumptech。这个库被广泛的运用在google的开源项目中，包括2014年goo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图片加载库Glide介绍">
+<meta property="og:url" content="http://ocnyang.com/2016/08/09/GlideAbout/index.html">
+<meta property="og:site_name" content="杨欧神/OCN.Yang">
+<meta property="og:description" content="英文原文 Introduction to Glide, Image Loader Library for Android, recommended by Google摘录来自：Google推荐的图片加载库Glide介绍  
+
+在泰国举行的谷歌开发者论坛上，谷歌为我们介绍了一个名叫 Glide 的图片加载库，作者是bumptech。这个库被广泛的运用在google的开源项目中，包括2014年goo">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/glide1.png">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/glide2.jpg">
+<meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/glide3.png">
+<meta property="og:image" content="http://jcodecraeer.com/uploads/20150327/1427445294447874.jpg">
+<meta property="og:image" content="http://jcodecraeer.com/uploads/20150327/1427445294918728.png">
+<meta property="og:image" content="http://jcodecraeer.com/uploads/20150327/1427445294433243.png">
+<meta property="og:image" content="http://jcodecraeer.com/uploads/20150327/1427445294704430.png">
+<meta property="og:image" content="http://jcodecraeer.com/uploads/20150327/1427445294110987.jpg">
+<meta property="og:image" content="http://jcodecraeer.com/uploads/allimg/150327/163Aa632-0.gif">
+<meta property="og:image" content="http://jcodecraeer.com/uploads/20150327/1427445366503084.gif">
+<meta property="og:image" content="http://jcodecraeer.com/uploads/20150327/1427453389115686.png">
+<meta property="og:image" content="http://jcodecraeer.com/uploads/20150327/1427453390188737.png">
+<meta property="og:updated_time" content="2016-08-31T00:40:45.515Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图片加载库Glide介绍">
+<meta name="twitter:description" content="英文原文 Introduction to Glide, Image Loader Library for Android, recommended by Google摘录来自：Google推荐的图片加载库Glide介绍  
+
+在泰国举行的谷歌开发者论坛上，谷歌为我们介绍了一个名叫 Glide 的图片加载库，作者是bumptech。这个库被广泛的运用在google的开源项目中，包括2014年goo">
+<meta name="twitter:image" content="http://obbu6r1mi.bkt.clouddn.com/glide1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 6310065206374434000,
+      author: 'OCN.Yang'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ocnyang.com/2016/08/09/GlideAbout/"/>
+
+  <title> 图片加载库Glide介绍 | 杨欧神/OCN.Yang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <!-- add Fork me on Github-->
+  <a href="https://github.com/ocnyang">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  <!-- add Fork me on Github-->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨欧神/OCN.Yang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-efall">
+          <a href="/categories/还相信爱情/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            E.Fall
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                图片加载库Glide介绍
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-09T18:03:15+08:00" content="2016-08-09">
+              2016-08-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/第三方框架/" itemprop="url" rel="index">
+                    <span itemprop="name">第三方框架</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/09/GlideAbout/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/09/GlideAbout/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/09/GlideAbout/" class="leancloud_visitors" data-flag-title="图片加载库Glide介绍">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>英文原文 <a href="https://inthecheesefactory.com/blog/get-to-know-glide-recommended-by-google/en" target="_blank" rel="external">Introduction to Glide, Image Loader Library for Android, recommended by Google</a><br>摘录来自：<a href="http://jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0327/2650.html" target="_blank" rel="external">Google推荐的图片加载库Glide介绍</a>  </p>
+</blockquote>
+<p>在泰国举行的谷歌开发者论坛上，谷歌为我们介绍了一个名叫 Glide 的图片加载库，作者是bumptech。这个库被广泛的运用在google的开源项目中，包括2014年google I/O大会上发布的官方app。<br>它的成功让我非常感兴趣。我花了一整晚的时间把玩，决定分享一些自己的经验。在开始之前我想说，Glide和Picasso有90%的相似度，准确的说，就是Picasso的克隆版本。但是在细节上还是有不少区别的。  </p>
+<h2 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h2><p>Picasso和Glide都在jcenter上。在项目中添加依赖非常简单：</p>
+<h3 id="Picasso"><a href="#Picasso" class="headerlink" title="Picasso"></a>Picasso</h3><pre><code>dependencies {  
+    compile &apos;com.squareup.picasso:picasso:2.5.1&apos;  
+}  
+</code></pre><h3 id="Glide"><a href="#Glide" class="headerlink" title="Glide"></a>Glide</h3><pre><code>dependencies {  
+    compile &apos;com.github.bumptech.glide:glide:3.5.2&apos;  
+    compile &apos;com.android.support:support-v4:22.0.0&apos;  
+}  
+</code></pre><p>Glide需要依赖Support Library v4，别忘了。其实Support Library v4已经是应用程序的标配了，这不是什么问题。  </p>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>就如我所说的Glide和Picasso非常相似，Glide加载图片的方法和Picasso如出一辙。  </p>
+<h3 id="Picasso-1"><a href="#Picasso-1" class="headerlink" title="Picasso"></a>Picasso</h3><pre><code>Picasso.with(context)  
+    .load(&quot;http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg&quot;)  
+    .into(ivImg);  
+</code></pre><h3 id="Glide-1"><a href="#Glide-1" class="headerlink" title="Glide"></a>Glide</h3><pre><code>Glide.with(context)  
+    .load(&quot;http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg&quot;)  
+    .into(ivImg);  
+</code></pre><p>虽然两者看起来一样，但是Glide更易用，因为Glide的with方法不光接受Context，还接受Activity 和 Fragment，Context会自动的从他们获取。<br><img src="http://obbu6r1mi.bkt.clouddn.com/glide1.png" alt=""><br>同时将Activity/Fragment作为with()参数的好处是：图片加载会和Activity/Fragment的生命周期保持一致，比如Paused状态在暂停加载，在Resumed的时候又自动重新加载。所以我建议传参的时候传递Activity 和 Fragment给Glide，而不是Context。  </p>
+<h3 id="默认Bitmap格式是RGB-565"><a href="#默认Bitmap格式是RGB-565" class="headerlink" title="默认Bitmap格式是RGB_565"></a>默认Bitmap格式是RGB_565</h3><p>下面是加载图片时和Picasso的比较（1920x1080 像素的图片加载到768x432的ImageView中）<br><img src="http://obbu6r1mi.bkt.clouddn.com/glide2.jpg" alt=""><br>可以看到Glide加载的图片质量要差于Picasso（ps：我看不出来哈），为什么？这是因为Glide默认的Bitmap格式是RGB_565 ，比ARGB_8888格式的内存开销要小一半。下面是Picasso在ARGB8888下与Glide在RGB565下的内存开销图（应用自身占用了8m，因此以8为基准线比较）：<br><img src="http://obbu6r1mi.bkt.clouddn.com/glide3.png" alt=""><br>如果你对默认的RGB_565效果还比较满意，可以不做任何事，但是如果你觉得难以接受，可以创建一个新的GlideModule将Bitmap格式转换到ARGB_8888：  </p>
+<pre><code>public class GlideConfiguration implements GlideModule {  
+
+    @Override  
+    public void applyOptions(Context context, GlideBuilder builder) {  
+        // Apply options to the builder here.  
+        builder.setDecodeFormat(DecodeFormat.PREFER_ARGB_8888);  
+    }  
+
+    @Override  
+    public void registerComponents(Context context, Glide glide) {  
+        // register ModelLoaders here.  
+    }  
+}  
+</code></pre><p>同时在AndroidManifest.xml中将GlideModule定义为meta-data  </p>
+<pre><code>&lt;meta-data  
+    android:name=&quot;com.inthecheesefactory.lab.glidepicasso.GlideConfiguration&quot;  
+    android:value=&quot;GlideModule&quot;/&gt;  
+</code></pre><hr>
+<p></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><img class="width-100percent" src="http://jcodecraeer.com/uploads/20150327/1427445294447874.jpg" alt="quality2" style="border:none; max-width:100%"></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">这样看起来就会好很多。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">我们再来看看内存开销图，这次貌似Glide花费了两倍于上次的内存，但是Picasso的内存开销仍然远大于Glide。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><img class="width-100percent" src="http://jcodecraeer.com/uploads/20150327/1427445294918728.png" alt="ram2_1" style="border:none; max-width:100%"></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">原因在于Picasso是加载了全尺寸的图片到内存，然后让GPU来实时重绘大小。而Glide加载的大小和ImageView的大小是一致的，因此更小。当然，Picasso也可以指定加载的图片大小的：</p><pre class="js" style="white-space:pre-wrap; word-wrap:break-word; color:rgb(51,51,51); font-size:14px; line-height:26px; background-color:rgb(255,255,255)" name="code">Picasso.with(this)<br>    .load(“<a href="http://nuuneoi.com/uploads/source/playstore/cover.jpg" target="_blank" rel="external">http://nuuneoi.com/uploads/source/playstore/cover.jpg</a>“)<br>    .resize(768, 432)<br>    .into(ivImgPicasso);</pre><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">但是问题在于你需要主动计算ImageView的大小，或者说你的ImageView大小是具体的值（而不是wrap_content），你也可以这样：</p><pre class="js" style="white-space:pre-wrap; word-wrap:break-word; color:rgb(51,51,51); font-size:14px; line-height:26px; background-color:rgb(255,255,255)" name="code">Picasso.with(this)<br>    .load(“<a href="http://nuuneoi.com/uploads/source/playstore/cover.jpg" target="_blank" rel="external">http://nuuneoi.com/uploads/source/playstore/cover.jpg</a>“)<br>    .fit()<br>    .centerCrop()<br>    .into(ivImgPicasso);</pre><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">现在Picasso的内存开销就和Glide差不多了。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><img class="width-100percent" src="http://jcodecraeer.com/uploads/20150327/1427445294433243.png" alt="memory3" style="border:none; max-width:100%"></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">虽然内存开销差距不到，但是在这个问题上Glide完胜Picasso。因为Glide可以自动计算出任意情况下的ImageView大小。</p><h2 style="margin:0px; padding:0px; color:rgb(51,51,51); font-family:Arial; line-height:26px"><a name="t3"></a><span class="section-heading">Image质量的细节</span></h2><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">这是将ImageView还原到真实大小时的比较。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><img class="width-100percent" src="http://jcodecraeer.com/uploads/20150327/1427445294704430.png" alt="quality3" style="border:none; max-width:100%"></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">你可以看到，Glide加载的图片没有Picasso那么平滑，我还没有找到一个可以直观改变图片大小调整算法的方法。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">但是这并不算什么坏事，因为很难察觉。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><br></p><h2 style="margin:0px; padding:0px; color:rgb(51,51,51); font-family:Arial; line-height:26px"><a name="t4"></a>磁盘缓存</h2><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">Picasso和Glide在磁盘缓存策略上有很大的不同。Picasso缓存的是全尺寸的，而Glide缓存的是跟ImageView尺寸相同的。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><br></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><img class="width-100percent" src="http://jcodecraeer.com/uploads/20150327/1427445294110987.jpg" alt="cache" style="border:none; max-width:100%"></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">上面提到的平滑度的问题依然存在，而且如果加载的是RGB565图片，那么缓存中的图片也是RGB565。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"> </p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">我尝试将ImageView调整成不同大小，但不管大小如何Picasso只缓存一个全尺寸的。Glide则不同，它会为每种大小的ImageView缓存一次。尽管一张图片已经缓存了一次，但是假如你要在另外一个地方再次以不同尺寸显示，需要重新下载，调整成新尺寸的大小，然后将这个尺寸的也缓存起来。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">具体说来就是：假如在第一个页面有一个200x200的ImageView，在第二个页面有一个100x100的ImageView，这两个ImageView本来是要显示同一张图片，却需要下载两次。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">不过，你可以改变这种行为，让<span style="color:rgb(41,128,185)">Glide</span>既缓存全尺寸又缓存其他尺寸：</p><pre class="js" style="white-space:pre-wrap; word-wrap:break-word; color:rgb(51,51,51); font-size:14px; line-height:26px; background-color:rgb(255,255,255)" name="code">Glide.with(this)<br>     .load(“<a href="http://nuuneoi.com/uploads/source/playstore/cover.jpg" target="_blank" rel="external">http://nuuneoi.com/uploads/source/playstore/cover.jpg</a>“)<br>     .diskCacheStrategy(DiskCacheStrategy.ALL)<br>     .into(ivImgGlide);</pre><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">下次在任何ImageView中加载图片的时候，全尺寸的图片将从缓存中取出，重新调整大小，然后缓存。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">Glide的这种方式优点是加载显示非常快。而Picasso的方式则因为需要在显示之前重新调整大小而导致一些延迟，即便你添加了这段代码来让其立即显示：</p><pre class="js" style="white-space:pre-wrap; word-wrap:break-word; color:rgb(51,51,51); font-size:14px; line-height:26px; background-color:rgb(255,255,255)" name="code">//Picasso.noFade();</pre><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><img src="http://jcodecraeer.com/uploads/allimg/150327/163Aa632-0.gif" alt="loading3" style="border:none; max-width:100%; display:block; margin-left:auto; margin-right:auto"></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><br></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">Picasso和Glide各有所长，你根据自己的需求选择合适的。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">对我而言，我更喜欢Glide，因为它远比Picasso快，虽然需要更大的空间来缓存。</p><br><p></p>
+<p></p><h2 style="margin:0px; padding:0px; color:rgb(51,51,51); font-family:Arial; line-height:26px"><a name="t7"></a><span class="section-heading">特性<br></span></h2><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">你可以做到几乎和Picasso一样多的事情，代码也几乎一样。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><strong>Image Resizing</strong></p><pre class="js" style="white-space:pre-wrap; word-wrap:break-word; color:rgb(51,51,51); font-size:14px; line-height:26px; background-color:rgb(255,255,255)" name="code">// Picasso.resize(300, 200);<br>// Glide.override(300, 200);</pre><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><strong>Center Cropping</strong></p><pre class="js" style="white-space:pre-wrap; word-wrap:break-word; color:rgb(51,51,51); font-size:14px; line-height:26px; background-color:rgb(255,255,255)" name="code">// Picasso.centerCrop();<br>// Glide.centerCrop();</pre><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><strong>Transforming</strong></p><pre class="js" style="white-space:pre-wrap; word-wrap:break-word; color:rgb(51,51,51); font-size:14px; line-height:26px; background-color:rgb(255,255,255)" name="code">// Picasso.transform(new CircleTransform())<br>// Glide.transform(new CircleTransform(context))</pre><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">设置占位图或者加载错误图：</p><pre class="js" style="white-space:pre-wrap; word-wrap:break-word; color:rgb(51,51,51); font-size:14px; line-height:26px; background-color:rgb(255,255,255)" name="code">// Picasso.placeholder(R.drawable.placeholder)<br>.error(R.drawable.imagenotfound)<br>// Glide.placeholder(R.drawable.placeholder)<br>.error(R.drawable.imagenotfound)</pre><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">几乎和Picasso一样，从Picasso转换到Glide对你来说就是小菜一碟。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><span class="section-heading"> </span></p><h2 style="margin:0px; padding:0px; color:rgb(51,51,51); font-family:Arial; line-height:26px"><a name="t8"></a><span class="section-heading">有什么Glide可以做而<span class="section-heading">Picasso</span>做不到</span></h2><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">Glide可以加在GIF动态图，而Picasso不能。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><img src="http://jcodecraeer.com/uploads/20150327/1427445366503084.gif" alt="gifanimation2" style="border:none; max-width:100%"></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><br></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">同时因为Glide和Activity/Fragment的生命周期是一致的，因此gif的动画也会自动的随着Activity/Fragment的状态暂停、重放。Glide 的缓存在gif这里也是一样，调整大小然后缓存。<br></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">但是从我的一次测试结果来看Glide 动画会消费太多的内存，因此谨慎使用。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">除了gif动画之外，Glide还可以将任何的本地视频解码成一张静态图片。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">还有一个特性是你可以配置图片显示的动画，而Picasso只有一种动画：fading in。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">最后一个是可以使用<code>thumbnail()产生一个你所加载图片的<span style="color:rgb(22,160,133)">thumbnail</span>。</code></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><code>其实还有一些特性，不过不是非常重要，比如将图像转换成字节数组等。</code></p><h2 style="margin:0px; padding:0px; color:rgb(51,51,51); font-family:Arial; line-height:26px"><a name="t9"></a><code>配置</code></h2><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">有许多可以配置的选项，比如大小，缓存的磁盘位置，最大缓存空间，位图格式等等。可以在这个页面查看这些配置 <code><a target="_blank" href="https://github.com/bumptech/glide/wiki/Configuration" style="color:rgb(51,102,153); text-decoration:none">Configuration</a></code>。<br></p><h2 style="margin:0px; padding:0px; color:rgb(51,51,51); font-family:Arial; line-height:26px"><a name="t10"></a>库的大小</h2><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">Picasso (v2.5.1)的大小约118kb，而Glide (v3.5.2)的大小约430kb。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><img class="width-100percent" src="http://jcodecraeer.com/uploads/20150327/1427453389115686.png" alt="librarysize" style="border:none; max-width:100%"></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">Anyway 312KB difference might not be that significant.</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">不过312kb的差距并不是很重要。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">Picasso和Glide的方法个数分别是840和2678个。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><img class="width-100percent" src="http://jcodecraeer.com/uploads/20150327/1427453390188737.png" alt="methodcount" style="border:none; max-width:100%"></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">必须指出，对于DEX文件65535个方法的限制来说，2678是一个相当大的数字了。建议在使用Glide的时候开启ProGuard。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"><br></p><h2 style="margin:0px; padding:0px; color:rgb(51,51,51); font-family:Arial; line-height:26px"><a name="t11"></a><span class="section-heading">总结<br></span></h2><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">Glide和Picasso都是非常完美的库。Glide加载图像以及磁盘缓存的方式都要优于Picasso，速度更快，并且Glide更有利于减少OutOfMemoryError的发生，GIF动画是Glide的杀手锏。不过Picasso的图片质量更高。你更喜欢哪个呢？</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">虽然我使用了很长事件的Picasso，但是我得承认现在我更喜欢Glide。我的建议是使用Glide，但是将Bitmap格式换成 ARGB_8888、让Glide缓存同时缓存全尺寸和改变尺寸两种。</p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px"> </p><h2 style="margin:0px; padding:0px; color:rgb(51,51,51); font-family:Arial; line-height:26px"><a name="t12"></a>相关资源</h2><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">- <a target="_blank" href="http://google-opensource.blogspot.com/2014/09/glide-30-media-management-library-for.html" style="color:rgb(51,102,153); text-decoration:none">Glide 3.0: a media management library for Android</a></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">- <a target="_blank" href="https://github.com/bumptech/glide/wiki" style="color:rgb(51,102,153); text-decoration:none">Glide Wiki</a></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">- <a target="_blank" href="http://pluu.github.io/android%20study/2015/01/15/android-glide-picasso/" style="color:rgb(51,102,153); text-decoration:none">Android Picasso vs Glide</a></p><p style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">- <a target="_blank" href="http://vardhan-justlikethat.blogspot.com/2014/09/android-image-loading-libraries-picasso.html" style="color:rgb(51,102,153); text-decoration:none">Android: Image loading libraries Picasso vs Glide</a></p><br>  <p></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持好文章的分享，您的支持将是对我最大的鼓励！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="OCN.Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.jpg" alt="OCN.Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/第三方框架/" rel="tag">#第三方框架</a>
+          
+            <a href="/tags/Glide/" rel="tag">#Glide</a>
+          
+            <a href="/tags/图片加载/" rel="tag">#图片加载</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/09/OkHttpUseGuide/" rel="next" title="OkHttp使用教程">
+                <i class="fa fa-chevron-left"></i> OkHttp使用教程
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/10/CustomView/" rel="prev" title="自定义view详解">
+                自定义view详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/09/GlideAbout/"
+           data-title="图片加载库Glide介绍" data-url="http://ocnyang.com/2016/08/09/GlideAbout/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ocnyang.png"
+               alt="OCN.Yang" />
+          <p class="site-author-name" itemprop="name">OCN.Yang</p>
+          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e61d05cbf47e/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-pencil"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ocnyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/shedoor" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://love.shedoor.net/" target="_blank" title="Meet you">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Meet you
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.shedoor.net/" title="个人" target="_blank">个人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导入库"><span class="nav-number">1.</span> <span class="nav-text">导入库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Picasso"><span class="nav-number">1.1.</span> <span class="nav-text">Picasso</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Glide"><span class="nav-number">1.2.</span> <span class="nav-text">Glide</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-number">2.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Picasso-1"><span class="nav-number">2.1.</span> <span class="nav-text">Picasso</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Glide-1"><span class="nav-number">2.2.</span> <span class="nav-text">Glide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认Bitmap格式是RGB-565"><span class="nav-number">2.3.</span> <span class="nav-text">默认Bitmap格式是RGB_565</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Image质量的细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">磁盘缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">有什么Glide可以做而Picasso做不到</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">库的大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">10.</span> <span class="nav-text">相关资源</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ocnyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gh3omnCzhrHskUI74veM8V99-gzGzoHsz", "S5X90d5uKqp25VMacYGLwL60");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
