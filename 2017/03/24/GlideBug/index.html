@@ -92,7 +92,7 @@
 有一段时间没有更新文章了，但登录 简书 发现时不时也有新的点赞和关注，在这里十分感谢大家的认可，也为这段时间的静默表示抱歉。这段时间确实有点忙，自己一直在利用 一些平台（这里不说出平台名称了，一来避嫌，二来现在对这些平台提供的数据也没太多好感了） 提供的接口，敲写一个生活工具类的App，一方面是使用 Retrofit + RxJava + okhttp 这种比较热门的框架结构">
 <meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/glide/android-working-with-glide-image-library.jpg">
 <meta property="og:image" content="http://obbu6r1mi.bkt.clouddn.com/ocnyang/glide/timg.gif">
-<meta property="og:updated_time" content="2017-03-29T14:34:31.101Z">
+<meta property="og:updated_time" content="2017-03-29T14:42:28.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Glide坑遇记">
 <meta name="twitter:description" content="Glide坑遇记  
@@ -442,19 +442,18 @@
 <p><strong>这里有两种方式：</strong>  </p>
 <ol>
 <li>你已经知道图片（或其他方式提前知道）图片的比例，然后在用 Glide 请求图片时限制图片的加载大小，即设置 <strong>override(int width, int height)</strong> 。这时候加载到的图片是原图比例，显示的时候虽然有拉伸/压缩但都会保存原比例的。这种方式适用于你加载的图片大小都比较规范固定的时候。  </li>
-<li><p>当然，你请求的图片源并不一定大小都一致。那这时候就可以使用下面这种方式了。这种方式的原理是，先使用 Glide 把图片的原图请求加载过来，然后再按原图来显示图片。  </p>
-<p> Glide.with(mContext)</p>
-<pre><code>.load(url)
-.asBitmap()
-.into(new SimpleTarget&lt;Bitmap&gt;() {
-     @Override
-     public void onResourceReady(Bitmap resource, GlideAnimation&lt;? super Bitmap&gt; glideAnimation) {
-           ivOcnyang.setImageBitmap(resource);
-     }
- });
-</code></pre></li>
+<li>当然，你请求的图片源并不一定大小都一致。那这时候就可以使用下面这种方式了。这种方式的原理是，先使用 Glide 把图片的原图请求加载过来，然后再按原图来显示图片。  </li>
 </ol>
-<blockquote>
+<pre><code>Glide.with(mContext)
+     .load(url)
+     .asBitmap()
+     .into(new SimpleTarget&lt;Bitmap&gt;() {
+          @Override
+          public void onResourceReady(Bitmap resource, GlideAnimation&lt;? super Bitmap&gt; glideAnimation) {
+                ivOcnyang.setImageBitmap(resource);
+          }
+      });
+</code></pre><blockquote>
 <p>这两种方法中，其实更加提倡的是第一种方式，因为这种方式不会造成任何负面的影响。但第二种方式，由于Glide加载图片时是以全分辨率加载的，当加载图片过大且图片很多时，可能造成 OOM。同时第二种方式使用在列表上复用时会造成条目错乱错位。</p>
 </blockquote>
 <h2 id="2、Glide-加载-Gif-图片的那些坑"><a href="#2、Glide-加载-Gif-图片的那些坑" class="headerlink" title="2、Glide 加载 Gif 图片的那些坑"></a>2、Glide 加载 Gif 图片的那些坑</h2><p>我们知道，对比其他几大图片加载框架，我们更青睐 Glide 有一部分原因就是因为它能显示动态图，毕竟像下面这种图是让我最高兴最无法拒绝的。  </p>
