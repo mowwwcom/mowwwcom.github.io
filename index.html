@@ -2,17 +2,22 @@
 
 
 
+  
 
-<html class="theme-next pisces">
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
 
 
 
@@ -61,9 +66,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT, OCN.Yang, Android, 杨欧神" />
@@ -75,7 +80,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -94,24 +99,35 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
-    motion: false,
+    motion: true,
     duoshuo: {
-      userId: 6310065206374434000,
-      author: 'OCN.Yang'
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://ocnyang.com/"/>
+
+
+
+
 
   <title> 杨欧神/OCN.Yang </title>
 </head>
@@ -122,11 +138,13 @@
 
 
 
+
+
   <script type="text/javascript">
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      hm.src = "https://hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -139,42 +157,42 @@
 
 
 
+
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left 
+  <div class="container sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
-    
-  <!-- add Fork me on Github-->
-  <a href="https://github.com/ocnyang">
-    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-  </a>
-  <!-- add Fork me on Github-->
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">杨欧神/OCN.Yang</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杨欧神/OCN.Yang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+      
   </div>
-  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -209,7 +227,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
             
-            时间轴
+            归档
           </a>
         </li>
       
@@ -229,7 +247,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
             
-            E.Fall
+            menu.efall
           </a>
         </li>
       
@@ -245,34 +263,13 @@
       
 
       
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
     </ul>
   
 
   
-    <div class="site-search">
-      
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
-</div>
-
-
-    </div>
-  
 </nav>
+
+
 
  </div>
     </header>
@@ -287,13 +284,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2017/04/09/QBox/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -315,24 +322,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-09T12:03:15+08:00" content="2017-04-09">
-              2017-04-09
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-09T12:03:15+08:00">
+                2017-04-09
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/项目/" itemprop="url" rel="index">
                     <span itemprop="name">项目</span>
                   </a>
@@ -340,7 +359,6 @@
 
                 
                 
-
               
             </span>
           
@@ -348,29 +366,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2017/04/09/QBox/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/09/QBox/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/09/QBox/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2017/04/09/QBox/" class="leancloud_visitors" data-flag-title="小秋魔盒">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -384,18 +410,17 @@
       
         
           
-          小秋魔盒愿，做你世界里的太阳，带来温暖  
-简介说明反馈自己在开发过程中，肯定有很多地方欠缺考虑，同时肯定也会遗留各种各样的问题。你知道的，作为程序，总会有一些奇葩的bug。  
-希望亲爱的你，不要失望，不要放弃我，和我一起努力，塑造一款愈加完美的产品吧。  
-请将你的建议或遇到的问题，在本文章下面
-          ...
+            <h1 id="小秋魔盒"><a href="#小秋魔盒" class="headerlink" title="小秋魔盒"></a>小秋魔盒</h1><p>愿，做你世界里的太阳，带来温暖  </p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><h2 id="反馈"><a href="#反馈" class="headerlink" title="反馈"></a>反馈</h2><p>自己在开发过程中，肯定有很多地方欠缺考虑，同时肯定也会遗留各种各样的问题。你知道的，作为程序，总会有一些奇葩的bug。  </p>
+<p>希望亲爱的你，不要失望，不要放弃我，和我一起努力，塑造一款愈加完美的产品吧。  </p>
+<p>请将你的建议或遇到的问题，在本文章下面留言反馈出来。亲爱的，谢谢！</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/04/09/QBox/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -413,6 +438,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -424,13 +451,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2017/03/24/GlideBug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -452,24 +489,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-24T13:03:15+08:00" content="2017-03-24">
-              2017-03-24
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-24T13:03:15+08:00">
+                2017-03-24
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/第三方框架/" itemprop="url" rel="index">
                     <span itemprop="name">第三方框架</span>
                   </a>
@@ -477,7 +526,6 @@
 
                 
                 
-
               
             </span>
           
@@ -485,29 +533,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2017/03/24/GlideBug/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/24/GlideBug/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/24/GlideBug/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2017/03/24/GlideBug/" class="leancloud_visitors" data-flag-title="Glide坑遇记">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -521,16 +577,192 @@
       
         
           
-          Glide坑遇记  
-有一段时间没有更新文章了，但登录 简书 发现时不时也有新的点赞和关注，在这里十分感谢大家的认可，也为这段时间的静默表示抱歉。这段时间确实有点忙，自己一直在利用 一些平台（这里不说出平台名称了，一来避嫌，二来现在对这些平台提供的数据也没太多好感了） 提供的接口，敲写一个生活工具类
-          ...
+            <h1 id="Glide坑遇记"><a href="#Glide坑遇记" class="headerlink" title="Glide坑遇记"></a>Glide坑遇记</h1><p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/glide/android-working-with-glide-image-library.jpg" alt="Glide 坑遇记">  </p>
+<p>有一段时间没有更新文章了，但登录 <strong><a href="http://www.jianshu.com/u/e61d05cbf47e" target="_blank" rel="external">简书</a></strong> 发现时不时也有新的点赞和关注，在这里十分感谢大家的认可，也为这段时间的静默表示抱歉。这段时间确实有点忙，自己一直在利用 <strong>一些平台</strong>（这里不说出平台名称了，一来避嫌，二来现在对这些平台提供的数据也没太多好感了） 提供的接口，敲写一个生活工具类的App，一方面是使用 <strong>Retrofit + RxJava + okhttp</strong> 这种比较热门的框架结构熟悉一下，一方面是集体测试一下 GitHub 平时不太使用的热门库。现在这个项目还在开发中，上线后会通知大家，也会在适当的时候把这个项目的源代码开源到 GitHub,同时也会写一些这个项目用到的大家感兴趣的技术的介绍文章。好了，啰嗦的够多了，开始今天的正题…</p>
+<p><strong>Glide 的基本使用</strong>可以查看下面这些文章：  </p>
+<p><a href="http://ocnyang.com/2016/08/09/GlideAbout/">图片加载库Glide介绍</a><br><a href="http://ocnyang.com/2016/08/17/GlideUse/">Glide图片加载库的使用</a>  </p>
+<h2 id="1、Glide-实现-ImageView-宽度填满，高度自适应的效果"><a href="#1、Glide-实现-ImageView-宽度填满，高度自适应的效果" class="headerlink" title="1、Glide 实现 ImageView 宽度填满，高度自适应的效果"></a>1、Glide 实现 ImageView 宽度填满，高度自适应的效果</h2><p>要说这个，就要先说一下大家在平时用到 ImageView 实现宽度填满，高度自适应的方法。</p>
+<blockquote>
+<p>ImageView 宽度填满，高度自适应常用在：  </p>
+<ol>
+<li>ListView 列表布局的条目中（RecycleView 同理），比如实现 item 中的图片充满屏幕，高度根据具体图片比例自适应，商品详情中常常用到。  </li>
+<li>GridView 网格布局的条目中，假如 item 有两列，想让每一列的 item 中的图片占用屏幕的一半。  </li>
+<li>其他使用单独图片也想达到这种效果的场景。</li>
+</ol>
+</blockquote>
+<p>这里提供两种实现方法，也都是大家都知道：  </p>
+<p><strong>1、重写 onMeasure 方法</strong>  </p>
+<pre><code>public class ResizableImageView extends ImageView {  
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/24/GlideBug/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+    public ResizableImageView(Context context) {  
+        super(context);  
+    }  
+
+    public ResizableImageView(Context context, AttributeSet attrs) {  
+        super(context, attrs);  
+    }  
+
+    @Override  
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){  
+        Drawable d = getDrawable(); 
+        if(d!=null){  
+            int width = MeasureSpec.getSize(widthMeasureSpec);  
+            //高度根据使得图片的宽度充满屏幕计算而得  
+            int height = (int) Math.ceil((float) width * (float) d.getIntrinsicHeight() / (float) d.getIntrinsicWidth());  
+            setMeasuredDimension(width, height);  
+        }else{  
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);  
+        }  
+    }  
+}  
+</code></pre><blockquote>
+<p>在布局文件 xml 中,ImageView 不用对显示方式进行设置（使用默认就行）。  </p>
+</blockquote>
+<p><strong>2、设置 ImageView 的属性</strong>  </p>
+<pre><code>&lt;ImageView
+        android:id=&quot;@+id/iv_ocnyang&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:adjustViewBounds=&quot;true&quot;
+        android:scaleType=&quot;fitXY&quot;
+        /&gt;
+</code></pre><blockquote>
+<p>fitXY 这种图片的显示方式的效果是：根据 ImageView 设置的大小拉伸图片以填充满空间，（单独设置此属性时）图片会变形。<br>adjustViewBounds 是限制图片在显示时保持原图比例。（和 fitXY 显示方式合用能到达自适应的效果）</p>
+</blockquote>
+<p>通过这上面两种方式显示图片一般都能够宽度充满高度自适应的效果，可是当你用 Glide 请求显示网络图片的时候，你会很失望的发现上面的设置失效了同时图片也变形了。  </p>
+<p>那么这时候是哪里出了问题了呢？（下面只做一个笼统的分析，具体可以看这个链接： <a href="https://github.com/clarkehe/Android/wiki/Coding(7" target="_blank" rel="external">Glide使用及注意的地方</a>:-Glide%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E7%9A%84%E5%9C%B0%E6%96%B9)）<br>其实如果你熟知 Glide 的话，可能你还记得，Glide 在加载图片的时候，加载的大小会和 ImageView 的大小保持一致。也就是 ImageView 的大小决定了 Glide 加载图片的尺寸。而这里我们的 ImageView 设置的高度是 wrap_content，Glide 就无法准确的加载图片的大小了。  </p>
+<p>那这个时候怎么才能保证按原图的比例来自适应高度显示呢？   </p>
+<p><strong>这里有两种方式：</strong>  </p>
+<ol>
+<li>你已经知道图片（或其他方式提前知道）图片的比例，然后在用 Glide 请求图片时限制图片的加载大小，即设置 <strong>override(int width, int height)</strong> 。这时候加载到的图片是原图比例，显示的时候虽然有拉伸/压缩但都会保存原比例的。这种方式适用于你加载的图片大小都比较规范固定的时候。  </li>
+<li>当然，你请求的图片源并不一定大小都一致。那这时候就可以使用下面这种方式了。这种方式的原理是，先使用 Glide 把图片的原图请求加载过来，然后再按原图来显示图片。  </li>
+</ol>
+<pre><code>Glide.with(mContext)
+     .load(url)
+     .asBitmap()
+     .into(new SimpleTarget&lt;Bitmap&gt;() {
+          @Override
+          public void onResourceReady(Bitmap resource, GlideAnimation&lt;? super Bitmap&gt; glideAnimation) {
+                ivOcnyang.setImageBitmap(resource);
+          }
+      });
+</code></pre><blockquote>
+<p>这两种方法中，其实更加提倡的是第一种方式，因为这种方式不会造成任何负面的影响。但第二种方式，由于Glide加载图片时是以全分辨率加载的，当加载图片过大且图片很多时，可能造成 OOM。同时第二种方式使用在列表上复用时会造成条目错乱错位。</p>
+</blockquote>
+<h2 id="2、Glide-加载-Gif-图片的那些坑"><a href="#2、Glide-加载-Gif-图片的那些坑" class="headerlink" title="2、Glide 加载 Gif 图片的那些坑"></a>2、Glide 加载 Gif 图片的那些坑</h2><p>我们知道，对比其他几大图片加载框架，我们更青睐 Glide 有一部分原因就是因为它能显示动态图，毕竟像下面这种图是让我最高兴最无法拒绝的。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/glide/timg.gif" alt="每看到星期五，这两个字我就莫名的兴奋">  </p>
+<h3 id="2-1、加载-Gif-图片慢或者显示不出来"><a href="#2-1、加载-Gif-图片慢或者显示不出来" class="headerlink" title="2.1、加载 Gif 图片慢或者显示不出来"></a>2.1、加载 Gif 图片慢或者显示不出来</h3><p>这是一个公认的问题了，在 Glide 的 issue 上有人提出过，并且作者也给出了<strong><a href="">解决方案</a></strong>。<br>加载 GIF 时需要调用 asGif() 方法，同时设置特别的缓存策略，调用 diskCacheStrategy() 将缓存策略设置为 SOURCE（缓存原图） 或者 NONE（不做缓存）。  </p>
+<blockquote>
+<p>Glide 在加载 GIF 时不调用 asGif() 方法也是能正常显示动画的。但建议调用 asGif()。  </p>
+</blockquote>
+<pre><code>if (imgUrl.toUpperCase().endsWith(&quot;.GIF&quot;)) {
+            Glide.with(mContext)
+                    .load(imgUrl)
+                    .asGif()
+                    .override(width, height)
+                    .placeholder(placeholderImg)
+                    .error(errorImg)
+                    .dontAnimate() //去掉显示动画
+                    .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE) //DiskCacheStrategy.NONE
+                    .into(ivOcnyang);
+        } else {
+            Glide.with(mContext)
+                    .load(imgUrl)
+                    .override(width, height)
+                    .placeholder(placeholderImg)
+                    .error(errorImg)
+                    .crossFade()
+                    .centerCrop()
+                    .into(ivOcnyang);
+        }
+</code></pre><h3 id="2-2、动态GIF图片显示的次数"><a href="#2-2、动态GIF图片显示的次数" class="headerlink" title="2.2、动态GIF图片显示的次数"></a>2.2、动态GIF图片显示的次数</h3><p>可能你有时有需求，需要设置动态图的显示一定次数时停止。  </p>
+<pre><code>Glide.with(mContext)
+        .load(imgUrl)
+        .asGif()
+        .override(width,height)
+        .placeholder(placeholderImg)
+        .error(errorImg)
+        .dontAnimate()
+        .centerCrop()
+        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+        .into(new GlideDrawableImageViewTarget(ivOcnyang, 3));
+</code></pre><blockquote>
+<p>这里的 <code>GlideDrawableImageViewTarget(ImageView view, int maxLoopCount)</code> 的第二个参数 maxLoopCount  就是你要循环的次数。  </p>
+</blockquote>
+<h3 id="2-3、将-GIF-作为-Bitmap-显示"><a href="#2-3、将-GIF-作为-Bitmap-显示" class="headerlink" title="2.3、将 GIF 作为 Bitmap 显示"></a>2.3、将 GIF 作为 Bitmap 显示</h3><p>如果要显示的图片列表包含多种图像类型, 有图片和 GIF, 全都强制判断 GIF 有时是不可行的. 我们可以将 GIF 先作为 Bitmap 加载第一帧图像. 然后给用户一个提示, 当用户点击时, 再使用 GIF 方式重新加载。  </p>
+<pre><code>Glide  
+    .with(context)
+    .load(gifUrl)
+    .asBitmap()
+    .into(imageViewGifAsBitmap);
+</code></pre><h2 id="3、Glide图片和默认图交替过程中-默认图闪烁一下"><a href="#3、Glide图片和默认图交替过程中-默认图闪烁一下" class="headerlink" title="3、Glide图片和默认图交替过程中,默认图闪烁一下"></a>3、Glide图片和默认图交替过程中,默认图闪烁一下</h2><p>这是比较坑的一点，如果占位图要比原图大有时会出现这种问题。其实有时候你会发现占位图和 loading 图的设置有时会造成各种问题，有时可能影响图片显示不正常。  </p>
+<p>解决方法：<br>去掉动画：dontAnimate()</p>
+<p>有时，使用 CircleImageView 加载图片时显示不正常，有可能是CircleImageView引起的与占位图和显示动画的冲突，解决方法同上，亦或去掉占位图。</p>
+<h2 id="4、CenterCrop与Transformer的共存问题"><a href="#4、CenterCrop与Transformer的共存问题" class="headerlink" title="4、CenterCrop与Transformer的共存问题"></a>4、CenterCrop与Transformer的共存问题</h2><p>这个问题的 <a href="https://github.com/bumptech/glide/issues/613" target="_blank" rel="external">issues 地址</a>。   </p>
+<p>这个问题是在网格布局和瀑布流布局中使用 .centerCrop，所以必须要在 ImageView 中去设置 scaleType 为 centerCrop。<br>但是，当你同时给图片设置圆角类 Transformer 时，即在 Glide 加载图片时给 .transform() 配置了一个圆角矩形，如果同时 ImageView 的 scaleType 设置了 centerCrop，那圆角就没有了。  </p>
+<p><strong>解决方法，设置两个 Transformer：</strong>  </p>
+<pre><code>...
+.transform(new CenterCrop(getContext())
+          ,new GlideRoundTransform(getContext(), 25))
+...
+</code></pre><p><strong>这里给出圆角 GlideRoundTransform 源代码。</strong>（设置圆形图片，更多方式可以参考这个 <a href="http://stackoverflow.com/questions/25278821/how-to-round-an-image-with-glide-library" target="_blank" rel="external">How to round an image with Glide library?</a> ）</p>
+<pre><code>public class GlideRoundTransform extends BitmapTransformation {
+
+    private static float radius = 0f;
+
+    public GlideRoundTransform(Context context) {
+        this(context, 4);
+    }
+
+    public GlideRoundTransform(Context context, int dp) {
+        super(context);
+        this.radius = Resources.getSystem().getDisplayMetrics().density * dp;
+    }
+
+    @Override protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+        return roundCrop(pool, toTransform);
+    }
+
+    private static Bitmap roundCrop(BitmapPool pool, Bitmap source) {
+        if (source == null) return null;
+
+        Bitmap result = pool.get(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
+        if (result == null) {
+            result = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        Canvas canvas = new Canvas(result);
+        Paint paint = new Paint();
+        paint.setShader(new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
+        paint.setAntiAlias(true);
+        RectF rectF = new RectF(0f, 0f, source.getWidth(), source.getHeight());
+        canvas.drawRoundRect(rectF, radius, radius, paint);
+        return result;
+    }
+
+    @Override
+    public String getId() {
+        return getClass().getName() + Math.round(radius);
+    }
+}
+</code></pre><h2 id="5、得到类似-You-cannot-start-a-load-for-a-destroyed-activity-这样的异常"><a href="#5、得到类似-You-cannot-start-a-load-for-a-destroyed-activity-这样的异常" class="headerlink" title="5、得到类似 You cannot start a load for a destroyed activity 这样的异常"></a>5、得到类似 <code>You cannot start a load for a destroyed activity</code> 这样的异常</h2><p>解决这个办法只需在使用 Glide 时记住：不要再非主线程里面使用 Glide 加载图片，如果真的使用了，请把 context 参数换成 getApplicationContext。</p>
+<h2 id="6、一些使用技巧"><a href="#6、一些使用技巧" class="headerlink" title="6、一些使用技巧"></a>6、一些使用技巧</h2><p><strong>1. 列表预加载</strong><br>如果你想让列表预加载的话，不妨试一下ListPreloader这个类。  </p>
+<p><strong>2. 列表滑动时取消请求</strong><br>当列表在滑动的时候，调用 pauseRequests() 取消请求，滑动停止时，调用 resumeRequests() 恢复请求。  </p>
+<p><code>Glide.with(context).resumeRequests()</code><br><code>Glide.with(context).pauseRequests()</code></p>
+<p><strong>3. 清除所有加载请求</strong><br>当你想清除掉所有的图片加载请求时，可以使用 Glide.clear() 这个方法。</p>
+<p><strong>4. Glide特效转换库</strong><br><a href="https://github.com/wasabeef/glide-transformations" target="_blank" rel="external">glide-transformations</a> 一个基于Glide的transformation库，拥有裁剪，着色，模糊，滤镜等多种转换效果。  </p>
+<p><strong>5. Palette 库</strong><br><a href="https://github.com/florent37/GlidePalette" target="_blank" rel="external">GlidePalette</a> 一个在Glide加载时很方便使用Palette的库。</p>
+<blockquote>
+<p>参考来源：<br><a href="http://blog.csdn.net/easion_zms/article/details/50263409" target="_blank" rel="external">http://blog.csdn.net/easion_zms/article/details/50263409</a><br><a href="http://www.jianshu.com/p/4a3177b57949" target="_blank" rel="external">http://www.jianshu.com/p/4a3177b57949</a><br><a href="http://answerzhao.github.io/2016/10/16/issues%20in%20using%20Glide/" target="_blank" rel="external">http://answerzhao.github.io/2016/10/16/issues%20in%20using%20Glide/</a><br><a href="http://blog.csdn.net/s569646547/article/details/54090034" target="_blank" rel="external">http://blog.csdn.net/s569646547/article/details/54090034</a>  </p>
+</blockquote>
+
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -548,6 +780,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -559,13 +793,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2017/02/13/DonkeyAndPrincess/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -587,24 +831,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-13T23:03:15+08:00" content="2017-02-13">
-              2017-02-13
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-13T23:03:15+08:00">
+                2017-02-13
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/还相信爱情/" itemprop="url" rel="index">
                     <span itemprop="name">还相信爱情</span>
                   </a>
@@ -612,7 +868,6 @@
 
                 
                 
-
               
             </span>
           
@@ -620,29 +875,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2017/02/13/DonkeyAndPrincess/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/13/DonkeyAndPrincess/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/13/DonkeyAndPrincess/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2017/02/13/DonkeyAndPrincess/" class="leancloud_visitors" data-flag-title="向日葵公主与驴的爱情故事">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -656,15 +919,21 @@
       
         
           
-          向日葵公主是在河东岸边遇见驴的。驴是黑色的，但白嘴白肚白蹄。公主想过河去，河西的城堡里有等着娶她的王子。河不算深，但她穿着一身美丽的嫁衣，她怕河水会浸湿她的衣裙。驴说：“想让我驮你过去吗？”“你能保证不弄湿我的衣裙吗？”“不能。”“那就算了，谢谢，”“如果他不来呢？”“那我就多等等。”良久，无人过来
-          ...
+            <p>向日葵公主是在河东岸边遇见驴的。驴是黑色的，但白嘴白肚白蹄。公主想过河去，河西的城堡里有等着娶她的王子。河不算深，但她穿着一身美丽的嫁衣，她怕河水会浸湿她的衣裙。<br>驴说：“想让我驮你过去吗？”<br>“你能保证不弄湿我的衣裙吗？”<br>“不能。”<br>“那就算了，谢谢，”<br>“如果他不来呢？”<br>“那我就多等等。”<br>良久，无人过来，公主独坐岸边，黯然叹息。<br>“不。”公主依然拒绝，但悄然打量着驴。“是你希望我让你驮我过去。”公主回答。<br>“那你希望谁来驮你过去？”<br>“我要嫁的王子。”<br>“我驮你过去，你吻吻我，焉知我不能变成王子？”<br>“你以为你是青蛙王子？”<br>“我是美驴王子。”<br>“驴倒是驴，王子就不必勉强了。”<br>“你为何不想让我帮你渡河？”<br>“我怕你弄湿我的嫁衣。”<br>“我想不会的。”<br>“为什么不会？”<br>“因为现在我想驮你过去。”<br>“哦？我该相信吗？”<br>“你为什么不相信？”<br>“你说的话我不敢随便信。”<br>“我说的话你都不信？”<br>“你说的话我才不信。”<br>“我说的话你真不信？！”<br>“难道我应该信？”<br>“难道你不该信？”<br>“我信我自己的判断。”<br>“好吧，那你慢慢判断吧！”<br>……天色已晚，公主与驴相对无言。凉意袭来，公主拢了拢衣服。<br>驴打破沉默：“冷吗？”<br>“冷。”<br>“让我驮你过河吧，无论我是否弄湿你的衣裙我都会赠你三句爱的箴言。”<br>“那我该怎样报答你？”公主问。<br>“如果你衣裙不湿就带我回家吧。”<br>公主接受了驴的建议。公主骑上了驴背。<br>临行前驴郑重对她说：“记住我背着你时你不能流泪，你的泪会令我不堪重负。”<br>公主说她记得，然后也郑重地对驴说：“记住一定不要弄湿我的衣裙，否则我会立即放弃你的背负。”<br>驴迈步向河中走去。<br>“你以前驮过女孩过河吗？”公主问。<br>“当然。”驴坦然答道。<br>“她们的衣裙湿了吗？”<br>“第一个女孩的没湿，以后的都湿了。”<br>“第一个女孩带你回家了吗？”<br>“没有，否则我不会再遇见别的女孩。”<br>“看来你遇见的女孩很多。”<br>“算上你的话，应该有15、6个了。”<br>公主笑道：“你是第30头想驮我过河的驴。”<br>“呵呵。”驴但笑无语。<br>公主忽然想起驴承诺的爱的箴言，驴答应告诉她第一句：“无论男人还是女人，只有在初恋时爱的是别人，以后恋爱时爱的都是自己。”<br>驴缓步轻行，果然很平稳，公主放心了，搂着驴的脖子，觉得温暖。<br>“喜欢我背你过河吗？”驴问。<br>“喜欢。”公主微笑承认。<br>“我也喜欢这样背着你，希望就这样一直走下去。”驴的声音于温情中透着忧郁，听起来像叹息。<br>风与驴的话语不时吻上公主的面颊，公主含笑悄然入睡。她做了一个公主常做的梦：她吻了驴，然后驴变成了王子，从此王子与公主快乐地生活在一起。当她醒来时看见驴依然缓步轻行，自己的衣裙分毫不湿。芳心窃喜，于是吻了驴——驴能因此变成王子吗？没有。原来童话就是童话，驴不是王子，等着娶她的王子在河西的城堡里。她愣愣地想，一滴泪自目中滴落。泪落在驴身上。似突然被灼伤般，驴猛地扬蹄嘶鸣，激起浪花千丈。公主的衣裙湿了。<br>“为什么？”公主问。<br>“我跟你说过。”驴面无表情。<br>公主也记起了她当初对驴说的话。于是她一言不发，自驴背上下来，独自淌水向对岸走去。驴没做任何挽留或解释，也自转身回去，径直走向河东——那里又有个姑娘在等着谁驮她过河。依稀年轻，依稀美丽，她也有一身好看的嫁衣。<br>“爱情是唯一的，但爱人不是唯一的。”驴忽然说道：“这是第二句箴言。”<br>公主泪落成河，河水冷彻心肺。终于走到了对岸，她美丽的衣裙已经彻底湿透。她无力地在岸边坐下，像只小动物般抱膝蜷缩着黯然哭泣。很是寒冷。<br>一只白兔走到她身边：“公主，下次我陪你渡河。”<br>“谢谢，”公主把白兔搂在怀中：“不必了，现在我只是需要一点温度。”<br>驴已经走回了河东岸边。公主忽然记起还有一句箴言驴没说，于是抬头向河西望去：“请告诉我最后一句箴言，美驴。”<br>驴冷冷看了她最后一眼，说： “我爱我的爱情。 ”然后向那等着渡河的女孩走去。</p>
+<hr>
+<blockquote>
+<p>你看懂了吗？<br>公主，王子，兔子，驴及三句箴言各代表什么意思？  </p>
+</blockquote>
+<p>这故事其中的含义：<br><strong>公主</strong>：女孩子<br><strong>向日葵城堡里的王子</strong>：女孩子的理想老公<br><strong>不湿衣裙</strong>：代表不受伤害。<br>女人绝不会奢望可以不做任何牺牲来得到未来的老公，恋爱的女人不怕付出，怕的是受伤害和受欺骗。所以故事中女孩和野驴反复协商，一定不能弄湿衣裙，也就是一定要对她好，不能伤害她。<br><strong>驮女孩过河</strong>：恋爱中男方对女方的好<br><strong>把驴带回家</strong>：走向婚姻<br><strong>女孩的吻</strong>：女孩对男人的爱和完全信任。<br>女孩子总觉得，爱他，就可以让他改变。于是总期待自己的伴侣可以为她而改变，但事实上她总是失望。<br><strong>女孩的泪</strong>：伤心，失望，情绪。<br>当女孩认识到，现在的男人无法改变，于是开始变得伤心失望，开始情绪化。<br><strong>驴</strong>：现实中女孩子遇到的男人<br>以前有过很多次恋爱经历（15、16个女孩），已经对感情麻木（总是面无表情，总是叹息），很清楚自己要的是什么，也丧失了真心爱一个人的能力，只是机械的尽自己的职责（驮女孩过河）。他所爱的，只是他自己，还有他的爱情，而不是他的爱人。和女孩子交往已经变成了方程式，对每个女孩子说同样的话做同样的事情。在一段感情开始的时候，都花言巧语欺骗女孩子，说可以变成女孩子理想的模样（“只要你吻我我就变成王子”，其实他自己清楚自己根本变不成王子，但却并不像女孩说明），这种从一开始就信息不等值的关系，维持长久的可能性很小。而在中途，当恋爱遇到了挫折和问题（驴知道了女孩对他的失望和伤心，开始变得暴躁，于是开始伤害女孩，即：驴开始扬蹄嘶鸣，激起浪花千丈。公主的衣裙湿了。）驴也并不采取任何积极措施，而是走向其他年轻漂亮充满幻想的女孩。可见驴的目的只是婚姻，并不是爱某个特定的人。如此一个形象，怎么可能最适合公主？至少可以判断出他一开始就带着欺骗。坦诚是恋爱和婚姻的前提，是双方信任的条件。明明自己是石头，装什么小馅饼。<br><strong>驴这种动物的文化含义</strong>：聪明，残忍，倔强。<br><strong>衣衫尽湿的公主</strong>：受伤过后的女人。<br>很狼狈，很落魄，蜷缩在一个角落独自伤神。这个时候的女人，其实更渴望一个人来爱她。而这个人是谁，都无所谓了。因为这次她只想被爱了。就像公主最后委曲求全的找了兔子，目的只是取暖。<br><strong>兔子</strong>：可能是公主的老公<br>品行特征无法判断，但是在女人不再年轻美丽漂亮时，依旧愿意陪在女人身边；甚至当女人明着告诉他我累了不想爱了，我只需要取暖的时候，依旧给予女人她想要的。能做到这点，看来这只兔子应该不坏。<br><strong>兔子这种动物的文化含义</strong>：温和，顺从，可爱。</p>
+<hr>
+<p>驴的三句格言：透露着驴子对爱情的理解<br><strong>“ 无论男人还是女人，只有在初恋时爱的是别人，以后恋爱时爱的都是自己。”</strong><br>—–驴子在初恋时也是把女孩放在第一位，宠爱女孩，永远有耐心，不伤害女孩。但可惜驴子的第一个女孩没有和驴子走向婚姻（原因不详），于是驴子对待接下来遇到的每一个女孩，都不如对待第一个女孩那么用心，那么耐心了。驴开始不为女孩而活，开始为自己而活。<br><strong>“爱情是唯一的，但爱人不是唯一的。”</strong><br>——所以驴子和公主有了矛盾时，不伤心也不挽回，因为这个走了，还有下一个。爱人是流动的，爱情是不变的。<br><strong>“我爱我的爱情。”</strong><br> ——驴子很清楚自己想要什么。他爱的是爱情本身，而不是某个女孩。每个女孩在受伤之后，都能通过曾经照顾她又伤害她的男人学到很多。一个不太好的男人，也可以成为女人的学校，让女人变得更实际，更会保护自己。</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/13/DonkeyAndPrincess/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -682,6 +951,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -693,13 +964,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2017/02/13/AndroidComm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -721,24 +1002,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-13T22:03:15+08:00" content="2017-02-13">
-              2017-02-13
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-13T22:03:15+08:00">
+                2017-02-13
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Android教程系列/" itemprop="url" rel="index">
                     <span itemprop="name">Android教程系列</span>
                   </a>
@@ -746,7 +1039,6 @@
 
                 
                 
-
               
             </span>
           
@@ -754,29 +1046,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2017/02/13/AndroidComm/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/13/AndroidComm/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/13/AndroidComm/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2017/02/13/AndroidComm/" class="leancloud_visitors" data-flag-title="详解 Android 通信">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -790,20 +1090,686 @@
       
         
           
-          一文详尽 Android 通信：四大组件之间 &amp; 进程间 &amp; 线程间 &amp; 多个App间  
-本文大纲看完本文能收获什么？按目录索引，你可以学习到：
+            <h1 id="一文详尽-Android-通信：四大组件之间-amp-进程间-amp-线程间-amp-多个App间"><a href="#一文详尽-Android-通信：四大组件之间-amp-进程间-amp-线程间-amp-多个App间" class="headerlink" title="一文详尽 Android 通信：四大组件之间 &amp; 进程间 &amp; 线程间 &amp; 多个App间"></a>一文详尽 Android 通信：四大组件之间 &amp; 进程间 &amp; 线程间 &amp; 多个App间</h1><p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android_comm/androidcomm.jpg" alt="">  </p>
+<h2 id="本文大纲"><a href="#本文大纲" class="headerlink" title="本文大纲"></a>本文大纲</h2><p><strong>看完本文能收获什么？按目录索引，你可以学习到：</strong></p>
+<ol>
+<li><p>组件间的通信，Activity，fragment，Service， Provider，Receiver</p>
+</li>
+<li><p>进程间的通信，AIDL</p>
+</li>
+<li><p>线程间的通信，Handler，AnsycTask，IntentService</p>
+</li>
+<li><p>多个App间的通信</p>
+</li>
+<li><p>使用大型开源框架完成组件通信，EventBus，otto</p>
+</li>
+</ol>
+<p><strong>建议阅读本文时遵循以下学习思路</strong></p>
+<ol>
+<li><p>研究对象：Activity，fragment等组件</p>
+</li>
+<li><p>信息存在形式：Intent，Bundle，静态变量，全局变量，还是点击事件，触摸事件的回调监听，或者文件形式（Sharepreference，SQLite，File , NetStream） ，本质就是信息源</p>
+</li>
+<li><p>信息传递的形式：网路，回调监听，线程，Intent，全局Application</p>
+</li>
+<li><p>相同形式的思路，不会出现第二次，请读者举一反三</p>
+</li>
+<li><p>最后强调研究对象是单一的</p>
+</li>
+</ol>
+<h2 id="Activity通信"><a href="#Activity通信" class="headerlink" title="Activity通信"></a>Activity通信</h2><h3 id="Activity-和-Activity"><a href="#Activity-和-Activity" class="headerlink" title="Activity 和 Activity"></a>Activity 和 Activity</h3><p><strong>1. 常规方式：Intent Bundle</strong></p>
+<p>通过Intent 启动另一个Activity时，有两种重载方式：</p>
+<pre><code>startActivity(new Intent(),new Bundle());
+startActivityForResult(new Intent(),FLAG,new Bundle());
+</code></pre><p>从参数列表就可以总结出来，有Intent，和Bundle,可以传递8种基本数据类型和可序列化的数据类型，比如字符串和字节数组。提到可序列化，就引发 Intent和Bundle 的局限性了:</p>
+<ol>
+<li>Intent Bundle 无法传递“不可序列化”的数据，比如Bitmap，InputStream，解决办法有很多种，最简单的就是将“不可序列化”的对象，转换成字节数组，这里因为主要是讲解通信，所以不展开讲了。  </li>
+<li>Intent Bundle 能传递的数据大小在40K以内 。  </li>
+</ol>
+<blockquote>
+<p>很多人不理解为什么把Intent和Bundle放在一起谈，因为Intent 底层存储信息的原理也是通过Bundle存储！</p>
+</blockquote>
+<p><strong>2. 公有静态变量</strong></p>
+<p>比如 <code>public static String flag=“杨欧神”；</code></p>
+<p>使用方式 比如在其他Activity当中 <code>FirstActivity.flag=“OCNYang”;</code> 修改静态变量的值</p>
+<p><strong>3. 基于物理形式：</strong></p>
+<p>比如 <strong><code>File，SQLite，Sharepreference</code></strong> 物理形式</p>
+<p><strong>4. 全局变量：</strong></p>
+<p>比如Application：Application是与Activity，Service齐名的组件，非常强大，它的特点是全局组件共用，单例形式存在，在其他组件中，我们只需要 <code>Context.getApplication（）</code> 获得该对象的引用即可</p>
+<h3 id="Activity-和-Fragment，Service，BrodcastReceiver"><a href="#Activity-和-Fragment，Service，BrodcastReceiver" class="headerlink" title="Activity 和 Fragment，Service，BrodcastReceiver"></a>Activity 和 Fragment，Service，BrodcastReceiver</h3><p>首先都遵循，如何启动它们，就如何传递信息的原则：</p>
+<p><strong>1. Activity与Fragment</strong></p>
+<p><code>1. 通过构造函数传递</code>  <code>2. 获取Fragment的实例对象</code>   </p>
+<pre><code>//CustFragment 是自定义的fragment，参数列表也可以自己定义咯，
+getSupportFragmentManager().beginTransaction()
+             .add(new CustFragment(自定义的的参数列表),new String(&quot;参数&quot;))
 
-组件间的通信，Activity，fragment，Service， Provider，Receiver
+//------------------method two-----------------------
+getSupportFragmentManager().findFragmentById(R.id.headlines_fragment);
+//------------------method three----------------------
+getSupportFragmentManager().findFragmentByTag(&quot;HeadLines&quot;);
+</code></pre><blockquote>
+<p>聪明的读者可能会问Fragment如何与Activity通信类似的问题，这是个好问题，请注意我们的研究的原则是单一目标原则，在这节我研究的是Activity，你的疑惑在后面都会一一解答  </p>
+</blockquote>
+<p><strong>2. Activity与Service</strong></p>
+<p>Activity启动Service的两种方式：</p>
+<pre><code>//CustomService 是自定义Service，完成一些后台操作
 
-进程间的通信，AID
-          ...
+startService(new Intent(FirstActivity.this，CustomService.class));
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/13/AndroidComm/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+bindService(new Intent(FirstActivity.this，CustomService.class)), new ServiceConnection() {
+          @Override
+          public void onServiceConnected(ComponentName name, IBinder service) {
+              //当前启动的service 一些数据就会回调回这里，我们在Activity中操作这些数据即可
+              get
+          }
+
+          @Override
+          public void onServiceDisconnected(ComponentName name) {
+
+          }
+      },flags);
+</code></pre><p>从启动方式就可以看出，通过Bundle对象的形式存储，通过Intent传输，来完成Activity向Service传递数据的操作</p>
+<p><strong>3. Activity与BroadcastReceiver</strong></p>
+<p>启动广播的形式也有两种:</p>
+<pre><code>//method one ！！！-----------------------------------------------
+registerReceiver(new BroadcastReceiver() {
+          @Override
+          public void onReceive(Context context, Intent intent) {
+
+          }
+      },new IntentFilter(),&quot;&quot;,new Handler());
+
+//method two ！！！-----------------------------------------------
+registerReceiver(new BroadcastReceiver() {
+          @Override
+          public void onReceive(Context context, Intent intent) {
+
+          }
+      },new IntentFilter());  
+</code></pre><blockquote>
+<p>关于method one 的第三个参数Handler很多人会很费解<br>参照registerReceiver中源码关于该Handler参数的解释：<br><code>Handler identifying the thread that will receive the Intent. If null, the main thread of the process will be used.</code><br>定义了一个用于接收Intent的子线程，如果不填或者默认为null，那么就会在主线程中完成接收Intent的操作  </p>
+</blockquote>
+<p>很明显，Activity与BroadcastReceiver通信时，用的也是Intent传递，Bundle存储。</p>
+<p><strong>4. 通讯时的同步问题</strong></p>
+<blockquote>
+<p>这里的同步通讯问题，为下文Fragment通讯作铺垫，不是这个问题不重要，不值得引起你注意，只是我想把问题放在它最应该出现的位置。</p>
+</blockquote>
+<p>以上只是基础的传递数据的形式，大部分都是静态的，现在有一种需求，用户操作Activity，发出了某些指令，比如按下，滑动，触摸等操作，如何完成这些信息传递呢？这就要求同步了。</p>
+<p>同步传递消息也很简单，就是调用系统写好的回调接口</p>
+<p>首先我们要知道，用户 点击，触摸 这些行为 也属于 通信的范畴—点击和触摸属于 信息源；<br>比如用户行为进行点击，那就实现 ：</p>
+<pre><code>new Button(mCotext).setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View v) {
+           new ImageView(mCotext).invalidate();
+       }
+   });
+</code></pre><p>通过此招提示指定的ImageView：嘿！老兄，你该刷新了</p>
+<p>又或者 当用户 进行触摸操作，我们需要实现放大缩小平移指定的区域：</p>
+<pre><code>new RelativeLayout(mCotext).setOnTouchListener(new View.OnTouchListener() {
+          @Override
+          public boolean onTouch(View v, MotionEvent event) {
+              //缩放
+              v.setScaleX(1f);
+              v.setScaleY(1f);
+              //平移
+              v.setTranslationX(1f);
+              v.setTranslationY(1f);
+              v.setTranslationY(1f);
+              //旋转
+              v.setRotation(2f);
+              v.setRotationX(2f);
+              v.setRotationY(2f);
+
+              v.invalidate();
+              return true;
+          }
+      });
+</code></pre><p>嘿，你看，当用户进行触摸操作，我们可以通过回调onTouchListenter来完成“触摸”这一操作</p>
+<blockquote>
+<p>关于View重绘机制以及优化刷新UI的细节，不属于本文讨论范围。</p>
+</blockquote>
+<h2 id="Fragment"><a href="#Fragment" class="headerlink" title="Fragment"></a>Fragment</h2><h3 id="1-Fragment-与Activity通信"><a href="#1-Fragment-与Activity通信" class="headerlink" title="1. Fragment 与Activity通信"></a>1. Fragment 与Activity通信</h3><p>通过实例对象传递</p>
+<p>同样的，在 Fragment 中 <code>getActivity()</code> 可以获取到它相关联的 Activity 实例，就可以轻松获取并且修改 Activity 的数据。</p>
+<h3 id="2-Fragment-与-多个Fragment通信"><a href="#2-Fragment-与-多个Fragment通信" class="headerlink" title="2. Fragment 与 多个Fragment通信"></a>2. Fragment 与 多个Fragment通信</h3><p>首先，两个Fragment之间不可能直接通信（非正规因素除外），Google官方提出的解决办法是 通过相关联的Activity来完成两个Fragment的通信</p>
+<p>只需要记住三步：</p>
+<p><strong>1. 定义一个接口：</strong></p>
+<p>在让Fragment关联Activity之前，可以在Fragment中定义一个接口，然后让宿主Activity来实现这个接口。接着，在Fragment中捕获这个接口，并且在onAttach()中 捕获Activity实例</p>
+<pre><code>//只需关注接口是如何定义的，以及onAttack中的实现
+public class HeadlinesFragment extends ListFragment {
+    //定义的接口引用
+    OnHeadlineSelectedListener mCallback;
+
+    // 自定义回调接口，宿主Activity必须要实现它
+    public interface OnHeadlineSelectedListener {
+        public void onArticleSelected(int position);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // 在这里只是为了确保Activity实现了我们定义的接口，如果没有实现，则抛出异常
+        try {
+            mCallback = (OnHeadlineSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + &quot; must implement OnHeadlineSelectedListener&quot;);
+        }
+    }
+
+    ...
+}
+</code></pre><p>一旦 Activity 通过 <code>OnHeadlineSelectedListener</code> 的实例 mCallBack 回调  <code>onArticleSelected（）</code> ，Fragment 就可以传递信息给 Activity 了</p>
+<p>例如 下面是 ListFragment 的一个回调方法，当用户点击了 list 中的 item，这个 Fragment 就会通过回调接口向宿主 Activity 传递事件</p>
+<pre><code>@Override
+   public void onListItemClick(ListView l, View v, int position, long id) {
+       // 向Activity传递事件信息
+       mCallback.onArticleSelected(position);
+   }
+</code></pre><p><strong>2. 在宿主Activity实现这个接口</strong></p>
+<p>怎么实现？很简单，参考下面代码：</p>
+<pre><code>public static class MainActivity extends Activity
+        implements HeadlinesFragment.OnHeadlineSelectedListener{
+    ...
+
+    public void onArticleSelected(int position) {
+        // 用户从从 HeadlinesFragment选中了一个标题
+        //响应用户的操作，做一些业务逻辑
+    }
+}
+</code></pre><p><strong>3. 向其他Fragment传递信息 （完成通信）</strong></p>
+<p>宿主Activity可以通过findFragmentById()向指定的Fragment传递信息，宿主Activity可以直接获取Fragment实例，回调Fragment的公有方法</p>
+<p>例如：</p>
+<p>宿主Activity 包含了一个Listfragment用来展示条目信息，当每个条目被点击的时候，我们希望ListFragment向另外一个DetailsFragment传递一个信息用来 展示不同的细节</p>
+<pre><code>public static class MainActivity extends Activity
+        implements HeadlinesFragment.OnHeadlineSelectedListener{
+    ...
+
+     public void onArticleSelected(int position) {
+        // 用户在 HeadlinesFragment中选中了一个item
+
+        //在activity中添加新的fragment
+        ArticleFragment articleFrag = (ArticleFragment)
+                getSupportFragmentManager().findFragmentById(R.id.article_fragment);
+
+        if (articleFrag != null) {
+            // If article 对象 可以复用, 我们就不需要创建两遍了
+
+            // 回调articleFrag 更新
+            articleFrag.updateArticleView(position);
+
+        } else {
+            // 创建 Fragment 并为其添加一个参数，用来指定应显示的文章
+            ArticleFragment newFragment = new ArticleFragment();
+            Bundle args = new Bundle();
+            args.putInt(ArticleFragment.ARG_POSITION, position);
+            newFragment.setArguments(args);
+
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            // 将 fragment_container View 时中的内容替换为此 Fragment ，
+            // 然后将该事务添加到返回堆栈，以便用户可以向后回滚
+            transaction.replace(R.id.fragment_container, newFragment);
+            int setTransition=TRANSIT_FRAGMENT_OPEN;
+            transaction.setTransition(setTransition);
+            transaction.addToBackStack(null);
+
+            // 执行事务
+            transaction.commit();
+        }
+    }
+}
+</code></pre><p>下面我写了一个实例来供大家理解：</p>
+<p>各个类的联系图：</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android_comm/%E9%80%9A%E4%BF%A1fragment.jpg" alt="">  </p>
+<p>这里写图片描述</p>
+<p>效果如下：</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android_comm/Fragment%E9%80%9A%E4%BF%A1_gif.gif" alt="">  </p>
+<p>这里写图片描述</p>
+<p><a href="http://download.csdn.net/detail/chivalrousman/9545616" target="_blank" rel="external">Fragment 通信 Demo 实例</a>  </p>
+<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><h3 id="Service-与-Activity-通信"><a href="#Service-与-Activity-通信" class="headerlink" title="Service 与 Activity 通信"></a>Service 与 Activity 通信</h3><p>主要是如何获得Service实例的问题<br>总结来说两步：</p>
+<ol>
+<li>在Service定义内部类，继承Binder，封装Service作为内部类的属性，并且在onBind方法中返回内部类的实例对象  </li>
+<li><p>在Activity中实现ServiceConnection ，获取到Binder对象，再通过Binder获取Service<br>&gt;</p>
+<p> public class LocalService extends Service {</p>
+<pre><code>// 传递给客户端的Binder
+private final IBinder mBinder = new LocalBinder();
+//构造Random对象
+private final Random mGenerator = new Random();
+
+/**
+ * 这个类提供给客户端  ，因为Service总是运行在同一个进程中的
+ */
+public class LocalBinder extends Binder {
+    LocalService getService() {
+        // 当客户端回调的时候，返回LoacalService实例
+        return LocalService.this;
+    }
+}
+
+@Override
+public IBinder onBind(Intent intent) {
+    return mBinder;
+}
+
+/**交给客户端回调的方法 */
+public int getRandomNumber() {
+  return mGenerator.nextInt(100);
+}
+</code></pre><p> }</p>
+<p> public class BindingActivity extends Activity {</p>
+<pre><code>LocalService mService;
+boolean mBound = false;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+}
+
+@Override
+protected void onStart() {
+    super.onStart();
+    // 绑定 LocalService
+    Intent intent = new Intent(this, LocalService.class);
+    bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+}
+
+@Override
+protected void onStop() {
+    super.onStop();
+    // 解绑 service
+    if (mBound) {
+        unbindService(mConnection);
+        mBound = false;
+    }
+}
+
+/**button已经通过 android:onClick (attribute) 设置此方法响应用户click*/
+public void onButtonClick(View v) {
+    if (mBound) {
+        // 回调 LocalService的方法.
+        //因为在主线程中刷新UI，可能会造成线程阻塞，这里只是为了测试
+        int num = mService.getRandomNumber();
+        Toast.makeText(this, &quot;number: &quot; + num, Toast.LENGTH_SHORT).show();
+    }
+}
+
+/**定义通过bindService 回调的Binder */
+private ServiceConnection mConnection = new ServiceConnection() {
+
+    @Override
+    public void onServiceConnected(ComponentName className,
+            IBinder service) {
+       //先通过Binder获得Service的内部类 LoacalBinder
+        LocalBinder binder = (LocalBinder) service;
+         // 现在可以获得service对象了
+        mService = binder.getService();
+        mBound = true;
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName arg0) {
+        mBound = false;
+    }
+};
+</code></pre><p> }</p>
+</li>
+</ol>
+<p>除了这种回调的方式外</p>
+<p>还有一种方式 是在Service中 发送广播，</p>
+<p>比如 在 Service 中 开启了一个子线程执行任务，就在子线程的 run() 方法中去 <code>sendBroadcast(intent);</code><br>数据用Intent封装，传递形式用广播</p>
+<h2 id="AIDL-完成进程间通信"><a href="#AIDL-完成进程间通信" class="headerlink" title="AIDL 完成进程间通信"></a>AIDL 完成进程间通信</h2><p>关于进程和线程的细节改天详细说明，我们首先了解一下进程和线程的概念：</p>
+<blockquote>
+<p>当某个应用组件启动且该应用没有运行其他任何组件时，<a href="http://ocnyang.com">Android</a> 系统会使用单个执行线程为应用启动新的 Linux<br>进程。默认情况下，同一应用的所有组件在相同的进程和线程（称为“主”线程）中运行。<br>如果某个应用组件启动且该应用已存在进程（因为存在该应用的其他组件），则该组件会在此进程内启动并使用相同的执行线程。<br>但是，我们也可以安排应用中的其他组件在单独的进程中运行，并为任何进程创建额外的线程。  </p>
+<p>各类组件元素的清单文件条目—：activity，servicer，eceiver 和 provider 均支持 android:process 属性，此属性可以指定该组件应在哪个进程运行。我们可以设置此属性，使每个组件均在各自的进程中运行，或者使一些组件共享一个进程，而其他组件则不共享。 此外，我们还可以设置 android:process，使不同应用的组件在相同的进程中运行  </p>
+</blockquote>
+<p>以及了解一下 进程间通信的概念</p>
+<blockquote>
+<p>Android 利用远程过程调用 (RPC) 提供了一种进程间通信 (IPC) 机制，通过这种机制，由 Activity<br>或其他应用组件调用的方法将（在其他进程中）远程执行，而所有结果将返回给调用方。这就要求把方法调用及其数据分解至操作系统可以识别的程度，并将其从本地进程和地址空间传输至远程进程和地址空间，然后在远程进程中重新组装并执行该调用。<br>然后，返回值将沿相反方向传输回来。 Android 提供了执行这些 IPC 事务所需的全部代码，因此我们只需集中精力定义和实现 RPC<br>编程接口即可。  </p>
+<p>要执行 IPC，必须使用 bindService() 将应用绑定到服务上。</p>
+</blockquote>
+<p>具体实现 可以 <a href="http://blog.csdn.net/u013478336/article/details/43818185" target="_blank" rel="external">参考这个实例</a> 和文末给出的官方文档</p>
+<h2 id="线程间通信"><a href="#线程间通信" class="headerlink" title="线程间通信"></a>线程间通信</h2><p>Handler 和AsyncTask都是用来完成子线程和主线程即UI线程通信的</p>
+<p>都可以解决主线程 处理耗时操作，造成界面卡顿或者程序无响应ANR异常 这一类问题</p>
+<p>Handler 是 一种机制【Handler+Message+Looper】，所有的数据通过Message携带，，所有的执行顺序按照队列的形式执行，Looper用来轮询判断消息队列，Handler用来接收和发送Message</p>
+<p>AsyncTask 是一个单独的类，设计之初的目的只是为了 异步方式完成耗时操作的，顺便可以通知主线程刷新Ui，AsyncTask的内部机制则是维护了一个线程池，提升性能。</p>
+<p>在这里提供另一种优雅的做法完成线程间的通信：</p>
+<p>扩展 IntentService 类</p>
+<p>由于大多数启动服务都不必同时处理多个请求（实际上，这种多线程情况可能很危险），因此使用 IntentService 类实现服务值得一试。<br>但如需同时处理多个启动请求，则更适合使用该基类Service。</p>
+<p>IntentService 执行以下操作：</p>
+<ul>
+<li>创建默认的工作线程，用于在应用的主线程外执行传递给 onStartCommand() 的所有 Intent。</li>
+<li>创建工作队列，用于将一个 Intent 逐一传递给 onHandleIntent() 实现，这样我们就永远不必担心多线程问题。</li>
+<li>在处理完所有启动请求后停止服务，因此我们不必调用 stopSelf()。</li>
+<li>提供 onBind() 的默认实现（返回 null）。</li>
+<li>提供 onStartCommand() 的默认实现，可将 Intent 依次发送到工作队列和 onHandleIntent() 实现。<br>综上所述，您只需实现 onHandleIntent() 来完成客户端提供的工作即可。（不过，我们还需要为服务提供小型构造函数。）  </li>
+</ul>
+<p>以下是 IntentService 的实现示例：</p>
+<pre><code>public class HelloIntentService extends IntentService {
+
+  /**
+   * 必须有构造函数 必须调用父 IntentService(String)带有name的构造函数来执行工作线程
+   */
+  public HelloIntentService() {
+      super(&quot;HelloIntentService&quot;);
+  }
+
+  /**
+   * IntentService 调用默认的工作线程启动服务
+   * 当此方法结束，, IntentService 服务结束
+   */
+  @Override
+  protected void onHandleIntent(Intent intent) {
+      // 通常在这里会执行一些操作，比如下载文件
+      //在这里只是sleep 5 s
+      long endTime = System.currentTimeMillis() + 5*1000;
+      while (System.currentTimeMillis() &amp;lt; endTime) {
+          synchronized (this) {
+              try {
+                  wait(endTime - System.currentTimeMillis());
+              } catch (Exception e) {
+              }
+          }
+      }
+  }
+}
+</code></pre><p>看吧，我们只需要一个构造函数和一个 onHandleIntent() 实现即可。</p>
+<p>对于Service 当然也有基础一点的做法，来完成多线程的操作，只不过代码量更多了：</p>
+<pre><code>public class HelloService extends Service {
+  private Looper mServiceLooper;
+  private ServiceHandler mServiceHandler;
+
+  // Handler 接收来自主线程的Message
+  private final class ServiceHandler extends Handler {
+      public ServiceHandler(Looper looper) {
+          super(looper);
+      }
+      @Override
+      public void handleMessage(Message msg) {
+         //执行任务，比如下载什么的，这里只是 让线程sleep
+          long endTime = System.currentTimeMillis() + 5*1000;
+          while (System.currentTimeMillis() &amp;lt; endTime) {
+              synchronized (this) {
+                  try {
+                      wait(endTime - System.currentTimeMillis());
+                  } catch (Exception e) {
+                  }
+              }
+          }
+          // 手动停止服务，来处理下一个线程
+          stopSelf(msg.arg1);
+      }
+  }
+
+  @Override
+  public void onCreate() {
+    //启动线程.  注意我们在主线程中创建了一些子线程, 这些线程都没有加锁同步. 这些现场都是后台线程，所以不会阻塞UI线程
+    HandlerThread thread = new HandlerThread(&quot;ServiceStartArguments&quot;,
+            Process.THREAD_PRIORITY_BACKGROUND);
+    thread.start();
+
+    // Handler开始轮询遍历了
+    mServiceLooper = thread.getLooper();
+    mServiceHandler = new ServiceHandler(mServiceLooper);
+  }
+
+  @Override
+  public int onStartCommand(Intent intent, int flags, int startId) {
+      Toast.makeText(this, &quot;service starting&quot;, Toast.LENGTH_SHORT).show();
+
+      // 每一次请求，都会通过handler发送Message
+      // startID只是为了让我们知道正在进行的是哪一个线程，以便于我们停止服务
+      Message msg = mServiceHandler.obtainMessage();
+      msg.arg1 = startId;
+      mServiceHandler.sendMessage(msg);
+
+      // If we get killed, after returning from here, restart
+      return START_STICKY;
+  }
+
+  @Override
+  public IBinder onBind(Intent intent) {
+      // 不提供 binding, 所以返回空
+      return null;
+  }
+
+  @Override
+  public void onDestroy() {
+    Toast.makeText(this, &quot;service done&quot;, Toast.LENGTH_SHORT).show();
+  }
+}
+</code></pre><h2 id="多个App间的通信"><a href="#多个App间的通信" class="headerlink" title="多个App间的通信"></a>多个App间的通信</h2><p>首先我们要知道以下两点：</p>
+<ol>
+<li>Android 应用一般具有若干个Activity。每个Activity显示一个用户界面，用户可通过该界面执行特定任务（比如，查看地图或拍照）。要将用户从一个Activity转至另一Activity，应用必须使用 Intent 定义做某事的“意向”。 当我们使用诸如 startActivity() 的方法将 Intent 传递至系统时，系统会使用 Intent 识别和启动相应的应用组件。使用意向甚至可以让我们的应用开始另一个应用中包含的Activity。</li>
+<li>Intent 可以为 显式 以便启动特定组件（特定的 Activity 实例）或隐式 以便启动处理意向操作（比如“拍摄照片”）的任何组件。  </li>
+</ol>
+<h3 id="1-向另一个应用发送用户"><a href="#1-向另一个应用发送用户" class="headerlink" title="1. 向另一个应用发送用户"></a>1. 向另一个应用发送用户</h3><p>Android最重要的功能之一，是可以操作其他应用，比如在我们的应用中，需要使用地图显示公司地址，我们无序在地图应用程序中构建Activity，而是直接创建Intent查看 地址的请求，Android系统之后启动 可以在地图上显示 地址的应用。</p>
+<p><strong>1) 构建隐式的意图</strong></p>
+<p>隐式意图不用声明要启动的组件类名称，而是声明操作，比如查看，编辑，发送，或者获取某项。</p>
+<p>如果您我们的数据是Uri，可以这样构建Intent：</p>
+<pre><code>//当我们的应用通过startActivity()调用此Intent时，电话应用会发起向指定电话号码呼叫
+Uri number = Uri.parse(&quot;tel:5551234&quot;);
+Intent callIntent = new Intent(Intent.ACTION_DIAL, number);  
+</code></pre><p>这里还有一些其他Intent的操作和Uri数据对:</p>
+<p><strong>·</strong> <code>查看地图：</code></p>
+<pre><code>// 基于地址的地图位置
+Uri location = Uri.parse(&quot;geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California&quot;);
+// 基于经纬度的地图位置
+// Uri location = Uri.parse(&quot;geo:37.422219,-122.08364?z=14&quot;); // z param is zoom level
+Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+</code></pre><p><strong>·</strong> <code>查看网页：</code></p>
+<pre><code>Uri webpage = Uri.parse(&quot;http://www.ocnyang.com&quot;);
+Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+</code></pre><p>有的同学会问了，我从哪里可以知道，Intent可以传递的 Uri的类型，或者其他数据类型呢？</p>
+<p>答：可以查阅 <a href="https://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW" target="_blank" rel="external">Google Intent 的 API</a></p>
+<p><strong>2) 确认是否存在 接收意向的应用</strong></p>
+<blockquote>
+<p>注意：如果调用了意向，但设备上没有可用于处理意向的应用，我们的应用将崩溃。</p>
+</blockquote>
+<p>要确认是否存在可响应意向的可用Activity，请调用 queryIntentActivities() 来获取能够处理ntent 的Activity列表。 如果返回的 List 不为空，则可以安全地使用该意向。例如：</p>
+<pre><code>PackageManager packageManager = getPackageManager();
+List activities = packageManager.queryIntentActivities(intent,
+        PackageManager.MATCH_DEFAULT_ONLY);
+boolean isIntentSafe = activities.size() &gt; 0;
+</code></pre><p>如果 isIntentSafe 是 true，则至少有一个应用将响应该意向。 如果它是 false，则没有任何应用处理该意向。</p>
+<p><strong>3) 启动指定Activity</strong></p>
+<p>当我指定意图后，通过startActivity(intent);就可以启动指定Activity</p>
+<p>此处有一个Google官方的示例：</p>
+<pre><code>// 构建Intent
+Uri location = Uri.parse(&quot;geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California&quot;);
+Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+
+// 确定意图可以被接收
+PackageManager packageManager = getPackageManager();
+List&lt;ResolveInfo&gt; activities = packageManager.queryIntentActivities(mapIntent, 0);
+boolean isIntentSafe = activities.size() &gt; 0;
+
+//启动指定应用
+if (isIntentSafe) {
+    startActivity(mapIntent);
+}
+</code></pre><p><strong>4) 显示应用选择器</strong></p>
+<p>比如我们要完成 <strong>分享操作</strong>，用户可以使用多个App完成分享，我们应明确显示选择器对话框，如图</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android_comm/intent-chooser.png" alt="intent-chooser">  </p>
+<p>要显示选择器，需要使用Intent的createChooser()方法 创建Intent，并将其传递至 startActivity()</p>
+<pre><code>Intent intent = new Intent(Intent.ACTION_SEND);
+...
+
+String title = getResources().getString(R.string.chooser_title);
+// Create intent to show chooser
+Intent chooser = Intent.createChooser(intent, title);
+
+// Verify the intent will resolve to at least one activity
+if (intent.resolveActivity(getPackageManager()) != null) {
+    startActivity(chooser);
+}
+</code></pre><p>这将显示一个对话框，其中有响应传递给 createChooser() 方法的意向的应用列表，并且将提供的文本用作 对话框标题</p>
+<h3 id="2-接收其他Activity返回的结果"><a href="#2-接收其他Activity返回的结果" class="headerlink" title="2. 接收其他Activity返回的结果"></a>2. 接收其他Activity返回的结果</h3><p>通过Intent.startActivityForResult()来完成。</p>
+<p>首先在启动另一个Activity时，我们需要指定request code以便返回结果时，我们可以正常处理它。</p>
+<pre><code>static final int PICK_CONTACT_REQUEST = 1;  // The request code
+...
+private void pickContact() {
+    Intent pickContactIntent = new Intent(Intent.ACTION_PICK, Uri.parse(&quot;content://contacts&quot;));
+    pickContactIntent.setType(Phone.CONTENT_TYPE);
+    startActivityForResult(pickContactIntent, PICK_CONTACT_REQUEST);
+}
+</code></pre><p>当用户完成操作后，返回数据，系统会调用Activity的 onActivityResult()方法，</p>
+<pre><code>@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    // 检查requestCode是否真确
+    if (requestCode == PICK_CONTACT_REQUEST) {
+        // 确保请求时成功的
+        if (resultCode == RESULT_OK) {
+           // 完成我们的业务逻辑
+        }
+    }
+}
+</code></pre><p>为了成功处理结果，我们必须了解Intent的格式，比如联系人返回的是带内容的URI，照相机返回的是Bitmap<br>如何根据返回的URI来读取数据，我们需要对ContentResolver 和 ContentProvider 有了解</p>
+<p>下面就是一个三者结合的获取联系人的实例：</p>
+<pre><code>@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    // 检查requestCode
+    if (requestCode == PICK_CONTACT_REQUEST) {
+        // 确保请求成功
+        if (resultCode == RESULT_OK) {
+            //获得选择的联系人的URI
+            Uri contactUri = data.getData();
+            // 我们只需要NUMBER这一列的信息，
+            String[] projection = {Phone.NUMBER};
+
+            // 显示根据NUMBER查询的结果
+            // We don&apos;t need a selection or sort order (there&apos;s only one result for the given URI)
+            // 在这里我们并没有对查询的结果进行排序，因为在主线程中进行这种数据库操作，有可能阻塞线程
+            //优化方案是异步完成排序的操作，这里只是展示多个App间的通信
+            Cursor cursor = getContentResolver()
+                    .query(contactUri, projection, null, null, null);
+            cursor.moveToFirst();
+
+            //从NUMBER那一列当中取回phone NUMBER
+            int column = cursor.getColumnIndex(Phone.NUMBER);
+            String number = cursor.getString(column);
+            //接下来就是要操作这些phone number了
+        }
+    }
+}
+</code></pre><h3 id="3-接收其他Activity返回的结果"><a href="#3-接收其他Activity返回的结果" class="headerlink" title="3. 接收其他Activity返回的结果"></a>3. 接收其他Activity返回的结果</h3><p>要允许其他应用开始您的Activity，需要 在相应元素的宣示说明文件中添加一个 元素。</p>
+<p>例如，此处有一个在数据类型为文本或图像时处理 ACTION_SEND 意向的意向过滤器：</p>
+<pre><code>&lt;activity android:name=&quot;ShareActivity&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.SEND&quot;/&gt;
+        &lt;category android:name=&quot;android.intent.category.DEFAULT&quot;/&gt;
+        &lt;data android:mimeType=&quot;text/plain&quot;/&gt;
+        &lt;data android:mimeType=&quot;image/*&quot;/&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre><p>定义操作，通常是系统定义的值之一，比如ACTION_SEND 或 ACTION_VIEW。</p>
+<p>定义与Intent关联的数据，只需通过 android:mimeType 指定我们接收的数据类型，比如text/plain 或 image/jpeg。</p>
+<p>所有的隐式Intent，都使用 CATEGORY_DEFAULT 进行定义</p>
+<h3 id="4-处理Activity中的Intent"><a href="#4-处理Activity中的Intent" class="headerlink" title="4. 处理Activity中的Intent"></a>4. 处理Activity中的Intent</h3><p>当Activity开始时，调用getIntent检索开始Activity的Intent，</p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    setContentView(R.layout.main);
+
+    Intent intent = getIntent();
+    Uri data = intent.getData();
+
+    // 指出接收的数据类型
+    if (intent.getType().indexOf(&quot;image/&quot;) != -1) {
+        // 处理带有图片的Intent
+    } else if (intent.getType().equals(&quot;text/plain&quot;)) {
+        // 处理带有文本的Intent
+    }
+}
+</code></pre><h3 id="5-向指定Activity中返回数据"><a href="#5-向指定Activity中返回数据" class="headerlink" title="5. 向指定Activity中返回数据"></a>5. 向指定Activity中返回数据</h3><p>只需调用setResult指定结果代码和Intent</p>
+<pre><code>Intent result = new Intent(&quot;com.example.RESULT_ACTION&quot;, Uri.parse(&quot;content://result_uri&quot;);
+setResult(Activity.RESULT_OK, result);
+finish();
+</code></pre><p>记住必须为结果指定结果码，通常为 RESULT_OK 或 RESULT_CANCELED。</p>
+<p>我们也可以在Intent中 用Bundle存储额外的信息</p>
+<p>细心的同学可能发现一个问题：</p>
+<p>启动 Activity 有 startActivity() 和 startActivityForResult() 两种启动方式，返回结果的形式id偶有 setResult() 吗？</p>
+<p>如果开启当前Activity的Intent可能需要结果，只需调用 setResult()。 如果原始 Activity 已调用 startActivityForResult()，则系统将向其传递您提供给 setResult() 的结果；否则，会忽略结果。</p>
+<h2 id="使用大型开源框架完成组件间的通信"><a href="#使用大型开源框架完成组件间的通信" class="headerlink" title="使用大型开源框架完成组件间的通信"></a>使用大型开源框架完成组件间的通信</h2><p>Github上非常火的两大通信组件EventBus和otto：</p>
+<h3 id="1-EventBus"><a href="#1-EventBus" class="headerlink" title="1. EventBus"></a>1. EventBus</h3><p>EventBus 是一个 Android 事件发布/订阅框架，通过解耦发布者和订阅者简化 Android 事件传递，这里的事件可以理解为消息，本文中统一称为事件。事件传递既可用于 Android 四大组件间通讯，也可以用户异步线程和主线程间通讯等等。</p>
+<p>传统的事件传递方式包括：Handler、BroadCastReceiver、Interface 回调，相比之下 EventBus 的优点是代码简洁，使用简单，并将事件发布和订阅充分解耦。</p>
+<p><strong>1）概念：</strong></p>
+<p>事件(Event)：又可称为消息，本文中统一用事件表示。其实就是一个对象，可以是网络请求返回的字符串，也可以是某个开关状态等等。事件类型(EventType)指事件所属的 Class。</p>
+<p>事件分为一般事件和 Sticky 事件，相对于一般事件，Sticky 事件不同之处在于，当事件发布后，再有订阅者开始订阅该类型事件，依然能收到该类型事件最近一个 Sticky 事件。</p>
+<p>订阅者(Subscriber)：订阅某种事件类型的对象。当有发布者发布这类事件后，EventBus 会执行订阅者的 onEvent 函数，这个函数叫事件响应函数。订阅者通过 register 接口订阅某个事件类型，unregister 接口退订。订阅者存在优先级，优先级高的订阅者可以取消事件继续向优先级低的订阅者分发，默认所有订阅者优先级都为 0。</p>
+<p>发布者(Publisher)：发布某事件的对象，通过 post 接口发布事件。</p>
+<p>本项目较为简单，总体设计和流程图：</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/android_comm/EventBus-Publish-Subscribe.png" alt="EventBus-Publish-Subscribe">  </p>
+<p>使用方式：</p>
+<p>build.gradle 中加入依赖</p>
+<pre><code>compile &apos;org.greenrobot:eventbus:3.0.0&apos;
+</code></pre><p>代码中指需三步</p>
+<blockquote>
+<p><strong>1.</strong> 定义事件：只需要是一个Java类</p>
+</blockquote>
+<pre><code>public class MessageEvent {
+    public final String message;
+    public MessageEvent(String message) {
+        this.message = message;
+    }
+}
+</code></pre><blockquote>
+<p><strong>2.</strong> 完成订阅者</p>
+</blockquote>
+<pre><code>//MessageEvent被Eventbus post提交的时候 将会回调这个方法
+//这种方式 提示我们可以直接定义自己的事件
+@Subscribe
+public void onMessageEvent(MessageEvent event){
+    Toast.makeText(getActivity(), event.message, Toast.LENGTH_SHORT).show();
+}
+
+// 当一些其他事件post提交的时候，回调这个方法
+@Subscribe
+public void handleSomethingElse(SomeOtherEvent event){
+    doSomethingWith(event);
+</code></pre><blockquote>
+<p>在Activity或者Fragment中绑定订阅者</p>
+</blockquote>
+<pre><code>@Override
+public void onStart() {
+    super.onStart();
+    EventBus.getDefault().register(this);
+}
+
+@Override
+public void onStop() {
+   EventBus.getDefault().unregister(this);
+    super.onStop();
+}
+</code></pre><blockquote>
+<p><strong>3.</strong> 发布事件：</p>
+</blockquote>
+<pre><code>EventBus.getDefault().post(new MessageEvent(&quot;Hello everyone!&quot;));
+</code></pre><h2 id="本文参考并翻译"><a href="#本文参考并翻译" class="headerlink" title="本文参考并翻译"></a>本文参考并翻译</h2><blockquote>
+<p><a href="http://www.androidchina.net/5028.html#rd" target="_blank" rel="external">文章来源</a></p>
+</blockquote>
+<ul>
+<li><a href="https://developer.android.com/training/basics/fragments/communicating.html" target="_blank" rel="external">Google 课程 Communicating with Other Fragments</a></li>
+<li><a href="https://developer.android.com/guide/components/aidl.html" target="_blank" rel="external">Google 解释 AIDL进程间通信</a></li>
+<li><a href="https://developer.android.com/training/multiple-threads/communicate-ui.html" target="_blank" rel="external">Google 解释 Handler</a></li>
+<li><a href="https://developer.android.com/reference/android/os/AsyncTask.html" target="_blank" rel="external">Google 解释 AsyncTask</a></li>
+<li><a href="https://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank" rel="external">Google BroadcastReceiver API</a></li>
+<li><a href="https://developer.android.com/training/basics/intents/index.html?hl=vi" target="_blank" rel="external">Google 课程 Interacting with Other Apps</a></li>
+<li><a href="https://developer.android.com/guide/topics/providers/content-provider-creating.html" target="_blank" rel="external">Google 解释 contentprovider</a></li>
+<li><a href="https://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank" rel="external">Google BroadcastReceiver 课程</a></li>
+<li><a href="https://developer.android.com/guide/components/services.html" target="_blank" rel="external">Google Service 课程</a></li>
+<li><a href="https://developer.android.com/guide/components/processes-and-threads.html#" target="_blank" rel="external">Google 解释 进程和线程</a></li>
+<li><a href="http://greenrobot.org/eventbus/documentation/" target="_blank" rel="external">EventBus官方文档</a></li>
+</ul>
+
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -821,6 +1787,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -832,13 +1800,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2017/01/24/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -860,13 +1838,21 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-24T10:50:21+08:00" content="2017-01-24">
-              2017-01-24
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-24T10:50:21+08:00">
+                2017-01-24
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -874,29 +1860,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2017/01/24/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/24/hello-world/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/24/hello-world/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2017/01/24/hello-world/" class="leancloud_visitors" data-flag-title="Hello World!">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -910,15 +1904,22 @@
       
         
           
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-          ...
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/24/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -936,6 +1937,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -947,13 +1950,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2017/01/05/WindowSoftware/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -975,24 +1988,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-05T16:03:15+08:00" content="2017-01-05">
-              2017-01-05
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-05T16:03:15+08:00">
+                2017-01-05
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/原创/" itemprop="url" rel="index">
                     <span itemprop="name">原创</span>
                   </a>
@@ -1000,7 +2025,6 @@
 
                 
                 
-
               
             </span>
           
@@ -1008,29 +2032,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2017/01/05/WindowSoftware/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/05/WindowSoftware/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/05/WindowSoftware/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2017/01/05/WindowSoftware/" class="leancloud_visitors" data-flag-title="常用电脑软件你选对了吗？">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1044,17 +2076,124 @@
       
         
           
-          常用电脑软件你选对了吗？（知道的不知道的，这些软件每个都值得你安装）
-前言在公司同事们都认为我是电脑高手，每当有新同事加入，总会找到我让我帮忙在办公桌上组装新的机器使用。同事平时也会找到我修理一下电脑什么的，可是我真的只是一个敬业的程序员啊。  
-昨天，一女同事又找到我，抱怨她的电脑不知怎么了最近几
-          ...
+            <h1 id="常用电脑软件你选对了吗？（知道的不知道的，这些软件每个都值得你安装）"><a href="#常用电脑软件你选对了吗？（知道的不知道的，这些软件每个都值得你安装）" class="headerlink" title="常用电脑软件你选对了吗？（知道的不知道的，这些软件每个都值得你安装）"></a>常用电脑软件你选对了吗？（知道的不知道的，这些软件每个都值得你安装）</h1><p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/windows/window.jpg" alt="常用电脑软件你选对了吗？"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在公司同事们都认为我是电脑高手，每当有新同事加入，总会找到我让我帮忙在办公桌上组装新的机器使用。同事平时也会找到我修理一下电脑什么的，可是我真的只是一个敬业的程序员啊。  </p>
+<p>昨天，一女同事又找到我，抱怨她的电脑不知怎么了最近几天卡的要死，让我帮忙看看。其实我的内心对修电脑是拒绝的，但是毕竟是女同事更何况自己还是单身狗，从这方面出发我对帮女同事内心还是接受的。嘿嘿嘿~~~  </p>
+<p>经过我仔细查看一番，其实没什么大的问题，一方面是电脑每次关开机都会更新系统，直接禁止；一方面是开机自启动程序过多，造成开机速度变慢；另一方面，电脑中安装了很多垃圾软件（大多是一些流氓软件捆绑式的软件）；妹纸毕竟是妹纸，对软件的安装和卸载没有一个完善的概念，一个电脑上光电脑管家就安装了3个：腾讯电脑管家，360全家桶，金山管家杀毒等等，一开机全在后台运行，电脑不卡才怪呢！  </p>
+<p>其实自己呢，真的不是什么大牛，只是我这个人使用电脑有一点洁癖，垃圾软件、没什么用没必要的软件一概卸载，不然存在电脑里心里总是感觉不爽。同时自己安装软件什么的都会安装到特定的地方，电脑稍显零乱自己都会感到别扭。  </p>
+<p>这篇文章以实用高效为出发点对电脑使用时工具集合的一个总结，从如何选择属于自己的电脑机器及选择自己要安装的操作系统，到 Windows 系统最常用最高效的必备软件，最后到开发人员必备的高效工具。下面让我们一起来寻找一些适合自己的好用软件。</p>
+<h2 id="硬件购买"><a href="#硬件购买" class="headerlink" title="硬件购买"></a>硬件购买</h2><p><strong>笔记本</strong>  </p>
+<p>这里只从开发机器的方向提供几种选择：  </p>
+<ol>
+<li>MacBook Pro （同样是图形工作者首选）；</li>
+<li>Dell XPS 系列；</li>
+<li>ThinkPad T 系列；  </li>
+</ol>
+<p>如果你是从玩游戏的方向出发选择笔记本的话，钱多任性就 <code>Alienware</code>，没钱还追求配置的就 <code>神舟战神Z系</code>,综合考虑就 <code>惠普暗影</code> 或其他。  </p>
+<p>如果你是图形或者视频工作者，MacBook Pro、苹果垃圾桶、ThinkPad工作站、微软 Surface Studio也出来了、等等，你们对配置有自己独特的追求，相信你们比我更懂得选择。  </p>
+<p><strong>台式机</strong>  </p>
+<p>开发的话苹果 iMac 一体机相信你一定会考虑的。  </p>
+<p>另外提供几个组装机的平台，希望大家别掉到深水里了，至少避开奸商偷袭的吧： </p>
+<ol>
+<li>京东装机大师 - <a href="http://diy.jd.com/" target="_blank" rel="external">http://diy.jd.com/</a>  </li>
+<li>萌叔装机好福哟 - <a href="https://shironeko.taobao.com" target="_blank" rel="external">https://shironeko.taobao.com</a></li>
+<li>ZOL中关村在线模拟攒机 - <a href="http://zj.zol.com.cn/" target="_blank" rel="external">http://zj.zol.com.cn/</a> （这里还有很多网友提供的完美配置单大家可以参考）  </li>
+</ol>
+<blockquote>
+<p>对于<a href="http://detail.zol.com.cn/" target="_blank" rel="external">中关村在线</a>这个数码产品报价网站，虽然它已不复当年的辉煌，也几经易主，对于我个人来说，对它还是很信赖的。  </p>
+</blockquote>
+<p><strong>配件</strong>  </p>
+<p>鼠标、机械键盘、座椅、显示器等等大家对应自己的癖好选择吧。  </p>
+<p>这里值得一提的机器配置方面的，无论你选择哪款笔记本或台式机，或者你想让自己战斗多年的机器能够满血复活重现昔日风采，目前来说对机器提升最大的就是 <strong><code>SSD 固态硬盘</code></strong>。性能提升一倍那绝对不是空谈，大家可以自主动手给自己的机器添加一块SSD,一般来说 256G 的就足够使用了。另外现在来看，内存方面大家一般比较青睐 16G，8G 也基本上能够满足需求。  </p>
+<blockquote>
+<p><strong>SSD固态硬盘注意点</strong>：目前固态硬盘有多种规格，如果大家考虑自主添加的话  </p>
+<ul>
+<li>添加位置：首先大家要考虑的是机器本身有没有带 SSD硬盘接口位。另外可以考虑添加到光驱位。  </li>
+<li>规格型号：确定好添加位置后，可以上网查询一下，自己的机器支持的是哪种规格的SSD，如果不提前计划好，买了不能不适合的规格到时候肯定有不少麻烦。  </li>
+</ul>
+</blockquote>
+<p><strong>操作系统</strong>  </p>
+<p>机器什么都准备好了，那就是选择使用什么系统了，这里提供各种系统的选择：  </p>
+<ol>
+<li><strong>Windows 7</strong> 普通用户或公司办公追求稳定的选择<br>MSDN资源地址：<a href="http://itellyou.cn/" target="_blank" rel="external">http://itellyou.cn/</a></li>
+<li><strong>Windows 10</strong> 说实话，这是一个不错的系统，值得尝试<br>官方 Windows 10 下载安装器：<a href="https://www.microsoft.com/zh-cn/software-download/windows10" target="_blank" rel="external">https://www.microsoft.com/zh-cn/software-download/windows10</a><br>Windows 10教程：<a href="https://www.zhihu.com/question/32129337" target="_blank" rel="external">如何优雅地使用 Windows 10 ？</a>  </li>
+<li><strong>Ubuntu</strong> 其实尝试一个新系统，只是你一个决心的事情<br>下载 Ubuntu：<a href="http://cn.ubuntu.com/download/" target="_blank" rel="external">http://cn.ubuntu.com/download/</a><br>Linux 发行版本太多了，Ubuntu 的衍生版本就很多，至于选择那种版本，老鸟们都有自己的看法，小白都是一脸懵逼的表情。这里个人推荐原生 <strong><code>Ubuntu 16.04 LTS(长期支持)版本</code></strong>,一点也不想折腾的可以选择 <strong><code>优麒麟 16.04 LTS(长期支持)版本</code></strong>。  </li>
+<li><strong>macOS</strong> 用苹果笔记本你可以走了，这里要说的是黑苹果的安装<br>其实现在的机器对苹果的兼容性已经很好了，一般情况下不会出现太多问题。这里给大家推荐一家国外专门为 <code>安装黑苹果</code> 提供指导的网站。<br>网站地址（英文）：<a href="https://www.tonymacx86.com/" target="_blank" rel="external">tonymacx86.com</a><br>这里提供了安装黑苹果的详细教程，及其遇到各种问题的解决方案，真个不能再详细了。<br>值得一提的是，这个网站还向大家提供了很多安装黑苹果的台式机采购单（配置单）。如果自己通过组装机来安装苹果系统，基本上是全面兼容的，并且你完全可以给自己的机器配置上一个强大的显卡，那性能肯定完爆 Mac 等啊，想想是不是就很激动。  </li>
+</ol>
+<h2 id="常用软件（这里针对-Windows）"><a href="#常用软件（这里针对-Windows）" class="headerlink" title="常用软件（这里针对 Windows）"></a>常用软件（这里针对 Windows）</h2><h3 id="效率神器"><a href="#效率神器" class="headerlink" title="效率神器"></a>效率神器</h3><p>这里先推荐一款特色的软件。  </p>
+<p><strong>Listary</strong><br>如果Mac下的Alfred作为排名第一的效率工具类神器，那 Listary 享此盛誉也不为过，正在使用 <strong>Launchy / Everything / Total Commander</strong> 的真的可以尝试一下。有人还推荐 <strong><a href="http://www.jeffjade.com/2016/03/11/2016-03-11-autohotkey/" target="_blank" rel="external">AutoHotKey</a></strong>，本人没使用过，大家有兴趣的可以尝试下。<br>下载地址：<a href="http://www.listary.com/" target="_blank" rel="external">http://www.listary.com/</a>  </p>
+<h3 id="文本编辑"><a href="#文本编辑" class="headerlink" title="文本编辑"></a>文本编辑</h3><p><strong>Atom</strong><br>开源的新一代编码写文章神器。支持markdown语法。<br>下载地址：<a href="https://atom.io/" target="_blank" rel="external">https://atom.io/</a><br>使用教程：<a href="http://www.jeffjade.com/2016/03/03/2016-03-02-how-to-use-atom/" target="_blank" rel="external">新编码神器Atom使用纪要</a></p>
+<p><strong>Sublime Text 3</strong><br>这个大家再熟悉不过了，全平台支持，同样是编码垒字的神器，还支持文件对比、查看图片等。<br>下载地址：<a href="https://www.sublimetext.com/3" target="_blank" rel="external">https://www.sublimetext.com/3</a><br>使用教程：<a href="http://blinkfox.com/atom-geng-xian-dai-hua-de-bian-ji-qi/" target="_blank" rel="external">Atom-更现代化的编辑器</a>  </p>
+<p><strong>NotePad2</strong><br>系统记事本代替软件。  </p>
+<p><strong>Markdown</strong><br>语法说明：<a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">http://wowubuntu.com/markdown/</a><br>编辑器推荐：<a href="https://www.zhihu.com/question/19637157" target="_blank" rel="external">知乎：用 Markdown 写作用什么文本编辑器？</a><br>在线编辑器：<a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="external">Cmd Markdown</a> 作业部落也推出客户端了 &amp; <a href="http://www.jianshu.com/u/e61d05cbf47e" target="_blank" rel="external">简书</a>  </p>
+<h3 id="邮件客户端"><a href="#邮件客户端" class="headerlink" title="邮件客户端"></a>邮件客户端</h3><p><strong>Foxmail</strong><br>下载地址：<a href="http://foxmail.com.cn/" target="_blank" rel="external">http://foxmail.com.cn/</a>  </p>
+<p>个人日常在线邮箱建议使用QQ邮箱。<br>投简历还是尽量选择Gmail，实在不行也得选择163邮箱。  </p>
+<blockquote>
+<p>大家不喜欢 Foxmail 的，并且想收发 Gmail 的可以选择网易邮箱大师客户端（自家的代理服务器）。</p>
+</blockquote>
+<h3 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h3><p><strong>Google Chrome</strong><br>官方下载地址：<a href="http://chrome.google.com/" target="_blank" rel="external">http://chrome.google.com/</a><br>由于被墙，使用官方的下载器一般难以下载成功，下面提供国内一位良心网友提供的下载地址：<a href="http://www.chromeliulanqi.com/" target="_blank" rel="external">http://www.chromeliulanqi.com/</a>  </p>
+<p>简洁的界面和精益求精的内核是核心，插件丰富，版本飙得够快。</p>
+<blockquote>
+<p>Chrome 插件：<a href="https://www.zhihu.com/question/19594682" target="_blank" rel="external">你极力推荐的 Chrome 扩展有哪些？</a>  </p>
+</blockquote>
+<p><strong>Firefox 火狐浏览器</strong><br>经久不衰，插件丰富，多平台，同时是Ubuntu默认浏览器。  </p>
+<h3 id="媒体处理"><a href="#媒体处理" class="headerlink" title="媒体处理"></a>媒体处理</h3><p><strong>2345看图王</strong><br>速度最快的看图软件<br>ACDSee臃肿，Picasa乏力，专业制图请使用PS<br>下载地址：<a href="http://pic.2345.com/" target="_blank" rel="external">http://pic.2345.com/</a>  </p>
+<p><strong>网易云音乐</strong><br>借用网友的话：“初遇QQ音乐,处过天天动听,恋过酷狗，上过酷我，一夜情过千千静听,移情过虾米，和豆瓣FM好过，同百度随心听约过,最后，发现音乐的世界,还得是你～网易云音乐。”<br>网易再一次用优秀的产品体验为自己赢得了口碑,同时也为 Ubuntu 开发了相应版本，实属业界良心。<br>下载地址：<a href="http://music.163.com" target="_blank" rel="external">http://music.163.com</a>  </p>
+<p><strong>完美解码</strong><br>高清全能解码播放,基本上没有不能播放的格式。<br>下载地址：<a href="http://jm.wmzhe.com/" target="_blank" rel="external">http://jm.wmzhe.com/</a>  </p>
+<p><strong>格式工厂</strong><br>经常音视频转码必备之一吧。<br>下载地址：<a href="http://www.pcfreetime.com/" target="_blank" rel="external">http://www.pcfreetime.com/</a>  </p>
+<h3 id="数据同步共享-云笔记"><a href="#数据同步共享-云笔记" class="headerlink" title="数据同步共享/云笔记"></a>数据同步共享/云笔记</h3><p><strong>金山快盘</strong><br>百度网盘统一文件共享，360不时捅其菊花，金山不断深耕协同办公，腾讯继续保持蛋疼状态<br>下载地址：<a href="http://www.kuaipan.cn/" target="_blank" rel="external">http://www.kuaipan.cn/</a>  </p>
+<p><strong>Evernote印象笔记</strong><br>笔记类应用除了onenote我只认可它<br>建议搭配金山快盘和Evernote，提高工作效率<br>能通过 Chrome 插件一键保存，同时支持微信公众号、新浪微博、等等第三方分享保存  </p>
+<p>下载地址：<a href="http://www.evernote.com/" target="_blank" rel="external">http://www.evernote.com/</a>  </p>
+<blockquote>
+<p>现在云笔记有很多，比较各个云笔记各有优缺点：<br><strong>印象笔记</strong>：功能丰富，保存文章格式准确，但是有些功能需要购买高级账号，比如手机本地同步文章。<br><strong>有道云笔记</strong>：分享方便，同时能够分享整个文件夹，整体功能都有，但是各个功能都不完美，网页一键保存格式容易乱。同时笔记保存容易，导出迁移难，只进不出很不地道。<br><strong>为知笔记</strong>：支持 Ubuntu 平台的客户端。功能方面没有太大的亮点，分享比较难。</p>
+</blockquote>
+<p><strong>有道云协作</strong><br>跨平台支持多人实时协作，可以极大提升团队效率<br>虽然没有直接推荐有道云笔记但对于文字编辑类工作者来说整合使用还是很方便的<br>下载地址：<a href="http://note.youdao.com/groupintro.html" target="_blank" rel="external">http://note.youdao.com/groupintro.html</a>  </p>
+<p><strong>FileGee</strong><br>国内优秀的个人免费本地同步工具<br>下载地址：<a href="http://cn.filegee.com/" target="_blank" rel="external">http://cn.filegee.com/</a>  </p>
+<p><strong>自同步</strong><br>局域网最高效的文件同步、共享工具<br>下载地址：<a href="http://www.zisync.com/" target="_blank" rel="external">http://www.zisync.com/</a>  </p>
+<h3 id="功能软件"><a href="#功能软件" class="headerlink" title="功能软件"></a>功能软件</h3><p><strong>有道词典</strong><br>越做越强，短期内无人能超越<br>下载地址：<a href="http://cidian.youdao.com/" target="_blank" rel="external">http://cidian.youdao.com/</a>  </p>
+<p><strong>好压</strong><br>简单方便，自带虚拟光驱<br>WinRAR，7zip，360压缩也许都很优秀，个人更青睐这个。<br>下载地址：<a href="http://haozip.2345.com/" target="_blank" rel="external">http://haozip.2345.com/</a>  </p>
+<p><strong>Faststone Capture 截图、取色、标尺</strong><br>截图神器+录屏工具<br>下载地址：<a href="http://www.portablesoft.org/faststone-capture/" target="_blank" rel="external">http://www.portablesoft.org/faststone-capture/</a>  </p>
+<p><strong>Mark Man马克鳗</strong><br>高效的设计稿标注、测量工具<br>下载地址：<a href="http://www.getmarkman.com/" target="_blank" rel="external">http://www.getmarkman.com/</a></p>
+<p><strong>MathType</strong><br>最佳数学公式编辑器<br>参考地址：<a href="http://fengqingwuhen.blog.163.com/blog/static/17747406320141019104445935/" target="_blank" rel="external">Office绿色插件小集</a>  </p>
+<p><strong>PDF阅读器</strong>  </p>
+<ol>
+<li>福昕PDF<br>优秀的个人免费PDF阅读软件<br>简单小巧够用  </li>
+<li>Adobe Acrobat<br>需要使用专业功能朋友还是坚持Acrobat吧</li>
+</ol>
+<p><strong>驱动精灵</strong><br>不重装电脑或者驱动异常，别没事升级驱动，用时下载，用完卸载掉。<br>下载地址：<a href="http://www.drivergenius.com/" target="_blank" rel="external">http://www.drivergenius.com/</a>  </p>
+<p><strong>远程控制</strong>  </p>
+<ol>
+<li><p>TeamViewer<br>远程控制，内网穿透，VPN共享，跨平台<br>对个人免费，业界良心啊，QQ表示继续努力<br>下载地址：<a href="https://www.teamviewer.com/zhCN/?pid=google.tv_ex.s.cn&amp;gclid=CjwKEAiA17LDBRDElqOGq8vR7m8SJAA1AC0_XgN-32LpaMm8kQCZWHnmMkDcIoSbP2ePpc5fYmXF3hoC67Dw_wcB" target="_blank" rel="external">www.teamviewer.com</a>  </p>
+</li>
+<li><p>AnyDesk<br>远程控制效果或许会超出你的想象，作为TeamViewer备用方案<br>下载地址：<a href="http://anydesk.com/" target="_blank" rel="external">http://anydesk.com/</a>  </p>
+</li>
+</ol>
+<p><strong>Clover 3</strong><br>为您的 Windows Explorer 插上翅膀！<br>Clover 是 Windows Explorer 资源管理器的一个扩展，为其增加类似谷歌 Chrome 浏览器的多标签页功能。<br>下载地址：<a href="http://cn.ejie.me/" target="_blank" rel="external">http://cn.ejie.me/</a>  </p>
+<h3 id="数据备份恢复"><a href="#数据备份恢复" class="headerlink" title="数据备份恢复"></a>数据备份恢复</h3><p><strong>易数一键还原</strong><br>以DiskGenius为内核开发，安全易用靠谱<br>同时推荐ORM一键还原系统<br>下载地址：<a href="http://www.onekeyrestore.cn/" target="_blank" rel="external">http://www.onekeyrestore.cn/</a>  </p>
+<p><strong>DiskGenius</strong><br>国内磁盘分区和数据恢复的佼佼者<br>下载地址：<a href="http://pan.baidu.com/s/1kTj3b75" target="_blank" rel="external">http://pan.baidu.com/s/1kTj3b75</a>  </p>
+<h3 id="广告屏蔽"><a href="#广告屏蔽" class="headerlink" title="广告屏蔽"></a>广告屏蔽</h3><p><strong>阿呆猫</strong><br>ADSafe名气太响受到制约，移动端去广告可继续使用<br>发现上网异常请自觉停用此类去广告软件<br>下载地址：<a href="http://www.admflt.com/" target="_blank" rel="external">http://www.admflt.com/</a>  </p>
+<p><strong>ADSafe净网大师</strong><br>目前国内强大的去广告软件,不仅可以去除网页广告,更重要的是可以过滤视频广告，但是人怕出名猪怕壮，下载很多视频网站虽然能够屏蔽广告，但是广告读秒依然在。有时候对电脑上网造成异常。<br>下载地址：<a href="www.ad-safe.com/">www.ad-safe.com/</a>  </p>
+<p><strong>AdBlock Chrome浏览器广告屏蔽插件</strong><br>Chrome 必备插件之一  </p>
+<h2 id="专业软件"><a href="#专业软件" class="headerlink" title="专业软件"></a>专业软件</h2><p><strong>FreeMind</strong><br>免费简单好用的思维脑图工具<br>XMind，Mindjet MindManager或许更专业<br>下载地址：<a href="http://sourceforge.net/projects/freemind/" target="_blank" rel="external">http://sourceforge.net/projects/freemind/</a>  </p>
+<p><strong>Cmder</strong><br>windows下cmd的替换工具,支持 PowerShell;同比还有 PowerShell，ConEmu 等。<br>下载地址：<a href="https://github.com/cmderdev/cmder/releases" target="_blank" rel="external">https://github.com/cmderdev/cmder/releases</a>  </p>
+<p><strong>Git</strong><br>分散式版本控制工具，无需多说。<br>下载地址：<a href="https://git-scm.com/downloads" target="_blank" rel="external">https://git-scm.com/downloads</a>  </p>
+<p><strong>Git for Windows</strong><br>官网下载安装真的很难，打包好了，直接使用；Git 一族必备。<br>下载地址：<a href="https://git-for-windows.github.io/" target="_blank" rel="external">https://git-for-windows.github.io/</a>  </p>
+<p><strong>Nodejs</strong><br>可以辅助让Sublime编译Js；可以做Web开发，REST开发，Web聊天室/爬虫，Web博客(Hexo)，Web论坛等等，可参见<a href="http://www.nodejs.net/a/20141016/233306.html" target="_blank" rel="external">分享十五个NodeJS应用场景</a>；还可以利用Nodejs的包管理器Npm 安装Gulp Webpack等屌炸天工具～做大多你可以想到的东东；Web端必备。<br>下载地址：<a href="https://nodejs.org/" target="_blank" rel="external">https://nodejs.org/</a>  </p>
+<p><strong>Hexo</strong><br>搭建个人博客网站框架。<br>官方地址：<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a><br>个人推荐 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">NexT</a> 主题,网站效果可以查看：<a href="http://ocnyang.com/">http://ocnyang.com/</a>  </p>
+<p><strong>Beyond Compare</strong><br>对比两个版别的软件源代码在哪些地方有修正，用它就对了。可谓是程序员至必备工具。<br>下载地址：<a href="www.beyondcompare.cc/xiazai.html">www.beyondcompare.cc/xiazai.html</a>  </p>
+<p><strong>Navicat</strong><br>Navicat是一个可多重连接的数据库管理工具，它可以连接到MySQL、Oracle、PostgreSQL、SQLite、SQL Server和/或MariaDB数据库，让数据库管理更加方便。它在程序员中的应用就不错说了。<br>官方地址：<a href="https://www.navicat.com.cn/" target="_blank" rel="external">https://www.navicat.com.cn/</a>  </p>
+<p><strong>VMware</strong><br>VMware虚拟机软件，提供服务器、桌面虚拟化的解决方案，支持一个虚拟机同时使用四个物理处理器，和VMFS,它能使多个ESX服务器分享块存储器。<br>官方地址：<a href="www.vmware.com/">www.vmware.com/</a>  </p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>终于写完了，中间肯定还遗漏很多。想起来后续会逐渐更新上去。  </p>
+<blockquote>
+<p>参考文章：<br><a href="http://www.jeffjade.com/2015/10/19/2015-10-18-Efficacious-win-software/" target="_blank" rel="external">http://www.jeffjade.com/2015/10/19/2015-10-18-Efficacious-win-software/</a><br><a href="https://wsgzao.github.io/post/windows/" target="_blank" rel="external">https://wsgzao.github.io/post/windows/</a><br><a href="http://jingyan.baidu.com/article/ad310e80c0c7f11848f49e7d.html" target="_blank" rel="external">http://jingyan.baidu.com/article/ad310e80c0c7f11848f49e7d.html</a><br><a href="http://fengqingwuhen.blog.163.com/blog/static/17747406320141019104445935/" target="_blank" rel="external">http://fengqingwuhen.blog.163.com/blog/static/17747406320141019104445935/</a><br><a href="http://www.cnblogs.com/peiqianggao/p/4956451.html" target="_blank" rel="external">http://www.cnblogs.com/peiqianggao/p/4956451.html</a></p>
+</blockquote>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/05/WindowSoftware/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -1072,6 +2211,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -1083,13 +2224,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/12/28/SupportAnnotations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -1111,24 +2262,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-28T15:03:15+08:00" content="2016-12-28">
-              2016-12-28
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-28T15:03:15+08:00">
+                2016-12-28
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Android教程系列/" itemprop="url" rel="index">
                     <span itemprop="name">Android教程系列</span>
                   </a>
@@ -1136,7 +2299,6 @@
 
                 
                 
-
               
             </span>
           
@@ -1144,29 +2306,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/12/28/SupportAnnotations/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/28/SupportAnnotations/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/28/SupportAnnotations/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/12/28/SupportAnnotations/" class="leancloud_visitors" data-flag-title="在 Android 使用 Support Annotations 注解优化代码">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1180,15 +2350,193 @@
       
         
           
-          在 Android 使用 Support Annotations 注解优化代码前言：本片文章讲解怎么使用Support Annotations注解优化代码，比如使用 android特有的魔术变量注解替代Enum 等功能。不要看见使用注解就想到反射会影响性能之类，今天我们就来学习一下Android S
-          ...
+            <h1 id="在-Android-使用-Support-Annotations-注解优化代码"><a href="#在-Android-使用-Support-Annotations-注解优化代码" class="headerlink" title="在 Android 使用 Support Annotations 注解优化代码"></a>在 Android 使用 Support Annotations 注解优化代码</h1><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>本片文章讲解怎么使用Support Annotations注解优化代码，比如使用 <strong>android特有的魔术变量注解替代Enum</strong> 等功能。不要看见使用注解就想到反射会影响性能之类，今天我们就来学习一下Android Support Annotations注解来优化我们的代码，增加可读性的同时，也让让更多的错误消灭在萌芽之中。</p>
+<h3 id="Support-Annotations-简介："><a href="#Support-Annotations-简介：" class="headerlink" title="Support Annotations 简介："></a>Support Annotations 简介：</h3><p><code>Android support library</code> 不断地引入新的注解库，它包含很多有用的元注解，你能用它们修饰你的代码，帮助你发现<code>bug</code>。<code>Support library</code> 自己本身也用到了这些注解，所以作为 <code>support library</code> 的用户，<code>Android Studio</code>已经基于这些注解校验了你的代码并且标注其中潜在的问题。</p>
+<h3 id="Support-Annotations-如何引入："><a href="#Support-Annotations-如何引入：" class="headerlink" title="Support Annotations 如何引入："></a>Support Annotations 如何引入：</h3><p>注解默认是没有包含的；它被包装成一个独立的库，如果使用了appcompat库，那么 <code>Support Annotations</code> 就会自动引入进来，因为 <code>appcompat</code> 使用了 <code>Support Annotations</code>，如果没有则需要在 <code>build.gradle</code> 中添加如下配置：</p>
+<pre><code>dependencies {
+    compile &apos;com.android.support:support-annotations:23.4.0&apos;
+}
+</code></pre><blockquote>
+<p>如果你已经引入了 <code>appcompat v7</code> 则可能就没有必要再次引用 <code>support-annotations</code> ,因为 <code>appcompat</code> 默认包含了对其引用。</p>
+</blockquote>
+<h2 id="Support-Annotations分类："><a href="#Support-Annotations分类：" class="headerlink" title="Support Annotations分类："></a>Support Annotations分类：</h2><h3 id="Typedef-注解：IntDef-StringDef-Android特有的魔术变量注解替代Enum"><a href="#Typedef-注解：IntDef-StringDef-Android特有的魔术变量注解替代Enum" class="headerlink" title="Typedef 注解：IntDef / StringDef (Android特有的魔术变量注解替代Enum)"></a>Typedef 注解：IntDef / StringDef (Android特有的魔术变量注解替代Enum)</h3><p>Enum in Android 枚举Enum在java中是一个完整的类. 而枚举中的每一个值在枚举类中都是一个对象. 所以在我们使用时枚举的值将比整数常量消耗更多的内存. 当我们使用枚举在安卓应用中, 如果我们的程序本身内存消耗就比较大,或者是一个游戏的应用程序. 那么我们最好使用常量来替代枚举。可是使用了常量代替后又不能限制取值了。那有什么好的办法呢？   </p>
+<p>当然, Android 支持注解库中有一些好用的annotation helper 我们可以使用它们来解决我们之前的问题(在编译代码时期).<br>IntDef和StringDef 是两个魔术变量注解. 使用这个两个来替代之前使用的Enum. 它将帮助我们在编译代码时期像Enum那样选择变量的功能。 @IntDef和”typedef”作用非常类似，你可以创建另外一个注解，然后用@IntDef指定一个你期望的整型常量值列表，最后你就可以用这个定义好的注解修饰你的API了。接下来我们来使用IntDef来替换Enum看一下.</p>
+<pre><code>public class MainActivity extends Activity {
+    public static final int SUNDAY = 0;
+    public static final int MONDAY = 1;
+    {...省略部分}
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/28/SupportAnnotations/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+    @IntDef({SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface WeekDays {
+    }
+
+    @WeekDays
+    int currentDay = SUNDAY;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        setCurrentDay(WEDNESDAY);
+
+        @WeekDays int today = getCurrentDay();
+        switch (today) {
+            case SUNDAY:
+                break;
+            case MONDAY:
+                break;
+            {...省略部分}
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 参数只能传入在声明范围内的整型，不然编译通不过
+     * @param currentDay
+     */
+    public void setCurrentDay(@WeekDays int currentDay) {
+        this.currentDay = currentDay;
+    }
+
+    @WeekDays
+    public int getCurrentDay() {
+        return currentDay;
+    }
+}
+</code></pre><blockquote>
+<p><strong>说明：</strong>  </p>
+<ol>
+<li>声明一些必要的 <code>int</code> 常量  </li>
+<li>声明一个注解为 <code>WeekDays</code>  </li>
+<li>使用 <code>@IntDef</code> 修饰 <code>WeekDays</code>,参数设置为待枚举的集合  </li>
+<li>使用 <code>@Retention(RetentionPolicy.SOURCE)</code> 指定注解仅存在与源码中,不加入到 <code>class</code> 文件中 </li>
+</ol>
+</blockquote>
+<p>需要在调用时只能传入指定类型，如果传入类型不对，编译不通过。  </p>
+<p>我们也可以指定整型值作为标志位，也就是说这些整型值可以使用 ’｜’ 或者 ’&amp;’ 进行与或等操作。如果我们把@Flavour定义为如下标志位：</p>
+<pre><code>@IntDef(flag = true, value = {SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY})
+public @interface Flavour {
+}
+</code></pre><p>那么可以如下调用：</p>
+<pre><code>setCurrentDay(SUNDAY &amp; WEDNESDAY);
+</code></pre><blockquote>
+<p>@StringDef用法和@IntDef基本差不多，只不过是针对String类型而已。</p>
+</blockquote>
+<h3 id="Nullness注解"><a href="#Nullness注解" class="headerlink" title="Nullness注解"></a>Nullness注解</h3><p>@Nullable注解可以用来标识特定的参数或者返回值可以为null。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/nullable.png" alt="@Nullable"></p>
+<p>@NonNull注解可以用来标识参数不能为null。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/nonnull.png" alt="@NonNull"></p>
+<h3 id="Resource-Type-注解"><a href="#Resource-Type-注解" class="headerlink" title="Resource Type 注解　　"></a>Resource Type 注解　　</h3><p>资源在Android中作为整型值来传递。这意味着希望获取一个drawable作为参数的代码很容易被传递了一个string类型的资源，因为他们资源id都是整型的，编译器很难区分。Resource Type注解在这种条件下可以提供类型检查，例如：</p>
+<p>如果类型指定错误，编译不会通过。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/resourceType.png" alt="Resource Type"></p>
+<p>常见的Resource Type注解,使用方式都是指定一个integer的参数、成员变量、或者方法，检查对应的资源类型。</p>
+<ul>
+<li>AnimatorRes ：animator资源类型</li>
+<li>AnimRes：anim资源类型</li>
+<li>AnyRes：任意资源类型</li>
+<li>ArrayRes：array资源类型</li>
+<li>AttrRes：attr资源类型</li>
+<li>BoolRes：boolean资源类型</li>
+<li>ColorRes：color资源类型</li>
+<li>DimenRes：dimen资源类型。</li>
+<li>DrawableRes：drawable资源类型。</li>
+<li>FractionRes：fraction资源类型</li>
+<li>IdRes：id资源类型</li>
+<li>IntegerRes：integer资源类型</li>
+<li>InterpolatorRes：interpolator资源类型</li>
+<li>LayoutRes：layout资源类型</li>
+<li>MenuRes：menu资源类型</li>
+<li>PluralsRes：plurals资源类型</li>
+<li>RawRes：raw资源类型</li>
+<li>StringRes：string资源类型</li>
+<li>StyleableRes：styleable资源类型</li>
+<li>StyleRes：style资源类型</li>
+<li>TransitionRes：transition资源类型</li>
+<li>XmlRes：xml资源类型  </li>
+</ul>
+<p>以上基本上包括了所有的资源类型，但是有时需要通过RGB颜色整型来设置颜色值，在这种情况下，你可以使用 <code>@ColorInt</code> 注解，表示你期望的是一个代表颜色的整数值，如果使用不对同样也是编译不通过</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/colorint.png" alt="@ColorInt"></p>
+<h3 id="Threading-注解"><a href="#Threading-注解" class="headerlink" title="Threading 注解"></a>Threading 注解</h3><p>比如我们在项目中处理比较耗时的操作，需要制定在工作子线程中执行，可以使用Threading 注解，如果没有在制定的线程中执行也是编译不过的</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/threading.png" alt="Threading"></p>
+<p>几种Threading注解</p>
+<ul>
+<li>@UiThread UI线程</li>
+<li>@MainThread 主线程</li>
+<li>@WorkerThread 子线程</li>
+<li>@BinderThread  绑定线程  </li>
+</ul>
+<h3 id="Value-Constraints-注解：-Size-IntRange-FloatRange"><a href="#Value-Constraints-注解：-Size-IntRange-FloatRange" class="headerlink" title="Value Constraints 注解：@Size, @IntRange, @FloatRange"></a>Value Constraints 注解：<code>@Size</code>, <code>@IntRange</code>, <code>@FloatRange</code></h3><p>在实际开发过程中，我们有时可能需要设置一个取值范围，这时我们可以使用取值范围注解来约束。<br>比如我们设置一个百分比，取值范围为0-100，</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/intRange.png" alt="@IntRange"></p>
+<p>对于数据、集合以及字符串，你可以用@Size注解参数来限定集合的大小(当参数是字符串的时候，可以限定字符串的长度)。</p>
+<p>举几个例子</p>
+<ul>
+<li>集合不能为空: @Size(min=1)</li>
+<li>字符串最大只能有23个字符: @Size(max=23)</li>
+<li>数组只能有2个元素: @Size(2)</li>
+<li>数组的大小必须是2的倍数 (例如图形API中获取位置的x/y坐标数组: @Size(multiple=2)  </li>
+</ul>
+<h3 id="Permissions-注解-RequiresPermission"><a href="#Permissions-注解-RequiresPermission" class="headerlink" title="Permissions 注解: @RequiresPermission"></a>Permissions 注解: @RequiresPermission</h3><p>有时我们的方法调用需要调用者拥有指定的权限，这时我们可以使用@RequiresPermission注解，</p>
+<pre><code>@RequiresPermission(Manifest.permission.SET_WALLPAPER)
+public abstract void setWallpaper(Bitmap bitmap) throws IOException;
+</code></pre><p>除了上面的单一使用方式，官方同时也给出了如下几种使用场景</p>
+<p><strong>（1）如果你至少需要权限集合中的一个，你可以使用anyOf属性</strong></p>
+<pre><code>@RequiresPermission(anyOf = {
+    Manifest.permission.ACCESS_COARSE_LOCATION,
+    Manifest.permission.ACCESS_FINE_LOCATION})
+public abstract Location getLastKnownLocation(String provider);
+</code></pre><p><strong>（2）如果你同时需要多个权限，你可以用allOf属性</strong></p>
+<pre><code>@RequiresPermission(allOf = {
+    Manifest.permission.READ_HISTORY_BOOKMARKS, 
+    Manifest.permission.WRITE_HISTORY_BOOKMARKS})
+public static final void updateVisitedHistory(ContentResolver cr, String url, boolean real) ;  
+</code></pre><p><strong>（3）对于intents的权限，可以直接在定义的intent常量字符串字段上标注权限需求(他们通常都已经被@SdkConstant注解标注过了)</strong></p>
+<pre><code>@RequiresPermission(android.Manifest.permission.BLUETOOTH)
+public static final String ACTION_REQUEST_DISCOVERABLE =
+            &quot;android.bluetooth.adapter.action.REQUEST_DISCOVERABLE&quot;;
+</code></pre><p><strong>（4）对于content providers的权限，你可能需要单独的标注读和写的权限访问，所以可以用@Read或者@Write标注每一个权限需求</strong></p>
+<pre><code>@RequiresPermission.Read(@RequiresPermission(READ_HISTORY_BOOKMARKS))
+@RequiresPermission.Write(@RequiresPermission(WRITE_HISTORY_BOOKMARKS))
+public static final Uri BOOKMARKS_URI = Uri.parse(&quot;content://browser/bookmarks&quot;);  
+</code></pre><h3 id="Overriding-Methods-注解-CallSuper"><a href="#Overriding-Methods-注解-CallSuper" class="headerlink" title="Overriding Methods 注解: @CallSuper"></a>Overriding Methods 注解: @CallSuper</h3><p>如果你的API允许使用者重写你的方法，但是呢，你又需要你自己的方法(父方法)在重写的时候也被调用，这时候你可以使用@CallSuper标注</p>
+<p>例如：Activity的onCreate函数</p>
+<pre><code>@CallSuper
+protected void onCreate(@Nullable Bundle savedInstanceState) 
+</code></pre><p>用了这个后，当重写的方法没有调用父方法时，工具就会给予标记提示</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/callsuper.png" alt="@CallSuper"></p>
+<h3 id="Return-Values注解-CheckResult"><a href="#Return-Values注解-CheckResult" class="headerlink" title="Return Values注解: @CheckResult"></a>Return Values注解: @CheckResult</h3><p>如果你的方法返回一个值，你期望调用者用这个值做些事情，那么你可以使用 <code>@CheckResult</code> 注解标注这个方法。</p>
+<p>这个在具体使用中用的比较少，除非特殊情况，比如在项目中对一个数据进行处理，这个处理比较耗时，我们希望调用该函数的调用者在不需要处理结果的时候，提示没有使用，酌情删除调用。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/supportAnnotations/checkResult.png" alt="@CheckResult"></p>
+<h3 id="Keep-注解"><a href="#Keep-注解" class="headerlink" title="Keep 注解"></a>Keep 注解</h3><p>Keep：指出一个方法在被混淆的时候应该被保留。  </p>
+<p>在Android编译生成APK的环节,我们通常需要设置minifyEnabled为true实现下面的两个效果:  </p>
+<ul>
+<li>混淆代码</li>
+<li>删除没有用的代码  </li>
+</ul>
+<p>但是出于某一些目的,我们需要不混淆某部分代码或者不删除某处代码,除了配置复杂的Proguard文件之外,我们还可以使用@Keep注解.</p>
+<pre><code>@Keep
+public static int getBitmapWidth(Bitmap bitmap) {
+    return bitmap.getWidth();
+}
+</code></pre><h3 id="其他注解"><a href="#其他注解" class="headerlink" title="其他注解"></a>其他注解</h3><p>   <strong>VisibleForTesting</strong>：可注解一个类，方法，或变量，表示有更宽松的可见性，这样它能够有更宽泛的可见性，使代码可以被测试。</p>
+<h3 id="IntelliJ注解"><a href="#IntelliJ注解" class="headerlink" title="IntelliJ注解"></a>IntelliJ注解</h3><p><code>IntelliJ</code> ，Android Studio 就是基于它开发的， IntelliJ 有一套它自己的注解； IntDef 分析其实重用的是 MagicConstant 分析的代码，IntelliJ null 分析其实用的是一组配置好的 null 注解。如果你执行 Analyze &gt; Infer Nullity…，它会试图找出所有的 null 约束并添加他们。这个检查有时会插入 IntelliJ 注解。你可以通过搜索,替换为 Android 注解库的注解，或者你也可以直接用 IntelliJ 注解。在 build.gradle 里或者通过 Project Structure 对话框的 Dependencies 面板都可以添加如下依赖：</p>
+<pre><code>dependencies {
+    compile &apos;com.intellij:annotations:12.0&apos;
+}
+</code></pre><h2 id="结尾："><a href="#结尾：" class="headerlink" title="结尾："></a>结尾：</h2><p>经过查阅资料和博客，系统了学习和总结了关于Support Annotations注解的内容，在编码中通过使用Support Annotations可以提高代码可读性，同时可以在类加载时就可以检查一些错误，同时不会对性能有任何影响，因为Support Annotations中的注解的生命周期全部是RetentionPolicy.class。在以后的编码中大家可以尝试用用。  </p>
+<blockquote>
+<p><strong>参考文章（本编文章大多来自对下面几篇文章的总结）</strong>：  </p>
+<p><a href="http://droidyue.com/blog/2016/08/14/android-annnotation/index.html" target="_blank" rel="external">http://droidyue.com/blog/2016/08/14/android-annnotation/index.html</a><br><a href="http://www.cnblogs.com/whoislcj/p/5677917.html" target="_blank" rel="external">http://www.cnblogs.com/whoislcj/p/5677917.html</a><br><a href="https://asce1885.gitbooks.io/android-rd-senior-advanced/content/shen_ru_qian_chu_android_support_annotations.html" target="_blank" rel="external">https://asce1885.gitbooks.io/android-rd-senior-advanced/content/shen_ru_qian_chu_android_support_annotations.html</a><br><a href="https://noobcoderblog.wordpress.com/2015/04/12/java-enum-and-android-intdefstringdef-annotation/" target="_blank" rel="external">https://noobcoderblog.wordpress.com/2015/04/12/java-enum-and-android-intdefstringdef-annotation/</a><br><a href="http://szysky.com/2016/05/20/Android-%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8annotion%E6%9B%BF%E4%BB%A3Enum/" target="_blank" rel="external">http://szysky.com/2016/05/20/Android-%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8annotion%E6%9B%BF%E4%BB%A3Enum/</a><br><a href="http://anupcowkur.com/posts/a-look-at-android-support-annotations/" target="_blank" rel="external">http://anupcowkur.com/posts/a-look-at-android-support-annotations/</a>  </p>
+</blockquote>
+
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -1206,6 +2554,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -1217,13 +2567,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/12/28/AndroidStudioSkills/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -1245,24 +2605,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-28T09:03:15+08:00" content="2016-12-28">
-              2016-12-28
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-28T09:03:15+08:00">
+                2016-12-28
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Android教程系列/" itemprop="url" rel="index">
                     <span itemprop="name">Android教程系列</span>
                   </a>
@@ -1270,7 +2642,6 @@
 
                 
                 
-
               
             </span>
           
@@ -1278,29 +2649,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/12/28/AndroidStudioSkills/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/28/AndroidStudioSkills/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/28/AndroidStudioSkills/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/12/28/AndroidStudioSkills/" class="leancloud_visitors" data-flag-title="Android Studio 常用高效快捷键">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1314,16 +2693,686 @@
       
         
           
-          Android Studio 常用高效快捷键
-整理Android群英传和网上出现的比较完整AS的快捷小技巧. mac版已测, win大部分已测试. 最后有一个整理的完整快捷键表格. win也好mac也好, 如果快捷被修改还是错误, 都可以通过提供的Keymap中的关键字来进行重设. 图中gif如果看
-          ...
+            <h1 id="Android-Studio-常用高效快捷键"><a href="#Android-Studio-常用高效快捷键" class="headerlink" title="Android Studio 常用高效快捷键"></a>Android Studio 常用高效快捷键</h1><blockquote>
+<p>整理<code>Android群英传</code>和网上出现的比较完整<code>AS</code>的快捷小技巧. <code>mac</code>版已测, <code>win</code>大部分已测试. 最后有一个整理的完整<code>快捷键表格</code>. win也好mac也好, 如果快捷被修改还是错误, 都可以通过提供的<code>Keymap中的关键字</code>来进行重设.<br> 图中<code>gif</code>如果看不清, 放大页面即可. </p>
+</blockquote>
+<p><a href="https://github.com/suzeyu1992/repo" target="_blank" rel="external">原文地址</a> </p>
+<ul>
+<li><a href="#1">常用小操作</a><ul>
+<li><a href="#2">单词选择</a> </li>
+<li><a href="#3">显示最近操作,修改的文件</a> </li>
+<li><a href="#4">文件查找</a> </li>
+<li><a href="#5">操作记录</a> </li>
+<li><a href="#6">移动行</a> </li>
+<li><a href="#7">查找方法调用处</a> </li>
+<li><a href="#8">方法的跟进</a> </li>
+<li><a href="#9">显示方法的参数</a> </li>
+<li><a href="#10">行的快速操作</a> </li>
+<li><a href="#11">多行操作</a> </li>
+<li><a href="#12">快速补全完成</a> </li>
+<li><a href="#13">代码提示</a> </li>
+<li><a href="#14">变量的快速操作</a> </li>
+<li><a href="#15">代码折叠</a> </li>
+<li><a href="#16">预览方法定义</a> </li>
+<li><a href="#17">粘贴板管理</a> </li>
+<li><a href="#18">拆分窗口</a> </li>
+<li><a href="#19">变量命令风格</a> </li>
+<li><a href="#20">查看大纲</a> </li>
+<li><a href="#21">书签</a> </li>
+</ul>
+</li>
+<li><a href="#22">快速重构</a> <ul>
+<li><a href="#23">重构入口</a> </li>
+<li><a href="#24">surround with</a> </li>
+<li><a href="#25">Extract</a> </li>
+</ul>
+</li>
+<li><a href="#26">代码模块</a>  </li>
+<li><a href="#27">代码分析</a> <ul>
+<li><a href="#28">Insepect Code &amp; Code cleanup</a> </li>
+<li><a href="#29">Dependencies</a> </li>
+<li><a href="#30">方法调用栈</a> </li>
+</ul>
+</li>
+<li><a href="#31">断点调试</a><ul>
+<li><a href="#32">快速调试</a></li>
+</ul>
+</li>
+<li><a href="#33">快捷键查找表</a>       </li>
+</ul>
+<p><a name="1"></a></p>
+<h2 id="常用小操作"><a href="#常用小操作" class="headerlink" title="常用小操作"></a>常用小操作</h2><p><a name="2"></a></p>
+<h3 id="单词选择"><a href="#单词选择" class="headerlink" title="单词选择"></a>单词选择</h3><p>一般<code>IDE</code>通过<code>option + 方向键左右</code>(win为<code>ctrl + 左右方向键</code>)对光标进行单词的跳动, 但是由于我们使用驼峰式命名较多, 默认的会导致由多个单词组成的驼峰式的首尾跳转. 还好<code>AS</code>可以对这种风格进行设定. </p>
+<p><strong>默认效果</strong></p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/smart_old.gif" alt=""></p>
+<p><strong>修改后的效果</strong></p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/smart_new.gif" alt=""></p>
+<p><strong>修改步骤</strong></p>
+<p>打开<strong>偏好设置</strong>如图片设置</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/smart.png" alt=""></p>
+<p><a name="3"></a></p>
+<h3 id="显示最近操作-修改的文件"><a href="#显示最近操作-修改的文件" class="headerlink" title="显示最近操作, 修改的文件"></a>显示最近操作, 修改的文件</h3><p>例如: 我打开了<code>main_activity.xml</code>布局文件, 然后关闭页面. 这个时候<code>Command + E</code>, 就会如下显示之前的操作文件. </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/recent_file.png" alt=""></p>
+<p>那么如果要查看之前修改过的文件, <code>Command + Shift + E</code>即可.  可以配合<code>Control + Tab</code>进行快速界面的切换. </p>
+<p><strong>快捷键</strong></p>
+<ul>
+<li>最近操作<ul>
+<li><code>Command + E</code> <strong>(mac)</strong></li>
+<li><code>ctrl + E</code> <strong>(win)</strong></li>
+</ul>
+</li>
+<li>最近修改<ul>
+<li><code>Command + Shift + E</code>  <strong>(mac)</strong></li>
+<li><code>ctrl + shift + enter</code> <strong>(win)</strong></li>
+</ul>
+</li>
+</ul>
+<p><a name="4"></a></p>
+<h3 id="文件查找"><a href="#文件查找" class="headerlink" title="文件查找"></a>文件查找</h3><p><code>search Everywhere</code></p>
+<p>项目中的全局查找功能文件功能</p>
+<p><strong>查找类文件</strong></p>
+<ul>
+<li><code>command + o</code> <strong>(mac)</strong></li>
+<li><code>ctrl + n</code> <strong>(win)</strong></li>
+</ul>
+<p>默认只是在项目代码中查找类文件, 如果需要查找<code>sdk</code>或者类库中的相关类. 再按一次快捷键, 或者勾选下图选项搜索全局类文件</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/find_class.png" alt=""></p>
+<hr>
+<p><strong>查找文件</strong></p>
+<p>这个级别比上面那个更广. 包括所有文件, 如<code>xml</code>等. </p>
+<ul>
+<li><code>command + shift + o</code> <strong>(mac)</strong></li>
+<li><code>ctrl + shift + n</code> <strong>(win)</strong></li>
+</ul>
+<p>如上如果需要搜索类库或者源码, 请在按一次快捷键, 或者勾选<code>查找类</code>给出图中的选项. </p>
+<p><a name="5"></a></p>
+<h3 id="操作记录"><a href="#操作记录" class="headerlink" title="操作记录"></a>操作记录</h3><p>在浏览代码结构的时候, 很多时候总是会跟进许多类里面, 如果想回到之前浏览调转点. 那么这个快捷键你就必须要记住. </p>
+<ul>
+<li><code>Command + Option + Left\Right</code> 或者 <code>command + [</code>, <code>command + ]</code> <strong>(mac)</strong></li>
+<li><code>ctrl + alt + Left\Right</code><strong>(win)</strong></li>
+</ul>
+<p><a name="6"></a></p>
+<h3 id="移动行"><a href="#移动行" class="headerlink" title="移动行"></a>移动行</h3><p>这个不用太多介绍, 就是<strong>整行</strong>的上下移动. </p>
+<ul>
+<li><code>Option + shift + 方向键上\方向键下</code> <strong>(mac)</strong></li>
+<li><code>alt + shift + 方向键上\方向键下</code> <strong>(win)</strong></li>
+</ul>
+<p><a name="7"></a></p>
+<h3 id="查找方法调用处"><a href="#查找方法调用处" class="headerlink" title="查找方法调用处"></a>查找方法调用处</h3><p>场景: 查找一个方法在何处被调用, 或者一个ID在哪里被引用. 选中这个方法<strong>右键</strong>, 选择<code>Find Usages</code>即可. </p>
+<p>快捷键:</p>
+<ul>
+<li><code>option + F7</code> <strong>(mac)</strong></li>
+<li><code>alt + F7</code> <strong>(win)</strong></li>
+</ul>
+<p><a name="8"></a></p>
+<h3 id="方法的跟进"><a href="#方法的跟进" class="headerlink" title="方法的跟进"></a>方法的跟进</h3><p>方法总是伴随着调转, 我们也总是会对方法的内部查看细节. 常用的办法是<code>按住Command 并点击方法名</code>的方式. </p>
+<p>也可以在光标所在处直接通过<code>Command + B</code>进行方法内部跟进. </p>
+<ul>
+<li><code>Command + B</code> <strong>(mac)</strong></li>
+<li><code>ctrl + alt + B</code> <strong>(win)</strong></li>
+</ul>
+<p><a name="9"></a></p>
+<h3 id="显示方法的参数"><a href="#显示方法的参数" class="headerlink" title="显示方法的参数"></a>显示方法的参数</h3><p>当我们使用一个方法的时候, 会在刚开始的时候显示出所有的参数. 但是过一会可能就不存在了. 这个时候如果你想知道下一个参数是什么类型, 或者看一下所有参数. </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/params.gif" alt=""></p>
+<p>快捷键:</p>
+<ul>
+<li><code>command + P</code> <strong>(mac)</strong></li>
+<li><code>ctrl + P</code> <strong>(win)</strong></li>
+</ul>
+<p>如果你还想查看一下方法的文档, 不用跟进源码, 直接<code>F1</code>键即可显示出文档. </p>
+<p><a name="10"></a></p>
+<h3 id="行的快速操作"><a href="#行的快速操作" class="headerlink" title="行的快速操作"></a>行的快速操作</h3><p>快速删除行, 其实使用剪切功能就可以<code>Command + X</code></p>
+<p><strong>快速复制行</strong>, 使用<code>command + D</code><strong>mac</strong>, <code>ctrl + D</code><strong>win</strong></p>
+<p><a name="11"></a></p>
+<h3 id="多行操作"><a href="#多行操作" class="headerlink" title="多行操作"></a>多行操作</h3><p>可能有时候我们会声明做一系列相关的变量为<code>float</code>类型, 但是真实的需要的是<code>int</code>类型. 这个时候就可以进行<code>多重选择</code>进行整体修改. 如下图:</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/mul_condition.gif" alt=""></p>
+<p>按住<code>option</code>(win为<code>alt</code>)键, 然后鼠标进行区域的选择. 然后进行对应修改即可. </p>
+<p>你可能认为上面的必须要连续的才可以. 那么如果可以设置<code>多个光标点</code>是否就可以满足你的问题了?</p>
+<p>看下图: </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/mul_no_condition.gif" alt=""></p>
+<ul>
+<li><code>option + shift + 鼠标点击</code> <strong>(mac)</strong></li>
+<li><code>alt + shift + 鼠标点击</code><strong>(win)</strong></li>
+</ul>
+<p>即可添加一个<code>编辑光标</code>. 最后如果不需要那么就<code>esc</code>即可关闭多余光标. </p>
+<p><a name="12"></a></p>
+<h3 id="快速补全完成"><a href="#快速补全完成" class="headerlink" title="快速补全完成"></a>快速补全完成</h3><p>创建一个对象. 或者<code>findViewById()</code>有时总需要移动鼠标或者光标到末尾进行<code>分号</code>的补全. 这些都可以快捷键搞定.  当你用习惯之后, 会非常的方便好用. </p>
+<ul>
+<li><code>command + shift + enter</code><strong>(mac)</strong></li>
+<li><code>ctrl + shift + enter</code><strong>(win)</strong></li>
+</ul>
+<p>实现的功能 </p>
+<ul>
+<li>方法体大括号的添加</li>
+<li>行尾分号的添加</li>
+<li>自动格式化改行操作等</li>
+</ul>
+<p><a name="13"></a></p>
+<h3 id="代码提示"><a href="#代码提示" class="headerlink" title="代码提示"></a>代码提示</h3><p>任何地方都可以调出的代码提示. </p>
+<p><code>control + option + /</code>(不是默认, mac默认为<code>control + space</code>). 这里要说的是. 代码提示之后一般都会<code>回车键</code>确定. 当按<code>回车键</code>的时候. 会保留光标之后的内容. 当有的时候我们并不需要. 这个时候你就可以使用<code>table</code>键进行选择. 它会将后面的输入内容删掉. </p>
+<p>win的快捷方式<code>ctrl + 空格</code>(win同样大部分和输入法冲突, 请手动在AS设置里面<code>keymap</code>项查找<code>completion basic</code>手动修改快捷键)</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/tip.gif" alt=""></p>
+<p><strong>快速生成变量</strong></p>
+<p>比如在方法体中<code>logi</code>直接快速生成一个<code>log</code>日志输出的模板, 但是<code>TAG</code>这个常量还没有声明. 这个时候用光标移动到<code>TAG</code>上. 使用快捷键提示即可快速生成. </p>
+<ul>
+<li><code>option + enter</code><strong>(mac)</strong></li>
+<li><code>alt + enter</code><strong>(win)</strong></li>
+</ul>
+<p><a name="14"></a></p>
+<h3 id="变量的快速操作"><a href="#变量的快速操作" class="headerlink" title="变量的快速操作"></a>变量的快速操作</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/filed.gif" alt=""></p>
+<p>上图使用了两次快捷键, </p>
+<ul>
+<li>第一次: 跳转到变量的<code>声明处</code><ul>
+<li><code>command + B</code> <strong>(mac)</strong></li>
+<li><code>ctrl + b</code>  <strong>(win)</strong></li>
+</ul>
+</li>
+<li>第二次: 跳转到变量类型的<code>定义处</code><ul>
+<li><code>command + shift + B</code> <strong>(mac)</strong></li>
+<li><code>ctrl + shift + b</code> <strong>(win)</strong></li>
+</ul>
+</li>
+</ul>
+<p><a name="15"></a></p>
+<h3 id="代码折叠"><a href="#代码折叠" class="headerlink" title="代码折叠"></a>代码折叠</h3><p>对代码块进行折叠和展开.</p>
+<ul>
+<li><code>command + 加号\减号</code><strong>(mac)</strong></li>
+<li><code>ctrl + 加号\减号</code> <strong>(win)</strong></li>
+</ul>
+<p><a name="16"></a></p>
+<h3 id="预览方法定义"><a href="#预览方法定义" class="headerlink" title="预览方法定义"></a>预览方法定义</h3><p>如果只想大体了解方法的定义, 而不需要进行方法所在源码类的跳转显示. 可以通过<code>Command + Y</code> (win快捷键为<code>ctrl + shift + I</code>)来进行预览</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/method_pre.png" alt=""></p>
+<p><a name="17"></a></p>
+<h3 id="粘贴板管理"><a href="#粘贴板管理" class="headerlink" title="粘贴板管理"></a>粘贴板管理</h3><p>对于复制粘贴. 我们习惯只是<code>单次</code>的<code>c+v</code>, 那么如果你想查看之前被覆盖了的<code>复制过的</code>内容. <code>AS</code>同样有<code>复制粘贴板</code>来管理.  展示最近几次的复制内容. </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/command_copy.png" alt=""></p>
+<ul>
+<li><code>command + shift + v</code> <strong>(mac)</strong></li>
+<li><code>ctrl + shift + v</code>    <strong>(win)</strong></li>
+</ul>
+<p><a name="18"></a></p>
+<h3 id="拆分窗口"><a href="#拆分窗口" class="headerlink" title="拆分窗口"></a>拆分窗口</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/split.png" alt=""></p>
+<p>只需要在标签页上<code>右键</code>. 选择<code>split vertical\horizontal</code>. </p>
+<p><a name="19"></a></p>
+<h3 id="变量命名风格"><a href="#变量命名风格" class="headerlink" title="变量命名风格"></a>变量命名风格</h3><p>对于<code>成员变量</code>应该<code>m</code>开头. 对于<code>静态成员</code>通常是<code>s</code>开头.  可以这样设置这个风格. </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/set_name.png" alt=""></p>
+<p>这样在输入一个变量的名字时, 就可以自动补全<code>m</code>或者<code>s</code>. 同时在<code>Extra</code>代码的时候, 生成的代码都可以自动根据这个规则重构. </p>
+<p><a name="20"></a></p>
+<h3 id="查看大纲"><a href="#查看大纲" class="headerlink" title="查看大纲"></a>查看大纲</h3><p>当一个类很大的时候. 可以通过<code>command + F12</code>(win为<code>ctrl + F12</code>) 打开大纲界面. 展示全部的方法和成员变量列表. </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/all_body.png" alt=""></p>
+<p>并且支持模糊搜索. 来进行筛选显示. 可以快速的找到要搜索的方法集.</p>
+<p><a name="21"></a></p>
+<h3 id="书签"><a href="#书签" class="headerlink" title="书签"></a>书签</h3><p>在浏览大型代码, 或者调试时.  有时可能会需要记住一些关键的代码或者方法. 这个时候就可以使用<code>书签</code>. 来记录此关键代码. 只需要在点击需要标记的行, 并按<code>F3</code>就会在左侧出现一个<code>小对勾</code>. 这就说明已经打上了一个书签. </p>
+<p>同时在<code>Favorites</code>标签中, 也可以找到对应的<code>Bookmarks</code></p>
+<p>可以通过快捷键<code>command + F3</code> (win为<code>shift + F11</code>)快速调出书签面板, 进行后续的操作. </p>
+<p><a name="22"></a></p>
+<h2 id="快速重构"><a href="#快速重构" class="headerlink" title="快速重构"></a>快速重构</h2><p><a name="23"></a></p>
+<h3 id="重构入口"><a href="#重构入口" class="headerlink" title="重构入口"></a>重构入口</h3><p>当一个代码片段准备重构的时候. 可以使用<code>control + T</code> (win为<code>ctrl + alt + shift + T</code>)打开重构入口. 或者<code>右键单击</code>选择<code>Refactor</code>显示重构界面. </p>
+<p>这里有很多方便的功能. 提成方法等等. </p>
+<p><a name="24"></a></p>
+<h3 id="surround-With"><a href="#surround-With" class="headerlink" title="surround With"></a>surround With</h3><p>当对一个段代码进行, 条件包裹, 捕捉异常, 循环, Runnable等. 可以直接使用快捷的方式, 而不需要手动生成条件在进行代码块的<code>复制-粘贴</code></p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/runnable.gif" alt=""></p>
+<p>快捷键</p>
+<ul>
+<li><code>command + option + T</code><strong>(mac)</strong></li>
+<li><code>ctrl + alt + T</code><strong>(win)</strong></li>
+</ul>
+<p><a name="25"></a></p>
+<h3 id="Extract"><a href="#Extract" class="headerlink" title="Extract"></a>Extract</h3><p>你可以经常使用它,提取出一个方法. </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/extract_method.gif" alt=""></p>
+<p>不仅仅如此, 你还可以对<code>xml</code>中的多个控件相同的属性进行抽取为<code>style</code></p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/extract_xml.gif" alt=""></p>
+<p>快捷键：  </p>
+<ul>
+<li><code>ctrl + alt + shift + T</code><strong>(win)</strong></li>
+</ul>
+<p>是不是很爽? </p>
+<p>这是其一, 对于<code>xml</code>不仅可以抽取<code>Style</code>, 还可以抽取布局<code>Layout</code></p>
+<p>而代码中, 可以提取各种变量, 参数, 长廊. </p>
+<p><a name="26"></a></p>
+<h2 id="代码模板"><a href="#代码模板" class="headerlink" title="代码模板"></a>代码模板</h2><p><code>AS</code>中已经内置了很多代码模板, 你可以很嗖嗖嗖的就完成之前倒背如流的代码. 如下一小部分</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/template.gif" alt=""></p>
+<p>通过快捷键可调出这些代码模板</p>
+<ul>
+<li><code>command + J</code><strong>(mac)</strong></li>
+<li><code>ctrl + J</code><strong>(win)</strong></li>
+</ul>
+<p><a name="27"></a></p>
+<h2 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h2><p><code>Google</code>提供了很多代码分析工具, 这些工具都集中在顶部菜单栏的<code>Analyze</code>中. </p>
+<p><a name="28"></a></p>
+<h3 id="Inspect-Code-amp-Code-cleanup"><a href="#Inspect-Code-amp-Code-cleanup" class="headerlink" title="Inspect Code &amp; Code cleanup"></a>Inspect Code &amp; Code cleanup</h3><p><code>Inspect Code</code>可以让<code>IDE</code>分析整个工程. 类似于<code>Lint</code>分析, 并会给出大致修改意见等</p>
+<p><code>Code cleanup</code>功能可以进行自动的代码修复. </p>
+<p><a name="29"></a></p>
+<h3 id="Dependencies"><a href="#Dependencies" class="headerlink" title="Dependencies"></a>Dependencies</h3><p>通过<code>Analyze</code>中的几个<code>Dependencies</code>选项. 可以快速分析项目的依赖. </p>
+<p><a name="30"></a></p>
+<h3 id="方法调用栈"><a href="#方法调用栈" class="headerlink" title="方法调用栈"></a>方法调用栈</h3><p>对于某些方法来说, 查看它被调用的地方和调用的顺序是非常重要的. 可通过<code>control + option + H</code>快速查找方法调用栈. </p>
+<p><a name="31"></a></p>
+<h2 id="断点调试"><a href="#断点调试" class="headerlink" title="断点调试"></a>断点调试</h2><p><a name="32"></a></p>
+<h3 id="快速断点"><a href="#快速断点" class="headerlink" title="快速断点"></a>快速断点</h3><p><code>条件断点</code>. 主要用在循环体内. 一个循环10次的<code>for</code>. 只想在第<code>8</code>次进入断点. </p>
+<p>和<code>普通断点</code>相似, 一样先声明一个断点. 然后在<code>普通断点</code>上<code>单击鼠标右键</code>. 在弹出的菜单填写断点条件即可. 如下:</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/condition.gif" alt=""></p>
+<p>上面图中<code>Enable</code>可以控制<code>启用</code>, 还是<code>停用</code>一个断点. </p>
+<hr>
+<p><code>临时断点</code>. 如果需要一个只执行一次的断点. 执行完之后断点自动取消. 那么可以通过快捷点将当前行作为临时断点. </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/androidstudioskills/one_debug.png" alt=""></p>
+<ul>
+<li><code>command + option + shift + F8</code></li>
+<li><code>ctrl + alt + shift + F8</code></li>
+</ul>
+<p>为了篇幅不是很长, 调试的部分贴一个讲解很详细的帖子</p>
+<ul>
+<li><a href="http://blog.csdn.net/dd864140130/article/details/51560664" target="_blank" rel="external">Android Studio代码调试大全</a></li>
+</ul>
+<p><a name="33"></a></p>
+<h2 id="快捷键查找表"><a href="#快捷键查找表" class="headerlink" title="快捷键查找表"></a>快捷键查找表</h2><p>速查表列出了<code>keymap</code>快捷键的名称. 可以直接通过<code>AS setting</code>界面搜索<code>keymap</code>. 通过对应的快捷键名称来添加或者修改快捷键. </p>
+<table>
+<thead>
+<tr>
+<th>功能描述</th>
+<th>keymap对应名字</th>
+<th>Mac</th>
+<th>Win/Linux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>提示错误解决方案</strong></td>
+<td><strong>Show Intention Actions</strong></td>
+<td><code>option + enter</code></td>
+<td><code>alt + enter</code></td>
+</tr>
+<tr>
+<td><strong>AS配置界面</strong></td>
+<td><strong>Preferences</strong></td>
+<td><code>command + ,</code></td>
+<td><code>control+alt+S</code></td>
+</tr>
+<tr>
+<td><strong>工程项目配置界面</strong></td>
+<td><strong>Project Structure</strong></td>
+<td><code>command + ;</code></td>
+<td><code>Control＋Alt+Shift+S</code></td>
+</tr>
+<tr>
+<td><strong>快速构成代码</strong></td>
+<td><strong>Code Generate</strong></td>
+<td><code>command + N</code></td>
+<td><code>alt + insert</code></td>
+</tr>
+<tr>
+<td><strong>代码提示</strong></td>
+<td><strong>Completion/Basic</strong></td>
+<td><code>control + space</code>(mac会冲突, 手动修改)</td>
+<td><code>ctrl + 空格</code>(win同样大部分和输入法冲突, 手动修改)</td>
+</tr>
+<tr>
+<td><strong>选择视图</strong></td>
+<td><strong>select in any view</strong></td>
+<td><code>option + F1</code></td>
+<td><code>alt + F1</code></td>
+</tr>
+<tr>
+<td><strong>添加书签标识</strong></td>
+<td><strong>Toggle Bookmark</strong></td>
+<td><code>option + F3</code></td>
+<td><code>ctrl + F11</code></td>
+</tr>
+<tr>
+<td><strong>向下移动一行</strong></td>
+<td><strong>Move Line Down</strong></td>
+<td><code>option + shift + Down</code></td>
+<td><code>alt + shift + Down</code></td>
+</tr>
+<tr>
+<td><strong>向上移动一行</strong></td>
+<td><strong>Move Line Up</strong></td>
+<td><code>option + shift + Up</code></td>
+<td><code>alt + shift + Up</code></td>
+</tr>
+<tr>
+<td><strong>注释代码</strong></td>
+<td><strong>Comment with Line Comment</strong></td>
+<td><code>command + /</code></td>
+<td><code>ctrl + /</code></td>
+</tr>
+<tr>
+<td><strong>用代码模板包裹代码</strong></td>
+<td><strong>surround with Live Template</strong></td>
+<td><code>command + option + J</code></td>
+<td><code>ctrl + alt + J</code></td>
+</tr>
+<tr>
+<td><strong>格式化代码</strong></td>
+<td><strong>Reformat Code</strong></td>
+<td><code>command + option + L</code></td>
+<td><code>ctrl + alt + L</code></td>
+</tr>
+<tr>
+<td><strong>Copy Reference</strong></td>
+<td><strong>Copy Reference</strong></td>
+<td><code>command + option + shift + C</code></td>
+<td><code>ctrl + alt + shift + C</code></td>
+</tr>
+<tr>
+<td><strong>if/try等包裹代码</strong></td>
+<td><strong>Surround With..</strong></td>
+<td><code>command + option + T</code></td>
+<td><code>ctrl + alt + T</code></td>
+</tr>
+<tr>
+<td><strong>查看声明</strong></td>
+<td><strong>Declaration</strong></td>
+<td><code>command + B</code></td>
+<td><code>ctrl + B</code></td>
+</tr>
+<tr>
+<td><strong>快捷向下复制行</strong></td>
+<td><strong>Duplicate Line or Block</strong></td>
+<td><code>command + D</code></td>
+<td><code>ctrl + D</code></td>
+</tr>
+<tr>
+<td><strong>删除行</strong></td>
+<td><strong>Delete Line</strong></td>
+<td><code>command + delete</code></td>
+<td><code>ctrl + Y</code></td>
+</tr>
+<tr>
+<td><strong>快捷最近打开</strong></td>
+<td><strong>Recent Files</strong></td>
+<td><code>command + E</code></td>
+<td><code>ctrl + E</code></td>
+</tr>
+<tr>
+<td><strong>查找</strong></td>
+<td><strong>Edit/Find/Find</strong></td>
+<td><code>command + F</code></td>
+<td><code>ctrl + F</code></td>
+</tr>
+<tr>
+<td><strong>文件方法结构</strong></td>
+<td><strong>File Structure</strong></td>
+<td><code>command + F12</code></td>
+<td><code>ctrl + F12</code></td>
+</tr>
+<tr>
+<td><strong>显示书签</strong></td>
+<td><strong>Show Bookmarks</strong></td>
+<td><code>command + F3</code></td>
+<td><code>shift + F11</code></td>
+</tr>
+<tr>
+<td><strong>代码高亮向下查找</strong></td>
+<td><strong>Move To Next Occurrence</strong></td>
+<td><code>command + G</code></td>
+<td><code>F3</code></td>
+</tr>
+<tr>
+<td><strong>代码高亮向上查找</strong></td>
+<td><strong>Move To Previous Occurrence</strong></td>
+<td><code>command + shift + G</code></td>
+<td><code>shift + F3</code></td>
+</tr>
+<tr>
+<td><strong>按照模板生成代码</strong></td>
+<td><strong>Insert Live Template</strong></td>
+<td><code>command + J</code></td>
+<td><code>ctrl + J</code></td>
+</tr>
+<tr>
+<td><strong>定位到行</strong></td>
+<td><strong>Navigate/Line</strong></td>
+<td><code>command + L</code></td>
+<td><code>ctrl + G</code></td>
+</tr>
+<tr>
+<td><strong>快速到行首/尾</strong></td>
+<td><strong>Move Caret to Line Start/End</strong></td>
+<td><code>command + Left/Right</code></td>
+<td><code>ctrl + Left/Right</code></td>
+</tr>
+<tr>
+<td><strong>代码折叠/展开</strong></td>
+<td><strong>Collapse/Expand</strong></td>
+<td><code>command + 减号/加号</code></td>
+<td><code>ctrl + 减号/加号</code></td>
+</tr>
+<tr>
+<td><strong>查找类</strong></td>
+<td><strong>Navigate/Class</strong></td>
+<td><code>command + O</code></td>
+<td><code>ctrl + N</code></td>
+</tr>
+<tr>
+<td><strong>多行注释</strong></td>
+<td><strong>Code/Comment </strong></td>
+<td><code>command + option + /</code></td>
+<td><code>ctrl + alt + /</code></td>
+</tr>
+<tr>
+<td><strong>格式化代码</strong></td>
+<td><strong>Reformat Code</strong></td>
+<td><code>command + option + L</code></td>
+<td><code>ctrl + alt + L</code></td>
+</tr>
+<tr>
+<td><strong>提示参数类型</strong></td>
+<td><strong>Parameter Info</strong></td>
+<td><code>command + P</code></td>
+<td><code>ctrl + P</code></td>
+</tr>
+<tr>
+<td><strong>查找替换</strong></td>
+<td><strong>Replace</strong></td>
+<td><code>command + R</code></td>
+<td><code>ctrl + R</code></td>
+</tr>
+<tr>
+<td><strong>查找命令</strong></td>
+<td><strong>Find Action</strong></td>
+<td><code>command + shift + A</code></td>
+<td><code>ctrl + shift + A</code></td>
+</tr>
+<tr>
+<td><strong>拷贝文件路径</strong></td>
+<td><strong>Copy Paths</strong></td>
+<td><code>command + shift + C</code></td>
+<td><code>ctrl + shift + C</code></td>
+</tr>
+<tr>
+<td><strong>移动代码块</strong></td>
+<td><strong>Move Statement Up/Down</strong></td>
+<td><code>command + shift + down/up</code></td>
+<td><code>ctrl + shift + down/up</code></td>
+</tr>
+<tr>
+<td><strong>代码补全</strong></td>
+<td><strong>Complete Current Statement</strong></td>
+<td><code>command + shift + enter</code></td>
+<td><code>ctrl + shift + enter</code></td>
+</tr>
+<tr>
+<td><strong>全路径查找</strong></td>
+<td><strong>Find in Path</strong></td>
+<td><code>command + shift + F</code></td>
+<td><code>ctrl + shift + F</code></td>
+</tr>
+<tr>
+<td><strong>代码高亮</strong></td>
+<td><strong>Highlight Usages in File</strong></td>
+<td><code>command + shift + F7</code></td>
+<td><code>alt + J</code></td>
+</tr>
+<tr>
+<td><strong>窗口内所有代码折叠/展开</strong></td>
+<td><strong>Collapse/Expand All</strong></td>
+<td><code>command + shift + 减号/加号</code></td>
+<td><code>ctrl + shift + 减号/加号</code></td>
+</tr>
+<tr>
+<td><strong>查找文件</strong></td>
+<td><strong>Navigate/File</strong></td>
+<td><code>command + shift + O</code></td>
+<td><code>ctrl + shift + N</code></td>
+</tr>
+<tr>
+<td><strong>全路径中替换</strong></td>
+<td><strong>Replace in Path</strong></td>
+<td><code>command + shift + R</code></td>
+<td><code>ctrl + shift + R</code></td>
+</tr>
+<tr>
+<td><strong>大小写转换</strong></td>
+<td><strong>Toggle Case</strong></td>
+<td><code>command + shift + U</code></td>
+<td><code>ctrl + shift + U</code></td>
+</tr>
+<tr>
+<td><strong>显示粘贴版历史</strong></td>
+<td><strong>Paste from History</strong></td>
+<td><code>command + shift + V</code></td>
+<td><code>ctrl + shift + V</code></td>
+</tr>
+<tr>
+<td><strong>快速查找定义</strong></td>
+<td></td>
+<td><code>command + space</code></td>
+<td><code>ctrl + shift + I</code></td>
+</tr>
+<tr>
+<td><strong>粘贴</strong></td>
+<td><strong>Paste</strong></td>
+<td><code>command + V</code></td>
+<td><code>ctrl + V</code></td>
+</tr>
+<tr>
+<td><strong>复制</strong></td>
+<td><strong>Copy</strong></td>
+<td><code>command + C</code></td>
+<td><code>ctrl + C</code></td>
+</tr>
+<tr>
+<td><strong>去除无效包引用</strong></td>
+<td><strong>Optimize Imports</strong></td>
+<td><code>control + option + O</code></td>
+<td><code>ctrl + alt + O</code></td>
+</tr>
+<tr>
+<td><strong>显示类关系继承体系</strong></td>
+<td><strong>Type Hierarchy</strong></td>
+<td><code>control + H</code></td>
+<td><code>ctrl + H</code></td>
+</tr>
+<tr>
+<td><strong>快速覆写方法</strong></td>
+<td><strong>override Methods</strong></td>
+<td><code>control + O</code></td>
+<td><code>ctrl + O</code></td>
+</tr>
+<tr>
+<td><strong>查找调用的位置</strong></td>
+<td><strong>Call hierarchy</strong></td>
+<td><code>control + option + H</code></td>
+<td><code>ctrl + alt + H</code></td>
+</tr>
+<tr>
+<td><strong>添加书签</strong></td>
+<td><strong>Toggle Bookmark</strong></td>
+<td><code>F3</code></td>
+<td><code>F11</code></td>
+</tr>
+<tr>
+<td><strong>扩大缩小选中范围</strong></td>
+<td><strong>Extend Selection/Shrink Selection</strong></td>
+<td><code>option + UP/Down</code></td>
+<td><code>ctrl + W + shift + W</code></td>
+</tr>
+<tr>
+<td><strong>跳转到父类</strong></td>
+<td><strong>Super method</strong></td>
+<td><code>command + U</code></td>
+<td><code>ctrl + U</code></td>
+</tr>
+<tr>
+<td><strong>关闭当前tab标签</strong></td>
+<td><strong>Editor Tabs / Close</strong></td>
+<td><code>command + W</code></td>
+<td><code>ctrl + shift + a</code></td>
+</tr>
+<tr>
+<td><strong>关闭除编辑窗口的其余窗口</strong></td>
+<td><strong>Hide All Tool Windows</strong></td>
+<td><code>command + shift + F12</code></td>
+<td><code>ctrl + shift + F12</code></td>
+</tr>
+<tr>
+<td><strong>预览方法定义</strong></td>
+<td><strong>Quick Definition</strong></td>
+<td><code>command + Y</code></td>
+<td><code>ctrl + shift + I</code></td>
+</tr>
+<tr>
+<td><strong>返回光标最后编辑位置</strong></td>
+<td><strong>Last Edit Location</strong></td>
+<td><code>command + shift + delete</code></td>
+<td><code>control + shift + Backspace</code></td>
+</tr>
+<tr>
+<td><strong>调到代码块首部/尾部</strong></td>
+<td><strong>Move Caret To Code Block</strong></td>
+<td><code>Option + Command + [ 或者 ]</code></td>
+<td><code>Control+[ 或者 ]</code></td>
+</tr>
+<tr>
+<td><strong>重命名</strong></td>
+<td><strong>Rename</strong></td>
+<td><code>shift + F6</code></td>
+<td><code>shift + F6</code></td>
+</tr>
+<tr>
+<td><strong>抽取方法</strong></td>
+<td><strong>Extract Method</strong></td>
+<td><code>command + option + M</code></td>
+<td><code>control+alt+M</code></td>
+</tr>
+<tr>
+<td><strong>抽取变量</strong></td>
+<td><strong>Extract Variable</strong></td>
+<td><code>command + option + V</code></td>
+<td><code>control+alt+V</code></td>
+</tr>
+<tr>
+<td><strong>抽取字段</strong></td>
+<td><strong>Extract Field</strong></td>
+<td><code>command + option + F</code></td>
+<td><code>control+alt+F</code></td>
+</tr>
+<tr>
+<td><strong>抽取常量</strong></td>
+<td><strong>Extract Constant</strong></td>
+<td><code>command + option + C</code></td>
+<td><code>control+alt+C</code></td>
+</tr>
+<tr>
+<td><strong>抽取参数</strong></td>
+<td><strong>Extract Parameter</strong></td>
+<td><code>command + option + P</code></td>
+<td><code>control+alt+P</code></td>
+</tr>
+<tr>
+<td><strong>重构入口</strong></td>
+<td><strong>Refactor This</strong></td>
+<td><code>control + T</code></td>
+<td><code>ctrl + alt + shift + T</code></td>
+</tr>
+</tbody>
+</table>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/28/AndroidStudioSkills/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -1341,6 +3390,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -1352,13 +3403,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/12/06/TheMeaningOfMarriage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -1380,24 +3441,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T18:03:15+08:00" content="2016-12-06">
-              2016-12-06
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-06T18:03:15+08:00">
+                2016-12-06
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/还相信爱情/" itemprop="url" rel="index">
                     <span itemprop="name">还相信爱情</span>
                   </a>
@@ -1405,7 +3478,6 @@
 
                 
                 
-
               
             </span>
           
@@ -1413,29 +3485,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/12/06/TheMeaningOfMarriage/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/06/TheMeaningOfMarriage/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/06/TheMeaningOfMarriage/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/12/06/TheMeaningOfMarriage/" class="leancloud_visitors" data-flag-title="结婚的意义">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1449,18 +3529,29 @@
       
         
           
-          结婚的意义我们终会懂得，人的成长，注定是一场孤独的旅途。我们都要学会，在生命里的那个寒冷的冬天，一个人孤独地过冬。不奢求别人，不依赖别人，自己温暖自己，自己之于自己，自己给自己力量和勇气。我们都一样，要学会承受生命的孤独与无助，挺过去，才能看见美好和繁华。
-  
-文/白昂
-有个男生，上个月告诉我，他
-          ...
+            <h1 id="结婚的意义"><a href="#结婚的意义" class="headerlink" title="结婚的意义"></a>结婚的意义</h1><p><strong>我们终会懂得，人的成长，注定是一场孤独的旅途。我们都要学会，在生命里的那个寒冷的冬天，一个人孤独地过冬。不奢求别人，不依赖别人，自己温暖自己，自己之于自己，自己给自己力量和勇气。我们都一样，要学会承受生命的孤独与无助，挺过去，才能看见美好和繁华。</strong></p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/marriagemean/marriagemeaning%20%281%29.jpg" alt="结婚的意义">  </p>
+<p><strong>文/白昂</strong></p>
+<p>有个男生，上个月告诉我，他喜欢上了一个不错的女生，找人打听到了她的电话，和她聊了几次，终于鼓起勇气告白。可是女孩巧妙地回避了他，之后他就不再回复，继续忙碌起来，寻找下一个猎物。我问他，你觉得这样，好还是不好？他说，我不知道，我只知道再晚一点，我就找不到对象了。我问，以前那份痴情的执着，怎么没了？他苦笑，因为，长大了。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/marriagemean/marriagemeaning%20%282%29.jpg" alt="">  </p>
+<p>不知从何时起，我们失去了等待和爱一个人的能力，然而我们都明白，又有谁愿意停下脚步，来安静地看看你的伤疤，听听你的苦衷，慢慢地了解一个人呢？你开始学会贮藏自己的情感，少一点期盼，少一点失望，少一点偏执，少一点伤害。成长剥夺了曾经那些矫情又幼稚的情感，经历，冷却了你身上的温度。你终于学会了聪明，不会对一个人倾之所有，不会再轻易对一个人敞开心扉，不会再对一个人倾注过多的时间和精力。你长大了，已然不是那个肆意挥霍时间和精力的少年。优胜劣汰的现实社会，有那么多比你优秀的人仿佛麋鹿一般在用力奔跑，你也要不回头地向前跑，没有时间驻足，没有时间恻隐，你必须把更多的人落在身后，你最无可奈何，但你必须如此。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/marriagemean/marriagemeaning%20%283%29.jpg" alt="find love">  </p>
+<p>有那么一段时光，人们总是会感慨生命中来来去去的人，会想起，会思念，会矫情，但片刻之后便会回归自己的生活，马不停蹄地奔向自己的未来，也不知是摒弃了矫情，还是学会了冷漠。我想，只有放肆地矫情过，长大后才会明白，人的情感，其实都是有期限的，爱，憎，恨，这世间所有的情感，都有期限，过了这个期限，一切都化作似水流年。伤情是因为遗憾，因为不舍，因为对于感情长久的天真，而过了这个期限，已然不会再如此矫情了。成长总会教人放下和忘记，而曾经那份伤情和遗憾的情愫，便是对过往青春，最好的祭奠。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/marriagemean/marriagemeaning%20%284%29.jpg" alt="一个人的世界">  </p>
+<p>我们终其一生寻找的无非是那个甘愿为你停下脚步，为你驻足的人，这是以前看到的一句话。逐渐懂得，生命的时光，越走越短。真正进入你生命的人，越来越少。曾经根深蒂固的情感，也会慢慢地剥离，从你生活的轨迹中消失。有一天，你会开始习惯告别，习惯真的，就再也不见。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/marriagemean/marriagemeaning%20%285%29.jpg" alt="注定孤独"></p>
+<p>我们终会懂得，人的成长，注定是一场孤独的旅途。我们都要学会，在生命里的那个寒冷的冬天，一个人孤独地过冬。不奢求别人，不依赖别人，自己温暖自己，自己之于自己，自己给自己力量和勇气。我们都一样，要学会承受生命的孤独与无助，挺过去，才能看见美好和繁华。</p>
+<p>昨天，一个同学说，她要结婚了，因为要赶着一起买房子。不久前，朋友说，想结婚，因为想要一个孩子，生活实在太无趣了。还听到过，不止一个人说，对方条件还不错，那么就结婚吧。很多个结婚的理由，不知道为什么，都是这样的勉强，让人听不出婚姻里喜乐悲哀的理由。很久没有听到这样的理由，他要结婚，是因为很爱很爱一个人，因为想要和另一个人永远的在一起。也许永远，实在是太远了，也许人生真的无法十全十美吧！</p>
+<p>在一本书上，看到一位香港的女作家说，我们身处在一个鸡肋世界，生活上太多食之无味的存在，上至婚姻事业，下至中午时分匆匆吃下肚的，那个盒饭。读这段文字的时候，我能够感受到一种不见眼泪的悲伤，和一种不见血肉的折磨。生活，仿佛总在营造着一个又一个的缺陷。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/marriagemean/marriagemeaning%20%286%29.jpg" alt="等待，回头，遇见">  </p>
+<p>有一次，我碰上了一个高中时候的女友，我知道，很长时间以来，她都在相亲，但是始终，没有满意的。于是，我问她，是不是要求太高了，是不是要的是那种，高收入，高学历，高身材的？她笑笑说，不是啊，她对这些倒不是太看重。其实，相亲，是目的性很强的，就是奔着结婚而去，但是，她就是没有那种感觉。什么都对，但是，感觉不对。我知道，这种只要感觉的人是相亲中是最难成功的，就忍不住逼问她，到底是怎样的结婚的感觉呢？她说，我只是希望，在我不开心的时候，他可以让我觉得他会一直在我身边，即使不安慰什么，就抱着我，紧紧的，说他会一直很爱我。我不祈求轰轰烈烈，我的婚姻也会是云淡风情，细水长流。但有一天，当他向我求婚时，不是因为婚姻能带给他多少实际的利益，而是因为，婚姻，在他生活中的那份意义。我希望，在那一刻，他至少可以给我一个理由，他要和我相守，即便，是在那一刻。她的表情坚定，没有一丝玩笑的成分，我忽然觉得有一丝感动，在这个连月光都无法穿越的城市里，感觉到了一丝，温情的光。</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/06/TheMeaningOfMarriage/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -1478,6 +3569,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -1489,13 +3582,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/12/06/IconFont/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -1517,24 +3620,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T16:03:15+08:00" content="2016-12-06">
-              2016-12-06
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-06T16:03:15+08:00">
+                2016-12-06
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Android教程系列/" itemprop="url" rel="index">
                     <span itemprop="name">Android教程系列</span>
                   </a>
@@ -1542,7 +3657,6 @@
 
                 
                 
-
               
             </span>
           
@@ -1550,29 +3664,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/12/06/IconFont/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/06/IconFont/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/06/IconFont/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/12/06/IconFont/" class="leancloud_visitors" data-flag-title="Android 图标自适应：用 TextView 来显示图片 & 生成自己的字体库">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1586,17 +3708,162 @@
       
         
           
-          Android 图标自适应：用 TextView 来显示图片 &amp; 生成自己的字体库今天我们来介绍一种用TextView代替并显示图片，以达到App优化及图标自适应的效果。当然，我们先来看一下效果：  
-  
+            <h1 id="Android-图标自适应：用-TextView-来显示图片-amp-生成自己的字体库"><a href="#Android-图标自适应：用-TextView-来显示图片-amp-生成自己的字体库" class="headerlink" title="Android 图标自适应：用 TextView 来显示图片 &amp; 生成自己的字体库"></a>Android 图标自适应：用 TextView 来显示图片 &amp; 生成自己的字体库</h1><p>今天我们来介绍一种用TextView代替并显示图片，以达到App优化及图标自适应的效果。当然，我们先来看一下效果：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_.png" alt="这些真的只是TextView文本">  </p>
+<blockquote>
+<p>如果你看到上面这张图片，第一反映你可能认为都是用ImageView去显示的，那你就错了，这些全都是用TextView实现的（当然更不可能是给 TextView 设置了背景图）。  </p>
+</blockquote>
+<p>平时我们在开发中，图片可谓是处处可见且必不可少的一部分，为了想尽办法让图片达到适配的效果我们可能需要：<br>根据不同分辨率来提供多套图，暂且不说这种方式是否麻烦，正常情况下我们切的三套或更多套图有时候总在有些机型上的效果不尽人意。<br>可能这时候你想到了用 <code>.9图片</code>，这时候且不说你们家 UI 妹子会不会单独的为我们 Android 端提供  <code>.9图片</code> （姑且相信你们家UI会制作<code>.9</code>），但是 <code>.9图片</code> 是有一定的局限性的，它只能是图片部分区域拉伸。  </p>
+<p><a href="http://ocnyang.com/">这篇文章</a>也并不是去介绍如何去做图片的适配，而是介绍一种利用字体库的方式，我们用 TextView 的形式去显示图片，而且我们还可以正常的使用 <code>android:textSize</code> 属性来随意设置图片的大小！   </p>
+<blockquote>
+<p>其实这里通过 TextView 来显示图片的方式，我更愿意更准确的说成是通过 <strong>TextView 来显示图标</strong>，因为这里的图片不是真正意义上的大图而是相当于可以随意拉伸的矢量图。当然，如果你愿意你也可以用这种方式来显示图片。  </p>
+</blockquote>
+<p>啰嗦这么多，你的大刀是不是早就饥渴难耐了？其实这种方式很容易就能实现，只是通过给 TextView 设置一种字体，不要着急，马上开始。  </p>
+<h2 id="为TextView设置字体"><a href="#为TextView设置字体" class="headerlink" title="为TextView设置字体"></a>为TextView设置字体</h2><p>大家都知道，在 android 中，我们如果要更换字体，除了要引入我们需要的字体库外，还需要给我们的 TextView 去手动设置使用的字体，如何去设置呢？其实很简单。</p>
+<pre><code>textView.setTypeface(Typeface tf);  
+</code></pre><p>尽管就这么一行代码，但是，在我们项目中肯定会存在大量的TextView，难道我们要一个个的去动手设置吗？想想这也是一件很头疼的事，下面就介绍一种方便的方法，一行代码解决字体设置的问题。  </p>
+<p><strong>方法一：工具类 &amp; 递归遍历</strong>  </p>
+<blockquote>
+<p>在看代码之前，先来看看思路，其实思路很简单，我们提供一个根布局，写一个方法去递归遍历整个根布局，如果发现是textView，则设置字体。思路很简单，相信代码也很简单，就是一个递归方法。  </p>
+</blockquote>
+<pre><code>public class FontHelper {
+    public static final String DEF_FONT = &quot;fonts/ocnyangfont.ttf&quot;;
 
-如果你看到上面这张图片，第一反映你可能认为都是用ImageView去显示的，那你就
-          ...
+    public static final void injectFont(View rootView) {
+        injectFont(rootView, Typeface.createFromAsset(rootView.getContext().getAssets(),
+                DEF_FONT));
+    }
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/06/IconFont/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+    private static void injectFont(View rootView, Typeface typeface) {
+        if (rootView instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) rootView;
+            int childViewCount = viewGroup.getChildCount();
+            for (int i = 0; i &lt; childViewCount; i++) {
+                injectFont(viewGroup.getChildAt(i), typeface);
+            }
+        } else if (rootView instanceof TextView) {
+            ((TextView) rootView).setTypeface(typeface);
+        }
+    }
+} 
+</code></pre><p>定义了一个工具类，这个类提供两个静态方法，但是核心都是  </p>
+<pre><code>public static final void injectFont(View rootView, Typeface tf)
+</code></pre><blockquote>
+<p>这个方法中，首先我们去判断我们给的rootView是不是ViewGroup，如果是ViewGroup，则遍历他的所有子view，然后递归去调用这个方法，直到全部完成，如果发现某个view是TextView，则我们调用setTypeface方法来设置字体。<br>ok，从这个工具类中我们还可以看到，我们的字体是放在assets/fonts目录下的。</p>
+</blockquote>
+<p>最后是在activity中使用字体库，正式利用了上面的工具类，所以我们的代码将会很简单。  </p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    FontHelper.injectFont(findViewById(android.R.id.content));
+}
+</code></pre><p>仅仅一行代码，<code>FontHelper.injectFont(findViewById(android.R.id.content));</code><br>我们就完成了给所有TextView设置字体的工作。</p>
+<p><strong>方法二：LayoutInflate</strong>  </p>
+<p>现在对 LayoutInflateFactory 的用法还不太熟悉的，可以先去看一下鸿洋的这篇博文：<a href="http://blog.csdn.net/lmj623565791/article/details/51503977" target="_blank" rel="external">探究 LayoutInflate setFactory</a>。  </p>
+<p>我们编写一个自定义的LayoutInflaterFactory：  </p>
+<pre><code>public class IconFontLayoutFactory implements LayoutInflaterFactory {
+
+    private static Typeface sTypeface;
+    private AppCompatDelegate mAppCompatDelegate;
+
+    public IconFontLayoutFactory(Context context,
+                                 AppCompatDelegate appCompatDelegate) {
+        if (sTypeface == null) {
+            sTypeface = Typeface.createFromAsset(context.getAssets(),
+                    &quot;fonts/ocnyangfont.ttf&quot;);
+        }
+        mAppCompatDelegate = appCompatDelegate;
+    }
+
+    @Override
+    public View onCreateView(View parent, String name, Context context,
+                             AttributeSet attrs) {
+        View view = mAppCompatDelegate.createView(parent, name, context, attrs);
+        if (view instanceof TextView) {
+            ((TextView) view).setTypeface(sTypeface);
+        }
+        return view;
+    }
+}
+</code></pre><p>字体文件我们还是放在 <code>assets/fonts</code> 目录下。  </p>
+<p>然后你可以在你的BaseActivity的onCreate中，调用如下代码：  </p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+
+        LayoutInflaterCompat.setFactory(getLayoutInflater(),
+                new IconFontLayoutFactory(this,getDelegate()));
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+}
+</code></pre><blockquote>
+<p>注意一定要在super.onCreate前调用即可。  </p>
+</blockquote>
+<p>该方式可以在TextView及其子类对象创建完成时，就可以为其调用setTypeFace，非常的高效。<br>而对于字体库的加载，如果有需要，你甚至可以采用懒加载的方式，在SplashActivity中对其初始化。  </p>
+<blockquote>
+<p>这里提供是两种全局设置的方式。<br>有时候我们只是需要给部分 TextView 设置，这时候大家可以选择手动单独给特定的 TextView 设置，也可以通过自定义 View 的方案来实现（<strong>在构造方法中去设置 TypeFace</strong>，我个人也比较提倡这种方式，使用上相对灵活，也很简单这里就啰嗦了，详细代码可以到这里下载 <a href="https://github.com/OCNYang/FontTest" target="_blank" rel="external">本文源码</a> 内查看）。  </p>
+</blockquote>
+<p>那上面这些只是如何设置字体的方法，可能你也早就知道了，字体是字体，也不是图片呀，大兄弟莫慌，下面就给你如何介绍一种酷炫的字体库和制作自己独特的图片字体库的方法。  </p>
+<h2 id="fontawesome-字体库的使用"><a href="#fontawesome-字体库的使用" class="headerlink" title="fontawesome 字体库的使用"></a>fontawesome 字体库的使用</h2><p>在开始使用之前，我们我们需要到<br><strong><a href="https://github.com/FortAwesome/Font-Awesome/" target="_blank" rel="external">https://github.com/FortAwesome/Font-Awesome/</a></strong><br>下载这个字体库（不想麻烦，本文 <a href="https://github.com/OCNYang/FontTest" target="_blank" rel="external">源代码</a> 也包含有）。下载下来以后，你会看到有很多目录和文件，没关系，我们只需要一个文件-fontawesome-webfont.ttf，这个文件位于/fonts/目录下。将这个ttf文件copy到你项目的assets目录下，按照惯例或者说是共识，我们可能是将它放到assets/fonts这个目录下(注意，没有这个目录的话，创建它！)。  </p>
+<p>ok， 准备工作都做好了，那我们就开始使用它吧，看我的xml布局文件：  </p>
+<pre><code>&lt;LinearLayout
+    //...
+    &gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/text1&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_margin=&quot;10dp&quot;
+        android:textSize=&quot;58sp&quot;
+        android:textColor=&quot;#ff995533&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;&amp;#xe60d;&quot;/&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/text2&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_margin=&quot;10dp&quot;
+        android:textSize=&quot;118sp&quot;
+        android:textColor=&quot;#ff9ff533&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;&amp;#xe615;&quot;/&gt;
+
+    //...
+
+&lt;/LinearLayout&gt;
+</code></pre><p>看到这个布局文件，我们看到和平时没什么区别，给出了textSize或者textColor属性，不用想这些肯定去控制了我们需要显示的图片的大小和颜色！  </p>
+<p>细心的你会发现这些 TextView 文本好奇怪。其实这些文本对应的就是相对于的图片。可是，现在我们又遇到了一个问题，我们怎么知道哪写文本代表了什么图片呢？下面给出一个网址，通过这个网址，大家可以看到实体文本和他对应的图片的一个对照表。  </p>
+<p><a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_blank" rel="external">http://fortawesome.github.io/Font-Awesome/cheatsheet/</a>  </p>
+<blockquote>
+<p>本文 <a href="https://github.com/OCNYang/FontTest" target="_blank" rel="external">源码</a> 内我们提供了一个 <code>string.xml</code> 文件的图片字符对照表,可以直接在项目中使用。<br>你也可以在根据自己的需要在上面 <code>string.xml</code> 文件里 <code>Ctrl + F</code> 检索出对应的编码放到自己的字符串文件里或直接使用。   </p>
+</blockquote>
+<p>哦，对了，不知道大家有没有发现，这里我们无意中解决了一个图片大小的问题，因为我们可以任意改变一个文本的大小，所以，就不需要提供多套图去适配不同的屏幕了。  </p>
+<p>这是你可能还是有疑问，<code>Font-Awesome 库</code> 内提供的图标虽然很全很美观，但是不一定能满足我们所有的需要啊！那现在就教大家如何制作属于自己的字体库。  </p>
+<h2 id="制作属于自己的图片字体库"><a href="#制作属于自己的图片字体库" class="headerlink" title="制作属于自己的图片字体库"></a>制作属于自己的图片字体库</h2><p>在自己动手制作图片字体库之前，当然要先查找一些自己喜欢的漂亮的图标了，下面开启干货福利模式。  </p>
+<h3 id="图标干货"><a href="#图标干货" class="headerlink" title="图标干货"></a>图标干货</h3><p>对于使用，最主要就是找到一些靠谱的素材站点了</p>
+<p><a href="http://www.iconfont.cn/" target="_blank" rel="external">http://www.iconfont.cn/</a><br><a href="https://icomoon.io/app/#/select" target="_blank" rel="external">https://icomoon.io/app/#/select</a><br><a href="https://github.com/mikepenz/Android-Iconics" target="_blank" rel="external">https://github.com/mikepenz/Android-Iconics</a>  </p>
+<p>第一个站点是阿里提供的图标库，基本上可以搜索到需要的任何图标，非常方便，也支持颜色和大小的设置，足够满足我们的需求：</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont.png" alt="阿里 iconfont 图标库">  </p>
+<h3 id="自定义图标"><a href="#自定义图标" class="headerlink" title="自定义图标"></a>自定义图标</h3><p>无论上面这些网站提供的图标是多么的全，可能都无法满足贪心的你或者你们家追求完美（矫情）到极致的UI，那么如果App内的图标部分是自己制作的，再混杂着网络上已有的图标能打包到一个字体库么？<br>答案当然是肯定的，我们本来就是要制作属于自己的字体库嘛！比如你就可以依赖 <code>iconfont.com</code> 这个网站，自行上传svg图标，然后就可以自由选择了。  </p>
+<blockquote>
+<p>关于 iconfont 网站的用法可以参考官方手册(也可以跳过，直接跟着我学习怎么生成自己的字体库)：<br><a href="http://www.iconfont.cn/help/platform.html" target="_blank" rel="external">http://www.iconfont.cn/help/platform.html</a>  </p>
+</blockquote>
+<h3 id="按需生成自己的图标字体库"><a href="#按需生成自己的图标字体库" class="headerlink" title="按需生成自己的图标字体库"></a>按需生成自己的图标字体库</h3><p>我们以 iconfont 库为例，教大家<a href="http://ocnyang.com/">生成自己图片字体库的整个流程</a>（下面所有步骤，大家都无需注册账号，就可以直接使用）。  </p>
+<p>首先在 iconfont 网站上选择自己要生成到字体库的图标，可以选择网站字体库中选择，也可以在我的图标库中选择自己上传的图标。把这些图标添加到库（即添加到购物车）：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_all.png" alt="选择喜欢的图标">  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_setect.png" alt="添加到购物车">  </p>
+<p>当你想要生成的字体库的图标选择完成后，在网站右上角点击打开库（购物车），在库里可以看到自己选择的所有图标，确定后点击下载代码：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_cart.png" alt="打开库，下载代码会得到一个压缩包">  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyang/iconfont/iconfont_ttf.png" alt="解压缩后，可以看到生成的库">  </p>
+<p>在解压后的文件夹中，我们看到许多文件。其中以 <code>.ttf</code> 结尾的文件就是我们生成的自己的字体库，而 3 个 <code>.html</code> 文件对应的是不同平台使用时对应的编码。而我们在 Android 开发中要使用的编码是 <code>demo_unicode.html</code> 文件里对应的 <code>&amp;#xxxxx;</code> 形式的编码。  </p>
+<p>细心的你一定会发现，生成的字体库里虽然包含了很多图标，却只有小小的几 KB 的大小，更难能可贵的是无论设置多大的尺寸它依旧能够保存一样的清晰度，当然，你也可以把该方案看成apk瘦身的可选手段之一。</p>
+<p>本文Demo源代码下载地址：<strong><a href="https://github.com/OCNYang/FontTest" target="_blank" rel="external">https://github.com/OCNYang/FontTest</a></strong>  </p>
+<blockquote>
+<p>参考：<br><a href="http://blog.csdn.net/qibin0506/article/details/48675839" target="_blank" rel="external">亓斌 - FontAwesome-用TextView显示图片</a><br><a href="http://chuansong.me/n/797491851925" target="_blank" rel="external">鸿洋 - Android IconFont全攻略</a><br><a href="https://code.tutsplus.com/tutorials/how-to-use-fontawesome-in-an-android-app--cms-24167" target="_blank" rel="external">How to Use FontAwesome in an Android App</a>  </p>
+</blockquote>
+
+          
         
       
     </div>
@@ -1609,7 +3876,13 @@
       
     </div>
 
+    <div>
+      
+    </div>
+
     <footer class="post-footer">
+      
+
       
 
       
@@ -1657,25 +3930,32 @@
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/ocnyang.png"
                alt="OCN.Yang" />
           <p class="site-author-name" itemprop="name">OCN.Yang</p>
-          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+           
+              <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">47</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -1683,8 +3963,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -1757,7 +4039,12 @@
           </div>
         
 
+        
+
+
       </section>
+
+      
 
       
 
@@ -1781,8 +4068,9 @@
   <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -1792,31 +4080,40 @@
   </a>
 </div>
 
+
         
-
 <div class="busuanzi-count">
-
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
   
 
   
-    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
-  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
   
 </div>
-
 
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -1836,6 +4133,9 @@
 
 
   
+
+
+
 
 
 
@@ -1861,28 +4161,28 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
   
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
 
 
 
@@ -1907,6 +4207,7 @@
 
   
     
+    
     <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
     <script src="/js/src/hook-duoshuo.js"></script>
   
@@ -1916,139 +4217,21 @@
 
 
 
-  
-  
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
 
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
 
-    }
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = true;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            }
-                        });
-                    }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
 
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
-                        }
-                        str += "</li>";
-                    }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
-            });
-            proceedsearch();
-        }
-    });}
 
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched == false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
 
-    });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-  </script>
+
+
 
 
   
+
+
+
+
 
   
 
@@ -2158,6 +4341,10 @@
   </script>
 
 
+
+  
+
+  
 
   
 

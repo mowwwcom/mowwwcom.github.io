@@ -2,17 +2,22 @@
 
 
 
+  
 
-<html class="theme-next pisces">
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
 
 
 
@@ -61,9 +66,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT, OCN.Yang, Android, 杨欧神" />
@@ -75,7 +80,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -94,24 +99,35 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
-    motion: false,
+    motion: true,
     duoshuo: {
-      userId: 6310065206374434000,
-      author: 'OCN.Yang'
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://ocnyang.com/page/3/"/>
+
+
+
+
 
   <title> 杨欧神/OCN.Yang </title>
 </head>
@@ -122,11 +138,13 @@
 
 
 
+
+
   <script type="text/javascript">
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
+      hm.src = "https://hm.baidu.com/hm.js?923326cdfba9134256dbbf5887c8ce38";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -139,42 +157,42 @@
 
 
 
+
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left 
+  <div class="container sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
-    
-  <!-- add Fork me on Github-->
-  <a href="https://github.com/ocnyang">
-    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/forkme_light_background.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-  </a>
-  <!-- add Fork me on Github-->
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">杨欧神/OCN.Yang</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杨欧神/OCN.Yang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
+      
   </div>
-  <p class="site-subtitle">我问佛：如何让心不再感到孤单？<br>佛曰：每一颗心生来就是孤单而残缺的，多数带着这种残缺度过一生，只因与能使它圆满的另一半相遇时，不是疏忽错过，就是已失去了拥有它的资格</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -209,7 +227,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-hourglass-start"></i> <br />
             
-            时间轴
+            归档
           </a>
         </li>
       
@@ -229,7 +247,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
             
-            E.Fall
+            menu.efall
           </a>
         </li>
       
@@ -245,34 +263,13 @@
       
 
       
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
     </ul>
   
 
   
-    <div class="site-search">
-      
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
-</div>
-
-
-    </div>
-  
 </nav>
+
+
 
  </div>
     </header>
@@ -287,13 +284,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/10/10/Java_Mode_Singleton/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -315,24 +322,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-10T14:03:15+08:00" content="2016-10-10">
-              2016-10-10
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-10T14:03:15+08:00">
+                2016-10-10
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/设计模式/" itemprop="url" rel="index">
                     <span itemprop="name">设计模式</span>
                   </a>
@@ -340,7 +359,6 @@
 
                 
                 
-
               
             </span>
           
@@ -348,29 +366,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/10/10/Java_Mode_Singleton/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/Java_Mode_Singleton/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/Java_Mode_Singleton/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/10/10/Java_Mode_Singleton/" class="leancloud_visitors" data-flag-title="你真的会写单例吗？">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -384,27 +410,148 @@
       
         
           
-          你真的会写单例吗？
-摘录来源  
+            <h1 id="你真的会写单例吗？"><a href="#你真的会写单例吗？" class="headerlink" title="你真的会写单例吗？"></a>你真的会写单例吗？</h1><blockquote>
+<p><a href="http://blog.csdn.net/wzgiceman/article/details/51809985" target="_blank" rel="external">摘录来源</a>  </p>
+</blockquote>
+<h2 id="单例的正确姿势"><a href="#单例的正确姿势" class="headerlink" title="单例的正确姿势"></a>单例的正确姿势</h2><p><a href="http://ocnyang.com/">Java</a>单例模式可能是最简单也是最常用的设计模式，一个完美的单例需要做到哪些事呢？  </p>
+<ol>
+<li>单例（这不是废话吗）  </li>
+<li>延迟加载</li>
+<li>线程安全</li>
+<li>没有性能问题</li>
+<li>防止序列化产生新对象</li>
+<li>防止反射攻击  </li>
+</ol>
+<p>可以看到，真正要实现一个完美的单例是很复杂的，那么，让我这个司机带大家看一看正确姿势的单例。  </p>
+<h2 id="最佳实践单例之枚举"><a href="#最佳实践单例之枚举" class="headerlink" title="最佳实践单例之枚举"></a>最佳实践单例之枚举</h2><p>没错，直接就上最佳实践，就是这么任性  </p>
+<p>这货长这样：  </p>
+<pre><code>public enum Singleton{  
+    INSTANCE;  
+}    
+</code></pre><p>如果你不熟悉枚举，可能会说：这货是啥？！  </p>
+<p>这种方式的好处是：  </p>
+<ol>
+<li>利用的枚举的特性实现单例</li>
+<li>由JVM保证线程安全</li>
+<li>序列化和反射攻击已经被枚举解决  </li>
+</ol>
+<p>调用方式为Singleton.INSTANCE, 出自《Effective Java》第二版第三条: 用私有构造器或枚举类型强化Singleton属性。<br>关于单例最佳实践的讨论可以看Stackoverflow：<a href="http://stackoverflow.com/questions/70689/what-is-an-efficient-way-to-implement-a-singleton-pattern-in-java" target="_blank" rel="external">what-is-an-efficient-way-to-implement-a-singleton-pattern-in-java</a>  </p>
+<p>下面将会介绍更为常见的单例模式，但是均未处理反射攻击，如果想了解更多可以看这篇文章：<a href="http://blog.csdn.net/u013256816/article/details/50525335" target="_blank" rel="external">如何防止单例模式被JAVA反射攻击</a>  </p>
+<h2 id="最简单的单例之饿汉式"><a href="#最简单的单例之饿汉式" class="headerlink" title="最简单的单例之饿汉式"></a>最简单的单例之饿汉式</h2><pre><code>public class Singleton {  
+    private static final Singleton INSTANCE = new Singleton();  
+    // 私有化构造函数  
+    private Singleton(){}  
 
-单例的正确姿势Java单例模式可能是最简单也是最常用的设计模式，一个完美的单例需要做到哪些事呢？  
+    public static Singleton getInstance(){  
+        return INSTANCE;  
+    }  
+}   
+</code></pre><p>这种单例的写法最简单，但是缺点是一旦类被加载，单例就会初始化，没有实现懒加载。而且当实现了Serializable接口后，反序列化时单例会被破坏。<br>实现Serializable接口需要重写readResolve，才能保证其反序列化依旧是单例：  </p>
+<pre><code>public class Singleton implements Serializable {  
+    private static final Singleton INSTANCE = new Singleton();  
+    // 私有化构造函数  
+    private Singleton(){}  
 
-单例（这不是废话吗）  
-延迟加载
-线程安全
-没有性能问题
-防止序列化产生新对象
-防止反射攻击  
+    public static Singleton getInstance(){  
+        return INSTANCE;  
+    }  
 
-可以看到，真正要实现一个完美的单例是很复杂的，那么，让我这
-          ...
+    /** 
+     * 如果实现了Serializable, 必须重写这个方法 
+     */  
+    private Object readResolve() throws ObjectStreamException {  
+        return INSTANCE;  
+    }  
+}    
+</code></pre><p>OK，反序列化要注意的就是这一点，下面的内容中就不再复述了。  </p>
+<h2 id="最体现技术的单例之懒汉式"><a href="#最体现技术的单例之懒汉式" class="headerlink" title="最体现技术的单例之懒汉式"></a>最体现技术的单例之懒汉式</h2><p>懒汉式即实现延迟加载的单例，为上述饿汉式的优化形式。而因其仍需要进一步优化，往往成为面试考点，让我们一起来看看坑爹的“懒汉式”<br>懒汉式的最初形式是这样的：  </p>
+<pre><code>public class Singleton {  
+    private static Singleton INSTANCE;  
+    private Singleton (){}  
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/10/Java_Mode_Singleton/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+    public static Singleton getInstance() {  
+     if (INSTANCE == null) {  
+         INSTANCE = new Singleton();  
+     }  
+     return INSTANCE;  
+    }  
+}   
+</code></pre><p>这种写法就轻松实现了单例的懒加载，只有调用了getInstance方法才会初始化。但是这样的写法出现了新的问题–线程不安全。当多个线程调用getInstance方法时，可能会创建多个实例，因此需要对其进行同步。  </p>
+<p>如何使其线程安全呢？简单，加个synchronized关键字就行了</p>
+<pre><code>public static synchronized Singleton getInstance() {  
+    if (INSTANCE == null) {  
+        INSTANCE = new Singleton();  
+    }  
+    return INSTANCE;  
+}    
+</code></pre><p>可是…这样又出现了性能问题，简单粗暴的同步整个方法，导致同一时间内只有一个线程能够调用getInstance方法。 </p>
+<p>因为仅仅需要对初始化部分的代码进行同步，所以再次进行优化：  </p>
+<pre><code>public static Singleton getSingleton() {  
+    if (INSTANCE == null) {               // 第一次检查  
+        synchronized (Singleton.class) {  
+            if (INSTANCE == null) {      // 第二次检查  
+                INSTANCE = new Singleton();  
+            }  
+        }  
+    }  
+    return INSTANCE ;  
+}   
+</code></pre><p>执行两次检测很有必要：当多线程调用时，如果多个线程同时执行完了第一次检查，其中一个进入同步代码块创建了实例，后面的线程因第二次检测不会创建新实例。<br>这段代码看起来很完美，但仍旧存在问题，以下内容引用自黑桃夹克大神的<a href="http://wuchong.me/blog/2014/08/28/how-to-correctly-write-singleton-pattern/" target="_blank" rel="external">如何正确地写出单例模式</a>    </p>
+<p>这段代码看起来很完美，很可惜，它是有问题。主要在于instance = new Singleton()这句，这并非是一个原子操作，事实上在 JVM 中这句话大概做了下面 3 件事情。 </p>
+<ol>
+<li>给 instance 分配内存</li>
+<li>调用 Singleton 的构造函数来初始化成员变量</li>
+<li>将instance对象指向分配的内存空间（执行完这步 instance 就为非 null 了）  </li>
+</ol>
+<p>但是在 JVM 的即时编译器中存在指令重排序的优化。也就是说上面的第二步和第三步的顺序是不能保证的，最终的执行顺序可能是 1-2-3 也可能是 1-3-2。如果是后者，则在 3 执行完毕、2 未执行之前，被线程二抢占了，这时 instance 已经是非 null 了（但却没有初始化），所以线程二会直接返回 instance，然后使用，然后顺理成章地报错。<br>我们只需要将 instance 变量声明成 volatile 就可以了。  </p>
+<pre><code>public class Singleton {  
+    private volatile static Singleton INSTANCE; //声明成 volatile  
+    private Singleton (){}  
+
+    public static Singleton getSingleton() {  
+        if (INSTANCE == null) {                           
+            synchronized (Singleton.class) {  
+                if (INSTANCE == null) {         
+                    INSTANCE = new Singleton();  
+                }  
+            }  
+        }  
+        return INSTANCE;  
+    }  
+
+}   
+</code></pre><p>使用 volatile 的主要原因是其另一个特性：禁止指令重排序优化。也就是说，在 volatile 变量的赋值操作后面会有一个内存屏障（生成的汇编代码上），读操作不会被重排序到内存屏障之前。比如上面的例子，取操作必须在执行完 1-2-3 之后或者 1-3-2 之后，不存在执行到 1-3 然后取到值的情况。从「先行发生原则」的角度理解的话，就是对于一个 volatile 变量的写操作都先行发生于后面对这个变量的读操作（这里的“后面”是时间上的先后顺序）。  </p>
+<p>但是特别注意在 Java 5 以前的版本使用了 volatile 的双检锁还是有问题的。其原因是 Java 5 以前的 JMM （Java 内存模型）是存在缺陷的，即时将变量声明成 volatile 也不能完全避免重排序，主要是 volatile 变量前后的代码仍然存在重排序问题。这个 volatile 屏蔽重排序的问题在 Java 5 中才得以修复，所以在这之后才可以放心使用 volatile。  </p>
+<p>至此，这样的懒汉式才是没有问题的懒汉式。 </p>
+<h2 id="内部类实现单例"><a href="#内部类实现单例" class="headerlink" title="内部类实现单例"></a>内部类实现单例</h2><pre><code>public class Singleton {   
+    /**  
+     * 类级的内部类，也就是静态的成员式内部类，该内部类的实例与外部类的实例没有绑定关系，  
+     * 而且只有被调用到才会装载，从而实现了延迟加载  
+     */   
+    private static class SingletonHolder{   
+        /**  
+         * 静态初始化器，由JVM来保证线程安全  
+         */   
+        private static final Singleton instance = new Singleton();   
+    }   
+    /**  
+     * 私有化构造方法  
+     */   
+    private Singleton(){   
+    }   
+
+    public static  Singleton getInstance(){   
+        return SingletonHolder.instance;   
+    }   
+}  
+</code></pre><p>使用内部类来维护单例的实例，当Singleton被加载时，其内部类并不会被初始化，故可以确保当 Singleton类被载入JVM时，不会初始化单例类。只有 getInstance() 方法调用时，才会初始化 instance。同时，由于实例的建立是时在类加载时完成，故天生对多线程友好，getInstance() 方法也无需使用同步关键字。</p>
+
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -422,6 +569,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -433,13 +582,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/10/10/RxJavaAbout4_RxAndroid/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -461,24 +620,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-10T12:03:15+08:00" content="2016-10-10">
-              2016-10-10
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-10T12:03:15+08:00">
+                2016-10-10
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/RxJava系列/" itemprop="url" rel="index">
                     <span itemprop="name">RxJava系列</span>
                   </a>
@@ -486,7 +657,6 @@
 
                 
                 
-
               
             </span>
           
@@ -494,29 +664,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/10/10/RxJavaAbout4_RxAndroid/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/RxJavaAbout4_RxAndroid/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/RxJavaAbout4_RxAndroid/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/10/10/RxJavaAbout4_RxAndroid/" class="leancloud_visitors" data-flag-title="深入浅出RxJava（四：在Android中使用响应式编程）">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -530,16 +708,98 @@
       
         
           
-          深入浅出RxJava（四：在Android中使用响应式编程）
-文章摘录来源：原文链接  http://blog.danlew.net/2014/10/08/grokking-rxjava-part-4/译文链接 http://blog.csdn.net/lzyzsd/article/details/
-          ...
+            <h1 id="深入浅出RxJava（四：在Android中使用响应式编程）"><a href="#深入浅出RxJava（四：在Android中使用响应式编程）" class="headerlink" title="深入浅出RxJava（四：在Android中使用响应式编程）"></a>深入浅出RxJava（四：在Android中使用响应式编程）</h1><blockquote>
+<p>文章摘录来源：<br>原文链接  <a href="http://blog.danlew.net/2014/10/08/grokking-rxjava-part-4/" target="_blank" rel="external">http://blog.danlew.net/2014/10/08/grokking-rxjava-part-4/</a><br>译文链接 <a href="http://blog.csdn.net/lzyzsd/article/details/45033611" target="_blank" rel="external">http://blog.csdn.net/lzyzsd/article/details/45033611</a> </p>
+</blockquote>
+<p>在第<a href="http://ocnyang.com/2016/10/10/RxJavaAbout1_Base/">1</a>，<a href="http://ocnyang.com/2016/10/10/RxJavaAbout2_Operators/">2</a>，<a href="http://ocnyang.com/2016/10/10/RxJavaAbout3_Response/">3</a>篇中，我大概介绍了RxJava是怎么使用的。下面我会介绍如何在<a href="http://ocnyang.com/">Android</a>中使用RxJava.</p>
+<h2 id="RxAndroid"><a href="#RxAndroid" class="headerlink" title="RxAndroid"></a>RxAndroid</h2><p>RxAndroid是RxJava的一个针对Android平台的扩展。它包含了一些能够简化Android开发的工具。  </p>
+<p>首先，AndroidSchedulers提供了针对Android的线程系统的调度器。需要在UI线程中运行某些代码？很简单，只需要使用AndroidSchedulers.mainThread():  </p>
+<pre><code>retrofitService.getImage(url)
+    .subscribeOn(Schedulers.io())
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe(bitmap -&gt; myImageView.setImageBitmap(bitmap));  
+</code></pre><p>如果你已经创建了自己的Handler，你可以使用HandlerThreadScheduler1将一个调度器链接到你的handler上。  </p>
+<p>接着要介绍的就是AndroidObservable，它提供了跟多的功能来配合Android的生命周期。bindActivity()和 bindFragment()方法默认使用AndroidSchedulers.mainThread()来执行观察者代码，这两个方法会在 Activity或者Fragment结束的时候通知被观察者停止发出新的消息。  </p>
+<pre><code>AndroidObservable.bindActivity(this, retrofitService.getImage(url))
+    .subscribeOn(Schedulers.io())
+    .subscribe(bitmap -&gt; myImageView.setImageBitmap(bitmap);  
+</code></pre><p>我自己也很喜欢AndroidObservable.fromBroadcast()方法，它允许你创建一个类似BroadcastReceiver的Observable对象。下面的例子展示了如何在网络变化的时候被通知到：  </p>
+<pre><code>IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+AndroidObservable.fromBroadcast(context, filter)
+    .subscribe(intent -&gt; handleConnectivityChange(intent));  
+</code></pre><p>最后要介绍的是ViewObservable,使用它可以给View添加了一些绑定。如果你想在每次点击view的时候都收到一个事件，可以使用 ViewObservable.clicks()，或者你想监听TextView的内容变化，可以使用ViewObservable.text()。  </p>
+<pre><code>ViewObservable.clicks(mCardNameEditText, false)
+    .subscribe(view -&gt; handleClick(view));  
+</code></pre><h2 id="Retrofit"><a href="#Retrofit" class="headerlink" title="Retrofit"></a>Retrofit</h2><p>大名鼎鼎的Retrofit库内置了对RxJava的支持。通常调用发可以通过使用一个Callback对象来获取异步的结果：  </p>
+<pre><code>@GET(&quot;/user/{id}/photo&quot;)
+void getUserPhoto(@Path(&quot;id&quot;) int id, Callback&lt;Photo&gt; cb);  
+</code></pre><p>使用RxJava，你可以直接返回一个Observable对象。  </p>
+<pre><code>@GET(&quot;/user/{id}/photo&quot;)
+Observable&lt;Photo&gt; getUserPhoto(@Path(&quot;id&quot;) int id);  
+</code></pre><p>现在你可以随意使用Observable对象了。你不仅可以获取数据，还可以进行变换。<br>Retrofit对Observable的支持使得它可以很简单的将多个REST请求结合起来。比如我们有一个请求是获取照片的，还有一个请求是获取元数据的，我们就可以将这两个请求并发的发出，并且等待两个结果都返回之后再做处理：  </p>
+<pre><code>Observable.zip(
+    service.getUserPhoto(id),
+    service.getPhotoMetadata(id),
+    (photo, metadata) -&gt; createPhotoWithData(photo, metadata))
+    .subscribe(photoWithData -&gt; showPhoto(photoWithData));  
+</code></pre><p>在第二篇里我展示过一个类似的例子（使用flatMap()）。这里我只是想展示以下使用RxJava+Retrofit可以多么简单地组合多个REST请求。  </p>
+<h2 id="遗留代码，运行极慢的代码"><a href="#遗留代码，运行极慢的代码" class="headerlink" title="遗留代码，运行极慢的代码"></a>遗留代码，运行极慢的代码</h2><p>Retrofit可以返回Observable对象，但是如果你使用的别的库并不支持这样怎么办？或者说一个内部的内码，你想把他们转换成Observable的？有什么简单的办法没？  </p>
+<p>绝大多数时候Observable.just() 和 Observable.from() 能够帮助你从遗留代码中创建 Observable 对象:  </p>
+<pre><code>private Object oldMethod() { ... }
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/10/RxJavaAbout4_RxAndroid/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+public Observable&lt;Object&gt; newMethod() {
+    return Observable.just(oldMethod());
+}  
+</code></pre><p>上面的例子中如果oldMethod()足够快是没有什么问题的，但是如果很慢呢？调用oldMethod()将会阻塞住他所在的线程。<br>为了解决这个问题，可以参考我一直使用的方法–使用defer()来包装缓慢的代码：  </p>
+<pre><code>private Object slowBlockingMethod() { ... }
+
+public Observable&lt;Object&gt; newMethod() {
+    return Observable.defer(() -&gt; Observable.just(slowBlockingMethod()));
+}  
+</code></pre><p>现在，newMethod()的调用不会阻塞了，除非你订阅返回的observable对象。  </p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>我把最难的部分留在了最后。如何处理Activity的生命周期？主要就是两个问题：  </p>
+<ol>
+<li>在configuration改变（比如转屏）之后继续之前的Subscription。<br>比如你使用Retrofit发出了一个REST请求，接着想在listview中展示结果。如果在网络请求的时候用户旋转了屏幕怎么办？你当然想继续刚才的请求，但是怎么搞？  </li>
+<li>Observable持有Context导致的内存泄露<br>这个问题是因为创建subscription的时候，以某种方式持有了context的引用，尤其是当你和view交互的时候，这太容易发生！如果Observable没有及时结束，内存占用就会越来越大。   </li>
+</ol>
+<p>不幸的是，没有银弹来解决这两个问题，但是这里有一些指导方案你可以参考。</p>
+<p><strong>第一个问题的解决方案</strong> 就是使用RxJava内置的缓存机制，这样你就可以对同一个Observable对象执行 unsubscribe/resubscribe，却不用重复运行得到Observable的代码。cache() (或者 replay())会继续执行网络请求（甚至你调用了unsubscribe也不会停止）。这就是说你可以在Activity重新创建的时候从 cache()的返回值中创建一个新的Observable对象。  </p>
+<pre><code>Observable&lt;Photo&gt; request = service.getUserPhoto(id).cache();
+Subscription sub = request.subscribe(photo -&gt; handleUserPhoto(photo));
+
+// ...When the Activity is being recreated...
+sub.unsubscribe();
+
+// ...Once the Activity is recreated...
+request.subscribe(photo -&gt; handleUserPhoto(photo));  
+</code></pre><p>注意，两次sub是使用的同一个缓存的请求。当然在哪里去存储请求的结果还是要你自己来做，和所有其他的生命周期相关的解决方案一延虎，必须在生命周期外的某个地方存储。（retained fragment或者单例等等）。  </p>
+<p><strong>第二个问题的解决方案</strong> 就是在生命周期的某个时刻取消订阅。一个很常见的模式就是使用CompositeSubscription来持有所有的Subscriptions，然后在onDestroy()或者onDestroyView()里取消所有的订阅。  </p>
+<pre><code>private CompositeSubscription mCompositeSubscription
+    = new CompositeSubscription();
+
+private void doSomething() {
+    mCompositeSubscription.add(
+        AndroidObservable.bindActivity(this, Observable.just(&quot;Hello, World!&quot;))
+        .subscribe(s -&gt; System.out.println(s)));
+}
+
+@Override
+protected void onDestroy() {
+    super.onDestroy();
+
+    mCompositeSubscription.unsubscribe();
+}  
+</code></pre><p>你可以在Activity/Fragment的基类里创建一个CompositeSubscription对象，在子类中使用它。  </p>
+<p>注意! 一旦你调用了 CompositeSubscription.unsubscribe()，这个CompositeSubscription对象就不可用了, 如果你还想使用CompositeSubscription，就必须在创建一个新的对象了。  </p>
+<p>两个问题的解决方案都需要添加额外的代码，如果谁有更好的方案，欢迎告诉我。  </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>RxJava还是一个很新的项目，RxAndroid更是。RxAndroid目前还在活跃开发中，也没有多少好的例子。可能一年之后我的一些建议就会被看做过时了。</p>
+
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -557,6 +817,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -568,13 +830,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/10/10/RxJavaAbout3_Response/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -596,24 +868,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-10T11:03:15+08:00" content="2016-10-10">
-              2016-10-10
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-10T11:03:15+08:00">
+                2016-10-10
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/RxJava系列/" itemprop="url" rel="index">
                     <span itemprop="name">RxJava系列</span>
                   </a>
@@ -621,7 +905,6 @@
 
                 
                 
-
               
             </span>
           
@@ -629,29 +912,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/10/10/RxJavaAbout3_Response/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/RxJavaAbout3_Response/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/RxJavaAbout3_Response/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/10/10/RxJavaAbout3_Response/" class="leancloud_visitors" data-flag-title="深入浅出RxJava（三：响应式的好处）">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -665,19 +956,59 @@
       
         
           
-          深入浅出RxJava（三：响应式的好处）
-文章摘录来源：英文原文译文原文  
+            <h1 id="深入浅出RxJava（三：响应式的好处）"><a href="#深入浅出RxJava（三：响应式的好处）" class="headerlink" title="深入浅出RxJava（三：响应式的好处）"></a>深入浅出RxJava（三：响应式的好处）</h1><blockquote>
+<p>文章摘录来源：<br><a href="http://blog.danlew.net/2014/09/30/grokking-rxjava-part-3/" target="_blank" rel="external">英文原文</a><br><a href="http://blog.csdn.net/lzyzsd/article/details/44891933" target="_blank" rel="external">译文原文</a>  </p>
+</blockquote>
+<p>在第一篇中，我介绍了<a href="http://ocnyang.com/2016/10/10/RxJavaAbout1_Base/">RxJava的基础知识</a>。第二篇中，我向你展示了<a href="http://ocnyang.com/2016/10/10/RxJavaAbout2_Operators/">操作符的强大</a>。但是你可能仍然没被说服。这篇里面，我讲向你展示RxJava的其他的一些好处，相信这篇足够让你去使用Rxjava.</p>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>到目前为止，我们都没怎么介绍onComplete()和onError()函数。这两个函数用来通知订阅者，被观察的对象将停止发送数据以及为什么停止（成功的完成或者出错了）。</p>
+<p>下面的代码展示了怎么使用这两个函数：  </p>
+<pre><code>Observable.just(&quot;Hello, world!&quot;)
+    .map(s -&gt; potentialException(s))
+    .map(s -&gt; anotherPotentialException(s))
+    .subscribe(new Subscriber&lt;String&gt;() {        @Override
+        public void onNext(String s) { System.out.println(s); }        @Override
+        public void onCompleted() { System.out.println(&quot;Completed!&quot;); }        @Override
+        public void onError(Throwable e) { System.out.println(&quot;Ouch!&quot;); }
+    });  
+</code></pre><p>代码中的potentialException() 和 anotherPotentialException()有可能会抛出异常。每一个Observerable对象在终结的时候都会调用 onCompleted()或者onError()方法，所以Demo中会打印”Completed!”或者”Ouch!”。  </p>
+<p>这种模式有以下几个优点：  </p>
+<ol>
+<li><p>只要有异常发生onError()一定会被调用<br>这极大的简化了错误处理。只需要在一个地方处理错误即可以。  </p>
+</li>
+<li><p>操作符不需要处理异常<br>将异常处理交给订阅者来做，Observerable的操作符调用链中一旦有一个抛出了异常，就会直接执行onError()方法。  </p>
+</li>
+<li><p>你能够知道什么时候订阅者已经接收了全部的数据。<br>知道什么时候任务结束能够帮助简化代码的流程。（虽然有可能Observable对象永远不会结束）  </p>
+</li>
+</ol>
+<p>我觉得这种错误处理方式比传统的错误处理更简单。传统的错误处理中，通常是在每个回调中处理错误。这不仅导致了重复的代码，并且意味着每个回调都必须知道如何处理错误，你的回调代码将和调用者紧耦合在一起。  </p>
+<p>使用RxJava，Observable对象根本不需要知道如何处理错误！操作符也不需要处理错误状态-一旦发生错误，就会跳过当前和后续的操作符。所有的错误处理都交给订阅者来做。  </p>
+<h2 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h2><p>假设你编写的<a href="http://ocnyang.com/">Android</a> app需要从网络请求数据（感觉这是必备的了，还有单机么？）。网络请求需要话费较长的时间，因此你打算在另外一个线程中加载数据。为问题来了！  </p>
+<p>编写多线程的Android应用程序是很难的，因为你必须确保代码在正确的线程中运行，否则的话可能会导致app崩溃。最常见的就是在非主线程更新UI。  </p>
+<p>使用RxJava，你可以使用subscribeOn()指定观察者代码运行的线程，使用observerOn()指定订阅者运行的线程：  </p>
+<pre><code>myObservableServices.retrieveImage(url)
+    .subscribeOn(Schedulers.io())
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe(bitmap -&gt; myImageView.setImageBitmap(bitmap));  
+</code></pre><p>是不是很简单？任何在我的Subscriber前面执行的代码都是在I/O线程中运行。最后，操作view的代码在主线程中运行.  </p>
+<p>最棒的是我可以把subscribeOn()和observerOn()添加到任何Observable对象上。这两个也是操作符！。我不需要关心Observable对象以及它上面有哪些操作符。仅仅运用这两个操作符就可以实现在不同的线程中调度。  </p>
+<p>如果使用AsyncTask或者其他类似的，我将不得不仔细设计我的代码，找出需要并发执行的部分。使用RxJava，我可以保持代码不变，仅仅在需要并发的时候调用这两个操作符就可以。  </p>
+<h2 id="订阅（Subscriptions）"><a href="#订阅（Subscriptions）" class="headerlink" title="订阅（Subscriptions）"></a>订阅（Subscriptions）</h2><p>当调用Observable.subscribe()，会返回一个Subscription对象。这个对象代表了被观察者和订阅者之间的联系。  </p>
+<pre><code>ubscription subscription = Observable.just(&quot;Hello, World!&quot;)
+    .subscribe(s -&gt; System.out.println(s));  
+</code></pre><p>你可以在后面使用这个Subscription对象来操作被观察者和订阅者之间的联系.  </p>
+<pre><code>subscription.unsubscribe();
+System.out.println(&quot;Unsubscribed=&quot; + subscription.isUnsubscribed());
+// Outputs &quot;Unsubscribed=true&quot;  
+</code></pre><p>RxJava的另外一个好处就是它处理unsubscribing的时候，会停止整个调用链。如果你使用了一串很复杂的操作符，调用unsubscribe将会在他当前执行的地方终止。不需要做任何额外的工作！  </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>记住这个系列仅仅是对RxJava的一个入门介绍。RxJava中有更多的我没介绍的功能等你探索（比如backpressure）。当然我也不是所有的代码都使用响应式的方式–仅仅当代码复杂到我想将它分解成简单的逻辑的时候，我才使用响应式代码。  </p>
+<p>最初，我的计划是这篇文章作为这个系列的总结，但是我收到许多请求我介绍在Android中使用RxJava，所以你可以继续阅读<a href="http://ocnyang.com/2016/10/10/RxJavaAbout4_RxAndroid/">第四篇</a>了。我希望这个介绍能让你开始使用RxJava。如果你想学到更多，我建议你阅读<a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">RxJava</a>的官方wiki。  </p>
 
-在第一篇中，我介绍了RxJava的基础知识。第二篇中，我向你展示了操作符的强大。但是你可能仍然没被说服。这篇里面，我讲向你展示RxJava的其他的一些好处，相信这篇足够让你去使用Rxjava.
-错误处理到目前为止，我们都
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/10/RxJavaAbout3_Response/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -695,6 +1026,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -706,13 +1039,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/10/10/RxJavaAbout2_Operators/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -734,24 +1077,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-10T10:03:15+08:00" content="2016-10-10">
-              2016-10-10
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-10T10:03:15+08:00">
+                2016-10-10
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/RxJava系列/" itemprop="url" rel="index">
                     <span itemprop="name">RxJava系列</span>
                   </a>
@@ -759,7 +1114,6 @@
 
                 
                 
-
               
             </span>
           
@@ -767,29 +1121,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/10/10/RxJavaAbout2_Operators/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/RxJavaAbout2_Operators/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/RxJavaAbout2_Operators/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/10/10/RxJavaAbout2_Operators/" class="leancloud_visitors" data-flag-title="深入浅出RxJava（二：操作符）">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -803,18 +1165,105 @@
       
         
           
-          深入浅出RxJava（二：操作符）
-文章摘录地址：英文原文 Grokking RxJava, Part 2: Operator, Operator译文原文 CSDN   
+            <h1 id="深入浅出RxJava（二：操作符）"><a href="#深入浅出RxJava（二：操作符）" class="headerlink" title="深入浅出RxJava（二：操作符）"></a>深入浅出RxJava（二：操作符）</h1><blockquote>
+<p>文章摘录地址：<br>英文原文 <a href="http://blog.danlew.net/2014/09/22/grokking-rxjava-part-2/" target="_blank" rel="external">Grokking RxJava, Part 2: Operator, Operator</a><br>译文原文 <a href="http://blog.csdn.net/lzyzsd/article/details/44094895" target="_blank" rel="external">CSDN</a>   </p>
+</blockquote>
+<p>在<a href="http://ocnyang.com/2016/10/10/RxJavaAbout1_Base/">第一篇blog</a>中， 我介绍了RxJava的一些基础知识，同时也介绍了map()操作符。当然如果你并没有意愿去使用RxJava我一点都不诧异，毕竟才接触了这么点。看完 这篇blog，我相信你肯定想立即在你的项目中使用RxJava了，这篇blog将介绍许多RxJava中的操作符，RxJava的强大性就来自于它所定义的操作符。</p>
+<p>首先先看一个例子：</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>假设我有这样一个方法：<br>这个方法根据输入的字符串返回一个网站的url列表（啊哈，搜索引擎）</p>
+<pre><code>Observable&lt;List&lt;String&gt;&gt; query(String text);  
+</code></pre><p>现在我希望构建一个健壮系统，它可以查询字符串并且显示结果。根据上一篇blog的内容，我们可能会写出下面的代码：  </p>
+<pre><code>query(&quot;Hello, world!&quot;)
+    .subscribe(urls -&gt; {
+        for (String url : urls) {
+            System.out.println(url);
+        }
+    });  
+</code></pre><p>这种代码当然是不能容忍的，因为上面的代码使我们丧失了变化数据流的能力。一旦我们想要更改每一个URL，只能在Subscriber中来做。我们竟然没有使用如此酷的map()操作符！！！  </p>
+<p>当然，我可以使用map操作符，map的输入是urls列表，处理的时候还是要for each遍历，一样很蛋疼。  </p>
+<p>万幸，还有Observable.from()方法，它接收一个集合作为输入，然后每次输出一个元素给subscriber：  </p>
+<pre><code>Observable.from(&quot;url1&quot;, &quot;url2&quot;, &quot;url3&quot;)
+    .subscribe(url -&gt; System.out.println(url));  
+</code></pre><p>我们来把这个方法使用到刚才的场景：  </p>
+<pre><code>query(&quot;Hello, world!&quot;)
+    .subscribe(urls -&gt; {
+        Observable.from(urls)
+            .subscribe(url -&gt; System.out.println(url));
+    });  
+</code></pre><p>虽然去掉了for each循环，但是代码依然看起来很乱。多个嵌套的subscription不仅看起来很丑，难以修改，更严重的是它会破坏某些我们现在还没有讲到的RxJava的特性。  </p>
+<h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><p>救星来了,他就是flatMap()。<br>Observable.flatMap()接收一个Observable的输出作为输入，同时输出另外一个Observable。直接看代码：  </p>
+<pre><code>query(&quot;Hello, world!&quot;)
+    .flatMap(new Func1&lt;List&lt;String&gt;, Observable&lt;String&gt;&gt;() {
+        @Override
+        public Observable&lt;String&gt; call(List&lt;String&gt; urls) {
+            return Observable.from(urls);
+        }
+    })
+    .subscribe(url -&gt; System.out.println(url));  
+</code></pre><p>这里我贴出了整个的函数代码，以方便你了解发生了什么，使用lambda可以大大简化代码长度：</p>
+<pre><code>query(&quot;Hello, world!&quot;)
+    .flatMap(urls -&gt; Observable.from(urls))
+    .subscribe(url -&gt; System.out.println(url));  
+</code></pre><p>flatMap()是不是看起来很奇怪？为什么它要返回另外一个Observable呢？理解flatMap的关键点在于，flatMap输出的新的 Observable正是我们在Subscriber想要接收的。现在Subscriber不再收到List<string>，而是收到一些 列单个的字符串，就像Observable.from()的输出一样。  </string></p>
+<p>这部分也是我当初学RxJava的时候最难理解的部分，一旦我突然领悟了，RxJava的很多疑问也就一并解决了。  </p>
+<h2 id="还可以更好"><a href="#还可以更好" class="headerlink" title="还可以更好"></a>还可以更好</h2><p>flatMap()实在不能更赞了，它可以返回任何它想返回的Observable对象。<br>比如下面的方法：  </p>
+<pre><code>// 返回网站的标题，如果404了就返回null
+Observable&lt;String&gt; getTitle(String URL);  
+</code></pre><p>接着前面的例子，现在我不想打印URL了，而是要打印收到的每个网站的标题。问题来了，我的方法每次只能传入一个URL，并且返回值不是一个String，而是一个输出String的Observabl对象。使用flatMap()可以简单的解决这个问题。  </p>
+<pre><code>query(&quot;Hello, world!&quot;)
+    .flatMap(urls -&gt; Observable.from(urls))
+    .flatMap(new Func1&lt;String, Observable&lt;String&gt;&gt;() {
+        @Override
+        public Observable&lt;String&gt; call(String url) {
+            return getTitle(url);
+        }
+    })
+    .subscribe(title -&gt; System.out.println(title));  
+</code></pre><p>使用lambda:</p>
+<pre><code>query(&quot;Hello, world!&quot;)
+    .flatMap(urls -&gt; Observable.from(urls))
+    .flatMap(url -&gt; getTitle(url))
+    .subscribe(title -&gt; System.out.println(title));  
+</code></pre><p>是不是感觉很不可思议？我竟然能将多个独立的返回Observable对象的方法组合在一起！帅呆了！<br>不止这些，我还将两个API的调用组合到一个链式调用中了。我们可以将任意多个API调用链接起来。大家应该都应该知道同步所有的API调用，然后将所有 API调用的回调结果组合成需要展示的数据是一件多么蛋疼的事情。这里我们成功的避免了callback hell（多层嵌套的回调，导致代码难以阅读维护）。现在所有的逻辑都包装成了这种简单的响应式调用。  </p>
+<h2 id="丰富的操作符"><a href="#丰富的操作符" class="headerlink" title="丰富的操作符"></a>丰富的操作符</h2><p>目前为止，我们已经接触了两个操作符，RxJava中还有更多的操作符，那么我们如何使用其他的操作符来改进我们的代码呢？<br>getTitle()返回null如果url不存在。我们不想输出”null”，那么我们可以从返回的title列表中过滤掉null值！  </p>
+<pre><code>query(&quot;Hello, world!&quot;)
+    .flatMap(urls -&gt; Observable.from(urls))
+    .flatMap(url -&gt; getTitle(url))
+    .filter(title -&gt; title != null)
+    .subscribe(title -&gt; System.out.println(title));  
+</code></pre><p>filter()输出和输入相同的元素，并且会过滤掉那些不满足检查条件的。  </p>
+<p>如果我们只想要最多5个结果：  </p>
+<pre><code>query(&quot;Hello, world!&quot;)
+    .flatMap(urls -&gt; Observable.from(urls))
+    .flatMap(url -&gt; getTitle(url))
+    .filter(title -&gt; title != null)
+    .take(5)
+    .subscribe(title -&gt; System.out.println(title));  
+</code></pre><p>take()输出最多指定数量的结果。  </p>
+<p>如果我们想在打印之前，把每个标题保存到磁盘：  </p>
+<pre><code>query(&quot;Hello, world!&quot;)
+    .flatMap(urls -&gt; Observable.from(urls))
+    .flatMap(url -&gt; getTitle(url))
+    .filter(title -&gt; title != null)
+    .take(5)
+    .doOnNext(title -&gt; saveTitle(title))
+    .subscribe(title -&gt; System.out.println(title));  
+</code></pre><p>doOnNext()允许我们在每次输出一个元素之前做一些额外的事情，比如这里的保存标题。  </p>
+<p>看到这里操作数据流是多么简单了么。你可以添加任意多的操作，并且不会搞乱你的代码。  </p>
+<p>RxJava包含了大量的操作符。操作符的数量是有点吓人，但是很值得你去挨个看一下，这样你可以知道有哪些操作符可以使用。弄懂这些操作符可能会花一些时间，但是一旦弄懂了，你就完全掌握了RxJava的威力。  </p>
+<p>你甚至可以编写自定义的操作符！这篇blog不打算将自定义操作符，如果你想的话，清自行Google吧。  </p>
+<h2 id="感觉如何？"><a href="#感觉如何？" class="headerlink" title="感觉如何？"></a>感觉如何？</h2><p>好吧，你是一个怀疑主义者，并且还很难被说服，那为什么你要关心这些操作符呢？  </p>
+<p>因为操作符可以让你对数据流做任何操作。  </p>
+<p>将一系列的操作符链接起来就可以完成复杂的逻辑。代码被分解成一系列可以组合的片段。这就是响应式函数编程的魅力。用的越多，就会越多的改变你的编程思维。  </p>
+<p>另外，RxJava也使我们处理数据的方式变得更简单。在最后一个例子里，我们调用了两个API，对API返回的数据进行了处理，然后保存到磁盘。 但是我们的Subscriber并不知道这些，它只是认为自己在接收一个Observable<string>对象。良好的封装性也带来了编 码的便利！  </string></p>
+<p>在<a href="http://ocnyang.com/2016/10/10/RxJavaAbout3_Response/">第三部分</a>中，我将介绍RxJava的另外一些很酷的特性，比如错误处理和并发，这些特性并不会直接用来处理数据。  </p>
 
-在第一篇blog中， 我介绍了RxJava的一些基础知识，同时也介绍了map()操作符。当然如果你并没有意愿去使用RxJava
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/10/RxJavaAbout2_Operators/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -832,6 +1281,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -843,13 +1294,23 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/10/10/RxJavaAbout1_Base/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -871,24 +1332,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-10T09:03:15+08:00" content="2016-10-10">
-              2016-10-10
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-10T09:03:15+08:00">
+                2016-10-10
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/RxJava系列/" itemprop="url" rel="index">
                     <span itemprop="name">RxJava系列</span>
                   </a>
@@ -896,7 +1369,6 @@
 
                 
                 
-
               
             </span>
           
@@ -904,29 +1376,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/10/10/RxJavaAbout1_Base/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/RxJavaAbout1_Base/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/RxJavaAbout1_Base/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/10/10/RxJavaAbout1_Base/" class="leancloud_visitors" data-flag-title="深入浅出RxJava（一：基础篇）">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -940,18 +1420,118 @@
       
         
           
-          深入浅出RxJava（一：基础篇）
-文章摘录地址：英文原文译文原文   
+            <h1 id="深入浅出RxJava（一：基础篇）"><a href="#深入浅出RxJava（一：基础篇）" class="headerlink" title="深入浅出RxJava（一：基础篇）"></a>深入浅出RxJava（一：基础篇）</h1><blockquote>
+<p>文章摘录地址：<br><a href="http://blog.danlew.net/2014/09/15/grokking-rxjava-part-1/" target="_blank" rel="external">英文原文</a><br><a href="http://blog.csdn.net/lzyzsd/article/details/41833541" target="_blank" rel="external">译文原文</a>   </p>
+</blockquote>
+<p><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">RxJava</a>正在<a href="http://ocnyang.com/">Android</a>开发者中变的越来越流行。唯一的问题就是上手不容易，尤其是大部分人之前都是使用命令式编程语言。但是一旦你弄明白了，你就会发现RxJava真是太棒了。<br>这里仅仅是帮助你了解RxJava，整个系列共有四篇文章，希望你看完这四篇文章之后能够了解RxJava背后的思想，并且喜欢上RxJava。</p>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>RxJava最核心的两个东西是Observables（被观察者，事件源）和 Subscribers（观察者）。Observables发出一系列事件，Subscribers处理这些事件。这里的事件可以是任何你感兴趣的东西 （触摸事件，web接口调用返回的数据。。。）  </p>
+<p>一个Observable可以发出零个或者多个事件，知道结束或者出错。每发出一个事件，就会调用它的Subscriber的onNext方法，最后调用Subscriber.onNext()或者Subscriber.onError()结束。  </p>
+<p>Rxjava的看起来很想设计模式中的观察者模式，但是有一点明显不同，那就是如果一个Observerble没有任何的的Subscriber，那么这个Observable是不会发出任何事件的。  </p>
+<h3 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h3><p>创建一个Observable对象很简单，直接调用Observable.create即可</p>
+<pre><code>Observable&lt;String&gt; myObservable = Observable.create(
+    new Observable.OnSubscribe&lt;String&gt;() {
+        @Override
+        public void call(Subscriber&lt;? super String&gt; sub) {
+            sub.onNext(&quot;Hello, world!&quot;);
+            sub.onCompleted();
+        }
+    }
+);  
+</code></pre><p>这里定义的Observable对象仅仅发出一个Hello World字符串，然后就结束了。接着我们创建一个Subscriber来处理Observable对象发出的字符串。</p>
+<pre><code>Subscriber&lt;String&gt; mySubscriber = new Subscriber&lt;String&gt;() {
+    @Override
+    public void onNext(String s) { System.out.println(s); }
 
-RxJava正在Android开发者中变的越来越流行。唯一的问题就是上手不容易，尤其是大部分人之前都是使用命令式编程语言。但是一旦你弄明白了，你就会发现RxJava真是太棒了。这里仅仅是帮助你了解RxJava，整个系列共有四
-          ...
+    @Override
+    public void onCompleted() { }
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/10/RxJavaAbout1_Base/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+    @Override
+    public void onError(Throwable e) { }
+};  
+</code></pre><p>这里subscriber仅仅就是打印observable发出的字符串。通过subscribe函数就可以将我们定义的myObservable对象和mySubscriber对象关联起来，这样就完成了subscriber对observable的订阅。</p>
+<pre><code>myObservable.subscribe(mySubscriber);  
+</code></pre><p>一旦mySubscriber订阅了myObservable，myObservable就是调用mySubscriber对象的onNext和onComplete方法，mySubscriber就会打印出Hello World！</p>
+<h3 id="更简洁的代码"><a href="#更简洁的代码" class="headerlink" title="更简洁的代码"></a>更简洁的代码</h3><p>是不是觉得仅仅为了打印一个hello world要写这么多代码太啰嗦？我这里主要是为了展示RxJava背后的原理而采用了这种比较啰嗦的写法，RxJava其实提供了很多便捷的函数来帮助我们减少代码。</p>
+<p>首先来看看如何简化Observable对象的创建过程。RxJava内置了很多简化创建Observable对象的函数，比如 Observable.just就是用来创建只发出一个事件就结束的Observable对象，上面创建Observable对象的代码可以简化为一行</p>
+<pre><code>Observable&lt;String&gt; myObservable = Observable.just(&quot;Hello, world!&quot;);  
+</code></pre><p>接下来看看如何简化Subscriber，上面的例子中，我们其实并不关心OnComplete和OnError，我们只需要在onNext的时候做一些处理，这时候就可以使用Action1类。</p>
+<pre><code>Action1&lt;String&gt; onNextAction = new Action1&lt;String&gt;() {
+    @Override
+    public void call(String s) {
+        System.out.println(s);
+    }
+};  
+</code></pre><p>subscribe方法有一个重载版本，接受三个Action1类型的参数，分别对应OnNext，OnComplete， OnError函数。</p>
+<pre><code>myObservable.subscribe(onNextAction, onErrorAction, onCompleteAction);  
+</code></pre><p>这里我们并不关心onError和onComplete，所以只需要第一个参数就可以</p>
+<pre><code>myObservable.subscribe(onNextAction);
+// Outputs &quot;Hello, world!&quot;  
+</code></pre><p>上面的代码最终可以写成这样</p>
+<pre><code>Observable.just(&quot;Hello, world!&quot;)
+    .subscribe(new Action1&lt;String&gt;() {
+        @Override
+        public void call(String s) {
+              System.out.println(s);
+        }
+    });  
+</code></pre><p>使用java8的lambda可以使代码更简洁</p>
+<pre><code>Observable.just(&quot;Hello, world!&quot;)
+    .subscribe(s -&gt; System.out.println(s));  
+</code></pre><p>Android开发中，强烈推荐使用<a href="https://github.com/evant/gradle-retrolambda" target="_blank" rel="external">retrolambda</a>这个gradle插件，这样你就可以在你的代码中使用lambda了。</p>
+<h2 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h2><p>让我们做一些更有趣的事情吧！<br>比如我想在hello world中加上我的签名，你可能会想到去修改Observable对象：</p>
+<pre><code>Observable.just(&quot;Hello, world! -Dan&quot;)
+    .subscribe(s -&gt; System.out.println(s));  
+</code></pre><p>如果你能够改变Observable对象，这当然是可以的，但是如果你不能修改Observable对象呢？比如Observable对象是第三方库提供的？比如我的Observable对象被多个Subscriber订阅，但是我只想在对某个订阅者做修改呢？<br>那么在Subscriber中对事件进行修改怎么样呢？比如下面的代码：</p>
+<pre><code>Observable.just(&quot;Hello, world!&quot;)
+    .subscribe(s -&gt; System.out.println(s + &quot; -Dan&quot;));  
+</code></pre><p>这种方式仍然不能让人满意，因为我希望我的Subscribers越轻量越好，因为我有可能会在mainThread中运行subscriber。另外， 根据响应式函数编程的概念，Subscribers更应该做的事情是“响应”，响应Observable发出的事件，而不是去修改。如果我能在某些中间步 骤中对“Hello World！”进行变换是不是很酷？</p>
+<h2 id="操作符（Operators）"><a href="#操作符（Operators）" class="headerlink" title="操作符（Operators）"></a>操作符（Operators）</h2><p>操作符就是为了解决对Observable对象的变换的问题，操作符用于在Observable和最终的Subscriber之间修改Observable发出的事件。RxJava提供了很多很有用的操作符。<br>比如map操作符，就是用来把把一个事件转换为另一个事件的。</p>
+<pre><code>Observable.just(&quot;Hello, world!&quot;)
+  .map(new Func1&lt;String, String&gt;() {
+      @Override
+      public String call(String s) {
+          return s + &quot; -Dan&quot;;
+      }
+  })
+  .subscribe(s -&gt; System.out.println(s));  
+</code></pre><p>使用lambda可以简化为</p>
+<pre><code>Observable.just(&quot;Hello, world!&quot;)
+    .map(s -&gt; s + &quot; -Dan&quot;)
+    .subscribe(s -&gt; System.out.println(s));  
+</code></pre><p>是不是很酷？map()操作符就是用于变换Observable对象的，map操作符返回一个Observable对象，这样就可以实现链式调用，在一个Observable对象上多次使用map操作符，最终将最简洁的数据传递给Subscriber对象。</p>
+<h2 id="map操作符进阶"><a href="#map操作符进阶" class="headerlink" title="map操作符进阶"></a>map操作符进阶</h2><p>map操作符更有趣的一点是它不必返回Observable对象返回的类型，你可以使用map操作符返回一个发出新的数据类型的observable对象。<br>比如上面的例子中，subscriber并不关心返回的字符串，而是想要字符串的hash值</p>
+<pre><code>Observable.just(&quot;Hello, world!&quot;)
+    .map(new Func1&lt;String, Integer&gt;() {
+        @Override
+        public Integer call(String s) {
+            return s.hashCode();
+        }
+    })
+    .subscribe(i -&gt; System.out.println(Integer.toString(i)));  
+</code></pre><p>很有趣吧？我们初始的Observable返回的是字符串，最终的Subscriber收到的却是Integer，当然使用lambda可以进一步简化代码：</p>
+<pre><code>Observable.just(&quot;Hello, world!&quot;)
+    .map(s -&gt; s.hashCode())
+    .subscribe(i -&gt; System.out.println(Integer.toString(i)));  
+</code></pre><p>前面说过，Subscriber做的事情越少越好，我们再增加一个map操作符</p>
+<pre><code>Observable.just(&quot;Hello, world!&quot;)
+    .map(s -&gt; s.hashCode())
+    .map(i -&gt; Integer.toString(i))
+    .subscribe(s -&gt; System.out.println(s));  
+</code></pre><h2 id="不服？"><a href="#不服？" class="headerlink" title="不服？"></a>不服？</h2><p>是不是觉得我们的例子太简单，不足以说服你？你需要明白下面的两点:</p>
+<ol>
+<li><p>Observable和Subscriber可以做任何事情<br>Observable可以是一个数据库查询，Subscriber用来显示查询结果；Observable可以是屏幕上的点击事件，Subscriber用来响应点击事件；Observable可以是一个网络请求，Subscriber用来显示请求结果。  </p>
+</li>
+<li><p>Observable和Subscriber是独立于中间的变换过程的。<br>在Observable和Subscriber中间可以增减任何数量的map。整个系统是高度可组合的，操作数据是一个很简单的过程。  </p>
+</li>
+</ol>
+<p>在<a href="http://ocnyang.com/2016/10/10/RxJavaAbout2_Operators/">第二部分</a>中，我将介绍RxJava的另外一些很酷强大的特性，更多的操作符。</p>
+
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -969,6 +1549,8 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -980,13 +1562,23 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/09/13/AndroidStudioSet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -1008,24 +1600,36 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-13T16:03:15+08:00" content="2016-09-13">
-              2016-09-13
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-13T16:03:15+08:00">
+                2016-09-13
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/原创/" itemprop="url" rel="index">
                     <span itemprop="name">原创</span>
                   </a>
@@ -1033,7 +1637,6 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
                 
                 
-
               
             </span>
           
@@ -1041,29 +1644,37 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/09/13/AndroidStudioSet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/13/AndroidStudioSet/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/13/AndroidStudioSet/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/09/13/AndroidStudioSet/" class="leancloud_visitors" data-flag-title="Android Studio详细安装流程和配置、主题">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1077,19 +1688,267 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
         
           
-          Android Studio详细安装流程和配置、主题在这里先给大家一张我的Android studio的外观截图：
+            <h1 id="Android-Studio详细安装流程和配置、主题"><a href="#Android-Studio详细安装流程和配置、主题" class="headerlink" title="Android Studio详细安装流程和配置、主题"></a>Android Studio详细安装流程和配置、主题</h1><p>在这里先给大家一张我的Android studio的外观截图：</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio_ocnyang.png" alt=""></p>
+<h2 id="1、Android-Studio安装"><a href="#1、Android-Studio安装" class="headerlink" title="1、Android Studio安装"></a>1、Android Studio安装</h2><p><strong>Android studio下载地址：</strong>  </p>
+<ul>
+<li>官方下载地址（版本最新/需爬墙）：<a href="https://developer.android.com/studio/index.html" target="_blank" rel="external">https://developer.android.com/studio/index.html</a>  </li>
+<li>Android Studio 中文社区：<a href="http://www.android-studio.org/" target="_blank" rel="external">http://www.android-studio.org/</a>  </li>
+<li>网盘地址下载：<a href="http://pan.baidu.com/s/1hrRax1q" target="_blank" rel="external">点击进入（密码:4051）</a></li>
+</ul>
+<p><strong>安装流程</strong><br>这个比较基础简单，在这给一个地址，大家可以参考一下<a href="http://www.runoob.com/android/android-studio-install.html" target="_blank" rel="external">Android studio安装流程</a>  </p>
+<blockquote>
+<p>Android studio是可以同时安装两个版本的，你可以选择安装一个自己习惯的稳定版本，同时再安装一个最新的Beta版本。<br>注意点：在安装第二个版本时，在安装流程选项里的<strong>“uninstall the privious version”</strong>的选项要取消勾选，如下图(取消勾选代表不覆盖原有安装版本)。  </p>
+</blockquote>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio1.png" alt=""></p>
+<h2 id="2、安装常见问题及其解决方案"><a href="#2、安装常见问题及其解决方案" class="headerlink" title="2、安装常见问题及其解决方案"></a>2、安装常见问题及其解决方案</h2><h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><p>在安装的时候最好是按照它原来的路径安装，不要修改路径。修改了路径后可能会出现了一些问题，没有解决。所以提醒大家，在安装的时候最好不要修改安装路径哦~<br>当然，如果你对安装流程已经很熟悉了的话，可以按照自己的方式设置路径等配置  </p>
+<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><pre><code>&apos;tools.jar&apos; seems to be not in Android Studio classpath.
+Please ensure JAVA_HOME points to JDK rather than JRE.  
+</code></pre><p>在打开的过程中报出以上错误，tools包没有找到，解决方法是在设置环境变量中的JAVA HOME时需要注意，在最后需要以\结尾。如图：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio2.png" alt="2">  </p>
+<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><p>一直停留在fetching Android sdk compoment information界面  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio3.png" alt="3"></p>
+<p>出现该界面是一直在获得android sdk的信息。<br>解决方法：  </p>
+<ol>
+<li>找到安装的Android Studio目录下的bin目录。找到idea.properties文件，用文本编辑器打开。  </li>
+<li>在idea.properties文件末尾添加一行： disable.android.first.run=true ，然后保存文件。  </li>
+<li>关闭Android Studio后重新启动，便可进入界面。  </li>
+</ol>
+<h3 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h3><pre><code>Failed to fetch URL http://dl-ssl.google.com/android/repository/repository.xml, reason: Connection timed out: connect  
+</code></pre><p>连接谷歌网络超时<br>解决方法：<br>打开SDK目录 安装时默认地址为C:\Users\Administrator\AppData\Local\Android\sdk 。打开SDKManager，选择Tools下的Options，将如图所示选项勾上。也就是others中第一个选项  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio4.jpg" alt="4"></p>
+<p>然后打开C:\WINDOWS\system32\drivers\etc中的hosts文件，在最后一行添加如下内容：  </p>
+<pre><code>203.208.46.146 www.google.com
+74.125.113.121 developer.android.com
+203.208.46.146 dl.google.com
+203.208.46.146 dl-ssl.google.com  
+</code></pre><h2 id="3、Android-studio配置"><a href="#3、Android-studio配置" class="headerlink" title="3、Android studio配置"></a>3、Android studio配置</h2><p>Android Studio 原有配置，比如编辑区字体大小、Log输出的颜色真的不敢恭维。我们敲代码是要有一个舒适的视觉环境的。<br>其实AS提供了一个非常方便的功能帮助我们导入或者导出设置。因此我们在安装一个新的 Android Studio 的时候通常会导入一个之前的设置。这点上也表现出AS的方便之处。  </p>
+<p>下面是当我在配置我的 Android Studio 的时候，一些配置技巧或许对你有一定的帮助。  </p>
+<h3 id="显示行号"><a href="#显示行号" class="headerlink" title="显示行号"></a>显示行号</h3><p>当我首次启动我的 Android Studio 的时候，我想做的第一件事就是希望能看到文件中的行号。  </p>
+<p>配置方法  </p>
+<ol>
+<li>File | Settings 打开设置</li>
+<li>选择 Editor | General | Appearance</li>
+<li>勾选 Show line numbers</li>
+</ol>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio5.png" alt="5">  </p>
+<blockquote>
+<p>ps:在编辑区域最左侧右键选中 Show line numbers 也可以让当前打开的文件显示行号，不过这是一个临时设置，当前文件关闭后便失效。  </p>
+</blockquote>
+<h3 id="驼峰选择"><a href="#驼峰选择" class="headerlink" title="驼峰选择"></a>驼峰选择</h3><p>Android 开发中，我们通常会使用驼峰命名法对变量进行命名，但是当我们通过 Ctrl + Left/ Right 键改变字符选择区域的时候 Android Studio 默认不支持‘驼峰’单词的选择。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio6.gif" alt="6">  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio7.gif" alt="7">  </p>
+<p>配置方法  </p>
+<ol>
+<li>File | Settings 打开设置</li>
+<li>选择 Editor | General | Smart Keys</li>
+<li>选中 Use “CamelHumps” words</li>
+</ol>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio8.png" alt="8">  </p>
+<p>注意:如果你仍然希望当鼠标在单词上双击之后选中整个单词，需要作如下设置：  </p>
+<ol>
+<li>File | Settings 打开设置</li>
+<li>选择 Editor | General</li>
+<li>取消选中 ‘Honor Camel Humps words settings when selecting on double click’  </li>
+</ol>
+<h3 id="命名前缀"><a href="#命名前缀" class="headerlink" title="命名前缀"></a>命名前缀</h3><p>我们通常会遵循 Android 官方关于编码风格的指导来进行字段命名。在 Android 源码中我们可以看到通常成员变量都是以‘m’开始。其实Android Studio 可以自动在帮我们生成字段名称的时候加上自定义的前缀，如:  </p>
+<ul>
+<li>非共有，非静态的成员变量以’m’开始</li>
+<li>静态成员变量以’s’开始  </li>
+</ul>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio9.gif" alt="9">  </p>
+<p>配置方法  </p>
+<ol>
+<li>File | Settings 打开设置</li>
+<li>选择 Editor | Code Style | Java</li>
+<li>选择 Code Generation 标签</li>
+<li>给普通 Field 添加一个’m’前缀，给 Static filed 添加一个’s’前缀  </li>
+</ol>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio10.png" alt="10">  </p>
+<h3 id="快速导包"><a href="#快速导包" class="headerlink" title="快速导包"></a>快速导包</h3><p>在 Android Studio 中，我们可以通过 Alt + Enter 和 Control + Alt + O 进行导包和清除无用导包，但我们都希望这些事情应当快速自动完成。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio11.gif" alt="11">  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio12.gif" alt="12">  </p>
+<p>配置方法  </p>
+<ol>
+<li>File | Settings 打开设置</li>
+<li>选择 Editor | General | Auto Import</li>
+<li>勾选 Optimize imports on the fly</li>
+<li>勾选 Add unambiguous imports on the fly</li>
+</ol>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio13.png" alt="13">  </p>
+<blockquote>
+<p>PS:这里我补充一下，关于这个配置，个别朋友在问，如果我的项目中两个甚至多个包下都有一个类叫 ImageLoader ，自动导入的结果有没有可能不是我想要的包下的？兄弟你放心，你去查一下 unambiguous 的意思就知道了。针对包名不确定的情况， Android Studio 会选择 No can no import, you can you up ，不会自作聪明，而是会让你自己手动导入。所以，请放心使用。  </p>
+</blockquote>
+<h3 id="Log-颜色"><a href="#Log-颜色" class="headerlink" title="Log 颜色"></a>Log 颜色</h3><p>Darcula 主题中 Logcat 的默认配色只有红白两种颜色，不太便于我们区分 Log 的类型。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio14.png" alt="14">  </p>
+<p>我建议大家采用之前 Android Holo 主题那种鲜明的配色  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio15.png" alt="15">  </p>
+<p>配置方法  </p>
+<ol>
+<li>File | Settings 打开设置</li>
+<li>选择 Editor | Color &amp; Fonts | Android Logcat</li>
+<li>点击 Click on Save As…按钮创建一个新的配色 Scheme</li>
+<li>按照下面的表格修改对应的颜色(修改之前需要取消勾选 Use inherited attributes)  </li>
+</ol>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio16.png" alt="16"></p>
+<h2 id="4、配置补充"><a href="#4、配置补充" class="headerlink" title="4、配置补充"></a>4、配置补充</h2><h3 id="主题修改"><a href="#主题修改" class="headerlink" title="主题修改"></a>主题修改</h3><p>可能大家会觉得软件的界面不太好看，我们可以换一下主题。选择菜单栏“File–settings–apperance–theme”，主题选择Darcula：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio17.jpg" alt="17"></p>
+<h3 id="导入第三方主题-amp-代码配色"><a href="#导入第三方主题-amp-代码配色" class="headerlink" title="导入第三方主题 &amp; 代码配色"></a>导入第三方主题 &amp; 代码配色</h3><p>Android Studio 中默认主题的代码配色个人感觉已经很和谐，但这个东西仁者见仁。<br>这里呢我们就不教大家一个一个配置对应颜色了，这里教大家如何导入第三方主题。<br>系统提供的两种主题可能都不太好看，我们可以进入下面等等网站来获取第三方主题，比如说Sublime主题就是我个人喜爱的：  </p>
+<blockquote>
+<p>第三方主题常用下载地址：<br><a href="http://www.androidstudiothemes.com/" target="_blank" rel="external">Android Studio Themes</a><br><a href="http://color-themes.com/?view=index" target="_blank" rel="external">Color Themes</a></p>
+</blockquote>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio18.png" alt="18"><br><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio19.png" alt="19"></p>
+<p>上图中，下载下来之后，是一个jar包。那怎么导入到Android Studio呢？<br>别着急，回到Android Studio，选择菜单栏“ File-Import Settings”，将下载好的jar包导入即可。  </p>
+<h3 id="代码字体修改"><a href="#代码字体修改" class="headerlink" title="代码字体修改"></a>代码字体修改</h3><p>代码编辑区字体修改：选择菜单栏“File–settings–Editor–Colors&amp;Fonts–Font”：</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio20.png" alt="20"></p>
+<p>同样也可以修改控制台的字体：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio21.png" alt="21"></p>
+<p>修改完之后发现AS的一些默认字体如侧边栏的工程目录的字体并没有发生变化，如果想改的话，那还是改一下吧（我个人一般是不改的），修改AS的默认字体：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio22.png" alt="22"></p>
+<blockquote>
+<p>对于什么字体是编程的最佳字体，这个真的要靠个人的见解了。如果你没有字体的观念，这里我推荐：Windows 下 Consolas 可能是你最好的选择。  </p>
+<p>附：知乎上关于字体的一篇帖子<br><a href="https://www.zhihu.com/question/38958773" target="_blank" rel="external">Android Studio有哪些值得推荐的主题背景</a></p>
+</blockquote>
+<h3 id="附：我的风骚主题"><a href="#附：我的风骚主题" class="headerlink" title="附：我的风骚主题"></a>附：我的风骚主题</h3><p>在网上偶尔看到有网友推荐这个主题，试用了大爱。目前我用的这个，其它没发现好看的。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/www_ocnyang_com.png" alt="截图"></p>
+<blockquote>
+<p>注意界面的图标，颜色。是不是看上去很有爱啊？</p>
+</blockquote>
+<p><strong>设置方法：</strong> </p>
+<ol>
+<li>打开 Settings/Preferences对话框（OSX / Unix系统⌘+,，Windows系统：Ctrl+Alt+S）  </li>
+<li>在左侧窗格中，选择Plugins。  </li>
+<li>点击 Browse repositories…,搜索 Material Theme UI  </li>
+<li>点击安装插件，并确认你的意图，以下载并安装插件。  </li>
+<li>点击OK在设置对话框，然后重新启动以使更改生效。  </li>
+</ol>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/AndroidstudioA.png" alt="A"></p>
+<p>通过重启发现主题变得好看的不要不要的，不要激动，接下来接着下载插件并修改代码和Logcat输出颜色（步骤同上）  </p>
+<ol>
+<li>打开File &gt;&gt; Settings &gt;&gt; Plugins,点击Browse Repositories…  </li>
+<li>搜索ChroMATERIAL并安装上，重启。  </li>
+<li>接下来通过设置应用上这个插件。打开File &gt;&gt; Settings &gt;&gt; Editor &gt;&gt; Colors &amp; Fonts &gt;&gt; Scheme  </li>
+<li>选中ChroMATERIAL并确定。</li>
+<li>接着设置Logcat。打开Preferences → Editor → Colors &amp; Fonts → Android Logcat  </li>
+<li>确保ChroMATERIAL在下拉列表中选中，然后单击另存为…，选择一个名称前，ChroMATERIAL + HOLO并用确认OK。</li>
+<li>在中心点击每个项目从列表并改变它们的前景根据下表推荐的颜色到对应的选项上，<br>单击应用 / 确定。  </li>
+</ol>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/AndroidstudioB.png" alt="B"></p>
+<h2 id="5、活动模板"><a href="#5、活动模板" class="headerlink" title="5、活动模板"></a>5、活动模板</h2><p>Android Studio 中默认提供了很多非常方便的活动模板(Live Templates)，例如，我们输入sout 后按 enter 键， Android Studio 会自动帮我们写入 System.out.println();  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio23.gif" alt="图片23">  </p>
+<p>其实 sout 就是 AS 自带的一个活动模板。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio26.jpg" alt="图片26"></p>
+<p>由此可以看出，活动模板就是我们常用代码的一个缩写。开发中有很多代码都会重复出现，因此自定义合适的活动模板能很大程度上避免我们很多重复的体力劳动。那么问题来了，如何自定义？</p>
+<p><strong>这里我们实现一个AS不自带的方法，就是我们经常使用的switch用法作为例子。</strong></p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio24.png" alt="24"></p>
+<p>按照图上的流程走即可,我说一下switch()里的参数  </p>
+<ol>
+<li>在Custom的自定义组下，创建一个swi的自定义活动模板</li>
+<li>提示关键字设置为 swi ，描述为 switch的选择语句</li>
+<li>然后设置四个参数CONTAINER, FIRST,SECOND,END,分别代表着参数，第一个选择，第二个选择，最后一个光标坐落点。</li>
+<li>然后点击右边的Edit variabldes，然后进行对四个参数的作用进行赋值，第一个参数我们选择suggestFirstVariableName(“Object”)表示系统推荐的，第二、三是为了我们方便写入我们需要的值，换行只需要回车就可以切换，避免鼠标操作，纯键盘手打，第四个参数就是我们输入的最后。  </li>
+</ol>
+<p>输入方式如下图所示：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio25.png" alt="25"></p>
+<p><strong>这里我们再以Handler为例。下面是在 Activity 中一个合格的 Handler 该有的样子：</strong></p>
+<pre><code>private static class MyHandler extends Handler {
+        private WeakReference activityWeakReference;
 
-1、Android Studio安装Android studio下载地址：  
+        public MyHandler(MainActivity activity) {
+            activityWeakReference = new WeakReference(activity);
+        }
 
-官方下载地址（版本最新/需爬墙）：https://developer.android.com/stu
-          ...
+        @Override
+        public void handleMessage(Message msg) {
+            MainActivity activity = activityWeakReference.get();
+            if (activity != null) {
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/13/AndroidStudioSet/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+            }
+        }
+    }  
+</code></pre><p>至于原因我就不再重复了，网上有太多的文章有讲过。现在如果我只希望输入一个‘psh’就自动出现上面这段代码的话，我应该这么做：  </p>
+<p>配置方法  </p>
+<ul>
+<li>File | Settings 打开设置</li>
+<li>选择 Editor | Code Style | Live Templates</li>
+<li>点击最右侧的加号并选择 Template Group</li>
+<li>在弹出的对话框中输入一个活动模板分组的名称，如 custom</li>
+<li>在左侧选中上一步中创建的 custom 分组，点击右边的加号</li>
+<li>选择 Live Template ，在 Abbreviation 中对输入 psh</li>
+<li>在 Description 中输入这个活动模板的描述</li>
+<li>在 Template text 中输入以下代码  </li>
+</ul>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio27.jpeg" alt="图片27">  </p>
+<ul>
+<li>点击下方的 Define 按钮，选中 java 表示这个模板用于java代码</li>
+<li>点击右侧的 Edit variables</li>
+<li>选择 Expression 下拉框中的 className 并勾选 Skip if…  </li>
+</ul>
+<blockquote>
+<p>这个操作的作用是，AS会自动将我们在上一步中用’$’符包裹的 className自动替换为当前类不含包名的类名  </p>
+</blockquote>
+<ul>
+<li>点击 Apply 和 Ok 让设置生效。  </li>
+</ul>
+<p>至此，一个我们自定义的 custom 模板组中的 psh 活动模板就定义完成了。下面我们来验证一下，见证奇迹的时候到了：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio28.gif" alt="图片28">  </p>
+<h2 id="6、其他配置"><a href="#6、其他配置" class="headerlink" title="6、其他配置"></a>6、其他配置</h2><h3 id="类的头文件声明，标上自己的专注权"><a href="#类的头文件声明，标上自己的专注权" class="headerlink" title="类的头文件声明，标上自己的专注权"></a>类的头文件声明，标上自己的专注权</h3><p>类的头文件声明，因为我们写的代码，在开发程序的时候，我们一般都会给文件自动添加上一些关于文件的注释信息，比如开发者的名字，开发的时间，开发者的联系方式等等，效果图如下。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio29.png" alt="29"></p>
+<p><strong>设置步骤</strong></p>
+<ol>
+<li>点击菜单栏的“File“-&gt;“Settings”，打开Settings窗口</li>
+<li>点击“IDE Settings”下面的“File and Code Templates”，然后选中Templates里面的Class</li>
+<li>然后选中Includes tab下面的File Header。</li>
+<li>在最右边的输入框中就可以输入我们想要设置的注释模板了。比如我们输入：  </li>
+</ol>
+<pre><code>/**  
+ * Created by OCN.Yang on ${DATE}. ${HOUR}:${MINUTE}  
+ * mail:yangocn@163.com  
+ */  
+</code></pre><p>然后点击ok便大功告成了。  </p>
+<h3 id="关闭更新"><a href="#关闭更新" class="headerlink" title="关闭更新"></a>关闭更新</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio30.png" alt="30"></p>
+<h3 id="禁止自动打开上次的工程"><a href="#禁止自动打开上次的工程" class="headerlink" title="禁止自动打开上次的工程"></a>禁止自动打开上次的工程</h3><p>我喜欢自己选打开哪个工程，果断禁用，设置如下：</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio31.png" alt="31"></p>
+<h3 id="禁止代码折叠"><a href="#禁止代码折叠" class="headerlink" title="禁止代码折叠"></a>禁止代码折叠</h3><p>Intellij IDEA默认有很多地方的代码都会自动折叠，不过我看不惯，所以取消了，设置如下：</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio32.png" alt="32"></p>
+<h3 id="修改注释位置，禁用“语句堆一行”："><a href="#修改注释位置，禁用“语句堆一行”：" class="headerlink" title="修改注释位置，禁用“语句堆一行”："></a>修改注释位置，禁用“语句堆一行”：</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio33.png" alt="33"></p>
+<p>Comment at frist column：启用的话，注释符号就会在行首，否则就按照缩进来注释。我取消掉了。<br>Control statement in one line：格式化代码的时候，会把些很短的语句合并成一行。我觉得这样影响代码可读性，故取消。  </p>
+<h3 id="修改文件编码"><a href="#修改文件编码" class="headerlink" title="修改文件编码"></a>修改文件编码</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio34.png" alt="34"></p>
+<h2 id="7、最后的定格：保存自己的配置"><a href="#7、最后的定格：保存自己的配置" class="headerlink" title="7、最后的定格：保存自己的配置"></a>7、最后的定格：保存自己的配置</h2><p>安装好Android studio，辛辛苦苦设置的属于自己的独特配置，当面临重新安装新版本或是换工作硬件时，又要头大的重新来过？不要慌，不要怕，作为程序员，面对这种场景我们更不会重新造轮子的。现在就教你怎么导出设置，从而实现共享  </p>
+<ul>
+<li>1、选择 File -&gt; Export Settings…，然后勾选需要到处的设置项，Code Style，File Template， Key maps ，Live Templates 等比较常用的，可以自己选择到处后的存放地址，命名为 settings.jar  </li>
+</ul>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio35.jpg" alt="35"></p>
+<ul>
+<li>2、导出成功后，会有一个成功提示。导出成功后，会得到一个 settings.jar 包，可以把这个 jar 包保存起来，共享给同事，或者拷贝到 家里 或者 办公室 的电脑里面。  </li>
+</ul>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio36.jpg" alt="36"></p>
+<ul>
+<li>3、接着便是 导入 的工作，选择 File -&gt; Import Settings…，然后选择第二步中的 jar 包，选择需要导入的模块，点击 OK 即可。  </li>
+</ul>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio37.jpg" alt="37">  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/androidstudio/Androidstudio38.jpg" alt="38"></p>
+<blockquote>
+<p>参考文章<br><a href="http://jingyan.baidu.com/article/e9fb46e170287a7520f7665c.html" target="_blank" rel="external">Android studio安装配置常见问题及其解决方案</a><br><a href="http://www.androidchina.net/4862.html" target="_blank" rel="external">Android Studio 进阶详细配置</a>  </p>
+</blockquote>
+<h2 id="8、更新："><a href="#8、更新：" class="headerlink" title="8、更新："></a>8、更新：</h2><h3 id="Android-Studio-Prettify"><a href="#Android-Studio-Prettify" class="headerlink" title="Android Studio Prettify"></a>Android Studio Prettify</h3><p>当提到这个控件大多数人知道的它的功能是能<strong>自动书写findViewById</strong><br><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/androidstudio2_1.png" alt="1">  </p>
+<blockquote>
+<p>这里的用法是：光标放到设置xml文件的那行，Alt+Insert会弹出插件目录，在这里你可以选择是生成全局还是局部的控件变量，相对来说还是挺方便的。<br>但是这里需要注意的是，当有多个activity用到相同的xml文件时可能会有小bug。这个是听用的人说的，我没具体用到过具体是怎样的bug不太清楚。本人来说不建议使用它来生成findviewbyid。毕竟<a href="http://ocnyang.com/">Android ButterKnife Zelezny</a>还是挺方便的。  </p>
+</blockquote>
+<p>相对来说我更喜欢它的另外一个作用：<strong>将代码中的字符串写在string.xml文件中</strong><br><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/androidstudio2_2.png" alt="2"><br>在代码中的字符串上可以右键选择将它写在string.xml文件里。<br>当然你也可以选择光标放在字符串上Alt+Enter(回车键)选择第一个Extract String Resource选项完成。同时这个方法你也可以用到编写布局文件上：<br><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/androidstudio2_3.png" alt="3">  </p>
+<h3 id="让Android-studio像Sublime一样全屏代码"><a href="#让Android-studio像Sublime一样全屏代码" class="headerlink" title="让Android studio像Sublime一样全屏代码"></a>让Android studio像Sublime一样全屏代码</h3><p>先看一下效果（真正意义的全屏代码啊）：<br><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/androidstudio_submit2.png" alt="sublime2"><br>看上去是不是特别爽，在有些时候用用也是不错的体验呢。<br>这个功能是Android studio自带的功能，但是需要你先手动设置一下：全屏代码的快捷键（默认情况下这个功能是没有快捷键的，即是关闭的）：<br><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/Androidstudio_submit.png" alt="sublime1"><br>这里我设置的是Ctrl+分号，大家在设置的时候也可以根据自己的喜好设置，只要不要和官方的其他快捷键冲突就好。当然我的设置是亲测不冲突的哦！  </p>
+<h3 id="Sexy-Editor-代码编辑区设置背景图"><a href="#Sexy-Editor-代码编辑区设置背景图" class="headerlink" title="Sexy Editor(代码编辑区设置背景图)"></a>Sexy Editor(代码编辑区设置背景图)</h3><p>其实这个插件功能我是早就知道的，但是我不提倡这样做，毕竟一个花花绿绿的背景图会给代码编辑造成一定的视觉障碍。现在想想，作为程序员，也行设置一个背景图片也是自己个性风骚独步的一种体现，那就在这里说说它的实现方式吧，下面先看一下效果图（截图摘自他处）：<br><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/androidstudio2_6.png" alt=""><br>效果怎么样？如果你喜欢的话……  </p>
+<p>下面我们介绍一下安装过程：<br>如果想添加图片背景我们需要安装一个插件，Preferences –&gt;Plugins  搜索 Sexy Editor  (前提是你没有安装过哦)，看图：<br><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/androidstudio2_5.png" alt=""><br>OK，到这一步呢，你已经成功一半了，安装完毕后在你的Other Setting下看到Sexy Editor,如图：<br><img src="http://obbu6r1mi.bkt.clouddn.com/ocnyangcom/androidstudio2_4.png" alt=""><br>到这里都基本OK，在最下面点Insert 上传图片就可以了，就可以体验你想要的图片背景了。  </p>
+<blockquote>
+<p>配置方法：<br>Position是对齐方式，<br>Opacity是透明度，<br>Shrink to fit适应屏幕，<br>Slideshow是图片轮换时间单位ms，<br>Random是随机轮换照片，<br>最底下Insert导入本地图片。</p>
+</blockquote>
+
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -1107,6 +1966,8 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -1118,13 +1979,23 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/08/31/AndroidGu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -1146,24 +2017,36 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-31T15:03:15+08:00" content="2016-08-31">
-              2016-08-31
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-31T15:03:15+08:00">
+                2016-08-31
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/原创/" itemprop="url" rel="index">
                     <span itemprop="name">原创</span>
                   </a>
@@ -1171,7 +2054,6 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
                 
                 
-
               
             </span>
           
@@ -1179,29 +2061,37 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/08/31/AndroidGu/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/AndroidGu/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/AndroidGu/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/08/31/AndroidGu/" class="leancloud_visitors" data-flag-title="Android初级躲不开的那些坑">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1215,16 +2105,227 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
         
           
-          Android初级躲不开的那些坑这里是作者(OCN.Yang)在Android初级阶段遇到的那些坑坑洼洼，有些还是开发中要知道的小技巧。相信大多数初学者难免也会遇到相同的坑，大家大概看看有者避之，还没遇到的就躲之。大牛和已经进阶的朋友可以绕道（相信你们很忙的）。  
-1、Ctrl + O快捷键查看代
-          ...
+            <h1 id="Android初级躲不开的那些坑"><a href="#Android初级躲不开的那些坑" class="headerlink" title="Android初级躲不开的那些坑"></a>Android初级躲不开的那些坑</h1><p>这里是作者<a href="http://ocnyang.com/">(OCN.Yang)</a>在Android初级阶段遇到的那些坑坑洼洼，有些还是开发中要知道的小技巧。相信大多数初学者难免也会遇到相同的坑，大家大概看看有者避之，还没遇到的就躲之。大牛和已经进阶的朋友可以绕道（相信你们很忙的）。  </p>
+<h3 id="1、Ctrl-O快捷键"><a href="#1、Ctrl-O快捷键" class="headerlink" title="1、Ctrl + O快捷键"></a>1、Ctrl + O快捷键</h3><p>查看代码的大纲  即类的方法列表。  </p>
+<h3 id="2、layout-weight"><a href="#2、layout-weight" class="headerlink" title="2、layout_weight"></a>2、layout_weight</h3><ul>
+<li><strong>android:layout_weight</strong>的真实含义是:<br>一旦View设置了该属性(假设有效的情况下)，那么该 View的宽度等于原有宽度(android:layout_width)加上剩余空间的占比！  </li>
+<li>如果width设置了match_parent ，那么，加上的是负的长度（相当于减去一部分长度）  </li>
+<li>如果width设置了warp_content ，那么，剩余空间是“父容器总长度”减去“组件的内容占的长度”，然后再按比重值分。　　</li>
+</ul>
+<h3 id="3、Background-”-null”"><a href="#3、Background-”-null”" class="headerlink" title="3、Background=”@null”"></a>3、Background=”@null”</h3><p>可以给背景设置一个null值，在一定情况下这样做是有必要的。  </p>
+<h3 id="4、判断String是否为空"><a href="#4、判断String是否为空" class="headerlink" title="4、判断String是否为空"></a>4、判断String是否为空</h3><pre><code>TextUtils.isEmpty(String str) 
+</code></pre><h3 id="5、Int-int-还是等于整型，太容易出错了。"><a href="#5、Int-int-还是等于整型，太容易出错了。" class="headerlink" title="5、Int/int  还是等于整型，太容易出错了。"></a>5、Int/int  还是等于整型，太容易出错了。</h3><h3 id="6、LinearLayout中的orientation-amp-gravity"><a href="#6、LinearLayout中的orientation-amp-gravity" class="headerlink" title="6、LinearLayout中的orientation &amp; gravity"></a>6、LinearLayout中的orientation &amp; gravity</h3><p>当LinearLayout布局中设置<strong>orientation=”vertical”</strong>属性： </p>
+<ul>
+<li>如果子组件设置<strong>layout_gravity=”center_vertical”</strong>是无效的；  </li>
+<li>如果LinearLayout中设置<strong>gravity=”center_vertical”</strong>是可以起到作用将子组件垂直居中的。水平布局同理  </li>
+</ul>
+<h3 id="7、单例模式的Activity"><a href="#7、单例模式的Activity" class="headerlink" title="7、单例模式的Activity"></a>7、单例模式的Activity</h3><p>设置为单例模式的Activity，会单独开一个任务栈单独存放这个activity，这个任务栈只会在程序退出后消除。  </p>
+<h3 id="8、选择手机中的图片并显示在ImageView上"><a href="#8、选择手机中的图片并显示在ImageView上" class="headerlink" title="8、选择手机中的图片并显示在ImageView上"></a>8、选择手机中的图片并显示在ImageView上</h3><pre><code>Intent intent = new Intent();  
+/* 开启Pictures画面Type设定为image */  
+intent.setType(&quot;image/*&quot;);  
+/* 使用Intent.ACTION_GET_CONTENT这个Action */  
+intent.setAction(Intent.ACTION_GET_CONTENT);   
+/* 取得相片后返回本画面 */  
+startActivityForResult(intent, 1);  
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/31/AndroidGu/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+
+@Override  
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+    if (resultCode == RESULT_OK) {  
+        Uri uri = data.getData();  
+        ContentResolver cr = this.getContentResolver();  
+        try {  
+            Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));  
+            ImageView imageView = (ImageView) findViewById(R.id.iv01);  
+            /* 将Bitmap设定到ImageView */  
+            imageView.setImageBitmap(bitmap);  
+        } catch (FileNotFoundException e) {  
+            Log.e(&quot;Exception&quot;, e.getMessage(),e);  
+        }  
+    }  
+    super.onActivityResult(requestCode, resultCode, data);  
+} 
+</code></pre><h3 id="9、notifyDataSetChanged-刷新Adaper"><a href="#9、notifyDataSetChanged-刷新Adaper" class="headerlink" title="9、notifyDataSetChanged() 刷新Adaper."></a>9、notifyDataSetChanged() 刷新Adaper.</h3><h3 id="10、ListView-的优化"><a href="#10、ListView-的优化" class="headerlink" title="10、ListView 的优化"></a>10、ListView 的优化</h3><p>主要方法：  </p>
+<ol>
+<li>ListView设置固定高度，  </li>
+<li>convertView判空，  </li>
+<li>SetTag：convertView.setTag(viewHolder)，  </li>
+<li>内部类ViewHolder，  </li>
+<li>分页加载  </li>
+</ol>
+<h3 id="11、R文件编译报错-amp-找不到ID报错"><a href="#11、R文件编译报错-amp-找不到ID报错" class="headerlink" title="11、R文件编译报错 &amp; 找不到ID报错"></a>11、R文件编译报错 &amp; 找不到ID报错</h3><p>R文件的编译原理：当资源文件或id命名中其中一个文件的命名不满足规范时，R文件整体就不会再编译。  </p>
+<h3 id="12、列表里的CheckBox"><a href="#12、列表里的CheckBox" class="headerlink" title="12、列表里的CheckBox"></a>12、列表里的CheckBox</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/4.jpeg" alt=""><br>注意: Spinner：如果item中有能够获得焦点的控件(例如CheckBox),则在item获得点击事件之后会继续传递给能够获得焦点的控件.<br>想让item在被点击后Spinner收回去,需要在布局(例如LinearLayout)中加上属性后代是否可以获得焦点：  </p>
+<pre><code>android:descendantFocusability=&quot;blocksDescendants&quot;//阻止后代获得焦点  
+</code></pre><h3 id="13、获取xml资源文件中定义的数组"><a href="#13、获取xml资源文件中定义的数组" class="headerlink" title="13、获取xml资源文件中定义的数组"></a>13、获取xml资源文件中定义的数组</h3><pre><code>getResources().getStringArray(R.array.city)  
+</code></pre><h3 id="14、安卓默认字体大小："><a href="#14、安卓默认字体大小：" class="headerlink" title="14、安卓默认字体大小："></a>14、安卓默认字体大小：</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/1.jpeg" alt=""></p>
+<h3 id="15、java-字符串split有很多坑"><a href="#15、java-字符串split有很多坑" class="headerlink" title="15、java 字符串split有很多坑"></a>15、java 字符串split有很多坑</h3><p>Java代码</p>
+<pre><code>System.out.println(&quot;:ab:cd:ef::&quot;.split(&quot;:&quot;).length);//末尾分隔符全部忽略    
+System.out.println(&quot;:ab:cd:ef::&quot;.split(&quot;:&quot;,-1).length);//不忽略任何一个分隔符    
+System.out.println(StringUtils.split(&quot;:ab:cd:ef::&quot;,&quot;:&quot;).length);//最前面的和末尾的分隔符全部都忽略,apache commons    
+System.out.println(StringUtils.splitPreserveAllTokens(&quot;:ab:cd:ef::&quot;,&quot;:&quot;).length);//不忽略任何一个分隔符 apache commons     
+输出：    
+4    
+6    
+3    
+6    
+</code></pre><blockquote>
+<p>看了下jdk里String类的<strong>public String[] split(String regex,int limit)</strong>方法，感觉平时不太会用这方法，以为在用正则表达式来拆分时候，如果匹配到的字符是最后一个字符时，会拆分出两个空字符串，<br>例如”o”split(“o”,5) or “o”split(“o”,-2)时候 结果是”” “” 也就是下图中红框里的内容，所以平时一般都用split(String regex) 方法，其实也就等同于split(String regex，0)方法，把结尾的空字符串丢弃！   </p>
+</blockquote>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/2.jpg" alt="">  </p>
+<h3 id="16、Android-Studio-的全局变量和强转的快捷键"><a href="#16、Android-Studio-的全局变量和强转的快捷键" class="headerlink" title="16、Android Studio 的全局变量和强转的快捷键"></a>16、Android Studio 的全局变量和强转的快捷键</h3><ul>
+<li>Findviewbyid(R.id.XXX).cast(强转转换) 强转后点击回车回到行尾    </li>
+<li>.field 全局变量  </li>
+<li>.var 局部变量</li>
+</ul>
+<h3 id="17、TextView添加滚动条"><a href="#17、TextView添加滚动条" class="headerlink" title="17、TextView添加滚动条"></a>17、TextView添加滚动条</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/3.jpeg" alt=""></p>
+<h3 id="18、数组适配器"><a href="#18、数组适配器" class="headerlink" title="18、数组适配器"></a>18、数组适配器</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/5.jpeg" alt="">  </p>
+<p>////xListView上滑刷新，下滑加载更多///swapListView侧滑删除/</p>
+<h3 id="19、Viewstub"><a href="#19、Viewstub" class="headerlink" title="19、Viewstub"></a>19、Viewstub</h3><p>只能inflatay一次。不然会报错。</p>
+<h3 id="20、补间动画的旋转的圆心计算方法"><a href="#20、补间动画的旋转的圆心计算方法" class="headerlink" title="20、补间动画的旋转的圆心计算方法"></a>20、补间动画的旋转的圆心计算方法</h3><p>以图片的左上角为坐标（0,0），分别计算出pivotX和pivotY的数值：50%是图片本身大小的一半，50%p是父窗体宽高的一半长度。然后在图片的左上角的基础上加上这两个数组  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/6.jpeg" alt="">  </p>
+<p>位移也是同样的计算方式</p>
+<h3 id="21、插件"><a href="#21、插件" class="headerlink" title="21、插件"></a>21、插件</h3><p>ButterKnife   Gosn    android.selector.generat  </p>
+<h3 id="22、margin-amp-padding"><a href="#22、margin-amp-padding" class="headerlink" title="22、margin &amp; padding"></a>22、margin &amp; padding</h3><p>android 中的控件的margin 和 padding 都是不会影响控件的设置宽高。（这点和网页设计是不一样的）</p>
+<h3 id="23、R文件出错。"><a href="#23、R文件出错。" class="headerlink" title="23、R文件出错。"></a>23、R文件出错。</h3><p>当布局或id报找不到的错时，可能就是R文件出错。    </p>
+<ul>
+<li>一种可能是你导入了命名不规范的资源文件，导致R文件不能自动编译了。  </li>
+<li>一种可能是你导入了import android.R系统的R文件导致报错  </li>
+</ul>
+<h3 id="24、ListView的多类型item"><a href="#24、ListView的多类型item" class="headerlink" title="24、ListView的多类型item"></a>24、ListView的多类型item</h3><p>自定义ListView中，如果item采用多种类型的布局。那么在getItemType中的下标一定要从0开始。不然会报下标越界异常。  </p>
+<h3 id="25、java怎么在一个字符串里截取一个正则表达式字段"><a href="#25、java怎么在一个字符串里截取一个正则表达式字段" class="headerlink" title="25、java怎么在一个字符串里截取一个正则表达式字段"></a>25、java怎么在一个字符串里截取一个正则表达式字段</h3><pre><code>public static void main(String[] args) {
+    String str = &quot;&lt;div&gt;&lt;h3 ..&gt;dsijiswer*dfhjgf&lt;/h3&gt;&lt;/div&gt;&lt;table&gt;&lt;h3&gt;sdsd&lt;/h3&gt;&lt;/table&gt;&quot;;
+    Pattern p = Pattern.compile(&quot;&lt;h3.*?/h3&gt;&quot;);
+    Matcher m = p.matcher(str);
+    while (m.find()) {
+        System.out.println(m.group());
+    }
+}
+</code></pre><h3 id="26、事件机制：分发-消费-电梯机制：向上分发-，向下消费"><a href="#26、事件机制：分发-消费-电梯机制：向上分发-，向下消费" class="headerlink" title="26、事件机制：分发 消费  电梯机制：向上分发 ，向下消费"></a>26、事件机制：分发 消费  电梯机制：向上分发 ，向下消费</h3><h3 id="27、LinearLayout内部子控件之间的间隔-设置为等同的"><a href="#27、LinearLayout内部子控件之间的间隔-设置为等同的" class="headerlink" title="27、LinearLayout内部子控件之间的间隔 设置为等同的"></a>27、LinearLayout内部子控件之间的间隔 设置为等同的</h3><p>在drawer文件夹下创建一个shape的图形文件 </p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:shape=&quot;rectangle&quot; &gt;
+    &lt;size android:width=&quot;15dp&quot; /&gt;
+    &lt;solid android:color=&quot;@android:color/transparent&quot; /&gt;
+&lt;/shape&gt;  
+</code></pre><p>在linearLayout里设置属性divider为上图形，同时设置showdivider属性</p>
+<h3 id="28、TextView-上设置的图片-设置图片大小的方法："><a href="#28、TextView-上设置的图片-设置图片大小的方法：" class="headerlink" title="28、TextView 上设置的图片  设置图片大小的方法："></a>28、TextView 上设置的图片  设置图片大小的方法：</h3><pre><code>txtZQD = (TextView) findViewById(R.id.txtZQD);  
+Drawable[] drawable = txtZQD.getCompoundDrawables();  //获取它前后左右的图片
+// 数组下表0~3,依次是:左上右下  
+drawable[1].setBounds(100, 0, 200, 200);  
+txtZQD.setCompoundDrawables(drawable[0], drawable[1], drawable[2],drawable[3]);  
+</code></pre><h3 id="29、android中内部存储和外部存储的理解和路径获取"><a href="#29、android中内部存储和外部存储的理解和路径获取" class="headerlink" title="29、android中内部存储和外部存储的理解和路径获取"></a>29、android中内部存储和外部存储的理解和路径获取</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/7.png" alt="">  </p>
+<h3 id="30、自定义组合控件"><a href="#30、自定义组合控件" class="headerlink" title="30、自定义组合控件"></a>30、自定义组合控件</h3><p>在加载布局的时候要用 <strong>View.inflate(context,R.layout.img_share,this)</strong>;<br>或者 <strong>LayoutInflater.from(context).inflate(R.layout.img_share,this)</strong>;<br>不能用 <strong>LayoutInflater.from(context).inflate(R.layout.img_share,null)</strong>;这样加载不上。</p>
+<h3 id="31、foreground-前景色生效"><a href="#31、foreground-前景色生效" class="headerlink" title="31、foreground 前景色生效"></a>31、foreground 前景色生效</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/8.png" alt=""></p>
+<h3 id="32、添加第三方依赖报错"><a href="#32、添加第三方依赖报错" class="headerlink" title="32、添加第三方依赖报错"></a>32、添加第三方依赖报错</h3><p><img src="http://obbu6r1mi.bkt.clouddn.com/AndroidGu/9.png" alt=""></p>
+<p>配置错误原因：1、导包有误。2、少导包。3、重复导包。</p>
+<h3 id="33、布局里的ListView-GridView抢占焦点"><a href="#33、布局里的ListView-GridView抢占焦点" class="headerlink" title="33、布局里的ListView|GridView抢占焦点"></a>33、布局里的ListView|GridView抢占焦点</h3><p>Scrollview里嵌套Gridview，Gridview抢焦点问题(显示布局的时候老是先从Gridview的第一个item显示)  </p>
+<blockquote>
+<p>解决方法：在获取inflate view之后，代码给GridView.setFocusable(false)就可以了  </p>
+</blockquote>
+<p>这里的listview的item里嵌套了横向滑动的scrollview的gridview，  </p>
+<blockquote>
+<p>同样的问题，同样的解决方案：在listview的adapter中在加载完item之后对gridview设置setFocusable(false)。<br>这里需要注意的是，是在抢焦点的列表的父容器建立之后就对列表设置取消焦点。  </p>
+</blockquote>
+<p>例如：<br><strong>在ListView中嵌套GridView中：</strong>  </p>
+<pre><code>convertView = LayoutInflater.from(mContext).inflate(R.layout.item_listview_home, null);
+viewHolder = new ViewHolder(convertView);
+viewHolder.mGridIilh.setFocusable(false);  
+</code></pre><p><strong>在fragment布局中存在列表抢占焦点：</strong>  </p>
+<pre><code>@Override
+public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_cheapsale, null);
+    ButterKnife.inject(this, view);
+    mGridFragmentCheapsale.setFocusable(false);  
+</code></pre><p><strong>在Activity布局中存在列表抢占焦点：</strong>  </p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_sale);
+    ButterKnife.inject(this);
+    mListviewHome.setFocusable(false);
+</code></pre><h3 id="34、列表抢占焦点问题"><a href="#34、列表抢占焦点问题" class="headerlink" title="34、列表抢占焦点问题"></a>34、列表抢占焦点问题</h3><p>在gridview和listview初始化数据时自动调用或者我们显示调用notifyDataSetChanged的时候第一个item会被选中并会抢焦点。<br>android4.4在调用notifyDataSetChanged的时候注释掉了判断touchmode的代码，导致一调用notifyDataSetChanged就模拟用户点击了gridview。<br>我们继承gridview或者listview重写里面的isInTouchMode方法：  </p>
+<pre><code>[java] view plaincopy
+/** 
+ * 屏蔽android4.4 setAdapter时View抢焦点的BUG 
+ */  
+@Override  
+public boolean isInTouchMode() {  
+    if(19 == Build.VERSION.SDK_INT){  
+        return !(hasFocus() &amp;&amp; !super.isInTouchMode());  
+    }else{  
+        return super.isInTouchMode();  
+</code></pre><h3 id="35、去除Listview滚动背景变黑，item点击默认背景"><a href="#35、去除Listview滚动背景变黑，item点击默认背景" class="headerlink" title="35、去除Listview滚动背景变黑，item点击默认背景"></a>35、去除Listview滚动背景变黑，item点击默认背景</h3><p>listview默认背景和系统窗口一样是透明的，如果给listview加上背景图片，或者背景颜色时，滚动时listview会黑掉，因为滚动时，列表里面的view重绘用的依旧是系统默认的透明色，颜色值为#FF191919<br>解决办法：  </p>
+<ul>
+<li>调用listview的setCacheColorHint(0)，颜色值设置为0</li>
+<li>设置xml文件中listView的属性<br><strong>Android:cacheColorHint=”#00000000”</strong>，滚动时，重绘View的时候就不会有背景颜色。<br><strong>android:listSelector=”#00000000”</strong><br>进行上面的设置之后，ListView点击item时就没有任何现象了</li>
+</ul>
+<h3 id="36-开启Android系统程序设置页面"><a href="#36-开启Android系统程序设置页面" class="headerlink" title="36. 开启Android系统程序设置页面"></a>36. 开启Android系统程序设置页面</h3><pre><code>Intent intent = new Intent();
+intent.setClassName(&quot;com.android.settings&quot;,&quot;com.android.settings.ManageApplications&quot;);
+intent.setAction(&quot;android.intent.action.MAIN&quot;);
+try {
+    startActivity(intent);
+} catch (Exception e) {
+    e.printStackTrace();
+}  
+</code></pre><h3 id="37、禁止EditText自动获取布局焦点"><a href="#37、禁止EditText自动获取布局焦点" class="headerlink" title="37、禁止EditText自动获取布局焦点"></a>37、禁止EditText自动获取布局焦点</h3><p>解决之道：在EditText的父级控件中找一个，设置成  </p>
+<pre><code>android:focusable=&quot;true&quot;  
+android:focusableInTouchMode=&quot;true&quot;  
+</code></pre><p>这样，就把EditText默认的行为截断了！</p>
+<h3 id="38、RadioButton设置默认选中"><a href="#38、RadioButton设置默认选中" class="headerlink" title="38、RadioButton设置默认选中"></a>38、RadioButton设置默认选中</h3><p>如果RadioGroup中设置默认选中一个RadioButton后,在选择时会选中两个的问题<br><strong>解决方法：</strong><br>不需要设置RadioButton的默认选中, 这样会使RadioButton一直处于选中状态.<br>我们应该给RadioGroup设置选中的RadioButton,<br>也就是说把<strong>radioButton.setCheck(true);</strong><br>更改为<strong>radioGroup.check(radioButton.getId());</strong></p>
+<h3 id="39、实现ImageView宽度填满屏幕，高度自适应"><a href="#39、实现ImageView宽度填满屏幕，高度自适应" class="headerlink" title="39、实现ImageView宽度填满屏幕，高度自适应"></a>39、实现ImageView宽度填满屏幕，高度自适应</h3><p><strong>1、自定义ImageView重写View的onMeasure方法</strong>  </p>
+<pre><code>public class ResizableImageView extends ImageView {  
+
+    public ResizableImageView(Context context) {  
+        super(context);  
+    }  
+
+    public ResizableImageView(Context context, AttributeSet attrs) {  
+        super(context, attrs);  
+    }  
+
+    @Override  
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){  
+        Drawable d = getDrawable();  
+
+        if(d!=null){  
+            // ceil not round - avoid thin vertical gaps along the left/right edges  
+            int width = MeasureSpec.getSize(widthMeasureSpec);  
+            //高度根据使得图片的宽度充满屏幕计算而得  
+            int height = (int) Math.ceil((float) width * (float) d.getIntrinsicHeight() / (float) d.getIntrinsicWidth());  
+            setMeasuredDimension(width, height);  
+        }else{  
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);  
+        }  
+    }  
+
+}  
+</code></pre><p><strong>2、设置ImageView的属性</strong>  </p>
+<pre><code>//宽度填满屏幕
+android:layout_width=”match_parent”
+android:scaleType=”fitXY”
+android:layout_height=”wrap_content”
+//保持比例，一定要设置
+android:adjustViewBounds=”true”
+</code></pre><h3 id="40、Glide加载网络图片填充到39中的ImageView中"><a href="#40、Glide加载网络图片填充到39中的ImageView中" class="headerlink" title="40、Glide加载网络图片填充到39中的ImageView中"></a>40、Glide加载网络图片填充到39中的ImageView中</h3><p>因为Glide加载图片的规则是根据imageview的大小调整图片。但是ImageView的大小为ImageView宽度填满屏幕，高度自适应的时候，Glide加载的图片就会显示不出来，为此我们选择了一种迂回的方式加载：先请求图片为bitmap，这个时候图片就有一定的尺寸了，再设置到ImageView中就可以自适应了：  </p>
+<pre><code>Glide.with(GraphicDetailsFragment.this)
+                    .load((new StringBuffer(Const.URL_HEAD).append(mStringList.get(position))).toString())
+                    .asBitmap()
+                    .into(new SimpleTarget&lt;Bitmap&gt;() {
+                        @Override
+                        public void onResourceReady(Bitmap resource, GlideAnimation&lt;? super Bitmap&gt; glideAnimation) {
+                            viewHolder.mImageView.setImageBitmap(resource);
+                        }
+                    });
+</code></pre><blockquote>
+<p>大大小小的坑，无处不在，防不胜防。后续会继续更新这篇博文的。<br>本博客是作者<a href="http://ocnyang.com/">(OCN.Yang)</a>原创<br>转载请标明原地址：<a href=""></a></p>
+</blockquote>
+
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -1242,6 +2343,8 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -1253,13 +2356,23 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/08/26/ToolbarUse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -1281,24 +2394,36 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-26T18:03:15+08:00" content="2016-08-26">
-              2016-08-26
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-26T18:03:15+08:00">
+                2016-08-26
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Material-design/" itemprop="url" rel="index">
                     <span itemprop="name">Material design</span>
                   </a>
@@ -1306,7 +2431,6 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
                 
                 
-
               
             </span>
           
@@ -1314,29 +2438,37 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/08/26/ToolbarUse/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/26/ToolbarUse/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/26/ToolbarUse/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/08/26/ToolbarUse/" class="leancloud_visitors" data-flag-title="Toolbar开发详解">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1350,15 +2482,226 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
         
           
-          Toolbar开发详解初识 ToolbarToolbar 是在 Android 5.0 开始推出的一个 Material Design 风格的导航控件 ，Google 非常推荐大家使用 Toolbar 来作为Android客户端的导航栏，以此来取代之前的 Actionbar 。与 Actionbar
-          ...
+            <h1 id="Toolbar开发详解"><a href="#Toolbar开发详解" class="headerlink" title="Toolbar开发详解"></a>Toolbar开发详解</h1><h2 id="初识-Toolbar"><a href="#初识-Toolbar" class="headerlink" title="初识 Toolbar"></a>初识 Toolbar</h2><p>Toolbar 是在 Android 5.0 开始推出的一个 Material Design 风格的导航控件 ，Google 非常推荐大家使用 Toolbar 来作为Android客户端的导航栏，以此来取代之前的 Actionbar 。与 Actionbar 相比，Toolbar 明显要灵活的多。它不像 Actionbar 一样，一定要固定在Activity的顶部，而是可以放到界面的任意位置。除此之外，在设计 Toolbar 的时候，Google也留给了开发者很多可定制修改的余地，这些可定制修改的属性在API文档中都有详细介绍，如：</p>
+<ul>
+<li>设置导航栏图标；</li>
+<li>设置App的logo；</li>
+<li>支持设置标题和子标题；</li>
+<li>支持添加一个或多个的自定义控件；</li>
+<li>支持Action Menu；  </li>
+</ul>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/toolBar/1.png" alt=""></p>
+<p>总之，与 Actionbar 相比，Toolbar 让我感受到Google满满的诚意。怎样？是否已经对 Toolbar 有大概的了解，跃跃欲试的感觉出来了有木有？接下来，我们就一步一步的来看如何使用 Toolbar。</p>
+<h2 id="开始使用-Toolbar"><a href="#开始使用-Toolbar" class="headerlink" title="开始使用 Toolbar"></a>开始使用 Toolbar</h2><p>前面提到 Toolbar 是在 Android 5.0 才开始加上的，Google 为了将这一设计向下兼容，自然也少不了要推出兼容版的 Toolbar 。为此，我们需要在工程中引入 appcompat-v7 的兼容包，使用 android.support.v7.widget.Toolbar 进行开发。下面看一下代码结构，同样把重点部分已经红圈圈出：</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/toolBar/2.png" alt=""></p>
+<ul>
+<li><p>ToolbarActivity 包含了 Toolbar 的一些基本使用， ZhiHuActivity 是在熟悉了 Toolbar 后对知乎主页面的一个高仿实现。</p>
+</li>
+<li><p>layout和menu文件夹分别是上面提到的两个Activity的布局文件 和 actionmenu 菜单文件。</p>
+</li>
+<li><p>values、values-v19、values-v21 中包含了一些自定义的 theme，后面用到的时候会顺带讲解。</p>
+</li>
+</ul>
+<p>我们先来看一下 ToolbarActivity 的运行效果</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/toolBar/3.gif" alt=""></p>
+<p>按照效果图，从左到右分别是我们前面提及到的<strong>导航栏图标、App的logo、标题和子标题、自定义控件、</strong>以及<strong>ActionMenu</strong>。接着，我们来看下布局文件和代码实现。</p>
+<p>首先，在布局文件 activity_tool_bar.xml 中添加进我们需要的 Toolbar 控件</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;&gt;
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/26/ToolbarUse/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+    &lt;android.support.v7.widget.Toolbar
+        android:id=&quot;@+id/toolbar&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:background=&quot;@color/color_0176da&quot;&gt;
+
+        &lt;!--自定义控件--&gt;
+        &lt;TextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Clock&quot; /&gt;
+    &lt;/android.support.v7.widget.Toolbar&gt;
+&lt;/LinearLayout&gt;  
+</code></pre><p>接着在 base_toolbar_menu.xml 中添加 action menu 菜单项</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;
+
+    &lt;item
+        android:id=&quot;@id/action_search&quot;
+        android:icon=&quot;@mipmap/ic_search&quot;
+        android:title=&quot;@string/menu_search&quot;
+        app:showAsAction=&quot;ifRoom&quot; /&gt;
+
+    &lt;item
+        android:id=&quot;@id/action_notification&quot;
+        android:icon=&quot;@mipmap/ic_notifications&quot;
+        android:title=&quot;@string/menu_notifications&quot;
+        app:showAsAction=&quot;ifRoom&quot; /&gt;
+
+    &lt;item
+        android:id=&quot;@+id/action_item1&quot;
+        android:title=&quot;@string/item_01&quot;
+        app:showAsAction=&quot;never&quot; /&gt;
+
+    &lt;item
+        android:id=&quot;@+id/action_item2&quot;
+        android:title=&quot;@string/item_02&quot;
+        app:showAsAction=&quot;never&quot; /&gt;
+&lt;/menu&gt;  
+</code></pre><p>最后到 ToolbarActivity 中调用代码拿到这 Toolbar 控件，并在代码中做各种setXXX操作。</p>
+<pre><code>/**
+ * Toolbar的基本使用
+ */
+public class ToolBarActivity extends BaseActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tool_bar);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        toolbar.setNavigationIcon(R.mipmap.ic_drawer_home);//设置导航栏图标
+        toolbar.setLogo(R.mipmap.ic_launcher);//设置app logo
+        toolbar.setTitle(&quot;Title&quot;);//设置主标题
+        toolbar.setSubtitle(&quot;Subtitle&quot;);//设置子标题
+
+        toolbar.inflateMenu(R.menu.base_toolbar_menu);//设置右上角的填充菜单
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int menuItemId = item.getItemId();
+                if (menuItemId == R.id.action_search) {
+                    Toast.makeText(ToolBarActivity.this , R.string.menu_search , Toast.LENGTH_SHORT).show();
+
+                } else if (menuItemId == R.id.action_notification) {
+                    Toast.makeText(ToolBarActivity.this , R.string.menu_notifications , Toast.LENGTH_SHORT).show();
+
+                } else if (menuItemId == R.id.action_item1) {
+                    Toast.makeText(ToolBarActivity.this , R.string.item_01 , Toast.LENGTH_SHORT).show();
+
+                } else if (menuItemId == R.id.action_item2) {
+                    Toast.makeText(ToolBarActivity.this , R.string.item_02 , Toast.LENGTH_SHORT).show();
+
+                }
+                return true;
+            }
+        });
+    }
+}  
+</code></pre><p>代码到此已经完成了 Toolbar 的基本使用，注意，是基本使用而已！！！！！下面有几个代码里面需要注意的地方：</p>
+<ul>
+<li>1、我们在使用 Toolbar 时候需要先隐藏掉系统原先的导航栏，网上很多人都说给Activity设置一个NoActionBar的Theme。但个人觉得有点小题大做了，所以这里我直接在BaseActivity中调用 supportRequestWindowFeature(Window.FEATURE_NO_TITLE) 去掉了默认的导航栏（注意，我的BaseActivity是继承了AppCompatActivity的，如果是继承Activity就应该调用requestWindowFeature(Window.FEATURE_NO_TITLE)）；</li>
+<li><p>2、如果你想修改标题和子标题的字体大小、颜色等，可以调用setTitleTextColor、setTitleTextAppearance、setSubtitleTextColor、setSubtitleTextAppearance 这些API；</p>
+</li>
+<li><p>3、自定义的View位于 title、subtitle 和 actionmenu 之间，这意味着，如果 title 和 subtitle 都在，且 actionmenu选项 太多的时候，留给自定义View的空间就越小；</p>
+</li>
+<li><p>4、导航图标 和 app logo 的区别在哪？如果你只设置 导航图标（ or app logo） 和 title、subtitle，会发现 app logo 和 title、subtitle 的间距比较小，看起来不如 导航图标 与 它们两搭配美观；</p>
+</li>
+<li><p>5、Toolbar 和其他控件一样，很多属性设置方法既支持代码设置，也支持在xml中设置（这里也是最最最最最坑爹的地方，如何坑爹法，请接着往下看）；</p>
+</li>
+</ul>
+<h2 id="Toolbar-踩坑填坑"><a href="#Toolbar-踩坑填坑" class="headerlink" title="Toolbar 踩坑填坑"></a>Toolbar 踩坑填坑</h2><h3 id="坑一：xml布局文件中，Toolbar属性设置无效"><a href="#坑一：xml布局文件中，Toolbar属性设置无效" class="headerlink" title="坑一：xml布局文件中，Toolbar属性设置无效"></a>坑一：xml布局文件中，Toolbar属性设置无效</h3><p>刚开始使用Toolbar的时候，我的布局文件中是这样写的</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;android.support.v7.widget.Toolbar
+        android:id=&quot;@+id/toolbar&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:background=&quot;@color/color_0176da&quot;
+        android:logo=&quot;@mipmap/ic_launcher&quot;
+        android:navigationIcon=&quot;@mipmap/ic_drawer_home&quot;
+        android:subtitle=&quot;456&quot;
+        android:title=&quot;123&quot;&gt;
+
+        &lt;!--自定义控件--&gt;
+        &lt;TextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Clock&quot; /&gt;
+    &lt;/android.support.v7.widget.Toolbar&gt;
+&lt;/LinearLayout&gt;  
+</code></pre><p>在真机跑起来之后，看到的结果是下面这样的。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/toolBar/4.png" alt=""></p>
+<p>此时心中真是万千匹草泥马在奔腾，除了设置背景色和TextView有效外，说好的 <strong>logo、navigationIcon、subtitle、title</strong> 都跑哪去了？在编译器没报错又不见效果的情况下，参考了其他开发者的用法后找到了以下的解决方案，就是在根布局中加入自定义属性的命名空间</p>
+<pre><code>xmlns:toolbar=&quot;http://schemas.android.com/apk/res-auto&quot;(这里的toolbar可以换成你想要其他命名，做过自定义控件的童鞋相比很熟悉此用法了)  
+</code></pre><p>然后把所有用 android:xxx 设置无效的，都用 toolbar：xxx 设置即可生效。最终的布局代码如下：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:toolbar=&quot;http://schemas.android.com/apk/res-auto&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;android.support.v7.widget.Toolbar
+        android:id=&quot;@+id/toolbar&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:background=&quot;@color/color_0176da&quot;
+        toolbar:navigationIcon=&quot;@mipmap/ic_drawer_home&quot;
+        toolbar:logo=&quot;@mipmap/ic_launcher&quot;
+        toolbar:subtitle=&quot;456&quot;
+        toolbar:title=&quot;123&quot;&gt;
+
+        &lt;!--自定义控件--&gt;
+        &lt;TextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Clock&quot; /&gt;
+    &lt;/android.support.v7.widget.Toolbar&gt;
+&lt;/LinearLayout&gt;  
+</code></pre><p>到此即可解决 xml 中属性设置失效的问题，为什么会出现这种问题呢？我猜测是因为这个控件是兼容版的控件，用 android:xxx 设置无效是的这些属性是在兼容包中，不在默认的Android SDK中，所以我们需要额外的引入。至于为什么IDE不报错，估计就是bug了吧！</p>
+<h3 id="坑二：Action-Menu-Item-的文字颜色设置无效"><a href="#坑二：Action-Menu-Item-的文字颜色设置无效" class="headerlink" title="坑二：Action Menu Item 的文字颜色设置无效"></a>坑二：Action Menu Item 的文字颜色设置无效</h3><p>系统默设置了ActionMenu每个Item的文字颜色和大小，像ToolbarActivity在Google原生5.1系统下默认效果就是下面这样的</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/toolBar/5.gif" alt=""></p>
+<p>Android 5.1 默认的ActionMenu Item的风格<br>此时，如果我有需求要改变一下item文字颜色，应该怎么破？我按照网上比较普遍的解决方案，做了如下两步的修改操作：</p>
+<ul>
+<li><p>在styles.xml中自定义一个Theme，并设置 actionMenuTextColor 属性（注意：不是 android:actionMenuTextColor ）<br>&gt;</p>
+  <style name="Theme.ToolBar.Base" parent="Theme.AppCompat.Light.NoActionBar">
+      <item name="actionMenuTextColor">@color/color_red</item>
+  </style>  
+
+</li>
+</ul>
+<p>在布局文件的Toolbar中设置popupTheme（注意：是toolbar:xxx，不是android:xxx）</p>
+<pre><code>&lt;android.support.v7.widget.Toolbar
+    android:id=&quot;@+id/toolbar&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:background=&quot;@color/color_0176da&quot;
+    toolbar:popupTheme=&quot;@style/Theme.ToolBar.Base&quot;&gt;
+
+    &lt;!--自定义控件--&gt;
+    &lt;TextView
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Clock&quot; /&gt;
+&lt;/android.support.v7.widget.Toolbar&gt;
+</code></pre><p>运行之后，文字的颜色的并没有发生任何改变。说好的改变颜色呢…..找来找去，最后在 StackOverflow 找到一个还不错的解决方案，就是把上面的的 actionMenuTextColor 属性换成 android:textColorPrimary 即可解决，最终得到下面的运行效果。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/toolBar/6.gif" alt=""></p>
+<blockquote>
+<p>这种方法也有一个小缺点，如果我把自定义控件换成Button，你会发现Button默认的文字颜色也变成了红色。所以，此处如果有朋友有更好的解决方案，请留言赐教。  </p>
+</blockquote>
+<p>如果你想要修改 ActionMenu Item 的文字大小，也可以在theme中设置加上如下设置</p>
+<pre><code>&lt;item name=&quot;android:textSize&quot;&gt;20sp&lt;/item&gt;  
+</code></pre><p>以上就是目前使用 Toolbar 一些比较折腾的坑，感觉 Google 对 Toolbar 这些坑，还可以进一步优化优化，不然就坑苦了开发者们了。</p>
+<blockquote>
+<p>摘录来源：<a href="http://www.jianshu.com/p/79604c3ddcae" target="_blank" rel="external">简书</a></p>
+</blockquote>
+
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -1376,6 +2719,8 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -1387,13 +2732,23 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/08/24/CombinedWidget/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -1415,24 +2770,36 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-24T17:03:15+08:00" content="2016-08-24">
-              2016-08-24
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-24T17:03:15+08:00">
+                2016-08-24
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Android教程系列/" itemprop="url" rel="index">
                     <span itemprop="name">Android教程系列</span>
                   </a>
@@ -1440,7 +2807,6 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
                 
                 
-
               
             </span>
           
@@ -1448,29 +2814,37 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/08/24/CombinedWidget/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/24/CombinedWidget/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/24/CombinedWidget/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/08/24/CombinedWidget/" class="leancloud_visitors" data-flag-title="组合控件详解 & 自定义属性">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1484,20 +2858,479 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
         
           
-          组合控件详解 &amp; 自定义属性
-摘录来源：极客学院WiKi
+            <h1 id="组合控件详解-amp-自定义属性"><a href="#组合控件详解-amp-自定义属性" class="headerlink" title="组合控件详解 &amp; 自定义属性"></a>组合控件详解 &amp; 自定义属性</h1><blockquote>
+<p>摘录来源：<a href="http://wiki.jikexueyuan.com/project/android-actual-combat-skills/combined-control.html" target="_blank" rel="external">极客学院WiKi</a></p>
+</blockquote>
+<p>组合控件是自定义控件的一种，只不过它是由其他几个原生控件组合而成，故名组合控件。  </p>
+<p>在实际项目中，GUI 会遇到一些可以提取出来做成自定义控件情况。  </p>
+<p>一个自定义控件的好处就是把一些需要模块化的 UI 和逻辑放在一起，做到了高内聚，向其他模块提供接口并很少依赖外界，这样就是低耦合。一个自定义控件就是一个封闭的王国，这里由你掌控。  </p>
+<p>上述是我自己的一个体会，想必大家也会常做自定义控件吧，就像逻辑部分的模块化一样。  </p>
+<p>下面我要做一个例子，请看完成图。</p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/zuhekongjian/zuhekongjian.png" alt="ocn.yang">  </p>
+<p>下面一排图片加文字就是组合控件了，我是怎么做的呢？</p>
+<p>其实这里用到了两个组合控件，一个是图片+文字，我把它叫一个 Item，而三个在一起就是另一个控件了。</p>
+<p>重点看这个 Item，它有自己的属性如图片、文字、图片大小、文字大小、不透明度等等。这些把它定义在 attr 文件中，然后在 xml 文件中配置，就像我们用原生控件一样。</p>
+<h3 id="自定义属性"><a href="#自定义属性" class="headerlink" title="自定义属性"></a>自定义属性</h3><p>先看 attr 文件。</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;  
+&lt;resources&gt;  
+        &lt;declare-styleable name=&quot;LevelMenuItem&quot;&gt;  
+        &lt;attr name=&quot;text&quot; format=&quot;string&quot; /&gt;  
+        &lt;attr name=&quot;text_color&quot; format=&quot;color&quot;/&gt;  
+        &lt;attr name=&quot;text_size&quot; format=&quot;dimension&quot; /&gt;          
+        &lt;attr name=&quot;image_src&quot; format=&quot;reference&quot;/&gt;  
+        &lt;attr name=&quot;image_bg&quot; format=&quot;reference&quot;/&gt;  
+        &lt;attr name=&quot;image_alpha&quot; format=&quot;integer&quot; /&gt;  
+        &lt;attr name=&quot;image_height&quot; format=&quot;dimension&quot;&gt;&lt;/attr&gt;  
+        &lt;attr name=&quot;image_width&quot; format=&quot;dimension&quot; /&gt;  
+    &lt;/declare-styleable&gt;  
+&lt;/resources&gt;  
+</code></pre><p>这个文件在 values 下，和 string 文件同级。把你自己要定义的属性都写在这里吧。format 是属性的“单位”，如果你要问有多少中 format 呀？答案在这里。  </p>
+<h3 id="组合控件的布局文件"><a href="#组合控件的布局文件" class="headerlink" title="组合控件的布局文件"></a>组合控件的布局文件</h3><p>有了属性了，下面看看布局文件 level_menu_item.xml。</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;  
+&lt;LinearLayout xmlns:android=&quot;http:// schemas.android.com/apk/res/android&quot;  
+    android:layout_width=&quot;fill_parent&quot;  
+    android:layout_height=&quot;fill_parent&quot;  
+    android:orientation=&quot;vertical&quot; &gt;  
+        &lt;ImageView  
+            android:id=&quot;@+id/image_item&quot;  
+            android:layout_width=&quot;fill_parent&quot;  
+            android:layout_height=&quot;fill_parent&quot;  
+            android:scaleType=&quot;fitCenter&quot;  
+            /&gt;  
+         &lt;TextView  
+            android:id=&quot;@+id/tv_item&quot;  
+            android:layout_width=&quot;fill_parent&quot;  
+            android:layout_height=&quot;wrap_content&quot;  
+            android:gravity=&quot;center_horizontal&quot;  
+            android:textColor=&quot;#23ffffff&quot;  
+            android:textSize=&quot;25sp&quot;   
+         /&gt;      
+&lt;/LinearLayout&gt;  
+</code></pre><p>这里唯一值得一说的是文本的颜色。大家看见他是8位的，前两位是表示不透明度的，后六位是表示颜色的，三色，范围都是00～ff。</p>
+<p>如果在 Java 中设置颜色，需要这样。</p>
+<pre><code>setTextColor(0x23ffffff);  
+</code></pre><p>关于不透明度，一般美工会定义。有些要求不透明如30%这样的，可以用整型换算一下。00～ff 对应十进制为0～255，那么30%就是255x0.3=76.5，用科学计算机换算为4c。</p>
+<p>更多颜色相关设置这里附上《Android 中设置文本颜色的三种办法》  </p>
+<blockquote>
+<p>1、 利于系统自带的颜色类<br>如： <strong>TextView1.setTextColor(android.graphics.Color.RED);</strong><br>布局文件中：<strong>android:textColor=”@android:color/white”</strong><br>详见Android源码:<strong>base/core/res/res/values/colors.xml</strong><br>2、 数字颜色表示法<br><strong>TextView1.setTextColor(0xffff00ff);</strong><br>3、 自定义颜色<br><strong>TextView1.setTextColor(this.getResources().getColor(R.drawable.red));</strong></p>
+</blockquote>
+<h3 id="组合控件的类文件"><a href="#组合控件的类文件" class="headerlink" title="组合控件的类文件"></a>组合控件的类文件</h3><p>然后我们就要写一个类，我这继承子线性布局。有两个构造函数，我们主要在两个参数的函数中工作。</p>
+<pre><code>public class LevelMenuItem extends LinearLayout {  
 
-组合控件是自定义控件的一种，只不过它是由其他几个原生控件组合而成，故名组合控件。  
-在实际项目中，GUI 会遇到一些可以提取出来做成自定义控件情况。  
-一个自定义控件的好处就是把一些需要模块化的 UI 和逻辑放在一起，做到了高内
-          ...
+    public LevelMenuItem(Context context, AttributeSet attrs) {  
+        super(context, attrs);  
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/24/CombinedWidget/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+    }  
+</code></pre><p>这个类中我们要完成的工作是，初始化控件属性、提供外部修改属性的接口、控件点击的回调接口。</p>
+<p>此类完整代码：</p>
+<pre><code>package com.linc.game;  
+
+import android.content.Context;  
+import android.content.res.TypedArray;  
+import android.util.AttributeSet;  
+import android.view.LayoutInflater;  
+import android.view.View;  
+import android.widget.ImageView;  
+import android.widget.LinearLayout;  
+import android.widget.TextView;  
+/** 
+ * 自定义一个关卡 
+ * 共有7个属性，看attr文件 
+ * 在程序中提供修改这7个属性的接口， 
+ * 一个自定义控件的任务就算完成。 
+ * 一个自定义控件的好处就是把一些需要模块化的 
+ * UI和逻辑放在一起，做到了高内聚，向其他模块提供接口并很少 
+ * 依赖外界，这样就是低耦合。一个自定义控件就是一个封闭的王国， 
+ * 这里由你掌控。 
+ *  
+ * 编写时，如果遇到在attr里写好属性，但是在这里认不出来， 
+ * 就clean一下项目。切记。 
+ *  
+ * @author linc 
+ * 
+ */  
+public class LevelMenuItem extends LinearLayout {  
+    private TextView mTextView = null;  
+    private ImageView mImageView = null;  
+
+    public LevelMenuItem(Context context) {  
+        super(context);  
+    }  
+    public LevelMenuItem(Context context, AttributeSet attrs) {  
+        super(context, attrs);  
+
+        LayoutInflater layoutInflater = (LayoutInflater) context.  
+                        getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
+        layoutInflater.inflate(R.layout.level_menu_item, this);  
+
+        TypedArray typedArray = context.obtainStyledAttributes(attrs  
+                ,R.styleable.LevelMenuItem);  
+
+        initWidget(typedArray);  
+    }  
+    private void initWidget(TypedArray typedArray)  
+    {  
+        mTextView = (TextView)findViewById(R.id.tv_item);  
+        String textString = typedArray.getString(R.styleable.LevelMenuItem_text);  
+        int textColor = typedArray.getColor(R.styleable.LevelMenuItem_text_color,  
+                0xffffffff);  
+        float textSize = typedArray.getDimension(R.styleable.LevelMenuItem_text_size,  
+                20);  
+        mTextView.setText(textString);  
+        mTextView.setTextColor(textColor);  
+        mTextView.setTextSize(textSize);  
+
+        mImageView = (ImageView)findViewById(R.id.image_item);  
+        int imageHeight = (int) typedArray.getDimension(R.styleable.LevelMenuItem_image_height, 25);  
+        int imageWidth = (int) typedArray.getDimension(R.styleable.LevelMenuItem_image_width, 25);  
+        int imageSrc = typedArray.getResourceId(R.styleable.LevelMenuItem_image_src, 0);  
+        int imageBg = typedArray.getResourceId(R.styleable.LevelMenuItem_image_bg, 0);  
+        int imageAlpha = typedArray.getInt(R.styleable.LevelMenuItem_image_alpha, 255);  
+        mImageView.setAlpha(imageAlpha);  
+        mImageView.setImageResource(imageSrc);  
+        mImageView.setBackgroundResource(imageBg);  
+        LayoutParams layoutParams = new LayoutParams(imageWidth, imageHeight);  
+        mImageView.setLayoutParams(layoutParams);  
+
+        typedArray.recycle();  
+    }  
+    /** 
+     * 设置此控件的文本 
+     * @param text 
+     */  
+    public void setText(String text)  
+    {  
+        mTextView.setText(text);  
+    }  
+    /** 
+     * 设置文字颜色 
+     * @param textColor 
+     */  
+     public void setTextColor(int textColor)  
+    {  
+        mTextView.setTextColor(textColor);  
+    }  
+    /** 
+     * 设置字体大小 
+     * @param textSize 
+     */  
+     public void setTextSize(int textSize)  
+    {  
+        mTextView.setTextSize(textSize);  
+    }  
+    /** 
+     * 设置图片 
+     * @param resId 
+     */  
+     public void setImageResource(int resId)  
+    {  
+        mImageView.setImageResource(resId);  
+    }  
+    /** 
+     * 设置图片背景 
+     */  
+     public void setBackgroundResource(int resId)  
+    {  
+        mImageView.setBackgroundResource(resId);  
+    }     
+    /** 
+     * 设置图片的不透名度 
+     * @param alpha 
+     */  
+    public void setImageAlpha(int alpha)  
+    {  
+        mImageView.setAlpha(alpha);  
+    }  
+    /** 
+     * 设置图片的大小 
+     * 这里面需要使用LayoutParams这个布局参数来设置 
+     * @param width 
+     * @param height 
+     */  
+    public void setImageSize(int width,int height)  
+    {  
+        LayoutParams layoutParams = new LayoutParams(width, height);  
+        mImageView.setLayoutParams(layoutParams);  
+    }  
+    /** 
+     * image点击事件的回调 
+     * @param listener 
+     */  
+    public void setOnClickListener(OnItemClickListener listener)  
+    {  
+        mImageView.setOnClickListener(new View.OnClickListener() {  
+            @Override  
+            public void onClick(View v) {  
+                listener.onImageClick();  
+            }  
+        });  
+    }  
+    /** 
+     * 点击事件接口 
+     * @author linc 
+     * 
+     */  
+    public interface OnItemClickListener  
+    {  
+        public void onImageClick();  
+    }  
+}  
+</code></pre><h3 id="组合控件的使用"><a href="#组合控件的使用" class="headerlink" title="组合控件的使用"></a>组合控件的使用</h3><p>好，一个完整的组合控件就做好了，那么，我们如何使用呢？</p>
+<p>我要在 LevelMenu 中用它。xml 文件如下：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;  
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;  
+    xmlns:linc=&quot;http://schemas.android.com/apk/res/com.linc.game&quot;  
+    android:layout_width=&quot;fill_parent&quot;  
+    android:layout_height=&quot;fill_parent&quot;  
+    android:orientation=&quot;horizontal&quot;&gt;      
+    &lt;com.linc.game.LevelMenuItem  
+        android:id=&quot;@+id/item1&quot;  
+        android:layout_width=&quot;70dp&quot;  
+        android:layout_height=&quot;80dp&quot;  
+        linc:text=&quot;@string/item1&quot;  
+        linc:text_size=&quot;14sp&quot;  
+        linc:text_color=&quot;#80fa8072&quot;  
+        linc:image_src=&quot;@drawable/orange_button_selector&quot;  
+        linc:image_alpha=&quot;128&quot;  
+        linc:image_height=&quot;48dp&quot;  
+        linc:image_width=&quot;48dp&quot;  
+        /&gt;  
+    &lt;com.linc.game.LevelMenuItem  
+        android:id=&quot;@+id/item2&quot;  
+        android:layout_marginLeft=&quot;20dp&quot;  
+        android:layout_width=&quot;70dp&quot;  
+        android:layout_height=&quot;80dp&quot;  
+        linc:text=&quot;@string/item2&quot;  
+        linc:text_size=&quot;14sp&quot;  
+        linc:text_color=&quot;#ffeee8aa&quot;  
+        linc:image_src=&quot;@drawable/red_button_selector&quot;  
+        linc:image_alpha=&quot;255&quot;  
+        linc:image_height=&quot;48dp&quot;  
+        linc:image_width=&quot;48dp&quot;  
+        /&gt;     
+    &lt;com.linc.game.LevelMenuItem  
+        android:id=&quot;@+id/item3&quot;  
+        android:layout_marginLeft=&quot;20dp&quot;  
+        android:layout_width=&quot;70dp&quot;  
+        android:layout_height=&quot;80dp&quot;  
+        linc:text=&quot;@string/item3&quot;  
+        linc:text_size=&quot;14sp&quot;  
+        linc:text_color=&quot;#80cd853f&quot;               linc:image_src=&quot;@drawable/yellow_button_selector&quot;  
+        linc:image_alpha=&quot;128&quot;  
+        linc:image_height=&quot;48dp&quot;  
+        linc:image_width=&quot;48dp&quot;  
+        /&gt;         
+&lt;/LinearLayout&gt;  
+</code></pre><p>加入自己包名的索引</p>
+<pre><code>xmlns:linc=&quot;http://schemas.android.com/apk/res/com.linc.game&quot;  
+</code></pre><p>剩下的就一目了然了。</p>
+<h3 id="用到组合控件的类文件"><a href="#用到组合控件的类文件" class="headerlink" title="用到组合控件的类文件"></a>用到组合控件的类文件</h3><p>LevelMenu.java</p>
+<pre><code>package com.linc.game;  
+
+import com.linc.game.LevelMenuItem.OnItemClickListener;  
+import android.content.Context;  
+import android.util.AttributeSet;  
+import android.util.Log;  
+import android.view.LayoutInflater;  
+import android.widget.LinearLayout;  
+
+public class LevelMenu extends LinearLayout {  
+    private LevelMenuItem item1,item2,item3;  
+
+    public LevelMenu(Context context) {  
+        super(context);  
+
+    }  
+
+    public LevelMenu(Context context, AttributeSet attrs) {  
+        super(context, attrs);  
+        LayoutInflater layoutInflater = (LayoutInflater) context.  
+            getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
+        layoutInflater.inflate(R.layout.level_menu, this);  
+        initWidget();  
+    }  
+    private void initWidget()  
+    {  
+        item1 = (LevelMenuItem)findViewById(R.id.item1);  
+        item2 = (LevelMenuItem)findViewById(R.id.item2);  
+        item3 = (LevelMenuItem)findViewById(R.id.item3);  
+
+        item1.setOnClickListener(new OnItemClickListener() {  
+            @Override  
+            public void onImageClick() {  
+                Log.e(&quot;dfjdkfjd&quot;,&quot;dfdfd&quot;);  
+            }  
+        });  
+    }  
+}  
+</code></pre><p>在处理图片点击事件的时候，我用到了选择器（selector），这是我们实际开发中最常用的小技巧了。它能描述的状态很多，各位看官可以去查查。 </p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;  
+&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; &gt;  
+    &lt;item android:state_pressed=&quot;true&quot;  
+        android:drawable=&quot;@drawable/button_push&quot;/&gt;  
+    &lt;item android:drawable=&quot;@drawable/orange_button&quot;/&gt;  
+&lt;/selector&gt;  
+</code></pre><p>好，组合控件的例子先到这里，实际功能在下一个实战技巧中演练。</p>
+<p>大家在做自定义控件时需要注意的是：</p>
+<p>1、自定义控件类不能是是抽象类</p>
+<p>2、要用 <code>(Context context, AttributeSet attrs)</code> 这个构造函数。  </p>
+<p>否则报错：android.view.InflateException: Binary XML file line #15: Error inflating cla。。。  </p>
+<h3 id="最后普及一下，attrs-xml中的属性的format（类型）说明"><a href="#最后普及一下，attrs-xml中的属性的format（类型）说明" class="headerlink" title="最后普及一下，attrs.xml中的属性的format（类型）说明"></a>最后普及一下，attrs.xml中的属性的format（类型）说明</h3><h4 id="1-reference：参考某一资源ID。"><a href="#1-reference：参考某一资源ID。" class="headerlink" title="1. reference：参考某一资源ID。"></a>1. reference：参考某一资源ID。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;名称&quot;&gt;
+   &lt;attr name = &quot;background&quot; format = &quot;reference&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;ImageView
+     android:layout_width = &quot;42dip&quot;
+     android:layout_height = &quot;42dip&quot;
+     android:background = &quot;@drawable/图片ID&quot;
+     /&gt;
+</code></pre><h4 id="2-color：颜色值。"><a href="#2-color：颜色值。" class="headerlink" title="2. color：颜色值。"></a>2. color：颜色值。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;名称&quot;&gt;
+    &lt;attr name = &quot;textColor&quot; format = &quot;color&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;TextView
+     android:layout_width = &quot;42dip&quot;
+     android:layout_height = &quot;42dip&quot;
+     android:textColor = &quot;#00FF00&quot;
+     /&gt;
+</code></pre><h4 id="3-boolean：布尔值。"><a href="#3-boolean：布尔值。" class="headerlink" title="3. boolean：布尔值。"></a>3. boolean：布尔值。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;名称&quot;&gt;
+   &lt;attr name = &quot;focusable&quot; format = &quot;boolean&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;Button
+    android:layout_width = &quot;42dip&quot;
+    android:layout_height = &quot;42dip&quot;
+    android:focusable = &quot;true&quot;
+    /&gt;
+</code></pre><h4 id="4-dimension：尺寸值。"><a href="#4-dimension：尺寸值。" class="headerlink" title="4. dimension：尺寸值。"></a>4. dimension：尺寸值。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;名称&quot;&gt;
+   &lt;attr name = &quot;layout_width&quot; format = &quot;dimension&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;Button
+    android:layout_width = &quot;42dip&quot;
+    android:layout_height = &quot;42dip&quot;
+    /&gt;
+</code></pre><h4 id="5-float：浮点值。"><a href="#5-float：浮点值。" class="headerlink" title="5. float：浮点值。"></a>5. float：浮点值。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;AlphaAnimation&quot;&gt;
+   &lt;attr name = &quot;fromAlpha&quot; format = &quot;float&quot; /&gt;
+   &lt;attr name = &quot;toAlpha&quot; format = &quot;float&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;alpha
+   android:fromAlpha = &quot;1.0&quot;
+   android:toAlpha = &quot;0.7&quot;
+   /&gt;
+</code></pre><h4 id="6-integer：整型值。"><a href="#6-integer：整型值。" class="headerlink" title="6. integer：整型值。"></a>6. integer：整型值。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;AnimatedRotateDrawable&quot;&gt;
+   &lt;attr name = &quot;visible&quot; /&gt;
+   &lt;attr name = &quot;frameDuration&quot; format=&quot;integer&quot; /&gt;
+   &lt;attr name = &quot;framesCount&quot; format=&quot;integer&quot; /&gt;
+   &lt;attr name = &quot;pivotX&quot; /&gt;
+   &lt;attr name = &quot;pivotY&quot; /&gt;
+   &lt;attr name = &quot;drawable&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;animated-rotate
+       xmlns:android = &quot;http://schemas.android.com/apk/res/android&quot; 
+       android:drawable = &quot;@drawable/图片ID&quot; 
+       android:pivotX = &quot;50%&quot; 
+       android:pivotY = &quot;50%&quot; 
+       android:framesCount = &quot;12&quot; 
+       android:frameDuration = &quot;100&quot;
+       /&gt;
+</code></pre><h4 id="7-string：字符串。"><a href="#7-string：字符串。" class="headerlink" title="7. string：字符串。"></a>7. string：字符串。</h4><p>（1）属性定义：  </p>
+<pre><code>&lt;declare-styleable name = &quot;MapView&quot;&gt;
+       &lt;attr name = &quot;apiKey&quot; format = &quot;string&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：  </p>
+<pre><code>&lt;com.google.android.maps.MapView
+        android:layout_width = &quot;fill_parent&quot;
+        android:layout_height = &quot;fill_parent&quot;
+        android:apiKey = &quot;0jOkQ80oD1JL9C6HAja99uGXCRiS2CGjKO_bc_g&quot;
+        /&gt;
+</code></pre><h4 id="8-fraction：百分数。"><a href="#8-fraction：百分数。" class="headerlink" title="8. fraction：百分数。"></a>8. fraction：百分数。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name=&quot;RotateDrawable&quot;&gt;
+   &lt;attr name = &quot;visible&quot; /&gt;
+   &lt;attr name = &quot;fromDegrees&quot; format = &quot;float&quot; /&gt;
+   &lt;attr name = &quot;toDegrees&quot; format = &quot;float&quot; /&gt;
+   &lt;attr name = &quot;pivotX&quot; format = &quot;fraction&quot; /&gt;
+   &lt;attr name = &quot;pivotY&quot; format = &quot;fraction&quot; /&gt;
+   &lt;attr name = &quot;drawable&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;rotate
+    xmlns:android = &quot;http://schemas.android.com/apk/res/android&quot;
+    android:interpolator = &quot;@anim/动画ID&quot;
+    android:fromDegrees = &quot;0&quot;
+    android:toDegrees = &quot;360&quot;
+    android:pivotX = &quot;200%&quot;
+    android:pivotY = &quot;300%&quot;
+    android:duration = &quot;5000&quot;
+    android:repeatMode = &quot;restart&quot;
+    android:repeatCount = &quot;infinite&quot;
+    /&gt;
+</code></pre><h4 id="9-enum：枚举值。"><a href="#9-enum：枚举值。" class="headerlink" title="9. enum：枚举值。"></a>9. enum：枚举值。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name=&quot;名称&quot;&gt;
+   &lt;attr name=&quot;orientation&quot;&gt;
+      &lt;enum name=&quot;horizontal&quot; value=&quot;0&quot; /&gt;
+      &lt;enum name=&quot;vertical&quot; value=&quot;1&quot; /&gt;
+   &lt;/attr&gt;           
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;LinearLayout
+    xmlns:android = &quot;http://schemas.android.com/apk/res/android&quot;
+    android:orientation = &quot;vertical&quot;
+    android:layout_width = &quot;fill_parent&quot;
+    android:layout_height = &quot;fill_parent&quot;
+    &gt;
+&lt;/LinearLayout&gt;
+</code></pre><h4 id="10-flag：位或运算。"><a href="#10-flag：位或运算。" class="headerlink" title="10. flag：位或运算。"></a>10. flag：位或运算。</h4><p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name=&quot;名称&quot;&gt;
+   &lt;attr name=&quot;windowSoftInputMode&quot;&gt;
+       &lt;flag name = &quot;stateUnspecified&quot; value = &quot;0&quot; /&gt;
+       &lt;flag name = &quot;stateUnchanged&quot; value = &quot;1&quot; /&gt;
+       &lt;flag name = &quot;stateHidden&quot; value = &quot;2&quot; /&gt;
+       &lt;flag name = &quot;stateAlwaysHidden&quot; value = &quot;3&quot; /&gt;
+       &lt;flag name = &quot;stateVisible&quot; value = &quot;4&quot; /&gt;
+       &lt;flag name = &quot;stateAlwaysVisible&quot; value = &quot;5&quot; /&gt;
+       &lt;flag name = &quot;adjustUnspecified&quot; value = &quot;0x00&quot; /&gt;
+       &lt;flag name = &quot;adjustResize&quot; value = &quot;0x10&quot; /&gt;
+       &lt;flag name = &quot;adjustPan&quot; value = &quot;0x20&quot; /&gt;
+       &lt;flag name = &quot;adjustNothing&quot; value = &quot;0x30&quot; /&gt;
+    &lt;/attr&gt;        
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;activity
+   android:name = &quot;.StyleAndThemeActivity&quot;
+   android:label = &quot;@string/app_name&quot;
+   android:windowSoftInputMode = &quot;stateUnspecified | stateUnchanged　|　stateHidden&quot;&gt;
+   &lt;intent-filter&gt;
+      &lt;action android:name = &quot;android.intent.action.MAIN&quot; /&gt;
+      &lt;category android:name = &quot;android.intent.category.LAUNCHER&quot; /&gt;
+   &lt;/intent-filter&gt;
+ &lt;/activity&gt;
+</code></pre><h4 id="特别要注意："><a href="#特别要注意：" class="headerlink" title="特别要注意："></a>特别要注意：</h4><p>属性定义时可以指定多种类型值。</p>
+<p>（1）属性定义：</p>
+<pre><code>&lt;declare-styleable name = &quot;名称&quot;&gt;
+   &lt;attr name = &quot;background&quot; format = &quot;reference|color&quot; /&gt;
+&lt;/declare-styleable&gt;
+</code></pre><p>（2）属性使用：</p>
+<pre><code>&lt;ImageView
+    android:layout_width = &quot;42dip&quot;
+    android:layout_height = &quot;42dip&quot;
+    android:background = &quot;@drawable/图片ID|#00FF00&quot;
+    /&gt;
+</code></pre>
+          
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -1515,6 +3348,8 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -1526,13 +3361,23 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/08/24/FlexboxLayoutAbout/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
 
     
       <header class="post-header">
@@ -1554,24 +3399,36 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-24T15:03:15+08:00" content="2016-08-24">
-              2016-08-24
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-24T15:03:15+08:00">
+                2016-08-24
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Android控件/" itemprop="url" rel="index">
                     <span itemprop="name">Android控件</span>
                   </a>
@@ -1579,7 +3436,6 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
                 
                 
-
               
             </span>
           
@@ -1587,29 +3443,37 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2016/08/24/FlexboxLayoutAbout/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/24/FlexboxLayoutAbout/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/24/FlexboxLayoutAbout/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
              <span id="/2016/08/24/FlexboxLayoutAbout/" class="leancloud_visitors" data-flag-title="Android弹性布局-FlexboxLayout">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1623,14 +3487,128 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
         
           
-          Android弹性布局-FlexboxLayoutFlexbox简介简单来说 Flexbox 是属于web前端领域CSS的一种布局方案，是2009年W3C提出了一种新的布局方案，可以简便、完整、响应式地实现各种页面布局，并且 React Native 也是使用的 Flex 布局。谷歌将其引入以提高复
-          ...
+            <h1 id="Android弹性布局-FlexboxLayout"><a href="#Android弹性布局-FlexboxLayout" class="headerlink" title="Android弹性布局-FlexboxLayout"></a>Android弹性布局-FlexboxLayout</h1><h2 id="Flexbox简介"><a href="#Flexbox简介" class="headerlink" title="Flexbox简介"></a>Flexbox简介</h2><p>简单来说 Flexbox 是属于web前端领域CSS的一种布局方案，是2009年W3C提出了一种新的布局方案，可以简便、完整、响应式地实现各种页面布局，并且 React Native 也是使用的 Flex 布局。谷歌将其引入以提高复杂布局的能力。<br><a href="https://github.com/google/flexbox-layout" target="_blank" rel="external">Github 源码传送门</a></p>
+<h2 id="Flexbox的布局和相关名称"><a href="#Flexbox的布局和相关名称" class="headerlink" title="Flexbox的布局和相关名称"></a>Flexbox的布局和相关名称</h2><p><img src="http://obbu6r1mi.bkt.clouddn.com/flexBoxLayoutAbout/1.png" alt="">  </p>
+<p>上图模型中包含以下概念</p>
+<ol>
+<li>flex container 父容器，用来包含子元素，对应于FlexboxLayout类。</li>
+<li>flex item 子元素，父容器直接包裹的元素。</li>
+<li>main axis 主轴，子元素通过主轴来排列，如上图是从左往右。</li>
+<li>corss axis 副轴，垂直于主轴的第二个轴</li>
+<li>main start,main end 父容器中主轴开始和结束的边界，子元素从main start往main end的方向排列（如果主轴是水平，起点在左端，main start,main end 用来控制子元素从左向右排列）</li>
+<li>cross start,corss end 父容器中副轴开始和结束的边界。子元素从cross start往cross end方向排列(如果主轴是水平的，那么副轴就是垂直的，假设如上图，cross start 在上，cross end 在下，那么子元素就是从上往下排列)  </li>
+</ol>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><p>使用方式很简单，只需要添加以下依赖： </p>
+<blockquote>
+<p>compile ‘com.google.android:flexbox:0.1.2’  </p>
+</blockquote>
+<p>Flexbox 布局示例  </p>
+<pre><code>&lt;com.google.android.flexbox.FlexboxLayout
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    app:flexWrap=&quot;wrap&quot;
+    app:alignItems=&quot;stretch&quot;
+    app:alignContent=&quot;stretch&quot; &gt;
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/24/FlexboxLayoutAbout/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+    &lt;TextView
+        android:id=&quot;@+id/textview1&quot;
+        android:layout_width=&quot;120dp&quot;
+        android:layout_height=&quot;80dp&quot;
+        app:layout_flexBasisPercent=&quot;50%&quot;
+        /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textview2&quot;
+        android:layout_width=&quot;80dp&quot;
+        android:layout_height=&quot;80dp&quot;
+        app:layout_alignSelf=&quot;center&quot;
+        /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textview3&quot;
+        android:layout_width=&quot;160dp&quot;
+        android:layout_height=&quot;80dp&quot;
+        app:layout_alignSelf=&quot;flex_end&quot;
+        /&gt;
+&lt;/com.google.android.flexbox.FlexboxLayout&gt;  
+</code></pre><p>或者代码</p>
+<pre><code>FlexboxLayout flexboxLayout = (FlexboxLayout) findViewById(R.id.flexbox_layout);
+flexboxLayout.setFlexDirection(FlexboxLayout.FLEX_DIRECTION_COLUMN);
+
+View view = flexboxLayout.getChildAt(0);
+FlexboxLayout.LayoutParams lp = (FlexboxLayout.LayoutParams) view.getLayoutParams();
+lp.order = -1;
+lp.flexGrow = 2;
+view.setLayoutParams(lp);  
+</code></pre><h2 id="属性介绍"><a href="#属性介绍" class="headerlink" title="属性介绍"></a>属性介绍</h2><h3 id="Contatiner的属性"><a href="#Contatiner的属性" class="headerlink" title="Contatiner的属性"></a>Contatiner的属性</h3><h4 id="flexDirection"><a href="#flexDirection" class="headerlink" title="flexDirection"></a>flexDirection</h4><p>flexDirection 属性决定主轴的方向（即子元素的排列方向）。类似 LinearLayout 的 vertical 和 horizontal。决定主轴和副轴的方向，有以下四个值:  </p>
+<ul>
+<li>row（默认值）：主轴为水平方向，起点在左端。</li>
+<li>row-reverse：主轴为水平方向，起点在右端。</li>
+<li>column：主轴为垂直方向，起点在上沿。</li>
+<li>column-reverse：主轴为垂直方向，起点在下沿。  </li>
+</ul>
+<p>而副轴是和主轴垂直的方向，起点相同。  </p>
+<h4 id="flexWrap"><a href="#flexWrap" class="headerlink" title="flexWrap"></a>flexWrap</h4><p>控制单行和多行，以及副轴的方向。默认情况下 Flex 跟 LinearLayout 一样，都是不带换行排列的，但是flexWrap属性可以支持换行排列。这个也比 LinearLayout 吊啊有三个值：  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/flexBoxLayoutAbout/2.png" alt="">  </p>
+<ul>
+<li>nowrap (default) 不换行</li>
+<li>wrap 换行</li>
+<li>wrap_reverse 副轴方向置反  </li>
+</ul>
+<h4 id="justifyContent"><a href="#justifyContent" class="headerlink" title="justifyContent"></a>justifyContent</h4><p>justifyContent属性定义了项目在主轴上的对齐方式。  </p>
+<ul>
+<li>flex-start（default）：左对齐</li>
+<li>flex-end：右对齐</li>
+<li>center： 居中</li>
+<li>space-between：两端对齐，项目之间的间隔都相等。</li>
+<li>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。  </li>
+</ul>
+<h4 id="alignItems"><a href="#alignItems" class="headerlink" title="alignItems"></a>alignItems</h4><p>控制沿副轴对齐(单行起作用)</p>
+<ul>
+<li>stretch（default）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
+<li>flex-start：交叉轴的起点对齐。</li>
+<li>flex-end：交叉轴的终点对齐。</li>
+<li>center：交叉轴的中点对齐。</li>
+<li>baseline: 项目的第一行文字的基线对齐。</li>
+</ul>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/flexBoxLayoutAbout/3.png" alt=""></p>
+<h4 id="alignContent"><a href="#alignContent" class="headerlink" title="alignContent"></a>alignContent</h4><p>alignContent属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。  </p>
+<ul>
+<li>stretch（default）：轴线占满整个交叉轴。</li>
+<li>flex-start：与交叉轴的起点对齐。</li>
+<li>flex-end：与交叉轴的终点对齐。</li>
+<li>center：与交叉轴的中点对齐。</li>
+<li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。  </li>
+</ul>
+<h3 id="子元素的属性"><a href="#子元素的属性" class="headerlink" title="子元素的属性"></a>子元素的属性</h3><h4 id="layout-order"><a href="#layout-order" class="headerlink" title="layout_order"></a>layout_order</h4><p>控制子元素布局的顺序，默认值为1，顺序为XML中元素的顺序.默认情况下子元素的排列方式按照文档流的顺序依次排序，而order属性可以控制排列的顺序，负值在前，正值灾后，按照从小到大的顺序依次排列。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/flexBoxLayoutAbout/4.png" alt=""></p>
+<h4 id="layout-flexGrow"><a href="#layout-flexGrow" class="headerlink" title="layout_flexGrow"></a>layout_flexGrow</h4><p>layout_flexGrow 属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。一张图看懂。跟 LinearLayout 中的weight属性一样。  </p>
+<p><img src="http://obbu6r1mi.bkt.clouddn.com/flexBoxLayoutAbout/5.png" alt=""><br>如果所有项目的 layout_flexGrow  属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的 layout_flexGrow  属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。  </p>
+<h4 id="layout-flexShrink"><a href="#layout-flexShrink" class="headerlink" title="layout_flexShrink"></a>layout_flexShrink</h4><p>layout_flexShrink  属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。  </p>
+<h4 id="layout-alignSelf"><a href="#layout-alignSelf" class="headerlink" title="layout_alignSelf"></a>layout_alignSelf</h4><p>允许单个元素有不一样的对齐方式，会覆盖align-item,除auto外，其他取值都和align-item的含义一致。<br>默认值为auto，表示继承父元素的 alignItems 属性，如果没有父元素，则等同于stretch。  </p>
+<ul>
+<li>flex_start</li>
+<li>flex_end</li>
+<li>center</li>
+<li>baseline</li>
+<li>stretch</li>
+</ul>
+<h4 id="layout-flexBasisPercent"><a href="#layout-flexBasisPercent" class="headerlink" title="layout_flexBasisPercent"></a>layout_flexBasisPercent</h4><p>只能为百分比的值，只有父元素是MeasureSpec.EXACTLY的模式时才有效。<br>layout_flexBasisPercent 属性定义了在分配多余空间之前，子元素占据的main size主轴空间，浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即子元素的本来大小。  </p>
+<h2 id="与传统CSS弹性布局不同之处"><a href="#与传统CSS弹性布局不同之处" class="headerlink" title="与传统CSS弹性布局不同之处"></a>与传统CSS弹性布局不同之处</h2><ol>
+<li>没有flex-flow属性 ：因为没必要</li>
+<li>没有flex属性：同样没必要</li>
+<li>layout_flexBasisPercent 替代了flexBasis。如果子元素宽高确定了，可以指定具体值或百分比，如果是包裹内容，那只能是百分比</li>
+<li>不支持min-width和min-height：因为谷歌还没实现  </li>
+</ol>
+<blockquote>
+<p>相关链接：<br><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="external">https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a><br><a href="https://github.com/google/flexbox-layout/wiki" target="_blank" rel="external">https://github.com/google/flexbox-layout/wiki</a><br><a href="https://blog.stylingandroid.com/flexboxlayout-part-1/" target="_blank" rel="external">https://blog.stylingandroid.com/flexboxlayout-part-1/</a></p>
+<p>文章来源：<br><a href="http://www.jianshu.com/p/6ab9808488f6" target="_blank" rel="external">简书</a><br><a href="">AndroidDeveloper微信公众号-stormzhang</a></p>
+</blockquote>
+
+          
         
       
     </div>
@@ -1643,7 +3621,13 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
       
     </div>
 
+    <div>
+      
+    </div>
+
     <footer class="post-footer">
+      
+
       
 
       
@@ -1691,25 +3675,32 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/ocnyang.png"
                alt="OCN.Yang" />
           <p class="site-author-name" itemprop="name">OCN.Yang</p>
-          <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+           
+              <p class="site-description motion-element" itemprop="description">拼凑江山，只为遇见你时自己不那么不堪</p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">47</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -1717,8 +3708,10 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -1791,7 +3784,12 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
           </div>
         
 
+        
+
+
       </section>
+
+      
 
       
 
@@ -1815,8 +3813,9 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
   <span class="author" itemprop="copyrightHolder">OCN.Yang</span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -1826,31 +3825,40 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
   </a>
 </div>
 
+
         
-
 <div class="busuanzi-count">
-
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
   
 
   
-    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
-  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
   
 </div>
-
 
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -1870,6 +3878,9 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
 
   
+
+
+
 
 
 
@@ -1895,28 +3906,28 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
   
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
 
 
 
@@ -1941,6 +3952,7 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
   
     
+    
     <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
     <script src="/js/src/hook-duoshuo.js"></script>
   
@@ -1950,139 +3962,21 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
 
 
 
-  
-  
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
 
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
 
-    }
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = true;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            }
-                        });
-                    }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
 
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
-                        }
-                        str += "</li>";
-                    }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
-            });
-            proceedsearch();
-        }
-    });}
 
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched == false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
 
-    });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-  </script>
+
+
 
 
   
+
+
+
+
 
   
 
@@ -2192,6 +4086,10 @@ RxJava正在Android开发者中变的越来越流行。唯一的问题就是上�
   </script>
 
 
+
+  
+
+  
 
   
 
