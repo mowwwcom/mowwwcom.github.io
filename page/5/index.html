@@ -112,9 +112,9 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'VNED6CUNXS',
+      apiKey: '6ddb8c50393c96385859316fefbe2320',
+      indexName: 'ocnyang',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -410,929 +410,18 @@
       
         
           
-            <h1 id="OkHttp使用教程"><a href="#OkHttp使用教程" class="headerlink" title="OkHttp使用教程"></a>OkHttp使用教程</h1><blockquote>
-<p>摘录来自：<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0106/2275.html" target="_blank" rel="external">泡网OkHttp使用教程</a></p>
-</blockquote>
-<p>Android系统提供了两种HTTP通信类，HttpURLConnection和HttpClient。<br><a href="http://android-developers.blogspot.com/2011/09/androids-http-clients.html" target="_blank" rel="external">关于HttpURLConnection和HttpClient的选择&gt;&gt;官方博客</a><br>尽管Google在大部分安卓版本中推荐使用HttpURLConnection，但是这个类相比HttpClient实在是太难用，太弱爆了。<br>OkHttp是一个相对成熟的解决方案，据说Android4.4的源码中可以看到HttpURLConnection已经替换成OkHttp实现了。所以我们更有理由相信OkHttp的强大。</p>
-<p>OkHttp 处理了很多网络疑难杂症：会从很多常用的连接问题中自动恢复。如果您的服务器配置了多个IP地址，当第一个IP连接失败的时候，OkHttp会自动尝试下一个IP。OkHttp还处理了代理服务器问题和SSL握手失败问题。</p>
-<p>使用 OkHttp 无需重写您程序中的网络代码。OkHttp实现了几乎和java.net.HttpURLConnection一样的API。如果你用了 Apache HttpClient，则OkHttp也提供了一个对应的okhttp-apache 模块。</p>
-<blockquote>
-<p>注：在国内使用OkHttp会因为这个问题导致部分酷派手机用户无法联网，所以对于大众app来说，需要等待这个bug修复后再使用。或者尝试使用OkHttp的老版本。<br>截止到目前，OkHttp一直没有修复，并把修复计划延迟到了OkHttp2.3中。不是所有设备都能重现，仅少量设备会出现这个问题。（如果问题这么明显，OkHttp早就修复了）</p>
-</blockquote>
-<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="官方资料"><a href="#官方资料" class="headerlink" title="官方资料"></a>官方资料</h3><p><a href="http://square.github.io/okhttp/" target="_blank" rel="external">官方介绍</a><br><a href="https://github.com/square/okhttp" target="_blank" rel="external">github源码</a></p>
-<h3 id="使用范围"><a href="#使用范围" class="headerlink" title="使用范围"></a>使用范围</h3><p>OkHttp支持Android 2.3及其以上版本。<br>对于Java, JDK1.7以上。</p>
-<h3 id="jar包准备"><a href="#jar包准备" class="headerlink" title="jar包准备"></a>jar包准备</h3><p>官方介绍页面有链接位置。这里把下载链接也写在下面。<br><a href="http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&amp;g=com.squareup.okhttp&amp;a=okhttp&amp;v=LATEST" target="_blank" rel="external">OkHttp</a><br><a href="http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&amp;g=com.squareup.okio&amp;a=okio&amp;v=LATEST" target="_blank" rel="external">Okio</a></p>
-<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p><strong>HTTP GET</strong></p>
-<pre><code>OkHttpClient client = new OkHttpClient();
-
-String run(String url) throws IOException {
-    Request request = new Request.Builder().url(url).build();
-    Response response = client.newCall(request).execute();    
-    if (response.isSuccessful()) {        
-        return response.body().string();
-        } else {
-            throw new IOException(&quot;Unexpected code &quot; + response);
-        }
-    }
-</code></pre><p>Request是OkHttp中访问的请求，Builder是辅助类。Response即OkHttp中的响应。</p>
-<p><strong>Response类：</strong></p>
-<pre><code>public boolean isSuccessful()
-Returns true if the code is in [200..300),
- which means the request was successfully received, understood, and accepted.
-</code></pre><p><strong>response.body()返回ResponseBody类</strong><br>可以方便的获取string</p>
-<pre><code>public final String string() throws IOException
-Returns the response as a string decoded with the charset of the Content-Type header. If that header is either absent or lacks a charset,
- this will attempt to decode the response body as UTF-8.Throws:
-IOException
-</code></pre><p>当然也能获取到流的形式：</p>
-<pre><code>public final InputStream byteStream()
-</code></pre><p><strong>HTTP POST</strong><br><strong>POST提交Json数据</strong></p>
-<pre><code>public static final MediaType JSON = MediaType.parse(&quot;application/json; charset=utf-8&quot;);
-OkHttpClient client = new OkHttpClient();
-String post(String url, String json) throws IOException {
- RequestBody body = RequestBody.create(JSON, json);
-  Request request = new Request.Builder()
-  .url(url)
-  .post(body)
-  .build();
-  Response response = client.newCall(request).execute();
-f (response.isSuccessful()) {
-    return response.body().string();
-} else {
-    throw new IOException(&quot;Unexpected code &quot; + response);
-}
-}
-</code></pre><p>使用Request的post方法来提交请求体RequestBody</p>
-<p><strong>POST提交键值对</strong><br>很多时候我们会需要通过POST方式把键值对数据传送到服务器。 OkHttp提供了很方便的方式来做这件事情。</p>
-<p>OkHttpClient client = new OkHttpClient();<br>String post(String url, String json) throws IOException {</p>
-<pre><code> RequestBody formBody = new FormEncodingBuilder()
-.add(&quot;platform&quot;, &quot;android&quot;)
-.add(&quot;name&quot;, &quot;bug&quot;)
-.add(&quot;subject&quot;, &quot;XXXXXXXXXXXXXXX&quot;)
-.build();
-
-  Request request = new Request.Builder()
-  .url(url)
-  .post(body)
-  .build();
-
-  Response response = client.newCall(request).execute();
-if (response.isSuccessful()) {
-    return response.body().string();
-} else {
-    throw new IOException(&quot;Unexpected code &quot; + response);
-}
-}
-</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过上面的例子我们可以发现，OkHttp在很多时候使用都是很方便的，而且很多代码也有重复，因此特地整理了下面的工具类。<br>注意：</p>
-<ul>
-<li>OkHttp官方文档并不建议我们创建多个OkHttpClient，因此全局使用一个。 如果有需要，可以使用clone方法，再进行自定义。这点在后面的高级教程里会提到。</li>
-<li><p>enqueue为OkHttp提供的异步方法，入门教程中并没有提到，后面的高级教程里会有解释。  </p>
-<pre><code>import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.message.BasicNameValuePair;
-import cn.wiz.sdk.constant.WizConstant;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response; 
-
-public class OkHttpUtil {
-private static final OkHttpClient mOkHttpClient = new OkHttpClient();
-static{
-mOkHttpClient.setConnectTimeout(30, TimeUnit.SECONDS);
-}
-/**
- * 该不会开启异步线程。
- * @param request
- * @return
- * @throws IOException
-     */
-    public static Response execute(Request request) throws IOException{
-    return mOkHttpClient.newCall(request).execute();
-    }
-    /**
-     * 开启异步线程访问网络
-     * @param request
-     * @param responseCallback
-     */
-public static void enqueue(Request request, Callback responseCallback){
-mOkHttpClient.newCall(request).enqueue(responseCallback);
-}
-/**
- * 开启异步线程访问网络, 且不在意返回结果（实现空callback）
- * @param request
- */
-public static void enqueue(Request request){
-mOkHttpClient.newCall(request).enqueue(new Callback() {
-
-@Override
-public void onResponse(Response arg0) throws IOException {
-
-}
-
-@Override
-public void onFailure(Request arg0, IOException arg1) {
-
-}
-});
-}
-public static String getStringFromServer(String url) throws IOException{
-Request request = new Request.Builder().url(url).build();
-Response response = execute(request);
-if (response.isSuccessful()) {
-String responseUrl = response.body().string();
-return responseUrl;
-} else {
-throw new IOException(&quot;Unexpected code &quot; + response);
-}
-}
-private static final String CHARSET_NAME = &quot;UTF-8&quot;;
-/**
- * 这里使用了HttpClinet的API。只是为了方便
- * @param params
- * @return
- */
-public static String formatParams(List&lt;BasicNameValuePair&gt; params){
-return URLEncodedUtils.format(params, CHARSET_NAME);
-}
-/**
- * 为HttpGet 的 url 方便的添加多个name value 参数。
- * @param url
- * @param params
- * @return
- */
-public static String attachHttpGetParams(String url, List&lt;BasicNameValuePair&gt; params){
-return url + &quot;?&quot; + formatParams(params);
-}
-/**
- * 为HttpGet 的 url 方便的添加1个name value 参数。
- * @param url
- * @param name
- * @param value
- * @return
- */
-public static String attachHttpGetParam(String url, String name, String value){
-return url + &quot;?&quot; + name + &quot;=&quot; + value;
-}
-}  
-</code></pre></li>
-</ul>
-<h2 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h2><p>高级属性其实用的不多，这里主要是对OkHttp github官方教程进行了翻译。</p>
-<h3 id="同步get"><a href="#同步get" class="headerlink" title="同步get"></a><strong>同步get</strong></h3><p>下载一个文件，打印他的响应头，以string形式打印响应体。<br>响应体的 string() 方法对于小文档来说十分方便、高效。但是如果响应体太大（超过1MB），应避免适应 string()方法 ，因为他会将把整个文档加载到内存中。<br>对于超过1MB的响应body，应使用流的方式来处理body。</p>
-<pre><code>private final OkHttpClient client = new OkHttpClient();
-
-public void run() throws Exception {
-Request request = new Request.Builder()
-    .url(&quot;http://publicobject.com/helloworld.txt&quot;)
-    .build();
-
-Response response = client.newCall(request).execute();
-if (!response.isSuccessful()) throw new IOException(&quot;Unexpected code &quot; + response);
-
-Headers responseHeaders = response.headers();
-for (int i = 0; i &lt; responseHeaders.size(); i++) {
-  System.out.println(responseHeaders.name(i) + &quot;: &quot; + responseHeaders.value(i));
-}
-
-System.out.println(response.body().string());
-}
-</code></pre><h3 id="异步get"><a href="#异步get" class="headerlink" title="异步get"></a><strong>异步get</strong></h3><p>在一个工作线程中下载文件，当响应可读时回调Callback接口。读取响应时会阻塞当前线程。OkHttp现阶段不提供异步api来接收响应体。</p>
-<pre><code>private final OkHttpClient client = new OkHttpClient();
-
-public void run() throws Exception {
-Request request = new Request.Builder()
-    .url(&quot;http://publicobject.com/helloworld.txt&quot;)
-    .build();
-
-client.newCall(request).enqueue(new Callback() {
-  @Override public void onFailure(Request request, Throwable throwable) {
-    throwable.printStackTrace();
-  }
-
-  @Override public void onResponse(Response response) throws IOException {
-    if (!response.isSuccessful()) throw new IOException(&quot;Unexpected code &quot; + response);
-
-    Headers responseHeaders = response.headers();
-    for (int i = 0; i &lt; responseHeaders.size(); i++) {
-      System.out.println(responseHeaders.name(i) + &quot;: &quot; + responseHeaders.value(i));
-    }
-
-    System.out.println(response.body().string());
-  }
-});
-}
-</code></pre><h3 id="提取响应头"><a href="#提取响应头" class="headerlink" title="提取响应头"></a><strong>提取响应头</strong></h3><p>典型的HTTP头 像是一个 Map<string, string=""> :每个字段都有一个或没有值。但是一些头允许多个值，像Guava的Multimap。例如：HTTP响应里面提供的Vary响应头，就是多值的。OkHttp的api试图让这些情况都适用。<br>当写请求头的时候，使用header(name, value)可以设置唯一的name、value。如果已经有值，旧的将被移除，然后添加新的。使用addHeader(name, value)可以添加多值（添加，不移除已有的）。<br>当读取响应头时，使用header(name)返回最后出现的name、value。通常情况这也是唯一的name、value。如果没有值，那么header(name)将返回null。如果想读取字段对应的所有值，使用headers(name)会返回一个list。<br>为了获取所有的Header，Headers类支持按index访问。  </string,></p>
-<pre><code>private final OkHttpClient client = new OkHttpClient();
-
-public void run() throws Exception {
-Request request = new Request.Builder()
-    .url(&quot;https://api.github.com/repos/square/okhttp/issues&quot;)
-    .header(&quot;User-Agent&quot;, &quot;OkHttp Headers.java&quot;)
-    .addHeader(&quot;Accept&quot;, &quot;application/json; q=0.5&quot;)
-    .addHeader(&quot;Accept&quot;, &quot;application/vnd.github.v3+json&quot;)
-    .build();
-
-Response response = client.newCall(request).execute();
-if (!response.isSuccessful()) throw new IOException(&quot;Unexpected code &quot; + response);
-
-System.out.println(&quot;Server: &quot; + response.header(&quot;Server&quot;));
-System.out.println(&quot;Date: &quot; + response.header(&quot;Date&quot;));
-System.out.println(&quot;Vary: &quot; + response.headers(&quot;Vary&quot;));
-}
-</code></pre><h3 id="Post方式提交String"><a href="#Post方式提交String" class="headerlink" title="Post方式提交String"></a><strong>Post方式提交String</strong></h3><p>使用HTTP POST提交请求到服务。这个例子提交了一个markdown文档到web服务，以HTML方式渲染markdown。因为整个请求体都在内存中，因此避免使用此api提交大文档（大于1MB）。</p>
-<pre><code>public static final MediaType MEDIA_TYPE_MARKDOWN
-  = MediaType.parse(&quot;text/x-markdown; charset=utf-8&quot;);
-
-private final OkHttpClient client = new OkHttpClient();
-
-public void run() throws Exception {
-String postBody = &quot;&quot;
-    + &quot;Releases\n&quot;
-    + &quot;--------\n&quot;
-    + &quot;\n&quot;
-    + &quot; * _1.0_ May 6, 2013\n&quot;
-    + &quot; * _1.1_ June 15, 2013\n&quot;
-    + &quot; * _1.2_ August 11, 2013\n&quot;;
-
-Request request = new Request.Builder()
-    .url(&quot;https://api.github.com/markdown/raw&quot;)
-    .post(RequestBody.create(MEDIA_TYPE_MARKDOWN, postBody))
-    .build();
-
-Response response = client.newCall(request).execute();
-if (!response.isSuccessful()) throw new IOException(&quot;Unexpected code &quot; + response);
-
-System.out.println(response.body().string());
-}
-</code></pre><h3 id="Post方式提交流"><a href="#Post方式提交流" class="headerlink" title="Post方式提交流"></a><strong>Post方式提交流</strong></h3><p>以流的方式POST提交请求体。请求体的内容由流写入产生。这个例子是流直接写入Okio的BufferedSink。你的程序可能会使用OutputStream，你可以使用BufferedSink.outputStream()来获取。</p>
-<pre><code>public static final MediaType MEDIA_TYPE_MARKDOWN
-  = MediaType.parse(&quot;text/x-markdown; charset=utf-8&quot;);
-
-private final OkHttpClient client = new OkHttpClient();
-
-public void run() throws Exception {
-RequestBody requestBody = new RequestBody() {
-  @Override public MediaType contentType() {
-    return MEDIA_TYPE_MARKDOWN;
-  }
-
-  @Override public void writeTo(BufferedSink sink) throws IOException {
-    sink.writeUtf8(&quot;Numbers\n&quot;);
-    sink.writeUtf8(&quot;-------\n&quot;);
-    for (int i = 2; i &lt;= 997; i++) {
-      sink.writeUtf8(String.format(&quot; * %s = %s\n&quot;, i, factor(i)));
-    }
-  }
-
-  private String factor(int n) {
-    for (int i = 2; i &lt; n; i++) {
-      int x = n / i;
-      if (x * i == n) return factor(x) + &quot; × &quot; + i;
-    }
-    return Integer.toString(n);
-  }
-};
-
-Request request = new Request.Builder()
-    .url(&quot;https://api.github.com/markdown/raw&quot;)
-    .post(requestBody)
-    .build();
-
-Response response = client.newCall(request).execute();
-if (!response.isSuccessful()) throw new IOException(&quot;Unexpected code &quot; + response);
-
-System.out.println(response.body().string());
-}
-</code></pre><h3 id="Post方式提交文件"><a href="#Post方式提交文件" class="headerlink" title="Post方式提交文件"></a><strong>Post方式提交文件</strong></h3><p>以文件作为请求体是十分简单的。</p>
-<pre><code>public static final MediaType MEDIA_TYPE_MARKDOWN
-    = MediaType.parse(&quot;text/x-markdown; charset=utf-8&quot;);
-
-private final OkHttpClient client = new OkHttpClient();
-
-public void run() throws Exception {
-File file = new File(&quot;README.md&quot;);
-
-Request request = new Request.Builder()
-    .url(&quot;https://api.github.com/markdown/raw&quot;)
-    .post(RequestBody.create(MEDIA_TYPE_MARKDOWN, file))
-    .build();
-
-Response response = client.newCall(request).execute();
-if (!response.isSuccessful()) throw new IOException(&quot;Unexpected code &quot; + response);
-
-System.out.println(response.body().string());
-}
-</code></pre><h3 id="Post方式提交表单"><a href="#Post方式提交表单" class="headerlink" title="Post方式提交表单"></a><strong>Post方式提交表单</strong></h3><p>使用FormEncodingBuilder来构建和HTML<form>标签相同效果的请求体。键值对将使用一种HTML兼容形式的URL编码来进行编码。</form></p>
-<pre><code>private final OkHttpClient client = new OkHttpClient();
-
-public void run() throws Exception {
-RequestBody formBody = new FormEncodingBuilder()
-    .add(&quot;search&quot;, &quot;Jurassic Park&quot;)
-    .build();
-Request request = new Request.Builder()
-    .url(&quot;https://en.wikipedia.org/w/index.php&quot;)
-    .post(formBody)
-    .build();
-
-Response response = client.newCall(request).execute();
-if (!response.isSuccessful()) throw new IOException(&quot;Unexpected code &quot; + response);
-
-System.out.println(response.body().string());
-}
-</code></pre><h3 id="Post方式提交分块请求"><a href="#Post方式提交分块请求" class="headerlink" title="Post方式提交分块请求"></a><strong>Post方式提交分块请求</strong></h3><p>MultipartBuilder可以构建复杂的请求体，与HTML文件上传形式兼容。多块请求体中每块请求都是一个请求体，可以定义自己的请求头。这些请求头可以用来描述这块请求，例如他的Content-Disposition。如果Content-Length和Content-Type可用的话，他们会被自动添加到请求头中。</p>
-<pre><code>private static final String IMGUR_CLIENT_ID = &quot;...&quot;;
-private static final MediaType MEDIA_TYPE_PNG = MediaType.parse(&quot;image/png&quot;);
-
-private final OkHttpClient client = new OkHttpClient();
-
-public void run() throws Exception {
-// Use the imgur image upload API as documented at https://api.imgur.com/endpoints/image
-RequestBody requestBody = new MultipartBuilder()
-    .type(MultipartBuilder.FORM)
-    .addPart(
-        Headers.of(&quot;Content-Disposition&quot;, &quot;form-data; name=\&quot;title\&quot;&quot;),
-        RequestBody.create(null, &quot;Square Logo&quot;))
-    .addPart(
-        Headers.of(&quot;Content-Disposition&quot;, &quot;form-data; name=\&quot;image\&quot;&quot;),
-        RequestBody.create(MEDIA_TYPE_PNG, new File(&quot;website/static/logo-square.png&quot;)))
-    .build();
-
-Request request = new Request.Builder()
-    .header(&quot;Authorization&quot;, &quot;Client-ID &quot; + IMGUR_CLIENT_ID)
-    .url(&quot;https://api.imgur.com/3/image&quot;)
-    .post(requestBody)
-    .build();
-
-Response response = client.newCall(request).execute();
-if (!response.isSuccessful()) throw new IOException(&quot;Unexpected code &quot; + response);
-
-System.out.println(response.body().string());
-}
-</code></pre><h3 id="使用Gson来解析JSON响应"><a href="#使用Gson来解析JSON响应" class="headerlink" title="使用Gson来解析JSON响应"></a><strong>使用Gson来解析JSON响应</strong></h3><p>Gson是一个在JSON和Java对象之间转换非常方便的api。这里我们用Gson来解析Github API的JSON响应。  </p>
-<blockquote>
-<p>注意：ResponseBody.charStream()使用响应头Content-Type指定的字符集来解析响应体。默认是UTF-8。  </p>
-</blockquote>
-<pre><code>private final OkHttpClient client = new OkHttpClient();
-private final Gson gson = new Gson();
-
-public void run() throws Exception {
-Request request = new Request.Builder()
-    .url(&quot;https://api.github.com/gists/c2a7c39532239ff261be&quot;)
-    .build();
-Response response = client.newCall(request).execute();
-if (!response.isSuccessful()) throw new IOException(&quot;Unexpected code &quot; + response);
-
-Gist gist = gson.fromJson(response.body().charStream(), Gist.class);
-for (Map.Entry&lt;String, GistFile&gt; entry : gist.files.entrySet()) {
-  System.out.println(entry.getKey());
-  System.out.println(entry.getValue().content);
-}
-}
-
-static class Gist {
-Map&lt;String, GistFile&gt; files;
-}
-
-static class GistFile {
-String content;
-}
-</code></pre><h3 id="响应缓存"><a href="#响应缓存" class="headerlink" title="响应缓存"></a><strong>响应缓存</strong></h3><p>为了缓存响应，你需要一个你可以读写的缓存目录，和缓存大小的限制。这个缓存目录应该是私有的，不信任的程序应不能读取缓存内容。<br>一个缓存目录同时拥有多个缓存访问是错误的。大多数程序只需要调用一次new OkHttp()，在第一次调用时配置好缓存，然后其他地方只需要调用这个实例就可以了。否则两个缓存示例互相干扰，破坏响应缓存，而且有可能会导致程序崩溃。<br>响应缓存使用HTTP头作为配置。你可以在请求头中添加Cache-Control: max-stale=3600 ,OkHttp缓存会支持。你的服务通过响应头确定响应缓存多长时间，例如使用Cache-Control: max-age=9600。  </p>
-<pre><code>private final OkHttpClient client;
-
-public CacheResponse(File cacheDirectory) throws Exception {
-int cacheSize = 10 * 1024 * 1024; // 10 MiB
-Cache cache = new Cache(cacheDirectory, cacheSize);
-
-client = new OkHttpClient();
-client.setCache(cache);
-}
-
-public void run() throws Exception {
-Request request = new Request.Builder()
-    .url(&quot;http://publicobject.com/helloworld.txt&quot;)
-    .build();
-
-Response response1 = client.newCall(request).execute();
-if (!response1.isSuccessful()) throw new IOException(&quot;Unexpected code &quot; + response1);
-
-String response1Body = response1.body().string();
-System.out.println(&quot;Response 1 response:          &quot; + response1);
-System.out.println(&quot;Response 1 cache response:    &quot; + response1.cacheResponse());
-System.out.println(&quot;Response 1 network response:  &quot; + response1.networkResponse());
-
-Response response2 = client.newCall(request).execute();
-if (!response2.isSuccessful()) throw new IOException(&quot;Unexpected code &quot; + response2);
-
-String response2Body = response2.body().string();
-System.out.println(&quot;Response 2 response:          &quot; + response2);
-System.out.println(&quot;Response 2 cache response:    &quot; + response2.cacheResponse());
-System.out.println(&quot;Response 2 network response:  &quot; + response2.networkResponse());
-
-System.out.println(&quot;Response 2 equals Response 1? &quot; + response1Body.equals(response2Body));
-}
-</code></pre><h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a><strong>扩展</strong></h2><p>在这一节还提到了下面一句：<br>    There are cache headers to force a cached response, force a network response, or force the network response to be validated with a conditional GET.  </p>
-<p>我不是很懂cache，平时用到的也不多，所以把Google在Android Developers一段相关的解析放到这里吧。  </p>
-<p><strong>Force a Network Response</strong><br>In some situations, such as after a user clicks a ‘refresh’ button, it may be necessary to skip the cache, and fetch data directly from the server. To force a full refresh, add the no-cache directive:</p>
-<pre><code>connection.addRequestProperty(&quot;Cache-Control&quot;, &quot;no-cache&quot;);
-</code></pre><p>If it is only necessary to force a cached response to be validated by the server, use the more efficient max-age=0 instead:</p>
-<pre><code>connection.addRequestProperty(&quot;Cache-Control&quot;, &quot;max-age=0&quot;);
-</code></pre><p><strong>Force a Cache Response</strong><br>Sometimes you’ll want to show resources if they are available immediately, but not otherwise. This can be used so your application can show something while waiting for the latest data to be downloaded. To restrict a request to locally-cached resources, add the only-if-cached directive:</p>
-<pre><code>try {
- connection.addRequestProperty(&quot;Cache-Control&quot;, &quot;only-if-cached&quot;);
- InputStream cached = connection.getInputStream();
- // the resource was cached! show it
-catch (FileNotFoundException e) {
- // the resource was not cached
- }
-}
-</code></pre><p>This technique works even better in situations where a stale response is better than no response. To permit stale cached responses, use the max-stale directive with the maximum staleness in seconds:</p>
-<pre><code>int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks staleconnection.addRequestProperty(&quot;Cache-Control&quot;, &quot;max-stale=&quot; + maxStale);
-</code></pre><blockquote>
-<p>以上信息来自：<a href="http://developer.android.com/reference/android/net/http/HttpResponseCache.html" target="_blank" rel="external">HttpResponseCache - Android SDK | Android Developers</a>  </p>
-</blockquote>
-<h3 id="取消一个Call"><a href="#取消一个Call" class="headerlink" title="取消一个Call"></a><strong>取消一个Call</strong></h3><p>使用Call.cancel()可以立即停止掉一个正在执行的call。如果一个线程正在写请求或者读响应，将会引发IOException。当call没有必要的时候，使用这个api可以节约网络资源。例如当用户离开一个应用时。不管同步还是异步的call都可以取消。<br>你可以通过tags来同时取消多个请求。当你构建一请求时，使用RequestBuilder.tag(tag)来分配一个标签。之后你就可以用OkHttpClient.cancel(tag)来取消所有带有这个tag的call。</p>
-<pre><code>private final ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-private final OkHttpClient client = new OkHttpClient();
-
-public void run() throws Exception {
-Request request = new Request.Builder()
-    .url(&quot;http://httpbin.org/delay/2&quot;) // This URL is served with a 2 second delay.
-    .build();
-
-final long startNanos = System.nanoTime();
-final Call call = client.newCall(request);
-
-// Schedule a job to cancel the call in 1 second.
-executor.schedule(new Runnable() {
-  @Override public void run() {
-    System.out.printf(&quot;%.2f Canceling call.%n&quot;, (System.nanoTime() - startNanos) / 1e9f);
-    call.cancel();
-    System.out.printf(&quot;%.2f Canceled call.%n&quot;, (System.nanoTime() - startNanos) / 1e9f);
-  }
-}, 1, TimeUnit.SECONDS);
-
-try {
-  System.out.printf(&quot;%.2f Executing call.%n&quot;, (System.nanoTime() - startNanos) / 1e9f);
-  Response response = call.execute();
-  System.out.printf(&quot;%.2f Call was expected to fail, but completed: %s%n&quot;,
-      (System.nanoTime() - startNanos) / 1e9f, response);
-} catch (IOException e) {
-  System.out.printf(&quot;%.2f Call failed as expected: %s%n&quot;,
-      (System.nanoTime() - startNanos) / 1e9f, e);
-}
-}
-</code></pre><h3 id="超时"><a href="#超时" class="headerlink" title="超时"></a><strong>超时</strong></h3><p>没有响应时使用超时结束call。没有响应的原因可能是客户点链接问题、服务器可用性问题或者这之间的其他东西。OkHttp支持连接，读取和写入超时。</p>
-<pre><code>private final OkHttpClient client;
-
-public ConfigureTimeouts() throws Exception {
-client = new OkHttpClient();
-client.setConnectTimeout(10, TimeUnit.SECONDS);
-client.setWriteTimeout(10, TimeUnit.SECONDS);
-client.setReadTimeout(30, TimeUnit.SECONDS);
-}
-
-public void run() throws Exception {
-Request request = new Request.Builder()
-    .url(&quot;http://httpbin.org/delay/2&quot;) // This URL is served with a 2 second delay.
-    .build();
-
-Response response = client.newCall(request).execute();
-System.out.println(&quot;Response completed: &quot; + response);
-}
-</code></pre><h3 id="每个call的配置"><a href="#每个call的配置" class="headerlink" title="每个call的配置"></a><strong>每个call的配置</strong></h3><p>使用OkHttpClient，所有的HTTP Client配置包括代理设置、超时设置、缓存设置。当你需要为单个call改变配置的时候，clone 一个 OkHttpClient。这个api将会返回一个浅拷贝（shallow copy），你可以用来单独自定义。下面的例子中，我们让一个请求是500ms的超时、另一个是3000ms的超时。</p>
-<pre><code>private final OkHttpClient client = new OkHttpClient();
-
-public void run() throws Exception {
-Request request = new Request.Builder()
-    .url(&quot;http://httpbin.org/delay/1&quot;) // This URL is served with a 1 second delay.
-    .build();
-
-try {
-  Response response = client.clone() // Clone to make a customized OkHttp for this request.
-      .setReadTimeout(500, TimeUnit.MILLISECONDS)
-      .newCall(request)
-      .execute();
-  System.out.println(&quot;Response 1 succeeded: &quot; + response);
-} catch (IOException e) {
-  System.out.println(&quot;Response 1 failed: &quot; + e);
-}
-
-try {
-  Response response = client.clone() // Clone to make a customized OkHttp for this request.
-      .setReadTimeout(3000, TimeUnit.MILLISECONDS)
-      .newCall(request)
-      .execute();
-  System.out.println(&quot;Response 2 succeeded: &quot; + response);
-} catch (IOException e) {
-  System.out.println(&quot;Response 2 failed: &quot; + e);
-}
-}
-</code></pre><h3 id="处理验证"><a href="#处理验证" class="headerlink" title="处理验证"></a><strong>处理验证</strong></h3><p>这部分和HTTP AUTH有关。  </p>
-<blockquote>
-<p>相关资料：<a href="http://blog.csdn.net/wwwsq/article/details/7255062" target="_blank" rel="external">HTTP AUTH 那些事 - 王绍全的博客 - 博客频道 - CSDN.NET</a></p>
-</blockquote>
-<p>OkHttp会自动重试未验证的请求。当响应是401 Not Authorized时，Authenticator会被要求提供证书。Authenticator的实现中需要建立一个新的包含证书的请求。如果没有证书可用，返回null来跳过尝试。</p>
-<pre><code>public List&lt;Challenge&gt; challenges()
-Returns the authorization challenges appropriate for this response&apos;s code. 
-If the response code is 401 unauthorized, 
-this returns the &quot;WWW-Authenticate&quot; challenges.
-If the response code is 407 proxy unauthorized, this returns the &quot;Proxy-Authenticate&quot; challenges.
-Otherwise this returns an empty list of challenges.
-</code></pre><p>当需要实现一个Basic challenge， 使用Credentials.basic(username, password)来编码请求头。</p>
-<pre><code>private final OkHttpClient client = new OkHttpClient();
-
-public void run() throws Exception {
-client.setAuthenticator(new Authenticator() {
-  @Override public Request authenticate(Proxy proxy, Response response) {
-    System.out.println(&quot;Authenticating for response: &quot; + response);
-    System.out.println(&quot;Challenges: &quot; + response.challenges());
-    String credential = Credentials.basic(&quot;jesse&quot;, &quot;password1&quot;);
-    return response.request().newBuilder()
-        .header(&quot;Authorization&quot;, credential)
-        .build();
-  }
-
-  @Override public Request authenticateProxy(Proxy proxy, Response response) {
-    return null; // Null indicates no attempt to authenticate.
-  }
-});
-
-Request request = new Request.Builder()
-    .url(&quot;http://publicobject.com/secrets/hellosecret.txt&quot;)
-    .build();
-
-Response response = client.newCall(request).execute();
-if (!response.isSuccessful()) throw new IOException(&quot;Unexpected code &quot; + response);
-
-System.out.println(response.body().string());
-}
-</code></pre><blockquote>
-<p>转自 <a href="http://www.cnblogs.com/ct2011/p/4001708.html" target="_blank" rel="external">OkHttp使用介绍</a> 同时整合了 <a href="http://www.cnblogs.com/ct2011/p/3997368.html" target="_blank" rel="external">OkHttp使用进阶</a> 这篇文章以及其中的评论。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/08/09/Android-EditText-YouShouldKnow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OCN.Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/ocnyang.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杨欧神/OCN.Yang">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/09/Android-EditText-YouShouldKnow/" itemprop="url">
-                  EditText的使用及值得注意的地方
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-09T10:03:15+08:00">
-                2016-08-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android控件/" itemprop="url" rel="index">
-                    <span itemprop="name">Android控件</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/09/Android-EditText-YouShouldKnow/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/09/Android-EditText-YouShouldKnow/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/08/09/Android-EditText-YouShouldKnow/" class="leancloud_visitors" data-flag-title="EditText的使用及值得注意的地方">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="EditText-的使用及值得注意的地方"><a href="#EditText-的使用及值得注意的地方" class="headerlink" title="EditText 的使用及值得注意的地方"></a>EditText 的使用及值得注意的地方</h1><blockquote>
-<p>来源： 张明云（@UperOne）</p>
-<p>链接： <a href="http://www.jianshu.com/p/1f05bb1fde3e" target="_blank" rel="external">http://www.jianshu.com/p/1f05bb1fde3e</a></p>
-</blockquote>
-<p>Android上有很多输入法应用，每种输入法都有各自的特点，输入法多数时候是和EditText配合使用，结合我自己的亲身实践分享一下使用EditText过程中遇到的一些问题及解决方法。</p>
-<hr>
-<h3 id="设置默认输入法"><a href="#设置默认输入法" class="headerlink" title="设置默认输入法"></a>设置默认输入法</h3><p>有时候为了提高用户体验，在弹出输入法时需要设置默认的输入状态，比如单词应用弹出输入法时，输入法最好是在英文输入状态下。如果是字典应用，弹出输入法时最好是在中文输入状态下，Android并没有提供设置默认的输入状态的接口，但我们可以通过如下方法一样能够达到想要的效果：</p>
-<p><strong>默认中文：</strong></p>
-<p>mEditText.setInputType(EditorInfo.TYPE_CLASS_TEXT);</p>
-<p><strong>默认英文：</strong></p>
-<p>mEditText.setInputType(EditorInfo.TYPE_TEXT_VARIATION_URI);</p>
-<h3 id="打开和关闭输入法"><a href="#打开和关闭输入法" class="headerlink" title="打开和关闭输入法"></a>打开和关闭输入法</h3><p>手动控制输入法的开关状态也能提升用户体验，比如：</p>
-<ul>
-<li>有的搜索框会有一个清除按钮，点击清除按钮时就应该弹出输入法，因为用户清除搜索内容的目的多数时候是需要输入新的内容；</li>
-<li>执行搜索时应该隐藏输入法，因为显示输入法时会遮挡搜索结果，用户体验不太好；</li>
-<li>闹钟来时或者有其它window弹出时应该隐藏输入法，因为输入法也是window，如果不隐藏可能导致输入法遮挡住了其它window等用户体验不太友好的问题。<p></p></li>
-</ul>
-<p><strong>打开输入法：</strong></p>
-<pre><code>private void open(Context context, View editText) {
-        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.showSoftInput(editText, 0);
-    }
-</code></pre><p><strong>关闭输入法：</strong></p>
-<pre><code>private void close(Context context,View editText){
-    InputMethodManager inputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
-    inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(),0);
-</code></pre><p>}</p>
-<h3 id="监听EditText的输入状态"><a href="#监听EditText的输入状态" class="headerlink" title="监听EditText的输入状态"></a>监听EditText的输入状态</h3><ul>
-<li>类似新浪微博，在输入内容时会提示还可以输入多少字；</li>
-<li>有的搜索引擎，输入内容时实时显示搜索结果；</li>
-<li>有的输入框有输入长度限制，输入内容超过长度限制时弹出提示信息。</li>
-</ul>
-<p>上面这些都可以通过监听EditText的输入状态来实现，具体实现方式如下：</p>
-<pre><code>mInputEditTxt.addTextChangedListener(newTextWatcher(){
-    @Override
-    publicvoidbeforeTextChanged(CharSequences,intstart,intcount,intafter){
-
-    }
-
-    @Override
-    publicvoidonTextChanged(CharSequences,intstart,intbefore,intcount){
-        System.out.println(&quot;监听EditText输入内容的变化，在这里可以监听输入内容的长度。&quot;);
-    }
-
-    @Override
-    publicvoidafterTextChanged(Editables){
-        System.out.println(&quot;这里可以实现所输即所得，用户输入的同时可以立即在这里根据输入内容执行操作，显示搜索结果！&quot;);
-    }
-});
-</code></pre><h3 id="监听输入法中的回车按钮"><a href="#监听输入法中的回车按钮" class="headerlink" title="监听输入法中的回车按钮"></a>监听输入法中的回车按钮</h3><p>比如搜狗输入法的右下角有一个回车按钮，我们希望用户点击它时也执行确认功能，可以通过监听EditText的按键点击事件来实现：</p>
-<pre><code>/**
- * 监听输入法按键
- *
- * */
-mInputEditTxt.setOnKeyListener(newOnKeyListener(){
-    @Override
-    publicbooleanonKey(Viewv,intkeyCode,KeyEvent event){
-        if(keyCode == KeyEvent.KEYCODE_ENTER &amp;&amp; event.getAction() == KeyEvent.ACTION_UP){
-            System.out.println(&quot;手指弹起时执行确认功能&quot;);
-            returntrue;
-        }
-
-        returnfalse;
-    }
-});
-</code></pre><h3 id="改变输入法中回车按钮的显示内容"><a href="#改变输入法中回车按钮的显示内容" class="headerlink" title="改变输入法中回车按钮的显示内容"></a>改变输入法中回车按钮的显示内容</h3><p>如果回车按钮是执行搜索功能，则回车按钮上显示”搜索”，如果是执行发送功能，则显示”发送”,如果是下一步，则显示”下一步”。</p>
-<p>实现这个功能需要调用EditText的setImeOptions方法：</p>
-<pre><code>/**
-*
-* IME_ACTION_SEARCH 搜索
-* IME_ACTION_SEND 发送
-* IME_ACTION_NEXT 下一步
-* IME_ACTION_DONE 完成
-*/
-mInputEditTxt.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
-</code></pre><h3 id="限制输入内容"><a href="#限制输入内容" class="headerlink" title="限制输入内容"></a>限制输入内容</h3><p>有时候我们根本就不想用户输入一些杂七杂八的内容，因为这需要程序针对输入的内容做各种处理，如果处理不当还会有好多不可预见的问题，索性在输入内容时就禁止用户输入一些非法字符，这可以通过下面的方式实现，新建一个类InputTxtFilter：</p>
-<pre><code>publicclassInputTxtFilter{
-publicstaticfinalintINPUT_TYPE_EN = 0x01;
-publicstaticfinalintINPUT_TYPE_CH = 0x02;
-privatestaticfinalString[]SPELL = newString[]{
-    &quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;,&quot;g&quot;,&quot;h&quot;,&quot;i&quot;,&quot;j&quot;,&quot;k&quot;,&quot;l&quot;,&quot;m&quot;,&quot;n&quot;,&quot;o&quot;,&quot;p&quot;,&quot;q&quot;,&quot;r&quot;,&quot;s&quot;,&quot;t&quot;,&quot;u&quot;,&quot;v&quot;,&quot;w&quot;,&quot;x&quot;,&quot;y&quot;,&quot;z&quot;,
-    &quot;ā&quot;,&quot;á&quot;,&quot;ǎ&quot;,&quot;à&quot;,&quot;ō&quot;,&quot;ó&quot;,&quot;ǒ&quot;,&quot;ò&quot;,&quot;ē&quot;,&quot;é&quot;,&quot;ě&quot;,&quot;è&quot;,&quot;ī&quot;,&quot;í&quot;,&quot;ǐ&quot;,&quot;ì&quot;,&quot;ū&quot;,&quot;ú&quot;,&quot;ǔ&quot;,&quot;ù&quot;,&quot;ǖ&quot;,&quot;ǘ&quot;,&quot;ǚ&quot;,&quot;ǜ&quot;,&quot;ü&quot;
-};
-privatestaticchar[]chineseParam = newchar[]{&apos;」&apos;,&apos;，&apos;,&apos;。&apos;,&apos;？&apos;,&apos;…&apos;,&apos;：&apos;,&apos;～&apos;,&apos;【&apos;,&apos;＃&apos;,&apos;、&apos;,&apos;％&apos;,&apos;＊&apos;,&apos;＆&apos;,&apos;＄&apos;,&apos;（&apos;,&apos;‘&apos;,&apos;’&apos;,&apos;“&apos;,&apos;”&apos;,&apos;『&apos;,&apos;〔&apos;,&apos;｛&apos;,&apos;【&apos;
-    ,&apos;￥&apos;,&apos;￡&apos;,&apos;‖&apos;,&apos;〖&apos;,&apos;《&apos;,&apos;「&apos;,&apos;》&apos;,&apos;〗&apos;,&apos;】&apos;,&apos;｝&apos;,&apos;〕&apos;,&apos;』&apos;,&apos;”&apos;,&apos;）&apos;,&apos;！&apos;,&apos;；&apos;,&apos;—&apos;};
-
-privateInputTxtFilter(){
-
-}
-
-publicstaticvoidinputFilter(finalContext context,finalEditText editText,finalinttype,finalintinputLimit){
-    InputFilter[]filters = newInputFilter[1];
-    filters[0] = newInputFilter.LengthFilter(inputLimit){
-        publicCharSequence filter(CharSequence source,intstart,intend,Spanned dest,intdstart,intdend){
-            booleanisRightCharater = false;
-            if(type == INPUT_TYPE_EN){
-                isRightCharater = isLetter(source.toString());
-            }elseif(type == INPUT_TYPE_CH){
-                isRightCharater = isChineseWord(source.toString());
-            }
-
-            if( !isRightCharater|| dest.toString().length()&gt;=inputLimit){
-                return&quot;&quot;;
-            }
-
-            returnsource;
-        }
-    };
-    editText.setFilters(filters);
-}
-
-/**
- * 检测String是否全是中文
- *
- */
-publicstaticbooleanisChineseWord(Stringname){
-    booleanres=true;
-    char[]cTemp = name.toCharArray();
-
-    for(inti = 0;i &lt; name.length();i++ ){
-        if( !isChinese(cTemp[i])){
-            res=false;
-            break;
-        }
-    }
-
-    returnres;
-}
-
-/**
- * 是否为英文字母
- *
- * */
-publicstaticbooleanisLetter(StringinputStr){
-    char[]inputArray = inputStr.toCharArray();
-    List&lt;String&gt;spellList = Arrays.asList(SPELL);
-
-    for(charinput : inputArray){
-        if( !spellList.contains(input + &quot;&quot;)){
-            returnfalse;
-        }
-    }
-
-    returntrue;
-}
-
-/**
- * 判定输入汉字
- * @param c
- */
-publicstaticbooleanisChinese(charc){
-    for(charparam : chineseParam){
-        if(param == c){
-            returnfalse;
-        }
-    }
-
-    Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
-    if(ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
-        || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
-        || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
-        || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION
-        || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
-        || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS){
-        returntrue;
-    }
-
-    returnfalse;
-}
-</code></pre><p>}</p>
-<p>在初始化EditText时，调用InputTxtFilter的inputFilter方法，传入输入长度限制、输入内容的类型限制等即可，eg：</p>
-<pre><code>InputTxtFilter.inputFilter(this,mInputEditTxt,InputTxtFilter.INPUT_TYPE_EN,5);
-</code></pre><h3 id="屏蔽EditText的复制、粘贴功能"><a href="#屏蔽EditText的复制、粘贴功能" class="headerlink" title="屏蔽EditText的复制、粘贴功能"></a>屏蔽EditText的复制、粘贴功能</h3><p>在低版本的Android SDK中，如果对EditText的输入长度有限制时，长按EditText并将选中的内容拖动到EditText输入框中，如果这时候的长度超过了EditText的输入长度限制，程序会直接崩溃掉，在高版本的Android SDK中这个问题已经改了，如果出现上面的情况会直接清空输入框中的内容，为了避免这种讨厌的问题，我们可以屏蔽EditText的复制和粘贴功能，只需要屏蔽EditText的长按响应即可：</p>
-<pre><code>/**
- * 屏蔽复制、粘贴功能
- *
- * */
-mInputEditTxt.setCustomSelectionActionModeCallback(newActionMode.Callback(){
-    publicbooleanonCreateActionMode(ActionMode actionMode,Menu menu){
-        returnfalse;
-    }
-
-    publicbooleanonPrepareActionMode(ActionMode actionMode,Menu menu){
-        returnfalse;
-    }
-
-    publicbooleanonActionItemClicked(ActionMode actionMode,MenuItem menuItem){
-        returnfalse;
-    }
-
-    @Override
-    publicvoidonDestroyActionMode(ActionMode mode){
-
-    }
-});
-
-mInputEditTxt.setLongClickable(false);
-</code></pre>
-          
+          OkHttp使用教程
+摘录来自：泡网OkHttp使用教程
+
+Android系统提供了两种HTTP通信类，HttpURLConnection和HttpClient。关于HttpURLConnection和HttpClient的选择&gt;&gt;官方博客尽管Google在大部分安卓版本中推荐使用Htt
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/08/09/OkHttpUseGuide/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1494,237 +583,199 @@ mInputEditTxt.setLongClickable(false);
       
         
           
-            <h1 id="Android教学大纲"><a href="#Android教学大纲" class="headerlink" title="Android教学大纲"></a>Android教学大纲</h1><h2 id="一、Android学习进度规划："><a href="#一、Android学习进度规划：" class="headerlink" title="一、Android学习进度规划："></a>一、Android学习进度规划：</h2><h3 id="第1周：【UI基础】"><a href="#第1周：【UI基础】" class="headerlink" title="第1周：【UI基础】"></a>第1周：【UI基础】</h3><ul>
-<li>第1天： Android环境搭建</li>
-<li>第2天： 常用UI布局及主要控件</li>
-<li>第3天： 常用UI控件及事件处理</li>
-<li>第4天： UI高级控件及Android资源</li>
-<li>第5天： Ａctivity生命周期</li>
-</ul>
-<blockquote>
-<p>【知识点】</p>
-<ol>
-<li>Android环境搭建及工程目录介绍（前期使用Eclipse，版本：SDK21及以上版本，四周后逐渐接触Android Studio） </li>
-<li>常用UI布局及主要控件 <ul>
-<li>LinearLayout、RelativeLayout常用属性【重点讲解】</li>
-<li>FrameLayout、GridLayout常用属性</li>
-<li>TextView、EditText、Button、ImageView、Toast的基本用法</li>
-</ul>
-</li>
-<li>表单三大UI控件及相应控件的事件处理及部分特殊drawable资源（selector、shape） <ul>
-<li>RadioButton及RadioGroup的用法：【重点】单选、监听事件、利用selector实现选中与否、改变默认单选button的显示效果、修改topDrawable</li>
-<li>CheckBox的多选效果及监听。利用selector及shape修改多选框的显示效果</li>
-</ul>
-</li>
-<li>Spinner、AutoCompleteTextView、ScrollView及适配器简介、数组资源 <ul>
-<li>Spinner的用法</li>
-<li>ArrayAdapter适配器的基本用法</li>
-<li>数组资源String Array</li>
-<li>AutoCompleteTextView、ScrollView的基本用法</li>
-<li>ProgressBar、SeekBar、RatingBar的基本用法及美化</li>
-</ul>
-</li>
-<li>Ａctivity生命周期</li>
-</ol>
-</blockquote>
-<h3 id="第2周："><a href="#第2周：" class="headerlink" title="第2周："></a>第2周：</h3><ul>
-<li>第6天： Activity管理及Intent七大属性</li>
-<li>第7天： AsyncTask异步任务</li>
-<li>第8天： ListView基本用法</li>
-<li>第9天： ListView分页及优化</li>
-<li>第10天： 图文混排+GridView</li>
-</ul>
-<blockquote>
-<p>【知识点】</p>
-<ol>
-<li>Activity页面跳转、生命周期及Intent七大属性</li>
-<li>AsyncTask异步任务</li>
-<li>ListView基本用法及适配器</li>
-<li>ListView分页及优化 + item多种布局的ListView</li>
-<li>GridView图文混排</li>
-</ol>
-</blockquote>
-<h3 id="第3周："><a href="#第3周：" class="headerlink" title="第3周："></a>第3周：</h3><ul>
-<li>第11天： Menu+Dialog+Toast</li>
-<li>第12天： Fragment</li>
-<li>第13天： SharedPreferences、SDCard及网络存储 + HttpURLConnection实现文件上传</li>
-<li>第14天： SQLite数据库 + WebView</li>
-<li>第15天： ContentProvider之ContentResolver</li>
-</ul>
-<blockquote>
-<p>【知识点】</p>
-<ol>
-<li>Menu（选项菜单、上下文菜单、PopupWindow自定义菜单）+Dialog+Toast</li>
-<li>Fragment基本用法、生命周期、Fragment间传值</li>
-<li>SharedPreferences、内部文件存储及外部文件存储SDCard</li>
-<li>SQLite数据库 + WebView</li>
-<li>ContentProvider之ContentResolver</li>
-</ol>
-</blockquote>
-<h3 id="第4周："><a href="#第4周：" class="headerlink" title="第4周："></a>第4周：</h3><ul>
-<li>第16天： 自定义ContentProvider</li>
-<li>第17天： Loader异步装载</li>
-<li>第18天： Handler与多线程</li>
-<li>第19天： ActionBar + LruCache + Bitmap二次采样</li>
-<li>第20天： ViewPager</li>
-</ul>
-<blockquote>
-<p>【知识点】</p>
-<ol>
-<li>自定义ContentProvider</li>
-<li>Loader异步装载器（CursorLoader及AsyncTaskLoader）</li>
-<li>Handler与多线程及源码分析</li>
-<li>ActionBar + 图片缓存（图片三层缓存策略、LruCache、Bitmap二次采样生成缩略图）</li>
-<li>ViewPager（制作欢迎引导页及加载网络图片的ViewPager及自动播放的ViewPager）</li>
-</ol>
-</blockquote>
-<h3 id="第5周："><a href="#第5周：" class="headerlink" title="第5周："></a>第5周：</h3><ul>
-<li>第21天： TAB书签导航</li>
-<li>第22天： BroadcastReceiver + Notification</li>
-<li>第23天： Service1</li>
-<li>第24天： Service2</li>
-<li>第25天： 百度地图1</li>
-</ul>
-<blockquote>
-<p>【知识点】</p>
-<ol>
-<li>TAB书签导航制作<ul>
-<li>FragmentTabHost制作TAB书签导航</li>
-<li>Fragment + RadioGroup制作TAB书签导航  </li>
-<li>Fragment + ViewPager  +  RadioGroup制作TAB书签导航</li>
-<li>Fragment + 带滑动导航条的ViewPager 制作TAB书签导航</li>
-<li>Fragment + ViewPager +  HorizontalScrollView自定义滑动导航条</li>
-<li>Fragment + ActionBar制作TAB书签导航</li>
-<li>Fragment + ActionBar + ViewPager制作TAB书签导航</li>
-</ul>
-</li>
-<li>BroadcastReceiver + 自定义广播 + Notification</li>
-<li>Service（一）（服务的概念及分类、被启动服务和被绑定服务实现音乐播放的用法）</li>
-<li>Service（二）（IntentService的用法及DownloadManager实现大文件下载）</li>
-<li>Service（三）（远程服务：AIDL及Messenger）</li>
-</ol>
-</blockquote>
-<h3 id="第6周："><a href="#第6周：" class="headerlink" title="第6周："></a>第6周：</h3><ul>
-<li>第26天： 百度地图 2</li>
-<li>第27天： 动画资源 + 样式、主题及drawable资源</li>
-<li>第28天： 屏幕适配</li>
-<li>第29天： 自定义View(上)</li>
-<li>第30天： 自定义View(下)</li>
-</ul>
-<blockquote>
-<p>【知识点】</p>
-<ol>
-<li>百度地图基本用法</li>
-<li>动画资源（帧动画、补间动画、属性动画基本用法）</li>
-<li>屏幕适配及UI美化（样式、主题及特殊的drawable资源：selector、shape、level-list、layer-list等）</li>
-<li>自定义View(继承于EditText、ListView)</li>
-<li>自定义View(继承于View、继承于ViewGroup)</li>
-</ol>
-</blockquote>
-<h3 id="第8周："><a href="#第8周：" class="headerlink" title="第8周："></a>第8周：</h3><ul>
-<li>第36天： Volley框架</li>
-<li>第37天： UIL框架</li>
-<li>第38天：  xUtils框架</li>
-<li>第39天：SlidingMenu及DrawerLayout + PullToRefresh等其他第三方技术</li>
-<li>第40天： 事件分发及消费机制</li>
-</ul>
-<blockquote>
-<p>【知识点】</p>
-<ol>
-<li>Volley框架</li>
-<li>UIL（Universal-Image-Loader）框架</li>
-<li>xUtils框架(ViewUtils \ HttpUtils \ BitmapUtils \ DBUtils)</li>
-<li>PullToRefresh（下拉刷新）+ 瀑布流及常用第三方菜单技术：SlidingMenu（侧滑菜单）、DrawerLayout （抽屉）、ResideMenu（驻留菜单）、SatelliteMenu（卫星菜单）</li>
-<li>事件分发及消费机制 （TouchEvent）</li>
-</ol>
-</blockquote>
-<h3 id="第9周："><a href="#第9周：" class="headerlink" title="第9周："></a>第9周：</h3><ul>
-<li>第41天：Gesture手势及 SurfaceView</li>
-<li>第42天：播放器及摄像头</li>
-<li>第43天： RecyclerView、CardView</li>
-<li>第44天：传感器、WiFi及蓝牙通讯</li>
-<li>第45天：ShareSDK一键分享及第三方登录 + 第三方支付 + JPush推送</li>
-</ul>
-<blockquote>
-<p>【知识点】</p>
-<ol>
-<li>Gesture手势 + SurfaceView</li>
-<li>播放器及摄像头(音乐播放、视频播放VideoView、摄像头)</li>
-<li>RecyclerView、CardView</li>
-<li>传感器、水印、QRCode二维码</li>
-<li>WiFi及蓝牙通讯、ShareSDK一键分享及第三方登录 + Alipay第三方支付 + JPush推送</li>
-</ol>
-</blockquote>
-<h2 id="二、常用框架技术"><a href="#二、常用框架技术" class="headerlink" title="二、常用框架技术"></a>二、常用框架技术</h2><ol>
-<li><p>网络访问框架</p>
-<ul>
-<li>okHttp框架、</li>
-<li>Retrofit（网络访问）</li>
-<li>AsyncHttpClient(【了解】)</li>
-<li>Volley框架 （StringRequest、JsonObjectRequest、JsonArrayRequest、ImageRequest、NetworkImageView）</li>
-</ul>
-</li>
-<li><p>反转注入框架</p>
-<ul>
-<li>ButterKnife、  </li>
-<li>Android Annotations</li>
-<li>xUtils框架(ViewUtils \ HttpUtils \ BitmapUtils \ DBUtils)</li>
-</ul>
-</li>
-<li><p>图片异步加载框架</p>
-<ul>
-<li>Picasso、</li>
-<li>Fresco、 </li>
-<li>Glide、</li>
-<li>UIL（Universal-Image-Loader）框架</li>
-</ul>
-</li>
-<li><p>数据库ORM</p>
-<ul>
-<li>ORMLite、</li>
-<li>GreenDao、</li>
-<li>ActiveAndroid</li>
-</ul>
-</li>
-</ol>
-<h2 id="三、考核内容"><a href="#三、考核内容" class="headerlink" title="三、考核内容"></a>三、考核内容</h2><h3 id="必选："><a href="#必选：" class="headerlink" title="必选："></a>必选：</h3><ol>
-<li>ListView、GridView、ScrollView、WebView</li>
-<li>assets及各种资源（selector、raw、string、color、dimens、style、array，必须采用软编码编程风格）</li>
-<li>动画资源（帧动画、补间动画）</li>
-<li>上下文菜单、PopupWindow、Dialog</li>
-<li>数据存储：SharedPreferences、内部文件存储、SD卡存储、SQLite数据库操作</li>
-<li>ContentResolver</li>
-<li>CursorLoader异步装载</li>
-<li>Handler与多线程或AsyncTask</li>
-<li>图片缓存</li>
-<li>屏幕自适应、版本自适应</li>
-<li>自定义View（至少三个）</li>
-<li>TAB导航（ViewPager、Fragment）</li>
-<li>广播、服务、通知</li>
-<li>DrawerLayout、SlidingMenu或其他第三方菜单</li>
-<li>PullToRefresh</li>
-</ol>
-<h3 id="项目阶段必选："><a href="#项目阶段必选：" class="headerlink" title="项目阶段必选："></a>项目阶段必选：</h3><ol>
-<li>TouchEvent及手势</li>
-<li>Volley、xUtils、UIL框架或其他类似网络访问及异步加载图片的框架</li>
-<li>瀑布流</li>
-<li>混淆打包</li>
-</ol>
-<h3 id="可选："><a href="#可选：" class="headerlink" title="可选："></a>可选：</h3><ol>
-<li>SurfaceView</li>
-<li>音乐播放器或视频播放（自定义MediaController）</li>
-<li>二维码扫描及生成</li>
-<li>RecyclerView、CardView</li>
-<li>传感器</li>
-<li>ShareSDK一键分享及第三方登录</li>
-<li>JPush或其他推送技术</li>
-<li>Alipay或其他支付技术</li>
-<li>WiFi或蓝牙通讯</li>
-<li>文件加密及解密</li>
-<li>地图</li>
-</ol>
+          Android教学大纲一、Android学习进度规划：第1周：【UI基础】
+第1天： Android环境搭建
+第2天： 常用UI布局及主要控件
+第3天： 常用UI控件及事件处理
+第4天： UI高级控件及Android资源
+第5天： Ａctivity生命周期
+
+
+【知识点】
+
+Android环境搭建及
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/08/09/AndroidStudy1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://ocnyang.com/2016/08/09/Android-EditText-YouShouldKnow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OCN.Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ocnyang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨欧神/OCN.Yang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/09/Android-EditText-YouShouldKnow/" itemprop="url">
+                  EditText的使用及值得注意的地方
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-09T10:03:15+08:00">
+                2016-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android控件/" itemprop="url" rel="index">
+                    <span itemprop="name">Android控件</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/09/Android-EditText-YouShouldKnow/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/09/Android-EditText-YouShouldKnow/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/08/09/Android-EditText-YouShouldKnow/" class="leancloud_visitors" data-flag-title="EditText的使用及值得注意的地方">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          EditText 的使用及值得注意的地方
+来源： 张明云（@UperOne）
+链接： http://www.jianshu.com/p/1f05bb1fde3e
+
+Android上有很多输入法应用，每种输入法都有各自的特点，输入法多数时候是和EditText配合使用，结合我自己的亲身实践分享一下使用
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/08/09/Android-EditText-YouShouldKnow/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1886,56 +937,18 @@ mInputEditTxt.setLongClickable(false);
       
         
           
-            <h1 id="致迷茫的你"><a href="#致迷茫的你" class="headerlink" title="致迷茫的你"></a>致迷茫的你</h1><p><strong>致迷茫的你13幅探讨关于生活哲学的逻辑图，将帮助你更清晰地了解自己的行为、目标以及思考问题的方式，选择正确的方式去实现心中所想。</strong></p>
-<p><img src="http://obbu6r1mi.bkt.clouddn.com/1.png" alt="什么是生活"></p>
-<h3 id="No-1、什么是生活"><a href="#No-1、什么是生活" class="headerlink" title="No.1、什么是生活"></a>No.1、什么是生活</h3><p>生活中我们往往因为缺乏对自我的认知而错过了我们很多原本属于自己的生活，生活总是在不经意间见错过了那些最美好的东西。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">“Pay close attention. This is your life.”</div></pre></td></tr></table></figure>
-<p>请留意生活中的细节，这是你的生活。</p>
-<p><img src="http://obbu6r1mi.bkt.clouddn.com/2.png" alt=""></p>
-<h3 id="No-2、明天比今天更重要"><a href="#No-2、明天比今天更重要" class="headerlink" title="No.2、明天比今天更重要"></a>No.2、明天比今天更重要</h3><p>人们总是过于在意那些重要的决定 (比如接受什么样的工作或者职位) 但是实际上明天总是模糊的。潜心规划，向你认为最好的目标大胆进发，要知道，很少有所谓完全“正确”或是“错误”的决定，因为它们只不过都是一个让你的生命进入下一个阶段的台阶。</p>
-<p><strong>认真地思考，清楚滴知道自己的追求及内心深处想要的东西是神马，这是航行中的灯塔，没有了这个灯塔，前行的路上就会有更多“错误”的选择，今天—&gt;明天是一条不可逆转的路，珍惜每个当下及生命中的过客。</strong></p>
-<p><img src="http://obbu6r1mi.bkt.clouddn.com/3.png" alt=""></p>
-<h3 id="No-3、获得满足感"><a href="#No-3、获得满足感" class="headerlink" title="No.3、获得满足感"></a>No.3、获得满足感</h3><p>和你得到的实物相比，你可以从和别人建立的关系中获得更多的满足。在我们的现实生活中，我们总是错误地追求“物质”所带来的快感，就如我常说的，钱绝对不是 我们人生的追求，它只不过是满足我们需求的工具而已，可是很多人只看了工具，却没有想清楚，努力获得这个工具用来干什么？在现实生活中往往会出现两种情况：</p>
-<ol>
-<li><p><strong>钱有了，却无所事事；</strong></p>
-</li>
-<li><p><strong>钱没了，所有的精力及焦点都陷入到“求生存”的状态，几乎没有心智考虑幸福的事情，然后越来越穷，越来越没有幸福感。</strong></p>
-</li>
-</ol>
-<p><img src="http://obbu6r1mi.bkt.clouddn.com/4.png" alt=""></p>
-<h3 id="No-4、体现生命的价值"><a href="#No-4、体现生命的价值" class="headerlink" title="No.4、体现生命的价值"></a>No.4、体现生命的价值</h3><p>在 这里的“头衔”是指他人的评价，也就是所谓的面子，我们往往太在意他人的评价而忽略了自己最真实的需求，有一句话说的很好“外面只有自己，没有别人”；这 句话反过来说也挺有意义：“里面只有别人，没有自己”，真正的忽略了别人的评价。其实，我们在生活的道场中要认真的反思与修行。尊重人比尊重头衔重要，每 个人的生命都有自己的价值。</p>
-<p><strong>外面只有自己，没有别人。</strong></p>
-<p><strong>里面只有别人，没有自己。</strong></p>
-<p><img src="http://obbu6r1mi.bkt.clouddn.com/5.png" alt=""></p>
-<h3 id="NO-5、不要轻易说“不”"><a href="#NO-5、不要轻易说“不”" class="headerlink" title="NO.5、不要轻易说“不”"></a>NO.5、不要轻易说“不”</h3><p>学会重新认识拒绝。当你努力想要成为领导者或者建立公司的时候，人们会经常告诉你“不行”。但是与其把这个NO视为事情的结束，不如把它看作一个寻找原因的 机会：你是不是找了错误的人?你是不是还没有展现出你具有承担这个新责任的能力? 水滴石穿，NO会变成另一个等待，学习和再次尝试的机会。</p>
-<p><strong>其实人们最大的问题问题在于遭受拒绝的时候“郁闷”的心情，由于情绪的影响我们不愿意发现自己的问题，而更愿意用找借口的方式去处理，因为这个过程中是逃避 了“发现自己问题”痛苦，就像吃了止疼药，虽然现在不疼了，可问题还是会出现，因此多去“求证为什么”是一种非常好的思维模式。</strong></p>
-<p><img src="http://obbu6r1mi.bkt.clouddn.com/6.png" alt=""></p>
-<h3 id="No-6、挑战自我"><a href="#No-6、挑战自我" class="headerlink" title="No.6、挑战自我"></a>No.6、挑战自我</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">“Find a place where you can be challenged. Ask yourself: Am I proudof my work?”</div></pre></td></tr></table></figure>
-<p>找到一个挑战自己的事业。自省:“我是否为我的工作感到自豪”？</p>
-<p><strong>这是一幅很有意义的图，如果你不去热爱你的工作与生活，不能发现工作与生活中的价值，再大的努力你的人生体验都会停留在峰底。</strong></p>
-<p><img src="http://obbu6r1mi.bkt.clouddn.com/7.png" alt=""></p>
-<h3 id="No-7、别害怕不确定性"><a href="#No-7、别害怕不确定性" class="headerlink" title="No.7、别害怕不确定性"></a>No.7、别害怕不确定性</h3><p>别害怕偏离你的计划,勇敢的接受不确定性。那些在你感情，工作和生活上表现出不确定性和高风险的东西往往都是很Cool而且很值得你尝试的。</p>
-<p><strong>其实偏离计划的事情，往往可以帮助自己打破“舒适圈”，在早些时候，选择一些自己不愿意做的事情，当然这些事情不会带来太大的负面情绪与结果，然后反思这个过程，个人的成长还是蛮大的，所以尝试你没有尝试的是一种进步，有时候也很Cool！</strong></p>
-<p><img src="http://obbu6r1mi.bkt.clouddn.com/8.png" alt=""></p>
-<h3 id="No-8、回顾过去的经历"><a href="#No-8、回顾过去的经历" class="headerlink" title="No.8、回顾过去的经历"></a>No.8、回顾过去的经历</h3><p>当你进入你人生的新阶段，别忘了停下来回头看看，去发现你过去经历的意义。它可以让你更好的了解你是谁，将到哪里去，如何去那里。</p>
-<p><strong>这真心是一个不错的建议，所有的经历没有反思则这份经历就失去了成长的意义，如果一直按照一个思维方式去思考问题，经历再多结果也是一样，不管是工作还是感情都符合这条规则。</strong></p>
-<p><img src="http://obbu6r1mi.bkt.clouddn.com/9.png" alt=""></p>
-<h3 id="No-9、受到教育不等于聪明"><a href="#No-9、受到教育不等于聪明" class="headerlink" title="No.9、受到教育不等于聪明"></a>No.9、受到教育不等于聪明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">“Never confuse being educated with being smart。”</div></pre></td></tr></table></figure>
-<p>别把受到教育这件事和聪明这件事混为一个概念。</p>
-<p><strong> 特别是在中国，别把自己的高等教育当回事，即便你的学历再高，南哥让你说出小学五年级第一篇语文课文的题目时，你恐怕早已经不记得了，真正的思考能力、创新能力及优秀的品格才是职业发展的源动力。 </strong></p>
-<p><img src="http://obbu6r1mi.bkt.clouddn.com/10.png" alt=""></p>
-<h3 id="No-10、阅读能激发灵感"><a href="#No-10、阅读能激发灵感" class="headerlink" title="No.10、阅读能激发灵感"></a>No.10、阅读能激发灵感</h3><p>广泛的阅读，热情的阅读。创造力是一个必需的生存技能，而一些灵感就来自于你没有期待的来源。</p>
-<p><strong>这是一幅需要铭记在心的图画，你阅读的越多你的灵感就越多，找到恰当的书籍，在阅读时候并联想解决自己遇到的问题是一种非常高效的学习方法。</strong></p>
-<p><img src="http://obbu6r1mi.bkt.clouddn.com/11.png" alt=""></p>
-<h3 id="No-11、诚实比什么都重要"><a href="#No-11、诚实比什么都重要" class="headerlink" title="No.11、诚实比什么都重要"></a>No.11、诚实比什么都重要</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">“Be true to yourself. Be willing to learn and to be coachable.”</div></pre></td></tr></table></figure>
-<p>诚实的对待自己，愿意学习，愿意被指导。</p>
-<p><strong>关于诚实我们被这个社会教坏了，导致我们有一部分人不能诚实的对待别人，更不能诚实的对待自己的内心世界，所谓的诚实地对待别人是真诚+真实的想法，所谓诚实的对待自己就是认清自己真实的想法与清醒，能够允许自己的喜怒哀乐！</strong></p>
-<p><img src="http://obbu6r1mi.bkt.clouddn.com/12.png" alt=""></p>
-<h3 id="No-12、拥有感恩的心"><a href="#No-12、拥有感恩的心" class="headerlink" title="No.12、拥有感恩的心"></a>No.12、拥有感恩的心</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">“Give back—serve from a sense of gratitude.”</div></pre></td></tr></table></figure>
-<p>回报用感恩的心，感恩身边的人和事。</p>
-<p><strong>关于感恩的心很多时候被解读为知恩图报，实际上这是一种幸福生活的方式，因为常怀感恩之心的人，内心总是充满了感动，而那些受益者以理所当然的心态，或者是一味的扮演索取者的角色是永远无法感受到这份感动，却时常陷入到得不偿失的痛苦之中。</strong></p>
+          致迷茫的你致迷茫的你13幅探讨关于生活哲学的逻辑图，将帮助你更清晰地了解自己的行为、目标以及思考问题的方式，选择正确的方式去实现心中所想。
 
-          
+No.1、什么是生活生活中我们往往因为缺乏对自我的认知而错过了我们很多原本属于自己的生活，生活总是在不经意间见错过了那些最美好的东西。
+1“Pay close
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/08/03/whenyouloseyouself/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2097,45 +1110,18 @@ mInputEditTxt.setLongClickable(false);
       
         
           
-            <h2 id="xUtils3简介"><a href="#xUtils3简介" class="headerlink" title="xUtils3简介"></a>xUtils3简介</h2><ul>
-<li>xUtils 包含了很多实用的android工具.</li>
-<li>xUtils 支持超大文件(超过2G)上传，更全面的http请求协议支持(11种谓词)，拥有更加灵活的ORM，更多的事件注解支持且不受混淆影响…</li>
-<li>xUtils 最低兼容Android 4.0 (api level 14). (<a href="https://github.com/wyouflf/xUtils3/issues/8" target="_blank" rel="external">Android 2.3?</a>)</li>
-<li>xUtils3变化较多所以建立了新的项目不在旧版(github.com/wyouflf/xUtils)上继续维护, 相对于旧版本:<ol>
-<li>HTTP实现替换HttpClient为UrlConnection, 自动解析回调泛型, 更安全的断点续传策略.</li>
-<li>支持标准的Cookie策略, 区分domain, path…</li>
-<li>事件注解去除不常用的功能, 提高性能.</li>
-<li>数据库api简化提高性能, 达到和greenDao一致的性能.</li>
-<li>图片绑定支持gif(受系统兼容性影响, 部分gif文件只能静态显示), webp; 支持圆角, 圆形, 方形等裁剪, 支持自动旋转…</li>
-</ol>
-</li>
-</ul>
-<h4 id="使用Gradle构建时添加一下依赖即可"><a href="#使用Gradle构建时添加一下依赖即可" class="headerlink" title="使用Gradle构建时添加一下依赖即可:"></a>使用Gradle构建时添加一下依赖即可:</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'org.xutils:xutils:3.3.4'</span></div></pre></td></tr></table></figure>
-<h5 id="如果使用eclipse可以-点击这里下载aar文件-然后用zip解压-取出jar包和so文件"><a href="#如果使用eclipse可以-点击这里下载aar文件-然后用zip解压-取出jar包和so文件" class="headerlink" title="如果使用eclipse可以 点击这里下载aar文件, 然后用zip解压, 取出jar包和so文件."></a>如果使用eclipse可以 <a href="http://dl.bintray.com/wyouflf/maven/org/xutils/xutils/" target="_blank" rel="external">点击这里下载aar文件</a>, 然后用zip解压, 取出jar包和so文件.</h5><h5 id="混淆配置参考示例项目sample的配置"><a href="#混淆配置参考示例项目sample的配置" class="headerlink" title="混淆配置参考示例项目sample的配置"></a>混淆配置参考示例项目sample的配置</h5><h4 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题:"></a>常见问题:</h4><ol>
-<li>更好的管理图片缓存: <a href="https://github.com/wyouflf/xUtils3/issues/149" target="_blank" rel="external">https://github.com/wyouflf/xUtils3/issues/149</a></li>
-<li>Cookie的使用: <a href="https://github.com/wyouflf/xUtils3/issues/125" target="_blank" rel="external">https://github.com/wyouflf/xUtils3/issues/125</a></li>
-<li>关于query参数? http请求可以通过 header, url, body(请求体)传参; query参数是url中问号(?)后面的参数.</li>
-<li>关于body参数? body参数只有PUT, POST, PATCH, DELETE(老版本RFC2616文档没有明确指出它是否支持, 所以暂时支持)请求支持.</li>
-</ol>
-<h4 id="使用前配置"><a href="#使用前配置" class="headerlink" title="使用前配置"></a>使用前配置</h4><h5 id="需要的权限"><a href="#需要的权限" class="headerlink" title="需要的权限"></a>需要的权限</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span></div></pre></td></tr></table></figure>
-<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在application的onCreate中初始化</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate();</div><div class="line">    x.Ext.init(<span class="keyword">this</span>);</div><div class="line">    x.Ext.setDebug(<span class="keyword">true</span>); <span class="comment">// 是否输出debug日志</span></div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用-Event事件注解-ContentView-ViewInject等更多示例参考sample项目"><a href="#使用-Event事件注解-ContentView-ViewInject等更多示例参考sample项目" class="headerlink" title="使用@Event事件注解(@ContentView, @ViewInject等更多示例参考sample项目)"></a>使用@Event事件注解(@ContentView, @ViewInject等更多示例参考sample项目)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 1. 方法必须私有限定,</div><div class="line"> * 2. 方法参数形式必须和type对应的Listener接口一致.</div><div class="line"> * 3. 注解参数value支持数组: value=&#123;id1, id2, id3&#125;</div><div class="line"> * 4. 其它参数说明见&#123;<span class="doctag">@link</span> org.xutils.event.annotation.Event&#125;类的说明.</div><div class="line"> **/</div><div class="line"><span class="meta">@Event</span>(value = R.id.btn_test_baidu1,</div><div class="line">        type = View.OnClickListener.class<span class="comment">/*可选参数, 默认是View.OnClickListener.class*/</span>)</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">onTestBaidu1Click</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="访问网络-更多示例参考sample项目"><a href="#访问网络-更多示例参考sample项目" class="headerlink" title="访问网络(更多示例参考sample项目)"></a>访问网络(更多示例参考sample项目)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 自定义实体参数类请参考:</div><div class="line"> * 请求注解 &#123;<span class="doctag">@link</span> org.xutils.http.annotation.HttpRequest&#125;</div><div class="line"> * 请求注解处理模板接口 &#123;<span class="doctag">@link</span> org.xutils.http.app.ParamsBuilder&#125;</div><div class="line"> *</div><div class="line"> * 需要自定义类型作为callback的泛型时, 参考:</div><div class="line"> * 响应注解 &#123;<span class="doctag">@link</span> org.xutils.http.annotation.HttpResponse&#125;</div><div class="line"> * 响应注解处理模板接口 &#123;<span class="doctag">@link</span> org.xutils.http.app.ResponseParser&#125;</div><div class="line"> *</div><div class="line"> * 示例: 查看 org.xutils.sample.http 包里的代码</div><div class="line"> */</div><div class="line">BaiduParams params = <span class="keyword">new</span> BaiduParams();</div><div class="line">params.wd = <span class="string">"xUtils"</span>;</div><div class="line"><span class="comment">// 有上传文件时使用multipart表单, 否则上传原始文件流.</span></div><div class="line"><span class="comment">// params.setMultipart(true);</span></div><div class="line"><span class="comment">// 上传文件方式 1</span></div><div class="line"><span class="comment">// params.uploadFile = new File("/sdcard/test.txt");</span></div><div class="line"><span class="comment">// 上传文件方式 2</span></div><div class="line"><span class="comment">// params.addBodyParameter("uploadFile", new File("/sdcard/test.txt"));</span></div><div class="line">Callback.Cancelable cancelable</div><div class="line">       = x.http().get(params,</div><div class="line">       <span class="comment">/**</span></div><div class="line">        * 1. callback的泛型:</div><div class="line">        * callback参数默认支持的泛型类型参见&#123;<span class="doctag">@link</span> org.xutils.http.loader.LoaderFactory&#125;,</div><div class="line">        * 例如: 指定泛型为File则可实现文件下载, 使用params.setSaveFilePath(path)指定文件保存的全路径.</div><div class="line">        * 默认支持断点续传(采用了文件锁和尾端校验续传文件的一致性).</div><div class="line">        * 其他常用类型可以自己在LoaderFactory中注册,</div><div class="line">        * 也可以使用&#123;<span class="doctag">@link</span> org.xutils.http.annotation.HttpResponse&#125;</div><div class="line">        * 将注解HttpResponse加到自定义返回值类型上, 实现自定义ResponseParser接口来统一转换.</div><div class="line">        * 如果返回值是json形式, 那么利用第三方的json工具将十分容易定义自己的ResponseParser.</div><div class="line">        * 如示例代码&#123;<span class="doctag">@link</span> org.xutils.sample.http.BaiduResponse&#125;, 可直接使用BaiduResponse作为</div><div class="line">        * callback的泛型.</div><div class="line">        *</div><div class="line">        * 2. callback的组合:</div><div class="line">        * 可以用基类或接口组合个种类的Callback, 见&#123;<span class="doctag">@link</span> org.xutils.common.Callback&#125;.</div><div class="line">        * 例如:</div><div class="line">        * a. 组合使用CacheCallback将使请求检测缓存或将结果存入缓存(仅GET请求生效).</div><div class="line">        * b. 组合使用PrepareCallback的prepare方法将为callback提供一次后台执行耗时任务的机会,</div><div class="line">        * 然后将结果给onCache或onSuccess.</div><div class="line">        * c. 组合使用ProgressCallback将提供进度回调.</div><div class="line">        * ...(可参考&#123;<span class="doctag">@link</span> org.xutils.image.ImageLoader&#125;</div><div class="line">        * 或 示例代码中的 &#123;<span class="doctag">@link</span> org.xutils.sample.download.DownloadCallback&#125;)</div><div class="line">        *</div><div class="line">        * 3. 请求过程拦截或记录日志: 参考 &#123;<span class="doctag">@link</span> org.xutils.http.app.RequestTracker&#125;</div><div class="line">        *</div><div class="line">        * 4. 请求Header获取: 参考 &#123;<span class="doctag">@link</span> org.xutils.http.app.RequestInterceptListener&#125;</div><div class="line">        *</div><div class="line">        * 5. 其他(线程池, 超时, 重定向, 重试, 代理等): 参考 &#123;<span class="doctag">@link</span> org.xutils.http.RequestParams&#125;</div><div class="line">        *</div><div class="line">        **/</div><div class="line">       <span class="keyword">new</span> Callback.CommonCallback&lt;String&gt;() &#123;</div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(String result)</span> </span>&#123;</div><div class="line">               Toast.makeText(x.app(), result, Toast.LENGTH_LONG).show();</div><div class="line">           &#125;</div><div class="line"></div><div class="line"></div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable ex, <span class="keyword">boolean</span> isOnCallback)</span> </span>&#123;</div><div class="line">               <span class="comment">//Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();</span></div><div class="line">               <span class="keyword">if</span> (ex <span class="keyword">instanceof</span> HttpException) &#123; <span class="comment">// 网络错误</span></div><div class="line">                   HttpException httpEx = (HttpException) ex;</div><div class="line">                   <span class="keyword">int</span> responseCode = httpEx.getCode();</div><div class="line">                   String responseMsg = httpEx.getMessage();</div><div class="line">                   String errorResult = httpEx.getResult();</div><div class="line">                   <span class="comment">// ...</span></div><div class="line">               &#125; <span class="keyword">else</span> &#123; <span class="comment">// 其他错误</span></div><div class="line">                   <span class="comment">// ...</span></div><div class="line">               &#125;</div><div class="line">               Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();</div><div class="line">           &#125;</div><div class="line"></div><div class="line"></div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancelled</span><span class="params">(CancelledException cex)</span> </span>&#123;</div><div class="line">               Toast.makeText(x.app(), <span class="string">"cancelled"</span>, Toast.LENGTH_LONG).show();</div><div class="line">           &#125;</div><div class="line"></div><div class="line"></div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFinished</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">           &#125;</div><div class="line">       &#125;);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// cancelable.cancel(); // 取消请求</span></div></pre></td></tr></table></figure>
-<h4 id="如果你只需要一个简单的版本"><a href="#如果你只需要一个简单的版本" class="headerlink" title="如果你只需要一个简单的版本:"></a>如果你只需要一个简单的版本:</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Event</span>(value = R.id.btn_test_baidu2)</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">onTestBaidu2Click</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">    RequestParams params = <span class="keyword">new</span> RequestParams(<span class="string">"https://www.baidu.com/s"</span>);</div><div class="line">    params.setSslSocketFactory(...); <span class="comment">// 设置ssl</span></div><div class="line">    params.addQueryStringParameter(<span class="string">"wd"</span>, <span class="string">"xUtils"</span>);</div><div class="line">    x.http().get(params, <span class="keyword">new</span> Callback.CommonCallback&lt;String&gt;() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(String result)</span> </span>&#123;</div><div class="line">            Toast.makeText(x.app(), result, Toast.LENGTH_LONG).show();</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable ex, <span class="keyword">boolean</span> isOnCallback)</span> </span>&#123;</div><div class="line">            Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancelled</span><span class="params">(CancelledException cex)</span> </span>&#123;</div><div class="line">            Toast.makeText(x.app(), <span class="string">"cancelled"</span>, Toast.LENGTH_LONG).show();</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFinished</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line">`</div></pre></td></tr></table></figure>
-<h4 id="带有缓存的请求示例"><a href="#带有缓存的请求示例" class="headerlink" title="带有缓存的请求示例:"></a>带有缓存的请求示例:</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line">BaiduParams params = <span class="keyword">new</span> BaiduParams();</div><div class="line">params.wd = <span class="string">"xUtils"</span>;</div><div class="line"><span class="comment">// 默认缓存存活时间, 单位:毫秒.(如果服务没有返回有效的max-age或Expires)</span></div><div class="line">params.setCacheMaxAge(<span class="number">1000</span> * <span class="number">60</span>);</div><div class="line">Callback.Cancelable cancelable</div><div class="line"><span class="comment">// 使用CacheCallback, xUtils将为该请求缓存数据.</span></div><div class="line">= x.http().get(params, <span class="keyword">new</span> Callback.CacheCallback&lt;String&gt;() &#123;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> hasError = <span class="keyword">false</span>;</div><div class="line"><span class="keyword">private</span> String result = <span class="keyword">null</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCache</span><span class="params">(String result)</span> </span>&#123;</div><div class="line"><span class="comment">// 得到缓存数据, 缓存过期后不会进入这个方法.</span></div><div class="line"><span class="comment">// 如果服务端没有返回过期时间, 参考params.setCacheMaxAge(maxAge)方法.</span></div><div class="line">        <span class="comment">//</span></div><div class="line">        <span class="comment">// * 客户端会根据服务端返回的 header 中 max-age 或 expires 来确定本地缓存是否给 onCache 方法.</span></div><div class="line">        <span class="comment">//   如果服务端没有返回 max-age 或 expires, 那么缓存将一直保存, 除非这里自己定义了返回false的</span></div><div class="line">        <span class="comment">//   逻辑, 那么xUtils将请求新数据, 来覆盖它.</span></div><div class="line">        <span class="comment">//</span></div><div class="line">        <span class="comment">// * 如果信任该缓存返回 true, 将不再请求网络;</span></div><div class="line">        <span class="comment">//   返回 false 继续请求网络, 但会在请求头中加上ETag, Last-Modified等信息,</span></div><div class="line">        <span class="comment">//   如果服务端返回304, 则表示数据没有更新, 不继续加载数据.</span></div><div class="line">        <span class="comment">//</span></div><div class="line">        <span class="keyword">this</span>.result = result;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>; <span class="comment">// true: 信任缓存数据, 不在发起网络请求; false不信任缓存数据.</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(String result)</span> </span>&#123;</div><div class="line"><span class="comment">// 注意: 如果服务返回304或 onCache 选择了信任缓存, 这里将不会被调用,</span></div><div class="line">        <span class="comment">// 但是 onFinished 总会被调用.</span></div><div class="line"><span class="keyword">this</span>.result = result;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable ex, <span class="keyword">boolean</span> isOnCallback)</span> </span>&#123;</div><div class="line">hasError = <span class="keyword">true</span>;</div><div class="line">Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();</div><div class="line"><span class="keyword">if</span> (ex <span class="keyword">instanceof</span> HttpException) &#123; <span class="comment">// 网络错误</span></div><div class="line">HttpException httpEx = (HttpException) ex;</div><div class="line"><span class="keyword">int</span> responseCode = httpEx.getCode();</div><div class="line">String responseMsg = httpEx.getMessage();</div><div class="line">String errorResult = httpEx.getResult();</div><div class="line"><span class="comment">// ...</span></div><div class="line">&#125; <span class="keyword">else</span> &#123; <span class="comment">// 其他错误</span></div><div class="line"><span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancelled</span><span class="params">(CancelledException cex)</span> </span>&#123;</div><div class="line">Toast.makeText(x.app(), <span class="string">"cancelled"</span>, Toast.LENGTH_LONG).show();</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFinished</span><span class="params">()</span> </span>&#123;</div><div class="line"><span class="keyword">if</span> (!hasError &amp;&amp; result != <span class="keyword">null</span>) &#123;</div><div class="line"><span class="comment">// 成功获取数据</span></div><div class="line">Toast.makeText(x.app(), result, Toast.LENGTH_LONG).show();</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="使用数据库-更多示例参考sample项目"><a href="#使用数据库-更多示例参考sample项目" class="headerlink" title="使用数据库(更多示例参考sample项目)"></a>使用数据库(更多示例参考sample项目)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Parent test = db.selector(Parent.class).where(<span class="string">"id"</span>, <span class="string">"in"</span>, <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>&#125;).findFirst();</div><div class="line"><span class="keyword">long</span> count = db.selector(Parent.class).where(<span class="string">"name"</span>, <span class="string">"LIKE"</span>, <span class="string">"w%"</span>).and(<span class="string">"age"</span>, <span class="string">"&gt;"</span>, <span class="number">32</span>).count();</div><div class="line">List&lt;Parent&gt; testList = db.selector(Parent.class).where(<span class="string">"id"</span>, <span class="string">"between"</span>, <span class="keyword">new</span> String[]&#123;<span class="string">"1"</span>, <span class="string">"5"</span>&#125;).findAll();</div></pre></td></tr></table></figure>
-<h3 id="绑定图片-更多示例参考sample项目"><a href="#绑定图片-更多示例参考sample项目" class="headerlink" title="绑定图片(更多示例参考sample项目)"></a>绑定图片(更多示例参考sample项目)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">x.image().bind(imageView, url, imageOptions);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// assets file</span></div><div class="line">x.image().bind(imageView, <span class="string">"assets://test.gif"</span>, imageOptions);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// local file</span></div><div class="line">x.image().bind(imageView, <span class="keyword">new</span> File(<span class="string">"/sdcard/test.gif"</span>).toURI().toString(), imageOptions);</div><div class="line">x.image().bind(imageView, <span class="string">"/sdcard/test.gif"</span>, imageOptions);</div><div class="line">x.image().bind(imageView, <span class="string">"file:///sdcard/test.gif"</span>, imageOptions);</div><div class="line">x.image().bind(imageView, <span class="string">"file:/sdcard/test.gif"</span>, imageOptions);</div><div class="line"></div><div class="line"></div><div class="line">x.image().bind(imageView, url, imageOptions, <span class="keyword">new</span> Callback.CommonCallback&lt;Drawable&gt;() &#123;...&#125;);</div><div class="line">x.image().loadDrawable(url, imageOptions, <span class="keyword">new</span> Callback.CommonCallback&lt;Drawable&gt;() &#123;...&#125;);</div><div class="line">x.image().loadFile(url, imageOptions, <span class="keyword">new</span> Callback.CommonCallback&lt;File&gt;() &#123;...&#125;);</div></pre></td></tr></table></figure>
-<hr>
-<h3 id="关于libwebpbackport"><a href="#关于libwebpbackport" class="headerlink" title="关于libwebpbackport"></a>关于libwebpbackport</h3><ul>
-<li>部分4.x的机型对webp格式的支持仍然有问题, 需要借助webp.</li>
-<li>webp来自:<a href="https://github.com/webmproject/libwebp" target="_blank" rel="external">https://github.com/webmproject/libwebp</a></li>
-<li>webpbackport来自:<a href="https://github.com/alexey-pelykh/webp-android-backport" target="_blank" rel="external">https://github.com/alexey-pelykh/webp-android-backport</a></li>
-<li>其中为webpbackport添加了nativeDecodeFile的实现, 并修复在Android 5.0以上系统存在bug:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// android_backport_webp.cpp</span></div><div class="line"><span class="comment">// 修改:</span></div><div class="line">jclassRef = jniEnv-&gt;FindClass(...);</div><div class="line"><span class="comment">// 为:</span></div><div class="line">jclass temp = jniEnv-&gt;FindClass(...);</div><div class="line">jclassRef = (jclass)jniEnv-&gt;NewGlobalRef(temp);</div><div class="line">jniEnv-&gt;DeleteLocalRef(temp);</div><div class="line"><span class="comment">// 其他jni代码修改见: http://my.oschina.net/u/1171837/blog/533153</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-
-          
+          xUtils3简介
+xUtils 包含了很多实用的android工具.
+xUtils 支持超大文件(超过2G)上传，更全面的http请求协议支持(11种谓词)，拥有更加灵活的ORM，更多的事件注解支持且不受混淆影响…
+xUtils 最低兼容Android 4.0 (api level 14). (A
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/07/31/xUtils3/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2297,21 +1283,18 @@ mInputEditTxt.setLongClickable(false);
       
         
           
-            <p>你认识我的时候，我已是待嫁的年龄，你没有见过我和男生成群结队去别人家菜地偷萝卜的样子；</p>
-<p>你认识我的时候，我已经蓄了很久的长发，你没有见过我剪短发穿迷彩服混迹于男生堆打闹的岁月；</p>
-<p>你认识我的时候，我已经可以照顾自己，心情不好就做家务，手洗各种衣服，你不知道从前的我不会洗袜子，从没拖过地。</p>
-<p>你认识我的时候，我知道替别人着想、习惯倾听，从不打断别人的说话，你没有经历过我武断专横、不听任何人解释、我行我素的岁月。</p>
-<p>你认识我的时候，我脾气收敛，从不大声骂人，你不会知道原来的我生气时摔东西、撕纸条泄愤。</p>
-<p>你认识我的时候，我理性、友好、克制、习惯微笑，你没有见过我情绪崩溃，哭到喘不过气，甚至没有见过我撒娇的样子。</p>
-<p>你认识我的时候，我已经养成了良好的饮食习惯和运动习惯，你不知道从前的我喜欢吃油炸食品，不爱跑步，晚上十点半可以吃掉半盆排骨，把自己喂到130多斤。</p>
-<p>你认识我的时候，我已经会画简单的妆，知道什么季节穿黑丝袜、什么季节穿打底裤，商场里给你介绍化妆品让你晕头转向，你无法想象上中学时的我，早晨只刷牙不洗脸不梳头还能在学校转一整天。</p>
-<p>你认识我的时候，我已经知道怎么和陌生人打交道、怎么在酒桌上全身而退，你没有见过我说话脸红、被一瓶啤酒醉倒睡一晚的时候。</p>
-<p>你认识我的时候，我已经是这个样子，是个符合或者不符合你想法的成品，你再也无法参与我的成长，不能看到我从不懂事到懂事，从不温柔到温柔。</p>
-<p>所以，你认识的、喜欢的终究只是半个我。你不能理解我各种奇怪的忌讳，不能明白我对着一首老歌，一种场景发呆，无法理解我的坚持、放弃、隐忍、等待。同样，我认识你的时候，你穿带领子的衣服上班、不知道你穿球衣打球的样子；我认识你的时候，你请吃饭从不心疼，那些花钱拮据，攒钱吃大餐的日子你不是和我在一起；我认识你的时候，你知道不同的花代表不同的花语，而那个伴你成长教会你这些的女生不是我。我们半路相遇，都是成品，那些打磨过我们的人都随着时光走远了。</p>
-<p>我是应该唏嘘还是应该感谢， 别人教会你这些，陪着你长大，然后你们分开，再转到我的身边。我是应该庆幸吧，看到的你已是稳重大方、彬彬有礼、知道对女生该说什么话，如何讨人喜欢。可是我多么想有一个人和我一起成长，和我一起年少轻狂、少不更事，从青涩到成熟都只是同一个人，成长的痕迹在对方眼中就能看到。二十多年的岁月中有十几年是和他相伴，然后一起让小时候的梦想一步步都成为现实。</p>
-<p>遗憾的是，所有的旅伴都是暂时的，我终于还是自己长大了，跟着不同的队伍，最后还是一个人、孤独的长大了。</p>
-
-          
+          你认识我的时候，我已是待嫁的年龄，你没有见过我和男生成群结队去别人家菜地偷萝卜的样子；
+你认识我的时候，我已经蓄了很久的长发，你没有见过我剪短发穿迷彩服混迹于男生堆打闹的岁月；
+你认识我的时候，我已经可以照顾自己，心情不好就做家务，手洗各种衣服，你不知道从前的我不会洗袜子，从没拖过地。
+你认识我的时
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/07/24/thetime_youmeetme/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2473,12 +1456,19 @@ mInputEditTxt.setLongClickable(false);
       
         
           
-            <h1 id="《心结》"><a href="#《心结》" class="headerlink" title="《心结》"></a><center>《心结》</center></h1><p><center>作者： OCN.Yang</center>  </p>
-<p><center><strong>心有千千结，结结相思扣。</strong></center></p>
-<p><center><strong>相思扣难解，心上一度秋。</strong></center><br><br><br><br><br><span style="display:inline-block;width:83px;"><a style="float:left;text-decoration:none;" target="_blank" href="http://www.banquanyin.com/u/101701040004406"><img src="http://s1.banquanyin.com/c/icon-yin-24.png" title="更多授权" style="width:inherit;"></a><a target="_blank" href="http://101701040004406.bqy.pub"><img src="http://s1.banquanyin.com/c/icon-auth-cr-24.png" title="获取授权" style="width:inherit;"></a></span></p>
-<p><br><br><br></p>
+          《心结》作者： OCN.Yang  
+心有千千结，结结相思扣。
+相思扣难解，心上一度秋。
+
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/1993/03/15/XinJie/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
